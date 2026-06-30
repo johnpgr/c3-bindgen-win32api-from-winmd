@@ -1,4 +1,4 @@
-module gdi_opengl_window;
+module win32_example_gui_app;
 
 import win32;
 
@@ -6,7 +6,7 @@ const uint GL_COLOR_BUFFER_BIT = 0x00004000;
 
 bool running = true;
 Hdc deviceContext;
-Hglrc glContext;
+HGlRc glContext;
 
 fn LResult windowProc(HWnd hWnd, uint message, WParam wParam, LParam lParam) {
     if (message == win32::WM_CLOSE) {
@@ -27,7 +27,7 @@ fn bool setupOpenGl(HWnd window) {
     deviceContext = win32::getDC(window);
     if (deviceContext == null) return false;
 
-    Pixelformatdescriptor format;
+    PixelFormatDescriptor format;
     format.nSize = (ushort)@sizeof(format);
     format.nVersion = 1;
     format.dwFlags = win32::PFD_DRAW_TO_WINDOW | win32::PFD_SUPPORT_OPENGL | win32::PFD_DOUBLEBUFFER;

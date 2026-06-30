@@ -3,3 +3,5 @@ bin/
 obj/
 *.exe
 *.pdb
+*.winmd
+*.sqlite

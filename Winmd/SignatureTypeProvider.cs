@@ -54,7 +54,16 @@ internal sealed class SignatureTypeProvider : ISignatureTypeProvider<string, obj
 
     public string GetSZArrayType(string elementType) => $"{elementType}[]";
 
-    public string GetArrayType(string elementType, ArrayShape shape) => $"{elementType}[rank:{shape.Rank}]";
+    public string GetArrayType(string elementType, ArrayShape shape)
+    {
+        if (shape.Rank == 1 && shape.Sizes.Length == 1)
+            return $"{elementType}[{shape.Sizes[0]}]";
+
+        if (shape.Rank == 1)
+            return $"{elementType}[]";
+
+        return $"{elementType}[rank:{shape.Rank}]";
+    }
 
     public string GetPinnedType(string elementType) => $"pinned {elementType}";
 

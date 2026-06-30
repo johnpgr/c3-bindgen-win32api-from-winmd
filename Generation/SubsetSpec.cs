@@ -6,9 +6,13 @@ public sealed class SubsetSpec
 {
     public string Module { get; init; } = "win32";
     public List<string> Namespaces { get; init; } = [];
+    public List<string> IncludeNamespaces { get; init; } = [];
+    public List<string> IncludeImportModules { get; init; } = [];
+    public List<string> IncludeConstantsMatching { get; init; } = [];
     public List<string> Functions { get; init; } = [];
     public List<string> Types { get; init; } = [];
     public List<string> Constants { get; init; } = [];
+    public Dictionary<string, string> TypeNameOverrides { get; init; } = new(StringComparer.Ordinal);
 
     public static SubsetSpec Load(string path)
     {

@@ -112,12 +112,17 @@ public sealed class WinmdReader
                     ? sig.ParameterTypes[index]
                     : "<unparsed>";
 
+                var isConst = HasCustomAttribute(reader, p.GetCustomAttributes(), "ConstAttribute", "Windows.Win32.Foundation.Metadata");
+                var isOptional = (p.Attributes & ParameterAttributes.Optional) != 0 || HasCustomAttribute(reader, p.GetCustomAttributes(), "OptionalAttribute", "System.Runtime.InteropServices");
+
                 signature.Parameters.Add(new ApiParameter
                 {
                     OriginalName = string.IsNullOrWhiteSpace(paramName) ? $"param{index + 1}" : paramName,
                     Type = paramType,
                     Direction = DirectionFromAttributes(p.Attributes),
-                    NonNull = false
+                    NonNull = !isOptional,
+                    Const = isConst,
+                    Optional = isOptional
                 });
             }
 
@@ -311,12 +316,58 @@ public sealed class WinmdReader
 
     private static bool IsHandleName(string name)
     {
+        if (name is "HRESULT" or "NTSTATUS")
+            return false;
+
         return name.Length >= 2 && name[0] == 'H' && char.IsUpper(name[1]);
     }
 
     private static string FullName(string ns, string name)
     {
         return string.IsNullOrEmpty(ns) ? name : $"{ns}.{name}";
+    }
+
+    private static bool HasCustomAttribute(MetadataReader reader, CustomAttributeHandleCollection customAttributes, string attributeName, string attributeNamespace)
+    {
+        foreach (var handle in customAttributes)
+        {
+            var customAttribute = reader.GetCustomAttribute(handle);
+            var constructorHandle = customAttribute.Constructor;
+            string? name = null;
+            string? ns = null;
+
+            if (constructorHandle.Kind == HandleKind.MethodDefinition)
+            {
+                var methodDef = reader.GetMethodDefinition((MethodDefinitionHandle)constructorHandle);
+                var typeDefHandle = methodDef.GetDeclaringType();
+                var typeDef = reader.GetTypeDefinition(typeDefHandle);
+                name = reader.GetString(typeDef.Name);
+                ns = reader.GetString(typeDef.Namespace);
+            }
+            else if (constructorHandle.Kind == HandleKind.MemberReference)
+            {
+                var memberRef = reader.GetMemberReference((MemberReferenceHandle)constructorHandle);
+                var parentHandle = memberRef.Parent;
+                if (parentHandle.Kind == HandleKind.TypeReference)
+                {
+                    var typeRef = reader.GetTypeReference((TypeReferenceHandle)parentHandle);
+                    name = reader.GetString(typeRef.Name);
+                    ns = reader.GetString(typeRef.Namespace);
+                }
+                else if (parentHandle.Kind == HandleKind.TypeDefinition)
+                {
+                    var typeDef = reader.GetTypeDefinition((TypeDefinitionHandle)parentHandle);
+                    name = reader.GetString(typeDef.Name);
+                    ns = reader.GetString(typeDef.Namespace);
+                }
+            }
+
+            if (name == attributeName && ns == attributeNamespace)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void WarnUnparsed(string target, Exception exception)

@@ -4,6 +4,48 @@ namespace WinmnDump.Generation;
 
 public sealed class C3NameProjector
 {
+    private static readonly HashSet<string> Keywords = new(StringComparer.Ordinal)
+    {
+        "alias",
+        "asm",
+        "attrdef",
+        "bitstruct",
+        "break",
+        "case",
+        "catch",
+        "const",
+        "continue",
+        "default",
+        "defer",
+        "distinct",
+        "do",
+        "else",
+        "enum",
+        "extern",
+        "false",
+        "fault",
+        "fn",
+        "foreach",
+        "for",
+        "if",
+        "import",
+        "interface",
+        "macro",
+        "module",
+        "nextcase",
+        "null",
+        "return",
+        "struct",
+        "switch",
+        "tlocal",
+        "true",
+        "try",
+        "typedef",
+        "union",
+        "var",
+        "while"
+    };
+
     private readonly Dictionary<string, string> _typeOverrides = new(StringComparer.Ordinal)
     {
         ["ATOM"] = "Atom",
@@ -13,7 +55,8 @@ public sealed class C3NameProjector
         ["HANDLE"] = "Handle",
         ["HBRUSH"] = "HBrush",
         ["HCURSOR"] = "HCursor",
-        ["HDC"] = "HDc",
+        ["HDC"] = "Hdc",
+        ["HGLRC"] = "Hglrc",
         ["HICON"] = "HIcon",
         ["HINSTANCE"] = "HInstance",
         ["HMENU"] = "HMenu",
@@ -42,6 +85,21 @@ public sealed class C3NameProjector
     private readonly Dictionary<string, string> _originalToC3Type = new(StringComparer.Ordinal);
     private readonly Dictionary<string, string> _c3TypeToOriginal = new(StringComparer.Ordinal);
 
+    public C3NameProjector(IReadOnlyDictionary<string, string>? typeNameOverrides = null)
+    {
+        if (typeNameOverrides is null)
+            return;
+
+        foreach (var (original, c3Name) in typeNameOverrides)
+        {
+            var key = LastNameSegment(original);
+            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(c3Name))
+                continue;
+
+            _typeOverrides[key] = SanitizeTypeName(c3Name);
+        }
+    }
+
     public string TypeName(string original)
     {
         original = LastNameSegment(original);
@@ -57,7 +115,24 @@ public sealed class C3NameProjector
         return projected;
     }
 
-    public string FunctionName(string original) => LowerFirst(LastNameSegment(original));
+    public string FunctionName(string original)
+    {
+        var name = LastNameSegment(original);
+        name = SanitizeIdentifier(name, "item");
+
+        var underscoreIndex = name.IndexOf('_');
+        if (underscoreIndex > 0)
+        {
+            var prefix = name[..underscoreIndex];
+            if (prefix.All(ch => !char.IsLower(ch)))
+            {
+                var suffix = name[(underscoreIndex + 1)..];
+                return prefix.ToLowerInvariant() + "_" + suffix;
+            }
+        }
+
+        return LowerFirst(name);
+    }
 
     public string FieldName(string original) => LowerFirst(SanitizeIdentifier(original, "field"));
 
@@ -100,6 +175,14 @@ public sealed class C3NameProjector
         return name;
     }
 
+    private static string SanitizeTypeName(string value)
+    {
+        var sanitized = SanitizeIdentifier(value, "Win32Type");
+        if (!char.IsUpper(sanitized[0]))
+            sanitized = char.ToUpperInvariant(sanitized[0]) + sanitized[1..];
+        return sanitized;
+    }
+
     private static string ToPascalPart(string value)
     {
         if (value.Length == 0)
@@ -134,7 +217,8 @@ public sealed class C3NameProjector
         if (char.IsDigit(sb[0]))
             sb.Insert(0, '_');
 
-        return sb.ToString();
+        var identifier = sb.ToString();
+        return Keywords.Contains(identifier) ? identifier + "_" : identifier;
     }
 
     private static string LastNameSegment(string value)

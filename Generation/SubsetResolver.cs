@@ -12,6 +12,10 @@ public sealed class SubsetResolver
         var warnings = new List<string>();
         var queue = new Queue<(string Kind, string Name)>();
 
+        SeedFromNamespaces(api, spec, neededTypes, neededFunctions, neededConstants);
+        SeedFromImportModules(api, spec, neededFunctions);
+        SeedConstantsFromPatterns(api, spec, neededConstants);
+
         foreach (var fn in neededFunctions)
             queue.Enqueue(("function", fn));
 
@@ -62,6 +66,10 @@ public sealed class SubsetResolver
             {
                 warnings.Add($"missing constant: {name}");
             }
+            else if (kind == "constant")
+            {
+                AddType(api.Constants[name].Type);
+            }
         }
 
         return new SubsetResult(
@@ -82,6 +90,107 @@ public sealed class SubsetResolver
             if (neededTypes.Add(baseType))
                 queue.Enqueue(("type", baseType));
         }
+    }
+
+    private static void SeedFromNamespaces(
+        ApiDatabase api,
+        SubsetSpec spec,
+        HashSet<string> neededTypes,
+        HashSet<string> neededFunctions,
+        HashSet<string> neededConstants)
+    {
+        if (spec.IncludeNamespaces.Count == 0)
+            return;
+
+        foreach (var (name, function) in api.Functions)
+        {
+            if (MatchesAnyNamespace(function.Namespace, spec.IncludeNamespaces))
+                neededFunctions.Add(name);
+        }
+    }
+
+    private static void SeedFromImportModules(
+        ApiDatabase api,
+        SubsetSpec spec,
+        HashSet<string> neededFunctions)
+    {
+        if (spec.IncludeImportModules.Count == 0)
+            return;
+
+        var modules = spec.IncludeImportModules
+            .Select(NormalizeModuleName)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var (name, function) in api.Functions)
+        {
+            if (function.ImportModule is not null && modules.Contains(NormalizeModuleName(function.ImportModule)))
+                neededFunctions.Add(name);
+        }
+    }
+
+    private static void SeedConstantsFromPatterns(
+        ApiDatabase api,
+        SubsetSpec spec,
+        HashSet<string> neededConstants)
+    {
+        if (spec.IncludeConstantsMatching.Count == 0)
+            return;
+
+        foreach (var constantName in api.Constants.Keys)
+        {
+            if (spec.IncludeConstantsMatching.Any(pattern => WildcardMatch(constantName, pattern)))
+                neededConstants.Add(constantName);
+        }
+    }
+
+    private static bool MatchesAnyNamespace(string ns, List<string> namespaceSpecs)
+    {
+        return namespaceSpecs.Any(spec =>
+            ns.Equals(spec, StringComparison.Ordinal) ||
+            ns.StartsWith(spec + ".", StringComparison.Ordinal));
+    }
+
+    private static string NormalizeModuleName(string module)
+    {
+        return Path.GetFileNameWithoutExtension(module.Trim());
+    }
+
+    private static bool WildcardMatch(string value, string pattern)
+    {
+        var valueIndex = 0;
+        var patternIndex = 0;
+        var starIndex = -1;
+        var matchIndex = 0;
+
+        while (valueIndex < value.Length)
+        {
+            if (patternIndex < pattern.Length &&
+                (pattern[patternIndex] == '?' ||
+                 char.ToUpperInvariant(pattern[patternIndex]) == char.ToUpperInvariant(value[valueIndex])))
+            {
+                valueIndex++;
+                patternIndex++;
+            }
+            else if (patternIndex < pattern.Length && pattern[patternIndex] == '*')
+            {
+                starIndex = patternIndex++;
+                matchIndex = valueIndex;
+            }
+            else if (starIndex != -1)
+            {
+                patternIndex = starIndex + 1;
+                valueIndex = ++matchIndex;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        while (patternIndex < pattern.Length && pattern[patternIndex] == '*')
+            patternIndex++;
+
+        return patternIndex == pattern.Length;
     }
 
     private static List<string> SortByNamespaceThenName<T>(Dictionary<string, T> source, HashSet<string> names)

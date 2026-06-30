@@ -1,6 +1,6 @@
 using System.Text.Json;
 using WinmnDump.Generation;
-using WinmnDump.Model;
+using WinmnDump.Persistence;
 using WinmnDump.Tests;
 using WinmnDump.Winmd;
 
@@ -15,7 +15,7 @@ if (options.RunSelfTests)
 if (options.ShowHelp)
 {
     Console.Error.WriteLine("""
-        usage: WinmnDump --winmd <Windows.Win32.winmd> [--subset data/window-subset.json] [--out out/win32.c3i] [--dump-json raw.json]
+        usage: WinmnDump --winmd <Windows.Win32.winmd> [--subset data/window-subset.json] [--out out/win32.c3i] [--dump-json raw.json] [--db out/bindgen-runs.sqlite]
                WinmnDump --self-test
 
         Legacy usage is also supported:
@@ -47,16 +47,35 @@ if (options.LegacyMode && options.SubsetPath is null && options.OutPath is null)
 
 var subsetPath = options.SubsetPath ?? Path.Combine("data", "window-subset.json");
 var outPath = options.OutPath ?? Path.Combine("out", "win32.c3i");
-var spec = SubsetSpec.Load(subsetPath);
+var subsetJson = File.ReadAllText(subsetPath);
+var spec = JsonSerializer.Deserialize<SubsetSpec>(subsetJson, JsonOptions.CamelCase) ??
+    throw new InvalidOperationException($"failed to parse subset spec: {subsetPath}");
 var resolved = new SubsetResolver().Resolve(api, spec);
 
-var names = new C3NameProjector();
+var names = new C3NameProjector(spec.TypeNameOverrides);
 var types = new C3TypeMapper(names);
-var emitter = new C3Emitter(names, types);
-var c3 = emitter.Emit(api, resolved, spec.Module);
+var binding = new GeneratedBindingBuilder(names, types).Build(api, resolved, spec.Module);
+var c3 = new C3Emitter().Emit(binding);
 
 Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath)) ?? ".");
 File.WriteAllText(outPath, c3);
+
+if (options.DbPath is not null)
+{
+    var runId = new BindgenDatabaseWriter().WriteRun(
+        options.DbPath,
+        new BindgenRunContext
+        {
+            WinmdPath = Path.GetFullPath(options.WinmdPath),
+            SubsetPath = Path.GetFullPath(subsetPath),
+            OutputPath = Path.GetFullPath(outPath),
+            SubsetJson = subsetJson,
+            GeneratorVersion = typeof(CliOptions).Assembly.GetName().Version?.ToString() ?? "1"
+        },
+        binding);
+
+    Console.Error.WriteLine($"wrote bindgen database {options.DbPath} run {runId}");
+}
 
 Console.Error.WriteLine($"wrote {outPath}");
 Console.Error.WriteLine($"resolved {resolved.Types.Count} types, {resolved.Functions.Count} functions, {resolved.Constants.Count} constants");
@@ -68,6 +87,7 @@ internal sealed class CliOptions
     public string? SubsetPath { get; private init; }
     public string? OutPath { get; private init; }
     public string? DumpJsonPath { get; private init; }
+    public string? DbPath { get; private init; }
     public string? LegacyNamespacePrefix { get; private init; }
     public bool LegacyMode { get; private init; }
     public bool ShowHelp { get; private init; }
@@ -99,6 +119,7 @@ internal sealed class CliOptions
         string? subset = null;
         string? output = null;
         string? dumpJson = null;
+        string? db = null;
 
         for (var i = 0; i < args.Length; i++)
         {
@@ -124,6 +145,9 @@ internal sealed class CliOptions
                 case "--dump-json":
                     dumpJson = Next();
                     break;
+                case "--db":
+                    db = Next();
+                    break;
                 default:
                     throw new ArgumentException($"unknown argument: {arg}");
             }
@@ -134,13 +158,20 @@ internal sealed class CliOptions
             WinmdPath = winmd,
             SubsetPath = subset,
             OutPath = output,
-            DumpJsonPath = dumpJson
+            DumpJsonPath = dumpJson,
+            DbPath = db
         };
     }
 }
 
 internal static class JsonOptions
 {
+    public static readonly JsonSerializerOptions CamelCase = new()
+    {
+        PropertyNameCaseInsensitive = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
     public static readonly JsonSerializerOptions Pretty = new()
     {
         WriteIndented = true

@@ -58,6 +58,8 @@ public sealed class ApiParameter
     public required string Type { get; init; }
     public ParamDirection Direction { get; init; }
     public bool NonNull { get; init; }
+    public bool Const { get; init; }
+    public bool Optional { get; init; }
 }
 
 public enum ParamDirection

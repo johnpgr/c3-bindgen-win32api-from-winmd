@@ -6,6 +6,15 @@ public sealed class C3TypeMapper(C3NameProjector names)
     {
         ["void"] = "void",
         ["bool"] = "bool",
+        ["CHAR"] = "char",
+        ["I8"] = "ichar",
+        ["U8"] = "char",
+        ["I16"] = "short",
+        ["U16"] = "ushort",
+        ["I32"] = "int",
+        ["U32"] = "uint",
+        ["I64"] = "long",
+        ["U64"] = "ulong",
         ["i8"] = "ichar",
         ["u8"] = "char",
         ["i16"] = "short",
@@ -31,6 +40,7 @@ public sealed class C3TypeMapper(C3NameProjector names)
             return "void";
 
         var normalized = StripModifiers(type.Trim());
+        var arraySuffix = ExtractArraySuffix(ref normalized);
         var suffix = "";
 
         while (normalized.EndsWith("*", StringComparison.Ordinal) || normalized.EndsWith("&", StringComparison.Ordinal))
@@ -40,18 +50,19 @@ public sealed class C3TypeMapper(C3NameProjector names)
         }
 
         if (_primitiveMap.TryGetValue(normalized, out var primitive))
-            return primitive + suffix;
+            return primitive + suffix + arraySuffix;
 
         var bare = LastNameSegment(normalized);
         if (_primitiveMap.TryGetValue(bare, out var barePrimitive))
-            return barePrimitive + suffix;
+            return barePrimitive + suffix + arraySuffix;
 
-        return names.TypeName(bare) + suffix;
+        return names.TypeName(bare) + suffix + arraySuffix;
     }
 
     public static string BaseTypeName(string type)
     {
         var normalized = StripModifiers(type.Trim());
+        _ = ExtractArraySuffix(ref normalized);
 
         while (normalized.EndsWith("*", StringComparison.Ordinal) || normalized.EndsWith("&", StringComparison.Ordinal))
             normalized = normalized[..^1].TrimEnd();
@@ -69,10 +80,35 @@ public sealed class C3TypeMapper(C3NameProjector names)
             "i64" or "u64" or
             "f32" or "f64" or
             "isize" or "usize" or
-            "char16" or "string" or "object";
+            "char16" or "string" or "object" or
+            "CHAR" or "I8" or "U8" or
+            "I16" or "U16" or
+            "I32" or "U32" or
+            "I64" or "U64";
     }
 
-    public static bool IsPointerLike(string type) => type.Contains('*') || type.Contains('&');
+    public static bool IsPointerLike(string type) => type.Contains('*') || type.Contains('&') || type.Contains("[]");
+
+    private static string ExtractArraySuffix(ref string type)
+    {
+        if (!type.EndsWith("]", StringComparison.Ordinal))
+            return "";
+
+        var start = type.LastIndexOf('[');
+        if (start < 0)
+            return "";
+
+        var size = type[(start + 1)..^1];
+        type = type[..start].TrimEnd();
+
+        if (string.IsNullOrWhiteSpace(size))
+            return "*";
+
+        if (int.TryParse(size, out var count) && count > 0)
+            return $"[{count}]";
+
+        return "*";
+    }
 
     private static string StripModifiers(string type)
     {

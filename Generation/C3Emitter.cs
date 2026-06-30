@@ -3,51 +3,43 @@ using WinmnDump.Model;
 
 namespace WinmnDump.Generation;
 
-public sealed class C3Emitter(C3NameProjector names, C3TypeMapper types)
+public sealed class C3Emitter
 {
-    public string Emit(ApiDatabase api, SubsetResult subset, string moduleName)
+    public string Emit(GeneratedBinding binding)
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine($"module {moduleName}{EmitLinkAttributes(api, subset)};");
+        sb.AppendLine($"module {binding.ModuleName}{EmitLinkAttributes(binding)};");
         sb.AppendLine();
         sb.AppendLine("// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.");
         sb.AppendLine();
+        sb.AppendLine("struct Guid");
+        sb.AppendLine("{");
+        sb.AppendLine("    uint data1;");
+        sb.AppendLine("    ushort data2;");
+        sb.AppendLine("    ushort data3;");
+        sb.AppendLine("    char[8] data4;");
+        sb.AppendLine("}");
+        sb.AppendLine();
 
-        foreach (var warning in subset.Warnings)
+        foreach (var warning in binding.Warnings)
             sb.AppendLine($"// warning: {warning}");
 
-        if (subset.Warnings.Count > 0)
+        if (binding.Warnings.Count > 0)
             sb.AppendLine();
 
-        EmitTypes(sb, api, subset);
-        EmitConstants(sb, api, subset);
-        EmitFunctions(sb, api, subset);
+        EmitTypes(sb, binding);
+        EmitConstants(sb, binding);
+        EmitFunctions(sb, binding);
 
         return sb.ToString();
     }
 
-    private static string EmitLinkAttributes(ApiDatabase api, SubsetResult subset)
+    private static string EmitLinkAttributes(GeneratedBinding binding)
     {
-        var libraries = subset.Functions
-            .Select(functionName => api.Functions.TryGetValue(functionName, out var fn) ? fn.ImportModule : null)
-            .OfType<string>()
-            .Where(module => !string.IsNullOrWhiteSpace(module))
-            .Select(NormalizeLinkLibrary)
-            .Where(library => !string.IsNullOrWhiteSpace(library))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(library => library, StringComparer.OrdinalIgnoreCase)
-            .ToList();
-
-        return libraries.Count == 0
+        return binding.LinkLibraries.Count == 0
             ? ""
-            : $" @link({string.Join(", ", libraries.Select(library => $"\"{Escape(library)}\""))})";
-    }
-
-    private static string NormalizeLinkLibrary(string module)
-    {
-        var name = Path.GetFileNameWithoutExtension(module.Trim());
-        return name.ToLowerInvariant();
+            : $" @link({string.Join(", ", binding.LinkLibraries.Select(library => $"\"{Escape(library.Library)}\""))})";
     }
 
     private static string Escape(string value)
@@ -56,11 +48,11 @@ public sealed class C3Emitter(C3NameProjector names, C3TypeMapper types)
             .Replace("\"", "\\\"", StringComparison.Ordinal);
     }
 
-    private void EmitTypes(StringBuilder sb, ApiDatabase api, SubsetResult subset)
+    private static void EmitTypes(StringBuilder sb, GeneratedBinding binding)
     {
-        foreach (var typeName in subset.Types)
+        foreach (var type in binding.Types)
         {
-            if (!api.Types.TryGetValue(typeName, out var type))
+            if (!type.Emitted)
                 continue;
 
             switch (type.Kind)
@@ -86,24 +78,21 @@ public sealed class C3Emitter(C3NameProjector names, C3TypeMapper types)
         }
     }
 
-    private void EmitConstants(StringBuilder sb, ApiDatabase api, SubsetResult subset)
+    private static void EmitConstants(StringBuilder sb, GeneratedBinding binding)
     {
-        foreach (var constantName in subset.Constants)
+        foreach (var constant in binding.Constants)
         {
-            if (!api.Constants.TryGetValue(constantName, out var constant))
-                continue;
-
             sb.AppendLine($"// Win32 original: {constant.OriginalName}");
-            sb.AppendLine($"const {types.Map(constant.Type)} {names.ConstantName(constant.OriginalName)} = {constant.Value};");
+            sb.AppendLine($"const {constant.C3Type} {constant.C3Name} = {constant.EmittedValue};");
             sb.AppendLine();
         }
     }
 
-    private void EmitFunctions(StringBuilder sb, ApiDatabase api, SubsetResult subset)
+    private static void EmitFunctions(StringBuilder sb, GeneratedBinding binding)
     {
-        foreach (var functionName in subset.Functions)
+        foreach (var fn in binding.Functions)
         {
-            if (!api.Functions.TryGetValue(functionName, out var fn))
+            if (!fn.Emitted)
                 continue;
 
             EmitFunction(sb, fn);
@@ -111,100 +100,80 @@ public sealed class C3Emitter(C3NameProjector names, C3TypeMapper types)
         }
     }
 
-    private void EmitHandle(StringBuilder sb, ApiType type)
+    private static void EmitHandle(StringBuilder sb, GeneratedType type)
     {
         sb.AppendLine($"// Win32 original: {type.OriginalName}");
-        sb.AppendLine($"alias {names.TypeName(type.OriginalName)} = void*;");
+        sb.AppendLine($"alias {type.C3Name} = void*;");
     }
 
-    private void EmitAlias(StringBuilder sb, ApiType type)
+    private static void EmitAlias(StringBuilder sb, GeneratedType type)
     {
+        var target = type.C3AliasTarget ?? "void*";
+
         sb.AppendLine($"// Win32 original: {type.OriginalName}");
-        sb.AppendLine($"alias {names.TypeName(type.OriginalName)} = {types.Map(type.AliasTarget ?? type.AbiType ?? "void*")};");
+        sb.AppendLine($"alias {type.C3Name} = {target};");
     }
 
-    private void EmitEnumAlias(StringBuilder sb, ApiType type)
+    private static void EmitEnumAlias(StringBuilder sb, GeneratedType type)
     {
         var valueField = type.Fields.FirstOrDefault(f => f.OriginalName == "value__");
         sb.AppendLine($"// Win32 original: {type.OriginalName}");
-        sb.AppendLine($"alias {names.TypeName(type.OriginalName)} = {types.Map(valueField?.Type ?? "i32")};");
+        sb.AppendLine($"alias {type.C3Name} = {valueField?.C3Type ?? "int"};");
     }
 
-    private void EmitStruct(StringBuilder sb, ApiType type)
+    private static void EmitStruct(StringBuilder sb, GeneratedType type)
     {
         sb.AppendLine($"// Win32 original: {type.OriginalName}");
-        sb.AppendLine($"struct {names.TypeName(type.OriginalName)}");
+        sb.AppendLine($"struct {type.C3Name}");
         sb.AppendLine("{");
+        var emittedFields = 0;
 
-        foreach (var field in type.Fields)
+        foreach (var field in type.Fields.Where(field => field.Emitted))
         {
-            if (field.OriginalName == "value__")
-                continue;
-
-            sb.AppendLine($"    {types.Map(field.Type)} {names.FieldName(field.OriginalName)};");
+            sb.AppendLine($"    {field.C3Type} {field.C3Name};");
+            emittedFields++;
         }
+
+        if (emittedFields == 0)
+            sb.AppendLine("    char unused;");
 
         sb.AppendLine("}");
     }
 
-    private void EmitDelegate(StringBuilder sb, ApiType type)
+    private static void EmitDelegate(StringBuilder sb, GeneratedType type)
     {
-        if (type.DelegateSignature is null)
+        if (type.C3DelegateReturnType is null)
             return;
 
-        var returnType = types.Map(type.DelegateSignature.ReturnType);
-        var parameters = type.DelegateSignature.Parameters
-            .Select(p => $"{types.Map(p.Type)} {names.ParameterName(p.OriginalName)}");
+        var parameters = type.DelegateParameters
+            .Select(p => $"{p.C3Type} {p.C3Name}");
 
         sb.AppendLine($"// Win32 original: {type.OriginalName}");
-        sb.AppendLine($"alias {names.TypeName(type.OriginalName)} = fn {returnType}({string.Join(", ", parameters)});");
+        sb.AppendLine($"alias {type.C3Name} = fn {type.C3DelegateReturnType}({string.Join(", ", parameters)});");
     }
 
-    private void EmitFunction(StringBuilder sb, ApiFunction fn)
+    private static void EmitFunction(StringBuilder sb, GeneratedFunction fn)
     {
         var contract = EmitContract(fn.Parameters);
         if (!string.IsNullOrWhiteSpace(contract))
             sb.Append(contract);
 
-        var returnType = types.Map(fn.ReturnType);
-        var functionName = names.FunctionName(fn.OriginalName);
-        var parameters = fn.Parameters
-            .Select(p => $"{types.Map(p.Type)} {names.ParameterName(p.OriginalName)}");
+        var parameters = fn.Parameters.Select(p => $"{p.C3Type} {p.C3Name}");
 
-        sb.AppendLine($"extern fn {returnType} {functionName}({string.Join(", ", parameters)})");
+        sb.AppendLine($"extern fn {fn.C3ReturnType} {fn.C3Name}({string.Join(", ", parameters)})");
         sb.AppendLine($"    @cname(\"{fn.OriginalName}\");");
     }
 
-    private string EmitContract(List<ApiParameter> parameters)
+    private static string EmitContract(List<GeneratedParameter> parameters)
     {
         var lines = new List<string>();
 
         foreach (var p in parameters)
         {
-            var annotation = ParamAnnotation(p);
-            if (annotation is not null)
-                lines.Add($" @param {annotation} {names.ParameterName(p.OriginalName)}");
+            if (p.ContractAnnotation is not null)
+                lines.Add($" @param {p.ContractAnnotation} {p.C3Name}");
         }
 
         return lines.Count == 0 ? "" : "<*\n" + string.Join("\n", lines) + "\n*>\n";
-    }
-
-    private static string? ParamAnnotation(ApiParameter p)
-    {
-        if (!C3TypeMapper.IsPointerLike(p.Type))
-            return null;
-
-        var direction = p.Direction switch
-        {
-            ParamDirection.In => "in",
-            ParamDirection.Out => "out",
-            ParamDirection.InOut => "inout",
-            _ => ""
-        };
-
-        if (direction == "")
-            return null;
-
-        return p.NonNull ? $"[&{direction}]" : $"[{direction}]";
     }
 }

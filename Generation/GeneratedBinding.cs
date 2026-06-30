@@ -55,6 +55,7 @@ public sealed class GeneratedFunction
     public required string C3ReturnType { get; init; }
     public string? ImportName { get; init; }
     public string? ImportModule { get; init; }
+    public string? LinkLibrary { get; init; }
     public required bool Emitted { get; init; }
     public List<GeneratedParameter> Parameters { get; } = [];
 }

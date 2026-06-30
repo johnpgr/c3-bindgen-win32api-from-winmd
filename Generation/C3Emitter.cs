@@ -9,7 +9,7 @@ public sealed class C3Emitter
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine($"module {binding.ModuleName}{EmitLinkAttributes(binding)};");
+        sb.AppendLine($"module {binding.ModuleName};");
         sb.AppendLine();
         sb.AppendLine("// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.");
         sb.AppendLine();
@@ -35,12 +35,7 @@ public sealed class C3Emitter
         return sb.ToString();
     }
 
-    private static string EmitLinkAttributes(GeneratedBinding binding)
-    {
-        return binding.LinkLibraries.Count == 0
-            ? ""
-            : $" @link({string.Join(", ", binding.LinkLibraries.Select(library => $"\"{Escape(library.Library)}\""))})";
-    }
+
 
     private static string Escape(string value)
     {
@@ -161,7 +156,12 @@ public sealed class C3Emitter
         var parameters = fn.Parameters.Select(p => $"{p.C3Type} {p.C3Name}");
 
         sb.AppendLine($"extern fn {fn.C3ReturnType} {fn.C3Name}({string.Join(", ", parameters)})");
-        sb.AppendLine($"    @cname(\"{fn.OriginalName}\");");
+        sb.Append($"    @cname(\"{fn.OriginalName}\")");
+        if (fn.LinkLibrary is not null)
+        {
+            sb.Append($" @link(\"{Escape(fn.LinkLibrary)}\")");
+        }
+        sb.AppendLine(";");
     }
 
     private static string EmitContract(List<GeneratedParameter> parameters)

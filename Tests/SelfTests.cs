@@ -158,7 +158,7 @@ internal static class SelfTests
         var binding = new GeneratedBindingBuilder(names, typeMapper).Build(api, resolved, "win32");
         var output = new C3Emitter().Emit(binding);
 
-        Contains(output, "module win32 @link(\"user32\");");
+        Contains(output, "module win32;");
         Contains(output, "alias Bool = int;");
         Contains(output, "alias HWnd = void*;");
         Contains(output, "struct Rect");
@@ -167,7 +167,7 @@ internal static class SelfTests
         Contains(output, "@param [&in] lpWndClass");
         Contains(output, "@param [in] hInstance");
         Contains(output, "extern fn Bool getWindowRect(HWnd hWnd, Rect* lpRect)");
-        Contains(output, "@cname(\"GetWindowRect\")");
+        Contains(output, "@cname(\"GetWindowRect\") @link(\"user32\");");
     }
 
     private static void TestBroadSeeding()

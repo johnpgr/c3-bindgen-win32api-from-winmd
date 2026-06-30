@@ -142,6 +142,16 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
             if (!api.Functions.TryGetValue(functionName, out var fn))
                 continue;
 
+            string? linkLibrary = null;
+            if (!string.IsNullOrWhiteSpace(fn.ImportModule))
+            {
+                var library = NormalizeLinkLibrary(fn.ImportModule);
+                if (!string.IsNullOrWhiteSpace(library) && !IsApiSetLibrary(library))
+                {
+                    linkLibrary = library;
+                }
+            }
+
             var generated = new GeneratedFunction
             {
                 OriginalName = fn.OriginalName,
@@ -151,6 +161,7 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
                 C3ReturnType = types.Map(fn.ReturnType),
                 ImportName = fn.ImportName,
                 ImportModule = fn.ImportModule,
+                LinkLibrary = linkLibrary,
                 Emitted = true
             };
 

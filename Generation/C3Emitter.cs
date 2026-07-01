@@ -9,10 +9,78 @@ public sealed class C3Emitter
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine($"module {binding.ModuleName};");
+        EmitHeader(sb, binding.ModuleName);
+        EmitSharedDeclarations(sb, binding);
+        EmitTypes(sb, binding);
+        EmitConstants(sb, binding);
+        EmitFunctions(sb, binding);
+        EmitFunctionMacros(sb, binding);
+
+        return sb.ToString();
+    }
+
+    public IReadOnlyDictionary<string, string> EmitFiles(GeneratedBinding binding)
+    {
+        var files = new SortedDictionary<string, string>(StringComparer.Ordinal);
+        var shared = new StringBuilder();
+        EmitHeader(shared, binding.ModuleName);
+        EmitSharedDeclarations(shared, binding);
+        var sharedBinding = new GeneratedBinding { ModuleName = binding.ModuleName };
+        sharedBinding.Types.AddRange(binding.Types.Where(t => string.IsNullOrWhiteSpace(t.Namespace)));
+        sharedBinding.Constants.AddRange(binding.Constants.Where(c => string.IsNullOrWhiteSpace(c.Namespace)));
+        sharedBinding.Functions.AddRange(binding.Functions.Where(f => string.IsNullOrWhiteSpace(f.Namespace)));
+        sharedBinding.FunctionMacros.AddRange(binding.FunctionMacros.Where(m => string.IsNullOrWhiteSpace(m.Namespace)));
+        EmitTypes(shared, sharedBinding);
+        EmitConstants(shared, sharedBinding);
+        EmitFunctions(shared, sharedBinding);
+        EmitFunctionMacros(shared, sharedBinding);
+        files["_shared.c3i"] = shared.ToString();
+
+        foreach (var ns in binding.Types.Select(t => t.Namespace)
+                     .Concat(binding.Constants.Select(c => c.Namespace))
+                     .Concat(binding.Functions.Select(f => f.Namespace))
+                     .Concat(binding.FunctionMacros.Select(m => m.Namespace))
+                     .Where(ns => !string.IsNullOrWhiteSpace(ns))
+                     .Distinct(StringComparer.Ordinal)
+                     .OrderBy(value => value, StringComparer.Ordinal))
+        {
+            var namespaceBinding = new GeneratedBinding { ModuleName = binding.ModuleName };
+            namespaceBinding.Types.AddRange(binding.Types.Where(t => t.Namespace == ns));
+            namespaceBinding.Constants.AddRange(binding.Constants.Where(c => c.Namespace == ns));
+            namespaceBinding.Functions.AddRange(binding.Functions.Where(f => f.Namespace == ns));
+            namespaceBinding.FunctionMacros.AddRange(binding.FunctionMacros.Where(m => m.Namespace == ns));
+
+            var sb = new StringBuilder();
+            EmitHeader(sb, binding.ModuleName);
+            sb.AppendLine($"// Win32 namespace: {ns}");
+            sb.AppendLine();
+            EmitTypes(sb, namespaceBinding);
+            EmitConstants(sb, namespaceBinding);
+            EmitFunctions(sb, namespaceBinding);
+            EmitFunctionMacros(sb, namespaceBinding);
+
+            var fileName = NamespaceFileName(ns);
+            if (files.ContainsKey(fileName))
+                throw new InvalidOperationException($"C3 output file name collision for namespace {ns}: {fileName}");
+
+            files[fileName] = sb.ToString();
+        }
+
+        return files;
+    }
+
+
+
+    private static void EmitHeader(StringBuilder sb, string moduleName)
+    {
+        sb.AppendLine($"module {moduleName};");
         sb.AppendLine();
         sb.AppendLine("// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.");
         sb.AppendLine();
+    }
+
+    private static void EmitSharedDeclarations(StringBuilder sb, GeneratedBinding binding)
+    {
         sb.AppendLine("struct Guid");
         sb.AppendLine("{");
         sb.AppendLine("    uint data1;");
@@ -27,20 +95,56 @@ public sealed class C3Emitter
 
         if (binding.Warnings.Count > 0)
             sb.AppendLine();
-
-        EmitTypes(sb, binding);
-        EmitConstants(sb, binding);
-        EmitFunctions(sb, binding);
-
-        return sb.ToString();
     }
-
-
 
     private static string Escape(string value)
     {
         return value.Replace("\\", "\\\\", StringComparison.Ordinal)
             .Replace("\"", "\\\"", StringComparison.Ordinal);
+    }
+
+    private static string NamespaceFileName(string ns)
+    {
+        const string prefix = "Windows.Win32.";
+        if (ns.StartsWith(prefix, StringComparison.Ordinal))
+            ns = ns[prefix.Length..];
+
+        var parts = ns.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(ToSnakeFilePart)
+            .Where(part => part.Length > 0)
+            .ToList();
+
+        var fileName = parts.Count == 0 ? "global" : string.Join("_", parts);
+        return fileName + ".c3i";
+    }
+
+    private static string ToSnakeFilePart(string value)
+    {
+        var sb = new StringBuilder();
+
+        for (var i = 0; i < value.Length; i++)
+        {
+            var current = value[i];
+            if (!char.IsAsciiLetterOrDigit(current))
+            {
+                if (sb.Length > 0 && sb[^1] != '_')
+                    sb.Append('_');
+                continue;
+            }
+
+            if (i > 0 &&
+                char.IsAsciiLetterUpper(current) &&
+                (char.IsAsciiLetterLower(value[i - 1]) ||
+                 (i + 1 < value.Length && char.IsAsciiLetterLower(value[i + 1]) && char.IsAsciiLetterUpper(value[i - 1]))))
+            {
+                if (sb.Length > 0 && sb[^1] != '_')
+                    sb.Append('_');
+            }
+
+            sb.Append(char.ToLowerInvariant(current));
+        }
+
+        return sb.ToString().Trim('_');
     }
 
     private static void EmitTypes(StringBuilder sb, GeneratedBinding binding)
@@ -93,6 +197,17 @@ public sealed class C3Emitter
                 continue;
 
             EmitFunction(sb, fn);
+            sb.AppendLine();
+        }
+    }
+
+    private static void EmitFunctionMacros(StringBuilder sb, GeneratedBinding binding)
+    {
+        foreach (var macro in binding.FunctionMacros)
+        {
+            EmitFunctionMacroVariant(sb, macro, macro.AnsiFunction, "!$feature(WIN32_UNICODE)");
+            sb.AppendLine();
+            EmitFunctionMacroVariant(sb, macro, macro.UnicodeFunction, "$feature(WIN32_UNICODE)");
             sb.AppendLine();
         }
     }
@@ -177,6 +292,29 @@ public sealed class C3Emitter
             sb.Append($" @link(\"{Escape(fn.LinkLibrary)}\")");
         }
         sb.AppendLine(";");
+    }
+
+    private static void EmitFunctionMacroVariant(
+        StringBuilder sb,
+        GeneratedFunctionMacro macro,
+        GeneratedFunction target,
+        string condition)
+    {
+        var contract = EmitContract(target.Parameters);
+        if (!string.IsNullOrWhiteSpace(contract))
+            sb.Append(contract);
+
+        var parameters = target.Parameters.Select(p => $"{p.C3Type} {p.C3Name}");
+        var arguments = string.Join(", ", target.Parameters.Select(p => p.C3Name));
+
+        sb.AppendLine($"macro {target.C3ReturnType} {macro.C3Name}({string.Join(", ", parameters)})");
+        sb.AppendLine($"@if({condition})");
+        sb.AppendLine("{");
+        if (target.C3ReturnType == "void")
+            sb.AppendLine($"    {target.C3Name}({arguments});");
+        else
+            sb.AppendLine($"    return {target.C3Name}({arguments});");
+        sb.AppendLine("}");
     }
 
     private static string EmitContract(List<GeneratedParameter> parameters)

@@ -338,18 +338,22 @@ public sealed class C3NameProjector
         var name = LastNameSegment(original);
         name = SanitizeIdentifier(name, "item");
 
-        var underscoreIndex = name.IndexOf('_');
-        if (underscoreIndex > 0)
+        var suffix = "";
+        if (name.Length > 1 && name[^1] is 'A' or 'W')
         {
-            var prefix = name[..underscoreIndex];
-            if (prefix.All(ch => !char.IsLower(ch)))
-            {
-                var suffix = name[(underscoreIndex + 1)..];
-                return prefix.ToLowerInvariant() + "_" + suffix;
-            }
+            suffix = name[^1].ToString();
+            name = name[..^1];
         }
 
-        return LowerFirst(name);
+        var words = name
+            .Split('_', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .SelectMany(SplitFunctionNameSegment)
+            .Select(word => word.ToLowerInvariant())
+            .ToList();
+
+        var projected = words.Count == 0 ? "item" : string.Join("_", words);
+        projected += suffix;
+        return Keywords.Contains(projected) ? projected + "_" : projected;
     }
 
     public string FieldName(string original) => LowerFirst(SanitizeIdentifier(original, "field"));
@@ -469,6 +473,58 @@ public sealed class C3NameProjector
             value = value.ToLowerInvariant();
 
         return char.ToUpperInvariant(value[0]) + value[1..];
+    }
+
+    private static IEnumerable<string> SplitFunctionNameSegment(string value)
+    {
+        if (value.Length == 0)
+            yield break;
+
+        if (value.Length > 1 && char.IsAsciiLetterLower(value[0]) && char.IsAsciiLetterUpper(value[1]))
+        {
+            var rest = SplitFunctionNameSegment(value[1..]).ToList();
+            if (rest.Count == 0)
+            {
+                yield return value;
+                yield break;
+            }
+
+            yield return value[0] + rest[0];
+            foreach (var word in rest.Skip(1))
+                yield return word;
+            yield break;
+        }
+
+        var start = 0;
+        for (var i = 1; i < value.Length; i++)
+        {
+            if (!IsFunctionNameBoundary(value, i))
+                continue;
+
+            yield return value[start..i];
+            start = i;
+        }
+
+        yield return value[start..];
+    }
+
+    private static bool IsFunctionNameBoundary(string value, int index)
+    {
+        var previous = value[index - 1];
+        var current = value[index];
+        var next = index + 1 < value.Length ? value[index + 1] : '\0';
+
+        if (char.IsAsciiLetterUpper(current))
+        {
+            return char.IsAsciiLetterLower(previous) ||
+                char.IsAsciiDigit(previous) ||
+                (char.IsAsciiLetterUpper(previous) && next != '\0' && char.IsAsciiLetterLower(next));
+        }
+
+        if (char.IsAsciiDigit(current))
+            return !char.IsAsciiDigit(previous);
+
+        return char.IsAsciiDigit(previous);
     }
 
     private static string LowerFirst(string value)

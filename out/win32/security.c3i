@@ -1,0 +1,14 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.Security
+
+// Win32 original: SECURITY_ATTRIBUTES
+struct SecurityAttributes
+{
+    uint nLength;
+    void* lpSecurityDescriptor;
+    Bool bInheritHandle;
+}
+

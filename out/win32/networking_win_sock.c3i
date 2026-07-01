@@ -1,0 +1,18 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.Networking.WinSock
+
+// Win32 original: DL_EUI48
+struct DlEUI48
+{
+    char[6] byte;
+}
+
+// Win32 original: IN_ADDR
+struct InAddr
+{
+    SUnEUnion s_un;
+}
+

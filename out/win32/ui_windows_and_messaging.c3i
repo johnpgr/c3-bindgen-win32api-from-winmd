@@ -1,0 +1,5474 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.UI.WindowsAndMessaging
+
+// Win32 original: ACCEL
+struct Accel
+{
+    AccelVirtFlags fVirt;
+    ushort key;
+    ushort cmd;
+}
+
+// Win32 original: ACCEL_VIRT_FLAGS
+constdef AccelVirtFlags : char
+{
+    FVIRTKEY = 1,
+    FNOINVERT = 2,
+    FSHIFT = 4,
+    FCONTROL = 8,
+    FALT = 16
+}
+
+// Win32 original: ALTTABINFO
+struct AltTabInfo
+{
+    uint cbSize;
+    int cItems;
+    int cColumns;
+    int cRows;
+    int iColFocus;
+    int iRowFocus;
+    int cxItem;
+    int cyItem;
+    Point ptStart;
+}
+
+// Win32 original: ANIMATE_WINDOW_FLAGS
+constdef AnimateWindowFlags : uint
+{
+    AW_ACTIVATE = 131072,
+    AW_BLEND = 524288,
+    AW_CENTER = 16,
+    AW_HIDE = 65536,
+    AW_HOR_POSITIVE = 1,
+    AW_HOR_NEGATIVE = 2,
+    AW_SLIDE = 262144,
+    AW_VER_POSITIVE = 4,
+    AW_VER_NEGATIVE = 8
+}
+
+// Win32 original: CASCADE_WINDOWS_HOW
+constdef CascadeWindowsHow : uint
+{
+    MDITILE_SKIPDISABLED = 2,
+    MDITILE_ZORDER = 4
+}
+
+// Win32 original: CHANGEFILTERSTRUCT
+struct ChangeFilterStruct
+{
+    uint cbSize;
+    MsgfltinfoStatus extStatus;
+}
+
+// Win32 original: CHANGE_WINDOW_MESSAGE_FILTER_FLAGS
+constdef ChangeWindowMessageFilterFlags : uint
+{
+    MSGFLT_ADD = 1,
+    MSGFLT_REMOVE = 2
+}
+
+// Win32 original: CURSORINFO
+struct CursorInfo
+{
+    uint cbSize;
+    CursorInfoFlags flags;
+    HCursor hCursor;
+    Point ptScreenPos;
+}
+
+// Win32 original: CURSORINFO_FLAGS
+constdef CursorInfoFlags : uint
+{
+    CURSOR_SHOWING = 1,
+    CURSOR_SUPPRESSED = 2
+}
+
+// Win32 original: CWP_FLAGS
+constdef CwpFlags : uint
+{
+    CWP_ALL = 0,
+    CWP_SKIPINVISIBLE = 1,
+    CWP_SKIPDISABLED = 2,
+    CWP_SKIPTRANSPARENT = 4
+}
+
+// Win32 original: DI_FLAGS
+constdef DiFlags : uint
+{
+    DI_MASK = 1,
+    DI_IMAGE = 2,
+    DI_NORMAL = 3,
+    DI_COMPAT = 4,
+    DI_DEFAULTSIZE = 8,
+    DI_NOMIRROR = 16
+}
+
+// Win32 original: DLGPROC
+alias DlgProc = fn iptr(HWnd param0, uint param1, WParam param2, LParam param3);
+
+// Win32 original: DLGTEMPLATE
+struct Dlgtemplate
+{
+    uint style;
+    uint dwExtendedStyle;
+    ushort cdit;
+    short x;
+    short y;
+    short cx;
+    short cy;
+}
+
+// Win32 original: FLASHWINFO
+struct Flashwinfo
+{
+    uint cbSize;
+    HWnd hwnd;
+    FlashwinfoFlags dwFlags;
+    uint uCount;
+    uint dwTimeout;
+}
+
+// Win32 original: FLASHWINFO_FLAGS
+constdef FlashwinfoFlags : uint
+{
+    FLASHW_ALL = 3,
+    FLASHW_CAPTION = 1,
+    FLASHW_STOP = 0,
+    FLASHW_TIMER = 4,
+    FLASHW_TIMERNOFG = 12,
+    FLASHW_TRAY = 2
+}
+
+// Win32 original: FOREGROUND_WINDOW_LOCK_CODE
+constdef ForegroundWindowLockCode : uint
+{
+    LSFW_LOCK = 1,
+    LSFW_UNLOCK = 2
+}
+
+// Win32 original: GDI_IMAGE_TYPE
+constdef GdiImageType : uint
+{
+    IMAGE_BITMAP = 0,
+    IMAGE_CURSOR = 2,
+    IMAGE_ICON = 1
+}
+
+// Win32 original: GET_ANCESTOR_FLAGS
+constdef GetAncestorFlags : uint
+{
+    GA_PARENT = 1,
+    GA_ROOT = 2,
+    GA_ROOTOWNER = 3
+}
+
+// Win32 original: GET_CLASS_LONG_INDEX
+constdef GetClassLongIndex : int
+{
+    GCW_ATOM = -32,
+    GCL_CBCLSEXTRA = -20,
+    GCL_CBWNDEXTRA = -18,
+    GCL_HBRBACKGROUND = -10,
+    GCL_HCURSOR = -12,
+    GCL_HICON = -14,
+    GCL_HICONSM = -34,
+    GCL_HMODULE = -16,
+    GCL_MENUNAME = -8,
+    GCL_STYLE = -26,
+    GCL_WNDPROC = -24,
+    GCLP_HBRBACKGROUND = -10,
+    GCLP_HCURSOR = -12,
+    GCLP_HICON = -14,
+    GCLP_HICONSM = -34,
+    GCLP_HMODULE = -16,
+    GCLP_MENUNAME = -8,
+    GCLP_WNDPROC = -24
+}
+
+// Win32 original: GET_MENU_DEFAULT_ITEM_FLAGS
+constdef GetMenuDefaultItemFlags : uint
+{
+    GMDI_GOINTOPOPUPS = 2,
+    GMDI_USEDISABLED = 1
+}
+
+// Win32 original: GET_WINDOW_CMD
+constdef GetWindowCmd : uint
+{
+    GW_CHILD = 5,
+    GW_ENABLEDPOPUP = 6,
+    GW_HWNDFIRST = 0,
+    GW_HWNDLAST = 1,
+    GW_HWNDNEXT = 2,
+    GW_HWNDPREV = 3,
+    GW_OWNER = 4
+}
+
+// Win32 original: GUITHREADINFO
+struct GuiThreadInfo
+{
+    uint cbSize;
+    GuiThreadInfoFlags flags;
+    HWnd hwndActive;
+    HWnd hwndFocus;
+    HWnd hwndCapture;
+    HWnd hwndMenuOwner;
+    HWnd hwndMoveSize;
+    HWnd hwndCaret;
+    Rect rcCaret;
+}
+
+// Win32 original: GUITHREADINFO_FLAGS
+constdef GuiThreadInfoFlags : uint
+{
+    GUI_CARETBLINKING = 1,
+    GUI_INMENUMODE = 4,
+    GUI_INMOVESIZE = 2,
+    GUI_POPUPMENUMODE = 16,
+    GUI_SYSTEMMENUMODE = 8
+}
+
+// Win32 original: HACCEL
+alias HAccel = void*;
+
+// Win32 original: HCURSOR
+alias HCursor = void*;
+
+// Win32 original: HDEVNOTIFY
+alias HDevNotify = void*;
+
+// Win32 original: HDWP
+alias HDwp = void*;
+
+// Win32 original: HHOOK
+alias HHook = void*;
+
+// Win32 original: HICON
+alias HIcon = void*;
+
+// Win32 original: HMENU
+alias HMenu = void*;
+
+// Win32 original: HOOKPROC
+alias HookProc = fn LResult(int code, WParam wParam, LParam lParam);
+
+// Win32 original: ICONINFO
+struct IconInfo
+{
+    Bool fIcon;
+    uint xHotspot;
+    uint yHotspot;
+    HBitmap hbmMask;
+    HBitmap hbmColor;
+}
+
+// Win32 original: ICONINFOEXA
+struct IconInfoExA
+{
+    uint cbSize;
+    Bool fIcon;
+    uint xHotspot;
+    uint yHotspot;
+    HBitmap hbmMask;
+    HBitmap hbmColor;
+    ushort wResID;
+    char[260] szModName;
+    char[260] szResName;
+}
+
+// Win32 original: ICONINFOEXW
+struct IconInfoExW
+{
+    uint cbSize;
+    Bool fIcon;
+    uint xHotspot;
+    uint yHotspot;
+    HBitmap hbmMask;
+    HBitmap hbmColor;
+    ushort wResID;
+    ushort[260] szModName;
+    ushort[260] szResName;
+}
+
+// Win32 original: IMAGE_FLAGS
+constdef ImageFlags : uint
+{
+    LR_CREATEDIBSECTION = 8192,
+    LR_DEFAULTCOLOR = 0,
+    LR_DEFAULTSIZE = 64,
+    LR_LOADFROMFILE = 16,
+    LR_LOADMAP3DCOLORS = 4096,
+    LR_LOADTRANSPARENT = 32,
+    LR_MONOCHROME = 1,
+    LR_SHARED = 32768,
+    LR_VGACOLOR = 128,
+    LR_COPYDELETEORG = 8,
+    LR_COPYFROMRESOURCE = 16384,
+    LR_COPYRETURNORG = 4
+}
+
+// Win32 original: IndexedResourceQualifier
+struct IndexedResourceQualifier
+{
+    ushort* name;
+    ushort* value;
+}
+
+// Win32 original: LAYERED_WINDOW_ATTRIBUTES_FLAGS
+constdef LayeredWindowAttributesFlags : uint
+{
+    LWA_ALPHA = 2,
+    LWA_COLORKEY = 1
+}
+
+// Win32 original: MENUBARINFO
+struct MenuBarInfo
+{
+    uint cbSize;
+    Rect rcBar;
+    HMenu hMenu;
+    HWnd hwndMenu;
+    int _bitfield;
+}
+
+// Win32 original: MENUINFO
+struct MenuInfo
+{
+    uint cbSize;
+    MenuInfoMask fMask;
+    MenuInfoStyle dwStyle;
+    uint cyMax;
+    HBrush hbrBack;
+    uint dwContextHelpID;
+    uptr dwMenuData;
+}
+
+// Win32 original: MENUINFO_MASK
+constdef MenuInfoMask : uint
+{
+    MIM_APPLYTOSUBMENUS = 2147483648,
+    MIM_BACKGROUND = 2,
+    MIM_HELPID = 4,
+    MIM_MAXHEIGHT = 1,
+    MIM_MENUDATA = 8,
+    MIM_STYLE = 16
+}
+
+// Win32 original: MENUINFO_STYLE
+constdef MenuInfoStyle : uint
+{
+    MNS_AUTODISMISS = 268435456,
+    MNS_CHECKORBMP = 67108864,
+    MNS_DRAGDROP = 536870912,
+    MNS_MODELESS = 1073741824,
+    MNS_NOCHECK = 2147483648,
+    MNS_NOTIFYBYPOS = 134217728
+}
+
+// Win32 original: MENUITEMINFOA
+struct MenuItemInfoA
+{
+    uint cbSize;
+    MenuItemMask fMask;
+    MenuItemType fType;
+    MenuItemState fState;
+    uint wID;
+    HMenu hSubMenu;
+    HBitmap hbmpChecked;
+    HBitmap hbmpUnchecked;
+    uptr dwItemData;
+    char* dwTypeData;
+    uint cch;
+    HBitmap hbmpItem;
+}
+
+// Win32 original: MENUITEMINFOW
+struct MenuItemInfoW
+{
+    uint cbSize;
+    MenuItemMask fMask;
+    MenuItemType fType;
+    MenuItemState fState;
+    uint wID;
+    HMenu hSubMenu;
+    HBitmap hbmpChecked;
+    HBitmap hbmpUnchecked;
+    uptr dwItemData;
+    ushort* dwTypeData;
+    uint cch;
+    HBitmap hbmpItem;
+}
+
+// Win32 original: MENU_ITEM_FLAGS
+constdef MenuItemFlags : uint
+{
+    MF_BYCOMMAND = 0,
+    MF_BYPOSITION = 1024,
+    MF_BITMAP = 4,
+    MF_CHECKED = 8,
+    MF_DISABLED = 2,
+    MF_ENABLED = 0,
+    MF_GRAYED = 1,
+    MF_MENUBARBREAK = 32,
+    MF_MENUBREAK = 64,
+    MF_OWNERDRAW = 256,
+    MF_POPUP = 16,
+    MF_SEPARATOR = 2048,
+    MF_STRING = 0,
+    MF_UNCHECKED = 0,
+    MF_INSERT = 0,
+    MF_CHANGE = 128,
+    MF_APPEND = 256,
+    MF_DELETE = 512,
+    MF_REMOVE = 4096,
+    MF_USECHECKBITMAPS = 512,
+    MF_UNHILITE = 0,
+    MF_HILITE = 128,
+    MF_DEFAULT = 4096,
+    MF_SYSMENU = 8192,
+    MF_HELP = 16384,
+    MF_RIGHTJUSTIFY = 16384,
+    MF_MOUSESELECT = 32768,
+    MF_END = 128
+}
+
+// Win32 original: MENU_ITEM_MASK
+constdef MenuItemMask : uint
+{
+    MIIM_BITMAP = 128,
+    MIIM_CHECKMARKS = 8,
+    MIIM_DATA = 32,
+    MIIM_FTYPE = 256,
+    MIIM_ID = 2,
+    MIIM_STATE = 1,
+    MIIM_STRING = 64,
+    MIIM_SUBMENU = 4,
+    MIIM_TYPE = 16
+}
+
+// Win32 original: MENU_ITEM_STATE
+constdef MenuItemState : uint
+{
+    MFS_GRAYED = 3,
+    MFS_DISABLED = 3,
+    MFS_CHECKED = 8,
+    MFS_HILITE = 128,
+    MFS_ENABLED = 0,
+    MFS_UNCHECKED = 0,
+    MFS_UNHILITE = 0,
+    MFS_DEFAULT = 4096
+}
+
+// Win32 original: MENU_ITEM_TYPE
+constdef MenuItemType : uint
+{
+    MFT_BITMAP = 4,
+    MFT_MENUBARBREAK = 32,
+    MFT_MENUBREAK = 64,
+    MFT_OWNERDRAW = 256,
+    MFT_RADIOCHECK = 512,
+    MFT_RIGHTJUSTIFY = 16384,
+    MFT_RIGHTORDER = 8192,
+    MFT_SEPARATOR = 2048,
+    MFT_STRING = 0
+}
+
+// Win32 original: MESSAGEBOX_RESULT
+constdef MessageboxResult : int
+{
+    IDOK = 1,
+    IDCANCEL = 2,
+    IDABORT = 3,
+    IDRETRY = 4,
+    IDIGNORE = 5,
+    IDYES = 6,
+    IDNO = 7,
+    IDCLOSE = 8,
+    IDHELP = 9,
+    IDTRYAGAIN = 10,
+    IDCONTINUE = 11,
+    IDASYNC = 32001,
+    IDTIMEOUT = 32000
+}
+
+// Win32 original: MESSAGEBOX_STYLE
+constdef MessageboxStyle : uint
+{
+    MB_ABORTRETRYIGNORE = 2,
+    MB_CANCELTRYCONTINUE = 6,
+    MB_HELP = 16384,
+    MB_OK = 0,
+    MB_OKCANCEL = 1,
+    MB_RETRYCANCEL = 5,
+    MB_YESNO = 4,
+    MB_YESNOCANCEL = 3,
+    MB_ICONHAND = 16,
+    MB_ICONQUESTION = 32,
+    MB_ICONEXCLAMATION = 48,
+    MB_ICONASTERISK = 64,
+    MB_USERICON = 128,
+    MB_ICONWARNING = 48,
+    MB_ICONERROR = 16,
+    MB_ICONINFORMATION = 64,
+    MB_ICONSTOP = 16,
+    MB_DEFBUTTON1 = 0,
+    MB_DEFBUTTON2 = 256,
+    MB_DEFBUTTON3 = 512,
+    MB_DEFBUTTON4 = 768,
+    MB_APPLMODAL = 0,
+    MB_SYSTEMMODAL = 4096,
+    MB_TASKMODAL = 8192,
+    MB_NOFOCUS = 32768,
+    MB_SETFOREGROUND = 65536,
+    MB_DEFAULT_DESKTOP_ONLY = 131072,
+    MB_TOPMOST = 262144,
+    MB_RIGHT = 524288,
+    MB_RTLREADING = 1048576,
+    MB_SERVICE_NOTIFICATION = 2097152,
+    MB_SERVICE_NOTIFICATION_NT3X = 262144,
+    MB_TYPEMASK = 15,
+    MB_ICONMASK = 240,
+    MB_DEFMASK = 3840,
+    MB_MODEMASK = 12288,
+    MB_MISCMASK = 49152
+}
+
+// Win32 original: MOVESIZE_OPERATION
+constdef MovesizeOperation : int
+{
+    MSO_SIZE_LEFT = 1,
+    MSO_SIZE_RIGHT = 2,
+    MSO_SIZE_TOP = 3,
+    MSO_SIZE_TOPLEFT = 4,
+    MSO_SIZE_TOPRIGHT = 5,
+    MSO_SIZE_BOTTOM = 6,
+    MSO_SIZE_BOTTOMLEFT = 7,
+    MSO_SIZE_BOTTOMRIGHT = 8,
+    MSO_MOVE = 9
+}
+
+// Win32 original: MSG
+struct Msg
+{
+    HWnd hwnd;
+    uint message;
+    WParam wParam;
+    LParam lParam;
+    uint time;
+    Point pt;
+}
+
+// Win32 original: MSGBOXCALLBACK
+alias MsgBoxCallback = fn void(HelpInfo* lpHelpInfo);
+
+// Win32 original: MSGBOXPARAMSA
+struct MsgBoxParamsA
+{
+    uint cbSize;
+    HWnd hwndOwner;
+    HInstance hInstance;
+    char* lpszText;
+    char* lpszCaption;
+    MessageboxStyle dwStyle;
+    char* lpszIcon;
+    uptr dwContextHelpId;
+    MsgBoxCallback lpfnMsgBoxCallback;
+    uint dwLanguageId;
+}
+
+// Win32 original: MSGBOXPARAMSW
+struct MsgBoxParamsW
+{
+    uint cbSize;
+    HWnd hwndOwner;
+    HInstance hInstance;
+    ushort* lpszText;
+    ushort* lpszCaption;
+    MessageboxStyle dwStyle;
+    ushort* lpszIcon;
+    uptr dwContextHelpId;
+    MsgBoxCallback lpfnMsgBoxCallback;
+    uint dwLanguageId;
+}
+
+// Win32 original: MSGFLTINFO_STATUS
+constdef MsgfltinfoStatus : uint
+{
+    MSGFLTINFO_NONE = 0,
+    MSGFLTINFO_ALLOWED_HIGHER = 3,
+    MSGFLTINFO_ALREADYALLOWED_FORWND = 1,
+    MSGFLTINFO_ALREADYDISALLOWED_FORWND = 2
+}
+
+// Win32 original: MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS
+constdef MsgWaitForMultipleObjectsExFlags : uint
+{
+    MWMO_NONE = 0,
+    MWMO_ALERTABLE = 2,
+    MWMO_INPUTAVAILABLE = 4,
+    MWMO_WAITALL = 1
+}
+
+// Win32 original: MrmDumpType
+constdef MrmDumpType : int
+{
+    MRMDUMPTYPE_BASIC = 0,
+    MRMDUMPTYPE_DETAILED = 1,
+    MRMDUMPTYPE_SCHEMA = 2
+}
+
+// Win32 original: MrmIndexerFlags
+constdef MrmIndexerFlags : int
+{
+    MRMINDEXERFLAGSNONE = 0,
+    MRMINDEXERFLAGSAUTOMERGE = 1,
+    MRMINDEXERFLAGSCREATECONTENTCHECKSUM = 2
+}
+
+// Win32 original: MrmPackagingMode
+constdef MrmPackagingMode : int
+{
+    MRMPACKAGINGMODESTANDALONEFILE = 0,
+    MRMPACKAGINGMODEAUTOSPLIT = 1,
+    MRMPACKAGINGMODERESOURCEPACK = 2
+}
+
+// Win32 original: MrmPackagingOptions
+constdef MrmPackagingOptions : int
+{
+    MRMPACKAGINGOPTIONSNONE = 0,
+    MRMPACKAGINGOPTIONSOMITSCHEMAFROMRESOURCEPACKS = 1,
+    MRMPACKAGINGOPTIONSSPLITLANGUAGEVARIANTS = 2
+}
+
+// Win32 original: MrmPlatformVersion
+constdef MrmPlatformVersion : int
+{
+    MRMPLATFORMVERSION_DEFAULT = 0,
+    MRMPLATFORMVERSION_WINDOWS10_0_0_0 = 17432576,
+    MRMPLATFORMVERSION_WINDOWS10_0_0_5 = 17432581
+}
+
+// Win32 original: MrmResourceIndexerHandle
+struct MrmResourceIndexerHandle
+{
+    void* handle;
+}
+
+// Win32 original: MrmResourceIndexerMessage
+struct MrmResourceIndexerMessage
+{
+    MrmResourceIndexerMessageSeverity severity;
+    uint id;
+    ushort* text;
+}
+
+// Win32 original: MrmResourceIndexerMessageSeverity
+constdef MrmResourceIndexerMessageSeverity : int
+{
+    MRMRESOURCEINDEXERMESSAGESEVERITYVERBOSE = 0,
+    MRMRESOURCEINDEXERMESSAGESEVERITYINFO = 1,
+    MRMRESOURCEINDEXERMESSAGESEVERITYWARNING = 2,
+    MRMRESOURCEINDEXERMESSAGESEVERITYERROR = 3
+}
+
+// Win32 original: OBJECT_IDENTIFIER
+constdef ObjectIdentifier : int
+{
+    OBJID_WINDOW = 0,
+    OBJID_SYSMENU = -1,
+    OBJID_TITLEBAR = -2,
+    OBJID_MENU = -3,
+    OBJID_CLIENT = -4,
+    OBJID_VSCROLL = -5,
+    OBJID_HSCROLL = -6,
+    OBJID_SIZEGRIP = -7,
+    OBJID_CARET = -8,
+    OBJID_CURSOR = -9,
+    OBJID_ALERT = -10,
+    OBJID_SOUND = -11,
+    OBJID_QUERYCLASSNAMEIDX = -12,
+    OBJID_NATIVEOM = -16
+}
+
+// Win32 original: PEEK_MESSAGE_REMOVE_TYPE
+constdef PeekMessageRemoveType : uint
+{
+    PM_NOREMOVE = 0,
+    PM_REMOVE = 1,
+    PM_NOYIELD = 2,
+    PM_QS_INPUT = 67567616,
+    PM_QS_POSTMESSAGE = 9961472,
+    PM_QS_PAINT = 2097152,
+    PM_QS_SENDMESSAGE = 4194304
+}
+
+// Win32 original: PROPENUMPROCA
+alias PropEnumProcA = fn Bool(HWnd param0, char* param1, Handle param2);
+
+// Win32 original: PROPENUMPROCEXA
+alias PropEnumProcExA = fn Bool(HWnd param0, char* param1, Handle param2, uptr param3);
+
+// Win32 original: PROPENUMPROCEXW
+alias PropEnumProcExW = fn Bool(HWnd param0, ushort* param1, Handle param2, uptr param3);
+
+// Win32 original: PROPENUMPROCW
+alias PropEnumProcW = fn Bool(HWnd param0, ushort* param1, Handle param2);
+
+// Win32 original: QUEUE_STATUS_FLAGS
+constdef QueueStatusFlags : uint
+{
+    QS_ALLEVENTS = 1215,
+    QS_ALLINPUT = 1279,
+    QS_ALLPOSTMESSAGE = 256,
+    QS_HOTKEY = 128,
+    QS_INPUT = 1031,
+    QS_KEY = 1,
+    QS_MOUSE = 6,
+    QS_MOUSEBUTTON = 4,
+    QS_MOUSEMOVE = 2,
+    QS_PAINT = 32,
+    QS_POSTMESSAGE = 8,
+    QS_RAWINPUT = 1024,
+    QS_SENDMESSAGE = 64,
+    QS_TIMER = 16
+}
+
+// Win32 original: REGISTER_NOTIFICATION_FLAGS
+constdef RegisterNotificationFlags : uint
+{
+    DEVICE_NOTIFY_SERVICE_HANDLE = 1,
+    DEVICE_NOTIFY_CALLBACK = 2,
+    DEVICE_NOTIFY_WINDOW_HANDLE = 0,
+    DEVICE_NOTIFY_ALL_INTERFACE_CLASSES = 4
+}
+
+// Win32 original: SCROLLBARINFO
+struct ScrollBarInfo
+{
+    uint cbSize;
+    Rect rcScrollBar;
+    int dxyLineButton;
+    int xyThumbTop;
+    int xyThumbBottom;
+    int reserved;
+    uint[6] rgstate;
+}
+
+// Win32 original: SCROLLBAR_CONSTANTS
+constdef ScrollBarConstants : int
+{
+    SB_CTL = 2,
+    SB_HORZ = 0,
+    SB_VERT = 1,
+    SB_BOTH = 3
+}
+
+// Win32 original: SCROLLINFO
+struct ScrollInfo
+{
+    uint cbSize;
+    ScrollInfoMask fMask;
+    int nMin;
+    int nMax;
+    uint nPage;
+    int nPos;
+    int nTrackPos;
+}
+
+// Win32 original: SCROLLINFO_MASK
+constdef ScrollInfoMask : uint
+{
+    SIF_ALL = 23,
+    SIF_DISABLENOSCROLL = 8,
+    SIF_PAGE = 2,
+    SIF_POS = 4,
+    SIF_RANGE = 1,
+    SIF_TRACKPOS = 16
+}
+
+// Win32 original: SCROLL_WINDOW_FLAGS
+constdef ScrollWindowFlags : uint
+{
+    SW_SCROLLCHILDREN = 1,
+    SW_INVALIDATE = 2,
+    SW_ERASE = 4,
+    SW_SMOOTHSCROLL = 16
+}
+
+// Win32 original: SENDASYNCPROC
+alias SendAsyncProc = fn void(HWnd param0, uint param1, uptr param2, LResult param3);
+
+// Win32 original: SEND_MESSAGE_TIMEOUT_FLAGS
+constdef SendMessageTimeoutFlags : uint
+{
+    SMTO_ABORTIFHUNG = 2,
+    SMTO_BLOCK = 1,
+    SMTO_NORMAL = 0,
+    SMTO_NOTIMEOUTIFNOTHUNG = 8,
+    SMTO_ERRORONEXIT = 32
+}
+
+// Win32 original: SET_WINDOW_POS_FLAGS
+constdef SetWindowPosFlags : uint
+{
+    SWP_ASYNCWINDOWPOS = 16384,
+    SWP_DEFERERASE = 8192,
+    SWP_DRAWFRAME = 32,
+    SWP_FRAMECHANGED = 32,
+    SWP_HIDEWINDOW = 128,
+    SWP_NOACTIVATE = 16,
+    SWP_NOCOPYBITS = 256,
+    SWP_NOMOVE = 2,
+    SWP_NOOWNERZORDER = 512,
+    SWP_NOREDRAW = 8,
+    SWP_NOREPOSITION = 512,
+    SWP_NOSENDCHANGING = 1024,
+    SWP_NOSIZE = 1,
+    SWP_NOZORDER = 4,
+    SWP_SHOWWINDOW = 64
+}
+
+// Win32 original: SHOW_WINDOW_CMD
+constdef ShowWindowCmd : int
+{
+    SW_HIDE = 0,
+    SW_SHOWNORMAL = 1,
+    SW_NORMAL = 1,
+    SW_SHOWMINIMIZED = 2,
+    SW_SHOWMAXIMIZED = 3,
+    SW_MAXIMIZE = 3,
+    SW_SHOWNOACTIVATE = 4,
+    SW_SHOW = 5,
+    SW_MINIMIZE = 6,
+    SW_SHOWMINNOACTIVE = 7,
+    SW_SHOWNA = 8,
+    SW_RESTORE = 9,
+    SW_SHOWDEFAULT = 10,
+    SW_FORCEMINIMIZE = 11,
+    SW_MAX = 11
+}
+
+// Win32 original: SHOW_WINDOW_STATUS
+constdef ShowWindowStatus : uint
+{
+    SW_PARENTCLOSING = 1,
+    SW_OTHERZOOM = 2,
+    SW_PARENTOPENING = 3,
+    SW_OTHERUNZOOM = 4
+}
+
+// Win32 original: SYSTEM_CURSOR_ID
+constdef SystemCursorId : uint
+{
+    OCR_APPSTARTING = 32650,
+    OCR_NORMAL = 32512,
+    OCR_CROSS = 32515,
+    OCR_HAND = 32649,
+    OCR_HELP = 32651,
+    OCR_IBEAM = 32513,
+    OCR_NO = 32648,
+    OCR_SIZEALL = 32646,
+    OCR_SIZENESW = 32643,
+    OCR_SIZENS = 32645,
+    OCR_SIZENWSE = 32642,
+    OCR_SIZEWE = 32644,
+    OCR_UP = 32516,
+    OCR_WAIT = 32514
+}
+
+// Win32 original: SYSTEM_METRICS_INDEX
+constdef SystemMetricsIndex : int
+{
+    SM_ARRANGE = 56,
+    SM_CLEANBOOT = 67,
+    SM_CMONITORS = 80,
+    SM_CMOUSEBUTTONS = 43,
+    SM_CONVERTIBLESLATEMODE = 8195,
+    SM_CXBORDER = 5,
+    SM_CXCURSOR = 13,
+    SM_CXDLGFRAME = 7,
+    SM_CXDOUBLECLK = 36,
+    SM_CXDRAG = 68,
+    SM_CXEDGE = 45,
+    SM_CXFIXEDFRAME = 7,
+    SM_CXFOCUSBORDER = 83,
+    SM_CXFRAME = 32,
+    SM_CXFULLSCREEN = 16,
+    SM_CXHSCROLL = 21,
+    SM_CXHTHUMB = 10,
+    SM_CXICON = 11,
+    SM_CXICONSPACING = 38,
+    SM_CXMAXIMIZED = 61,
+    SM_CXMAXTRACK = 59,
+    SM_CXMENUCHECK = 71,
+    SM_CXMENUSIZE = 54,
+    SM_CXMIN = 28,
+    SM_CXMINIMIZED = 57,
+    SM_CXMINSPACING = 47,
+    SM_CXMINTRACK = 34,
+    SM_CXPADDEDBORDER = 92,
+    SM_CXSCREEN = 0,
+    SM_CXSIZE = 30,
+    SM_CXSIZEFRAME = 32,
+    SM_CXSMICON = 49,
+    SM_CXSMSIZE = 52,
+    SM_CXVIRTUALSCREEN = 78,
+    SM_CXVSCROLL = 2,
+    SM_CYBORDER = 6,
+    SM_CYCAPTION = 4,
+    SM_CYCURSOR = 14,
+    SM_CYDLGFRAME = 8,
+    SM_CYDOUBLECLK = 37,
+    SM_CYDRAG = 69,
+    SM_CYEDGE = 46,
+    SM_CYFIXEDFRAME = 8,
+    SM_CYFOCUSBORDER = 84,
+    SM_CYFRAME = 33,
+    SM_CYFULLSCREEN = 17,
+    SM_CYHSCROLL = 3,
+    SM_CYICON = 12,
+    SM_CYICONSPACING = 39,
+    SM_CYKANJIWINDOW = 18,
+    SM_CYMAXIMIZED = 62,
+    SM_CYMAXTRACK = 60,
+    SM_CYMENU = 15,
+    SM_CYMENUCHECK = 72,
+    SM_CYMENUSIZE = 55,
+    SM_CYMIN = 29,
+    SM_CYMINIMIZED = 58,
+    SM_CYMINSPACING = 48,
+    SM_CYMINTRACK = 35,
+    SM_CYSCREEN = 1,
+    SM_CYSIZE = 31,
+    SM_CYSIZEFRAME = 33,
+    SM_CYSMCAPTION = 51,
+    SM_CYSMICON = 50,
+    SM_CYSMSIZE = 53,
+    SM_CYVIRTUALSCREEN = 79,
+    SM_CYVSCROLL = 20,
+    SM_CYVTHUMB = 9,
+    SM_DBCSENABLED = 42,
+    SM_DEBUG = 22,
+    SM_DIGITIZER = 94,
+    SM_IMMENABLED = 82,
+    SM_MAXIMUMTOUCHES = 95,
+    SM_MEDIACENTER = 87,
+    SM_MENUDROPALIGNMENT = 40,
+    SM_MIDEASTENABLED = 74,
+    SM_MOUSEPRESENT = 19,
+    SM_MOUSEHORIZONTALWHEELPRESENT = 91,
+    SM_MOUSEWHEELPRESENT = 75,
+    SM_NETWORK = 63,
+    SM_PENWINDOWS = 41,
+    SM_REMOTECONTROL = 8193,
+    SM_REMOTESESSION = 4096,
+    SM_SAMEDISPLAYFORMAT = 81,
+    SM_SECURE = 44,
+    SM_SERVERR2 = 89,
+    SM_SHOWSOUNDS = 70,
+    SM_SHUTTINGDOWN = 8192,
+    SM_SLOWMACHINE = 73,
+    SM_STARTER = 88,
+    SM_SWAPBUTTON = 23,
+    SM_SYSTEMDOCKED = 8196,
+    SM_TABLETPC = 86,
+    SM_XVIRTUALSCREEN = 76,
+    SM_YVIRTUALSCREEN = 77
+}
+
+// Win32 original: SYSTEM_PARAMETERS_INFO_ACTION
+constdef SystemParametersInfoAction : uint
+{
+    SPI_GETBEEP = 1,
+    SPI_SETBEEP = 2,
+    SPI_GETMOUSE = 3,
+    SPI_SETMOUSE = 4,
+    SPI_GETBORDER = 5,
+    SPI_SETBORDER = 6,
+    SPI_GETKEYBOARDSPEED = 10,
+    SPI_SETKEYBOARDSPEED = 11,
+    SPI_LANGDRIVER = 12,
+    SPI_ICONHORIZONTALSPACING = 13,
+    SPI_GETSCREENSAVETIMEOUT = 14,
+    SPI_SETSCREENSAVETIMEOUT = 15,
+    SPI_GETSCREENSAVEACTIVE = 16,
+    SPI_SETSCREENSAVEACTIVE = 17,
+    SPI_GETGRIDGRANULARITY = 18,
+    SPI_SETGRIDGRANULARITY = 19,
+    SPI_SETDESKWALLPAPER = 20,
+    SPI_SETDESKPATTERN = 21,
+    SPI_GETKEYBOARDDELAY = 22,
+    SPI_SETKEYBOARDDELAY = 23,
+    SPI_ICONVERTICALSPACING = 24,
+    SPI_GETICONTITLEWRAP = 25,
+    SPI_SETICONTITLEWRAP = 26,
+    SPI_GETMENUDROPALIGNMENT = 27,
+    SPI_SETMENUDROPALIGNMENT = 28,
+    SPI_SETDOUBLECLKWIDTH = 29,
+    SPI_SETDOUBLECLKHEIGHT = 30,
+    SPI_GETICONTITLELOGFONT = 31,
+    SPI_SETDOUBLECLICKTIME = 32,
+    SPI_SETMOUSEBUTTONSWAP = 33,
+    SPI_SETICONTITLELOGFONT = 34,
+    SPI_GETFASTTASKSWITCH = 35,
+    SPI_SETFASTTASKSWITCH = 36,
+    SPI_SETDRAGFULLWINDOWS = 37,
+    SPI_GETDRAGFULLWINDOWS = 38,
+    SPI_GETNONCLIENTMETRICS = 41,
+    SPI_SETNONCLIENTMETRICS = 42,
+    SPI_GETMINIMIZEDMETRICS = 43,
+    SPI_SETMINIMIZEDMETRICS = 44,
+    SPI_GETICONMETRICS = 45,
+    SPI_SETICONMETRICS = 46,
+    SPI_SETWORKAREA = 47,
+    SPI_GETWORKAREA = 48,
+    SPI_SETPENWINDOWS = 49,
+    SPI_GETHIGHCONTRAST = 66,
+    SPI_SETHIGHCONTRAST = 67,
+    SPI_GETKEYBOARDPREF = 68,
+    SPI_SETKEYBOARDPREF = 69,
+    SPI_GETSCREENREADER = 70,
+    SPI_SETSCREENREADER = 71,
+    SPI_GETANIMATION = 72,
+    SPI_SETANIMATION = 73,
+    SPI_GETFONTSMOOTHING = 74,
+    SPI_SETFONTSMOOTHING = 75,
+    SPI_SETDRAGWIDTH = 76,
+    SPI_SETDRAGHEIGHT = 77,
+    SPI_SETHANDHELD = 78,
+    SPI_GETLOWPOWERTIMEOUT = 79,
+    SPI_GETPOWEROFFTIMEOUT = 80,
+    SPI_SETLOWPOWERTIMEOUT = 81,
+    SPI_SETPOWEROFFTIMEOUT = 82,
+    SPI_GETLOWPOWERACTIVE = 83,
+    SPI_GETPOWEROFFACTIVE = 84,
+    SPI_SETLOWPOWERACTIVE = 85,
+    SPI_SETPOWEROFFACTIVE = 86,
+    SPI_SETCURSORS = 87,
+    SPI_SETICONS = 88,
+    SPI_GETDEFAULTINPUTLANG = 89,
+    SPI_SETDEFAULTINPUTLANG = 90,
+    SPI_SETLANGTOGGLE = 91,
+    SPI_GETWINDOWSEXTENSION = 92,
+    SPI_SETMOUSETRAILS = 93,
+    SPI_GETMOUSETRAILS = 94,
+    SPI_SETSCREENSAVERRUNNING = 97,
+    SPI_SCREENSAVERRUNNING = 97,
+    SPI_GETFILTERKEYS = 50,
+    SPI_SETFILTERKEYS = 51,
+    SPI_GETTOGGLEKEYS = 52,
+    SPI_SETTOGGLEKEYS = 53,
+    SPI_GETMOUSEKEYS = 54,
+    SPI_SETMOUSEKEYS = 55,
+    SPI_GETSHOWSOUNDS = 56,
+    SPI_SETSHOWSOUNDS = 57,
+    SPI_GETSTICKYKEYS = 58,
+    SPI_SETSTICKYKEYS = 59,
+    SPI_GETACCESSTIMEOUT = 60,
+    SPI_SETACCESSTIMEOUT = 61,
+    SPI_GETSERIALKEYS = 62,
+    SPI_SETSERIALKEYS = 63,
+    SPI_GETSOUNDSENTRY = 64,
+    SPI_SETSOUNDSENTRY = 65,
+    SPI_GETSNAPTODEFBUTTON = 95,
+    SPI_SETSNAPTODEFBUTTON = 96,
+    SPI_GETMOUSEHOVERWIDTH = 98,
+    SPI_SETMOUSEHOVERWIDTH = 99,
+    SPI_GETMOUSEHOVERHEIGHT = 100,
+    SPI_SETMOUSEHOVERHEIGHT = 101,
+    SPI_GETMOUSEHOVERTIME = 102,
+    SPI_SETMOUSEHOVERTIME = 103,
+    SPI_GETWHEELSCROLLLINES = 104,
+    SPI_SETWHEELSCROLLLINES = 105,
+    SPI_GETMENUSHOWDELAY = 106,
+    SPI_SETMENUSHOWDELAY = 107,
+    SPI_GETWHEELSCROLLCHARS = 108,
+    SPI_SETWHEELSCROLLCHARS = 109,
+    SPI_GETSHOWIMEUI = 110,
+    SPI_SETSHOWIMEUI = 111,
+    SPI_GETMOUSESPEED = 112,
+    SPI_SETMOUSESPEED = 113,
+    SPI_GETSCREENSAVERRUNNING = 114,
+    SPI_GETDESKWALLPAPER = 115,
+    SPI_GETAUDIODESCRIPTION = 116,
+    SPI_SETAUDIODESCRIPTION = 117,
+    SPI_GETSCREENSAVESECURE = 118,
+    SPI_SETSCREENSAVESECURE = 119,
+    SPI_GETHUNGAPPTIMEOUT = 120,
+    SPI_SETHUNGAPPTIMEOUT = 121,
+    SPI_GETWAITTOKILLTIMEOUT = 122,
+    SPI_SETWAITTOKILLTIMEOUT = 123,
+    SPI_GETWAITTOKILLSERVICETIMEOUT = 124,
+    SPI_SETWAITTOKILLSERVICETIMEOUT = 125,
+    SPI_GETMOUSEDOCKTHRESHOLD = 126,
+    SPI_SETMOUSEDOCKTHRESHOLD = 127,
+    SPI_GETPENDOCKTHRESHOLD = 128,
+    SPI_SETPENDOCKTHRESHOLD = 129,
+    SPI_GETWINARRANGING = 130,
+    SPI_SETWINARRANGING = 131,
+    SPI_GETMOUSEDRAGOUTTHRESHOLD = 132,
+    SPI_SETMOUSEDRAGOUTTHRESHOLD = 133,
+    SPI_GETPENDRAGOUTTHRESHOLD = 134,
+    SPI_SETPENDRAGOUTTHRESHOLD = 135,
+    SPI_GETMOUSESIDEMOVETHRESHOLD = 136,
+    SPI_SETMOUSESIDEMOVETHRESHOLD = 137,
+    SPI_GETPENSIDEMOVETHRESHOLD = 138,
+    SPI_SETPENSIDEMOVETHRESHOLD = 139,
+    SPI_GETDRAGFROMMAXIMIZE = 140,
+    SPI_SETDRAGFROMMAXIMIZE = 141,
+    SPI_GETSNAPSIZING = 142,
+    SPI_SETSNAPSIZING = 143,
+    SPI_GETDOCKMOVING = 144,
+    SPI_SETDOCKMOVING = 145,
+    SPI_GETTOUCHPREDICTIONPARAMETERS = 156,
+    SPI_SETTOUCHPREDICTIONPARAMETERS = 157,
+    SPI_GETLOGICALDPIOVERRIDE = 158,
+    SPI_SETLOGICALDPIOVERRIDE = 159,
+    SPI_GETMENURECT = 162,
+    SPI_SETMENURECT = 163,
+    SPI_GETTOUCHPADPARAMETERS = 174,
+    SPI_SETTOUCHPADPARAMETERS = 175,
+    SPI_GETACTIVEWINDOWTRACKING = 4096,
+    SPI_SETACTIVEWINDOWTRACKING = 4097,
+    SPI_GETMENUANIMATION = 4098,
+    SPI_SETMENUANIMATION = 4099,
+    SPI_GETCOMBOBOXANIMATION = 4100,
+    SPI_SETCOMBOBOXANIMATION = 4101,
+    SPI_GETLISTBOXSMOOTHSCROLLING = 4102,
+    SPI_SETLISTBOXSMOOTHSCROLLING = 4103,
+    SPI_GETGRADIENTCAPTIONS = 4104,
+    SPI_SETGRADIENTCAPTIONS = 4105,
+    SPI_GETKEYBOARDCUES = 4106,
+    SPI_SETKEYBOARDCUES = 4107,
+    SPI_GETMENUUNDERLINES = 4106,
+    SPI_SETMENUUNDERLINES = 4107,
+    SPI_GETACTIVEWNDTRKZORDER = 4108,
+    SPI_SETACTIVEWNDTRKZORDER = 4109,
+    SPI_GETHOTTRACKING = 4110,
+    SPI_SETHOTTRACKING = 4111,
+    SPI_GETMENUFADE = 4114,
+    SPI_SETMENUFADE = 4115,
+    SPI_GETSELECTIONFADE = 4116,
+    SPI_SETSELECTIONFADE = 4117,
+    SPI_GETTOOLTIPANIMATION = 4118,
+    SPI_SETTOOLTIPANIMATION = 4119,
+    SPI_GETTOOLTIPFADE = 4120,
+    SPI_SETTOOLTIPFADE = 4121,
+    SPI_GETCURSORSHADOW = 4122,
+    SPI_SETCURSORSHADOW = 4123,
+    SPI_GETMOUSESONAR = 4124,
+    SPI_SETMOUSESONAR = 4125,
+    SPI_GETMOUSECLICKLOCK = 4126,
+    SPI_SETMOUSECLICKLOCK = 4127,
+    SPI_GETMOUSEVANISH = 4128,
+    SPI_SETMOUSEVANISH = 4129,
+    SPI_GETFLATMENU = 4130,
+    SPI_SETFLATMENU = 4131,
+    SPI_GETDROPSHADOW = 4132,
+    SPI_SETDROPSHADOW = 4133,
+    SPI_GETBLOCKSENDINPUTRESETS = 4134,
+    SPI_SETBLOCKSENDINPUTRESETS = 4135,
+    SPI_GETUIEFFECTS = 4158,
+    SPI_SETUIEFFECTS = 4159,
+    SPI_GETDISABLEOVERLAPPEDCONTENT = 4160,
+    SPI_SETDISABLEOVERLAPPEDCONTENT = 4161,
+    SPI_GETCLIENTAREAANIMATION = 4162,
+    SPI_SETCLIENTAREAANIMATION = 4163,
+    SPI_GETCLEARTYPE = 4168,
+    SPI_SETCLEARTYPE = 4169,
+    SPI_GETSPEECHRECOGNITION = 4170,
+    SPI_SETSPEECHRECOGNITION = 4171,
+    SPI_GETCARETBROWSING = 4172,
+    SPI_SETCARETBROWSING = 4173,
+    SPI_GETTHREADLOCALINPUTSETTINGS = 4174,
+    SPI_SETTHREADLOCALINPUTSETTINGS = 4175,
+    SPI_GETSYSTEMLANGUAGEBAR = 4176,
+    SPI_SETSYSTEMLANGUAGEBAR = 4177,
+    SPI_GETFOREGROUNDLOCKTIMEOUT = 8192,
+    SPI_SETFOREGROUNDLOCKTIMEOUT = 8193,
+    SPI_GETACTIVEWNDTRKTIMEOUT = 8194,
+    SPI_SETACTIVEWNDTRKTIMEOUT = 8195,
+    SPI_GETFOREGROUNDFLASHCOUNT = 8196,
+    SPI_SETFOREGROUNDFLASHCOUNT = 8197,
+    SPI_GETCARETWIDTH = 8198,
+    SPI_SETCARETWIDTH = 8199,
+    SPI_GETMOUSECLICKLOCKTIME = 8200,
+    SPI_SETMOUSECLICKLOCKTIME = 8201,
+    SPI_GETFONTSMOOTHINGTYPE = 8202,
+    SPI_SETFONTSMOOTHINGTYPE = 8203,
+    SPI_GETFONTSMOOTHINGCONTRAST = 8204,
+    SPI_SETFONTSMOOTHINGCONTRAST = 8205,
+    SPI_GETFOCUSBORDERWIDTH = 8206,
+    SPI_SETFOCUSBORDERWIDTH = 8207,
+    SPI_GETFOCUSBORDERHEIGHT = 8208,
+    SPI_SETFOCUSBORDERHEIGHT = 8209,
+    SPI_GETFONTSMOOTHINGORIENTATION = 8210,
+    SPI_SETFONTSMOOTHINGORIENTATION = 8211,
+    SPI_GETMINIMUMHITRADIUS = 8212,
+    SPI_SETMINIMUMHITRADIUS = 8213,
+    SPI_GETMESSAGEDURATION = 8214,
+    SPI_SETMESSAGEDURATION = 8215,
+    SPI_GETCONTACTVISUALIZATION = 8216,
+    SPI_SETCONTACTVISUALIZATION = 8217,
+    SPI_GETGESTUREVISUALIZATION = 8218,
+    SPI_SETGESTUREVISUALIZATION = 8219,
+    SPI_GETMOUSEWHEELROUTING = 8220,
+    SPI_SETMOUSEWHEELROUTING = 8221,
+    SPI_GETPENVISUALIZATION = 8222,
+    SPI_SETPENVISUALIZATION = 8223,
+    SPI_GETPENARBITRATIONTYPE = 8224,
+    SPI_SETPENARBITRATIONTYPE = 8225,
+    SPI_GETCARETTIMEOUT = 8226,
+    SPI_SETCARETTIMEOUT = 8227,
+    SPI_GETHANDEDNESS = 8228,
+    SPI_SETHANDEDNESS = 8229
+}
+
+// Win32 original: SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS
+constdef SystemParametersInfoUpdateFlags : uint
+{
+    SPIF_UPDATEINIFILE = 1,
+    SPIF_SENDCHANGE = 2,
+    SPIF_SENDWININICHANGE = 2
+}
+
+// Win32 original: TILE_WINDOWS_HOW
+constdef TileWindowsHow : uint
+{
+    MDITILE_HORIZONTAL = 1,
+    MDITILE_VERTICAL = 0
+}
+
+// Win32 original: TIMERPROC
+alias TimerProc = fn void(HWnd param0, uint param1, uptr param2, uint param3);
+
+// Win32 original: TITLEBARINFO
+struct TitleBarInfo
+{
+    uint cbSize;
+    Rect rcTitleBar;
+    uint[6] rgstate;
+}
+
+// Win32 original: TOOLTIP_DISMISS_FLAGS
+constdef TooltipDismissFlags : int
+{
+    TDF_REGISTER = 1,
+    TDF_UNREGISTER = 2
+}
+
+// Win32 original: TPMPARAMS
+struct TpmParams
+{
+    uint cbSize;
+    Rect rcExclude;
+}
+
+// Win32 original: TRACK_POPUP_MENU_FLAGS
+constdef TrackPopupMenuFlags : uint
+{
+    TPM_LEFTBUTTON = 0,
+    TPM_RIGHTBUTTON = 2,
+    TPM_LEFTALIGN = 0,
+    TPM_CENTERALIGN = 4,
+    TPM_RIGHTALIGN = 8,
+    TPM_TOPALIGN = 0,
+    TPM_VCENTERALIGN = 16,
+    TPM_BOTTOMALIGN = 32,
+    TPM_HORIZONTAL = 0,
+    TPM_VERTICAL = 64,
+    TPM_NONOTIFY = 128,
+    TPM_RETURNCMD = 256,
+    TPM_RECURSE = 1,
+    TPM_HORPOSANIMATION = 1024,
+    TPM_HORNEGANIMATION = 2048,
+    TPM_VERPOSANIMATION = 4096,
+    TPM_VERNEGANIMATION = 8192,
+    TPM_NOANIMATION = 16384,
+    TPM_LAYOUTRTL = 32768,
+    TPM_WORKAREA = 65536
+}
+
+// Win32 original: UPDATELAYEREDWINDOWINFO
+struct UpdateLayeredWindowInfo
+{
+    uint cbSize;
+    Hdc hdcDst;
+    Point* pptDst;
+    Size* psize;
+    Hdc hdcSrc;
+    Point* pptSrc;
+    ColorRef crKey;
+    BlendFunction* pblend;
+    UpdateLayeredWindowFlags dwFlags;
+    Rect* prcDirty;
+}
+
+// Win32 original: UPDATE_LAYERED_WINDOW_FLAGS
+constdef UpdateLayeredWindowFlags : uint
+{
+    ULW_ALPHA = 2,
+    ULW_COLORKEY = 1,
+    ULW_OPAQUE = 4,
+    ULW_EX_NORESIZE = 8
+}
+
+// Win32 original: WINDOWINFO
+struct WindowInfo
+{
+    uint cbSize;
+    Rect rcWindow;
+    Rect rcClient;
+    WindowStyle dwStyle;
+    WindowExStyle dwExStyle;
+    uint dwWindowStatus;
+    uint cxWindowBorders;
+    uint cyWindowBorders;
+    ushort atomWindowType;
+    ushort wCreatorVersion;
+}
+
+// Win32 original: WINDOWPLACEMENT
+struct Windowplacement
+{
+    uint length;
+    WindowplacementFlags flags;
+    uint showCmd;
+    Point ptMinPosition;
+    Point ptMaxPosition;
+    Rect rcNormalPosition;
+}
+
+// Win32 original: WINDOWPLACEMENT_FLAGS
+constdef WindowplacementFlags : uint
+{
+    WPF_ASYNCWINDOWPLACEMENT = 4,
+    WPF_RESTORETOMAXIMIZED = 2,
+    WPF_SETMINPOSITION = 1
+}
+
+// Win32 original: WINDOWS_HOOK_ID
+constdef WindowsHookId : int
+{
+    WH_CALLWNDPROC = 4,
+    WH_CALLWNDPROCRET = 12,
+    WH_CBT = 5,
+    WH_DEBUG = 9,
+    WH_FOREGROUNDIDLE = 11,
+    WH_GETMESSAGE = 3,
+    WH_JOURNALPLAYBACK = 1,
+    WH_JOURNALRECORD = 0,
+    WH_KEYBOARD = 2,
+    WH_KEYBOARD_LL = 13,
+    WH_MOUSE = 7,
+    WH_MOUSE_LL = 14,
+    WH_MSGFILTER = -1,
+    WH_SHELL = 10,
+    WH_SYSMSGFILTER = 6
+}
+
+// Win32 original: WINDOW_ACTION
+struct WindowAction
+{
+    WindowActionKinds kinds;
+    WindowActionModifiers modifiers;
+    Bool visible;
+    Point position;
+    Size size;
+    HWnd insertAfter;
+    WindowPlacementState placementState;
+    Rect normalRect;
+    Rect workArea;
+    uint dpi;
+    Point pointOnMonitor;
+    uint monitorTopologyId;
+}
+
+// Win32 original: WINDOW_ACTION_KINDS
+constdef WindowActionKinds : int
+{
+    WAK_NONE = 0,
+    WAK_VISIBILITY = 1,
+    WAK_POSITION = 2,
+    WAK_SIZE = 4,
+    WAK_INSERT_AFTER = 8,
+    WAK_ACTIVATE = 16,
+    WAK_PLACEMENT_STATE = 32,
+    WAK_NORMAL_RECT = 64,
+    WAK_MOVE_TO_MONITOR = 128,
+    WAK_FIT_TO_MONITOR = 256,
+    WAK_DISPLAY_CHANGE = 512,
+    WAK_SYSTEM_OPERATION = 1024,
+    WAK_COALESCEABLE = 31
+}
+
+// Win32 original: WINDOW_ACTION_MODIFIERS
+constdef WindowActionModifiers : int
+{
+    WAM_NONE = 0,
+    WAM_FRAME_BOUNDS = 1,
+    WAM_ACTIVATE_FOREGROUND = 2,
+    WAM_ACTIVATE_INPUT = 4,
+    WAM_ACTIVATE_NO_ZORDER = 8,
+    WAM_INSERT_AFTER_NO_OWNER = 16,
+    WAM_RESTORE_TO_NORMAL = 32,
+    WAM_RESTORE_TO_MAXIMIZED = 64,
+    WAM_RESTORE_TO_ARRANGED = 128,
+    WAM_WORK_AREA = 256,
+    WAM_DPI = 512,
+    WAM_SCALED_TO_MONITOR = 1024
+}
+
+// Win32 original: WINDOW_DISPLAY_AFFINITY
+constdef WindowDisplayAffinity : uint
+{
+    WDA_NONE = 0,
+    WDA_MONITOR = 1,
+    WDA_EXCLUDEFROMCAPTURE = 17
+}
+
+// Win32 original: WINDOW_EX_STYLE
+constdef WindowExStyle : uint
+{
+    WS_EX_DLGMODALFRAME = 1,
+    WS_EX_NOPARENTNOTIFY = 4,
+    WS_EX_TOPMOST = 8,
+    WS_EX_ACCEPTFILES = 16,
+    WS_EX_TRANSPARENT = 32,
+    WS_EX_MDICHILD = 64,
+    WS_EX_TOOLWINDOW = 128,
+    WS_EX_WINDOWEDGE = 256,
+    WS_EX_CLIENTEDGE = 512,
+    WS_EX_CONTEXTHELP = 1024,
+    WS_EX_RIGHT = 4096,
+    WS_EX_LEFT = 0,
+    WS_EX_RTLREADING = 8192,
+    WS_EX_LTRREADING = 0,
+    WS_EX_LEFTSCROLLBAR = 16384,
+    WS_EX_RIGHTSCROLLBAR = 0,
+    WS_EX_CONTROLPARENT = 65536,
+    WS_EX_STATICEDGE = 131072,
+    WS_EX_APPWINDOW = 262144,
+    WS_EX_OVERLAPPEDWINDOW = 768,
+    WS_EX_PALETTEWINDOW = 392,
+    WS_EX_LAYERED = 524288,
+    WS_EX_NOINHERITLAYOUT = 1048576,
+    WS_EX_NOREDIRECTIONBITMAP = 2097152,
+    WS_EX_LAYOUTRTL = 4194304,
+    WS_EX_COMPOSITED = 33554432,
+    WS_EX_NOACTIVATE = 134217728
+}
+
+// Win32 original: WINDOW_LONG_PTR_INDEX
+constdef WindowLongPtrIndex : int
+{
+    GWL_EXSTYLE = -20,
+    GWLP_HINSTANCE = -6,
+    GWLP_HWNDPARENT = -8,
+    GWLP_ID = -12,
+    GWL_STYLE = -16,
+    GWLP_USERDATA = -21,
+    GWLP_WNDPROC = -4,
+    GWL_HINSTANCE = -6,
+    GWL_ID = -12,
+    GWL_USERDATA = -21,
+    GWL_WNDPROC = -4,
+    GWL_HWNDPARENT = -8
+}
+
+// Win32 original: WINDOW_MESSAGE_FILTER_ACTION
+constdef WindowMessageFilterAction : uint
+{
+    MSGFLT_ALLOW = 1,
+    MSGFLT_DISALLOW = 2,
+    MSGFLT_RESET = 0
+}
+
+// Win32 original: WINDOW_PLACEMENT_STATE
+constdef WindowPlacementState : int
+{
+    WPS_NORMAL = 0,
+    WPS_MAXIMIZED = 1,
+    WPS_MINIMIZED = 2,
+    WPS_ARRANGED = 3
+}
+
+// Win32 original: WINDOW_STYLE
+constdef WindowStyle : uint
+{
+    WS_OVERLAPPED = 0,
+    WS_POPUP = 2147483648,
+    WS_CHILD = 1073741824,
+    WS_MINIMIZE = 536870912,
+    WS_VISIBLE = 268435456,
+    WS_DISABLED = 134217728,
+    WS_CLIPSIBLINGS = 67108864,
+    WS_CLIPCHILDREN = 33554432,
+    WS_MAXIMIZE = 16777216,
+    WS_CAPTION = 12582912,
+    WS_BORDER = 8388608,
+    WS_DLGFRAME = 4194304,
+    WS_VSCROLL = 2097152,
+    WS_HSCROLL = 1048576,
+    WS_SYSMENU = 524288,
+    WS_THICKFRAME = 262144,
+    WS_GROUP = 131072,
+    WS_TABSTOP = 65536,
+    WS_MINIMIZEBOX = 131072,
+    WS_MAXIMIZEBOX = 65536,
+    WS_TILED = 0,
+    WS_ICONIC = 536870912,
+    WS_SIZEBOX = 262144,
+    WS_TILEDWINDOW = 13565952,
+    WS_OVERLAPPEDWINDOW = 13565952,
+    WS_POPUPWINDOW = 2156396544,
+    WS_CHILDWINDOW = 1073741824,
+    WS_ACTIVECAPTION = 1
+}
+
+// Win32 original: WNDCLASSA
+struct WndClassA
+{
+    WndClassStyles style;
+    WndProc lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HInstance hInstance;
+    HIcon hIcon;
+    HCursor hCursor;
+    HBrush hbrBackground;
+    char* lpszMenuName;
+    char* lpszClassName;
+}
+
+// Win32 original: WNDCLASSEXA
+struct WndClassExA
+{
+    uint cbSize;
+    WndClassStyles style;
+    WndProc lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HInstance hInstance;
+    HIcon hIcon;
+    HCursor hCursor;
+    HBrush hbrBackground;
+    char* lpszMenuName;
+    char* lpszClassName;
+    HIcon hIconSm;
+}
+
+// Win32 original: WNDCLASSEXW
+struct WndClassExW
+{
+    uint cbSize;
+    WndClassStyles style;
+    WndProc lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HInstance hInstance;
+    HIcon hIcon;
+    HCursor hCursor;
+    HBrush hbrBackground;
+    ushort* lpszMenuName;
+    ushort* lpszClassName;
+    HIcon hIconSm;
+}
+
+// Win32 original: WNDCLASSW
+struct WndClassW
+{
+    WndClassStyles style;
+    WndProc lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HInstance hInstance;
+    HIcon hIcon;
+    HCursor hCursor;
+    HBrush hbrBackground;
+    ushort* lpszMenuName;
+    ushort* lpszClassName;
+}
+
+// Win32 original: WNDCLASS_STYLES
+constdef WndClassStyles : uint
+{
+    CS_VREDRAW = 1,
+    CS_HREDRAW = 2,
+    CS_DBLCLKS = 8,
+    CS_OWNDC = 32,
+    CS_CLASSDC = 64,
+    CS_PARENTDC = 128,
+    CS_NOCLOSE = 512,
+    CS_SAVEBITS = 2048,
+    CS_BYTEALIGNCLIENT = 4096,
+    CS_BYTEALIGNWINDOW = 8192,
+    CS_GLOBALCLASS = 16384,
+    CS_IME = 65536,
+    CS_DROPSHADOW = 131072
+}
+
+// Win32 original: WNDENUMPROC
+alias WndEnumProc = fn Bool(HWnd param0, LParam param1);
+
+// Win32 original: WNDPROC
+alias WndProc = fn LResult(HWnd param0, uint param1, WParam param2, LParam param3);
+
+// Win32 original: CW_USEDEFAULT
+const int CW_USEDEFAULT = -2147483648;
+
+// Win32 original: DM_GETDEFID
+const uint DM_GETDEFID = 1024;
+
+// Win32 original: DM_POINTERHITTEST
+const uint DM_POINTERHITTEST = 592;
+
+// Win32 original: DM_REPOSITION
+const uint DM_REPOSITION = 1026;
+
+// Win32 original: DM_SETDEFID
+const uint DM_SETDEFID = 1025;
+
+// Win32 original: IDC_APPSTARTING
+const ushort* IDC_APPSTARTING = (ushort*)32650;
+
+// Win32 original: IDC_ARROW
+const ushort* IDC_ARROW = (ushort*)32512;
+
+// Win32 original: IDC_CROSS
+const ushort* IDC_CROSS = (ushort*)32515;
+
+// Win32 original: IDC_HAND
+const ushort* IDC_HAND = (ushort*)32649;
+
+// Win32 original: IDC_HELP
+const ushort* IDC_HELP = (ushort*)32651;
+
+// Win32 original: IDC_IBEAM
+const ushort* IDC_IBEAM = (ushort*)32513;
+
+// Win32 original: IDC_ICON
+const ushort* IDC_ICON = (ushort*)32641;
+
+// Win32 original: IDC_NO
+const ushort* IDC_NO = (ushort*)32648;
+
+// Win32 original: IDC_PERSON
+const ushort* IDC_PERSON = (ushort*)32672;
+
+// Win32 original: IDC_PIN
+const ushort* IDC_PIN = (ushort*)32671;
+
+// Win32 original: IDC_SIZE
+const ushort* IDC_SIZE = (ushort*)32640;
+
+// Win32 original: IDC_SIZEALL
+const ushort* IDC_SIZEALL = (ushort*)32646;
+
+// Win32 original: IDC_SIZENESW
+const ushort* IDC_SIZENESW = (ushort*)32643;
+
+// Win32 original: IDC_SIZENS
+const ushort* IDC_SIZENS = (ushort*)32645;
+
+// Win32 original: IDC_SIZENWSE
+const ushort* IDC_SIZENWSE = (ushort*)32642;
+
+// Win32 original: IDC_SIZEWE
+const ushort* IDC_SIZEWE = (ushort*)32644;
+
+// Win32 original: IDC_STATIC
+const int IDC_STATIC = -1;
+
+// Win32 original: IDC_UPARROW
+const ushort* IDC_UPARROW = (ushort*)32516;
+
+// Win32 original: IDC_WAIT
+const ushort* IDC_WAIT = (ushort*)32514;
+
+// Win32 original: IDI_APPLICATION
+const ushort* IDI_APPLICATION = (ushort*)32512;
+
+// Win32 original: IDI_ASTERISK
+const ushort* IDI_ASTERISK = (ushort*)32516;
+
+// Win32 original: IDI_ERROR
+const ushort* IDI_ERROR = (ushort*)32513;
+
+// Win32 original: IDI_EXCLAMATION
+const ushort* IDI_EXCLAMATION = (ushort*)32515;
+
+// Win32 original: IDI_HAND
+const ushort* IDI_HAND = (ushort*)32513;
+
+// Win32 original: IDI_INFORMATION
+const ushort* IDI_INFORMATION = (ushort*)32516;
+
+// Win32 original: IDI_QUESTION
+const ushort* IDI_QUESTION = (ushort*)32514;
+
+// Win32 original: IDI_SHIELD
+const ushort* IDI_SHIELD = (ushort*)32518;
+
+// Win32 original: IDI_WARNING
+const ushort* IDI_WARNING = (ushort*)32515;
+
+// Win32 original: IDI_WINLOGO
+const ushort* IDI_WINLOGO = (ushort*)32517;
+
+// Win32 original: LR_COLOR
+const uint LR_COLOR = 2;
+
+// Win32 original: SM_CARETBLINKINGENABLED
+const uint SM_CARETBLINKINGENABLED = 8194;
+
+// Win32 original: SM_CMETRICS
+const uint SM_CMETRICS = 76;
+
+// Win32 original: SM_RESERVED1
+const uint SM_RESERVED1 = 24;
+
+// Win32 original: SM_RESERVED2
+const uint SM_RESERVED2 = 25;
+
+// Win32 original: SM_RESERVED3
+const uint SM_RESERVED3 = 26;
+
+// Win32 original: SM_RESERVED4
+const uint SM_RESERVED4 = 27;
+
+// Win32 original: SWP_NONE
+const uint SWP_NONE = 0;
+
+// Win32 original: WA_ACTIVE
+const uint WA_ACTIVE = 1;
+
+// Win32 original: WA_CLICKACTIVE
+const uint WA_CLICKACTIVE = 2;
+
+// Win32 original: WA_INACTIVE
+const uint WA_INACTIVE = 0;
+
+// Win32 original: WMSZ_BOTTOM
+const uint WMSZ_BOTTOM = 6;
+
+// Win32 original: WMSZ_BOTTOMLEFT
+const uint WMSZ_BOTTOMLEFT = 7;
+
+// Win32 original: WMSZ_BOTTOMRIGHT
+const uint WMSZ_BOTTOMRIGHT = 8;
+
+// Win32 original: WMSZ_LEFT
+const uint WMSZ_LEFT = 1;
+
+// Win32 original: WMSZ_RIGHT
+const uint WMSZ_RIGHT = 2;
+
+// Win32 original: WMSZ_TOP
+const uint WMSZ_TOP = 3;
+
+// Win32 original: WMSZ_TOPLEFT
+const uint WMSZ_TOPLEFT = 4;
+
+// Win32 original: WMSZ_TOPRIGHT
+const uint WMSZ_TOPRIGHT = 5;
+
+// Win32 original: WM_ACTIVATE
+const uint WM_ACTIVATE = 6;
+
+// Win32 original: WM_ACTIVATEAPP
+const uint WM_ACTIVATEAPP = 28;
+
+// Win32 original: WM_AFXFIRST
+const uint WM_AFXFIRST = 864;
+
+// Win32 original: WM_AFXLAST
+const uint WM_AFXLAST = 895;
+
+// Win32 original: WM_APP
+const uint WM_APP = 32768;
+
+// Win32 original: WM_APPCOMMAND
+const uint WM_APPCOMMAND = 793;
+
+// Win32 original: WM_ASKCBFORMATNAME
+const uint WM_ASKCBFORMATNAME = 780;
+
+// Win32 original: WM_CANCELJOURNAL
+const uint WM_CANCELJOURNAL = 75;
+
+// Win32 original: WM_CANCELMODE
+const uint WM_CANCELMODE = 31;
+
+// Win32 original: WM_CAPTURECHANGED
+const uint WM_CAPTURECHANGED = 533;
+
+// Win32 original: WM_CHANGECBCHAIN
+const uint WM_CHANGECBCHAIN = 781;
+
+// Win32 original: WM_CHANGEUISTATE
+const uint WM_CHANGEUISTATE = 295;
+
+// Win32 original: WM_CHAR
+const uint WM_CHAR = 258;
+
+// Win32 original: WM_CHARTOITEM
+const uint WM_CHARTOITEM = 47;
+
+// Win32 original: WM_CHILDACTIVATE
+const uint WM_CHILDACTIVATE = 34;
+
+// Win32 original: WM_CLEAR
+const uint WM_CLEAR = 771;
+
+// Win32 original: WM_CLIPBOARDUPDATE
+const uint WM_CLIPBOARDUPDATE = 797;
+
+// Win32 original: WM_CLOAKED_STATE_CHANGED
+const uint WM_CLOAKED_STATE_CHANGED = 839;
+
+// Win32 original: WM_CLOSE
+const uint WM_CLOSE = 16;
+
+// Win32 original: WM_COMMAND
+const uint WM_COMMAND = 273;
+
+// Win32 original: WM_COMMNOTIFY
+const uint WM_COMMNOTIFY = 68;
+
+// Win32 original: WM_COMPACTING
+const uint WM_COMPACTING = 65;
+
+// Win32 original: WM_COMPAREITEM
+const uint WM_COMPAREITEM = 57;
+
+// Win32 original: WM_CONTEXTMENU
+const uint WM_CONTEXTMENU = 123;
+
+// Win32 original: WM_COPY
+const uint WM_COPY = 769;
+
+// Win32 original: WM_COPYDATA
+const uint WM_COPYDATA = 74;
+
+// Win32 original: WM_CREATE
+const uint WM_CREATE = 1;
+
+// Win32 original: WM_CTLCOLORBTN
+const uint WM_CTLCOLORBTN = 309;
+
+// Win32 original: WM_CTLCOLORDLG
+const uint WM_CTLCOLORDLG = 310;
+
+// Win32 original: WM_CTLCOLOREDIT
+const uint WM_CTLCOLOREDIT = 307;
+
+// Win32 original: WM_CTLCOLORLISTBOX
+const uint WM_CTLCOLORLISTBOX = 308;
+
+// Win32 original: WM_CTLCOLORMSGBOX
+const uint WM_CTLCOLORMSGBOX = 306;
+
+// Win32 original: WM_CTLCOLORSCROLLBAR
+const uint WM_CTLCOLORSCROLLBAR = 311;
+
+// Win32 original: WM_CTLCOLORSTATIC
+const uint WM_CTLCOLORSTATIC = 312;
+
+// Win32 original: WM_CUT
+const uint WM_CUT = 768;
+
+// Win32 original: WM_DEADCHAR
+const uint WM_DEADCHAR = 259;
+
+// Win32 original: WM_DELETEITEM
+const uint WM_DELETEITEM = 45;
+
+// Win32 original: WM_DESTROY
+const uint WM_DESTROY = 2;
+
+// Win32 original: WM_DESTROYCLIPBOARD
+const uint WM_DESTROYCLIPBOARD = 775;
+
+// Win32 original: WM_DEVICECHANGE
+const uint WM_DEVICECHANGE = 537;
+
+// Win32 original: WM_DEVMODECHANGE
+const uint WM_DEVMODECHANGE = 27;
+
+// Win32 original: WM_DISPLAYCHANGE
+const uint WM_DISPLAYCHANGE = 126;
+
+// Win32 original: WM_DPICHANGED
+const uint WM_DPICHANGED = 736;
+
+// Win32 original: WM_DPICHANGED_AFTERPARENT
+const uint WM_DPICHANGED_AFTERPARENT = 739;
+
+// Win32 original: WM_DPICHANGED_BEFOREPARENT
+const uint WM_DPICHANGED_BEFOREPARENT = 738;
+
+// Win32 original: WM_DRAWCLIPBOARD
+const uint WM_DRAWCLIPBOARD = 776;
+
+// Win32 original: WM_DRAWITEM
+const uint WM_DRAWITEM = 43;
+
+// Win32 original: WM_DROPFILES
+const uint WM_DROPFILES = 563;
+
+// Win32 original: WM_DWMCOLORIZATIONCOLORCHANGED
+const uint WM_DWMCOLORIZATIONCOLORCHANGED = 800;
+
+// Win32 original: WM_DWMCOMPOSITIONCHANGED
+const uint WM_DWMCOMPOSITIONCHANGED = 798;
+
+// Win32 original: WM_DWMNCRENDERINGCHANGED
+const uint WM_DWMNCRENDERINGCHANGED = 799;
+
+// Win32 original: WM_DWMSENDICONICLIVEPREVIEWBITMAP
+const uint WM_DWMSENDICONICLIVEPREVIEWBITMAP = 806;
+
+// Win32 original: WM_DWMSENDICONICTHUMBNAIL
+const uint WM_DWMSENDICONICTHUMBNAIL = 803;
+
+// Win32 original: WM_DWMWINDOWMAXIMIZEDCHANGE
+const uint WM_DWMWINDOWMAXIMIZEDCHANGE = 801;
+
+// Win32 original: WM_ENABLE
+const uint WM_ENABLE = 10;
+
+// Win32 original: WM_ENDSESSION
+const uint WM_ENDSESSION = 22;
+
+// Win32 original: WM_ENTERIDLE
+const uint WM_ENTERIDLE = 289;
+
+// Win32 original: WM_ENTERMENULOOP
+const uint WM_ENTERMENULOOP = 529;
+
+// Win32 original: WM_ENTERSIZEMOVE
+const uint WM_ENTERSIZEMOVE = 561;
+
+// Win32 original: WM_ERASEBKGND
+const uint WM_ERASEBKGND = 20;
+
+// Win32 original: WM_EXITMENULOOP
+const uint WM_EXITMENULOOP = 530;
+
+// Win32 original: WM_EXITSIZEMOVE
+const uint WM_EXITSIZEMOVE = 562;
+
+// Win32 original: WM_FONTCHANGE
+const uint WM_FONTCHANGE = 29;
+
+// Win32 original: WM_GESTURE
+const uint WM_GESTURE = 281;
+
+// Win32 original: WM_GESTURENOTIFY
+const uint WM_GESTURENOTIFY = 282;
+
+// Win32 original: WM_GETDLGCODE
+const uint WM_GETDLGCODE = 135;
+
+// Win32 original: WM_GETDPISCALEDSIZE
+const uint WM_GETDPISCALEDSIZE = 740;
+
+// Win32 original: WM_GETFONT
+const uint WM_GETFONT = 49;
+
+// Win32 original: WM_GETHOTKEY
+const uint WM_GETHOTKEY = 51;
+
+// Win32 original: WM_GETICON
+const uint WM_GETICON = 127;
+
+// Win32 original: WM_GETMINMAXINFO
+const uint WM_GETMINMAXINFO = 36;
+
+// Win32 original: WM_GETOBJECT
+const uint WM_GETOBJECT = 61;
+
+// Win32 original: WM_GETTEXT
+const uint WM_GETTEXT = 13;
+
+// Win32 original: WM_GETTEXTLENGTH
+const uint WM_GETTEXTLENGTH = 14;
+
+// Win32 original: WM_GETTITLEBARINFOEX
+const uint WM_GETTITLEBARINFOEX = 831;
+
+// Win32 original: WM_HANDHELDFIRST
+const uint WM_HANDHELDFIRST = 856;
+
+// Win32 original: WM_HANDHELDLAST
+const uint WM_HANDHELDLAST = 863;
+
+// Win32 original: WM_HELP
+const uint WM_HELP = 83;
+
+// Win32 original: WM_HOTKEY
+const uint WM_HOTKEY = 786;
+
+// Win32 original: WM_HSCROLL
+const uint WM_HSCROLL = 276;
+
+// Win32 original: WM_HSCROLLCLIPBOARD
+const uint WM_HSCROLLCLIPBOARD = 782;
+
+// Win32 original: WM_ICONERASEBKGND
+const uint WM_ICONERASEBKGND = 39;
+
+// Win32 original: WM_IME_CHAR
+const uint WM_IME_CHAR = 646;
+
+// Win32 original: WM_IME_COMPOSITION
+const uint WM_IME_COMPOSITION = 271;
+
+// Win32 original: WM_IME_COMPOSITIONFULL
+const uint WM_IME_COMPOSITIONFULL = 644;
+
+// Win32 original: WM_IME_CONTROL
+const uint WM_IME_CONTROL = 643;
+
+// Win32 original: WM_IME_ENDCOMPOSITION
+const uint WM_IME_ENDCOMPOSITION = 270;
+
+// Win32 original: WM_IME_KEYDOWN
+const uint WM_IME_KEYDOWN = 656;
+
+// Win32 original: WM_IME_KEYLAST
+const uint WM_IME_KEYLAST = 271;
+
+// Win32 original: WM_IME_KEYUP
+const uint WM_IME_KEYUP = 657;
+
+// Win32 original: WM_IME_NOTIFY
+const uint WM_IME_NOTIFY = 642;
+
+// Win32 original: WM_IME_REQUEST
+const uint WM_IME_REQUEST = 648;
+
+// Win32 original: WM_IME_SELECT
+const uint WM_IME_SELECT = 645;
+
+// Win32 original: WM_IME_SETCONTEXT
+const uint WM_IME_SETCONTEXT = 641;
+
+// Win32 original: WM_IME_STARTCOMPOSITION
+const uint WM_IME_STARTCOMPOSITION = 269;
+
+// Win32 original: WM_INITDIALOG
+const uint WM_INITDIALOG = 272;
+
+// Win32 original: WM_INITMENU
+const uint WM_INITMENU = 278;
+
+// Win32 original: WM_INITMENUPOPUP
+const uint WM_INITMENUPOPUP = 279;
+
+// Win32 original: WM_INPUT
+const uint WM_INPUT = 255;
+
+// Win32 original: WM_INPUTLANGCHANGE
+const uint WM_INPUTLANGCHANGE = 81;
+
+// Win32 original: WM_INPUTLANGCHANGEREQUEST
+const uint WM_INPUTLANGCHANGEREQUEST = 80;
+
+// Win32 original: WM_INPUT_DEVICE_CHANGE
+const uint WM_INPUT_DEVICE_CHANGE = 254;
+
+// Win32 original: WM_INTERCEPTED_WINDOW_ACTION
+const uint WM_INTERCEPTED_WINDOW_ACTION = 838;
+
+// Win32 original: WM_KEYDOWN
+const uint WM_KEYDOWN = 256;
+
+// Win32 original: WM_KEYFIRST
+const uint WM_KEYFIRST = 256;
+
+// Win32 original: WM_KEYLAST
+const uint WM_KEYLAST = 265;
+
+// Win32 original: WM_KEYUP
+const uint WM_KEYUP = 257;
+
+// Win32 original: WM_KILLFOCUS
+const uint WM_KILLFOCUS = 8;
+
+// Win32 original: WM_LBUTTONDBLCLK
+const uint WM_LBUTTONDBLCLK = 515;
+
+// Win32 original: WM_LBUTTONDOWN
+const uint WM_LBUTTONDOWN = 513;
+
+// Win32 original: WM_LBUTTONUP
+const uint WM_LBUTTONUP = 514;
+
+// Win32 original: WM_MBUTTONDBLCLK
+const uint WM_MBUTTONDBLCLK = 521;
+
+// Win32 original: WM_MBUTTONDOWN
+const uint WM_MBUTTONDOWN = 519;
+
+// Win32 original: WM_MBUTTONUP
+const uint WM_MBUTTONUP = 520;
+
+// Win32 original: WM_MDIACTIVATE
+const uint WM_MDIACTIVATE = 546;
+
+// Win32 original: WM_MDICASCADE
+const uint WM_MDICASCADE = 551;
+
+// Win32 original: WM_MDICREATE
+const uint WM_MDICREATE = 544;
+
+// Win32 original: WM_MDIDESTROY
+const uint WM_MDIDESTROY = 545;
+
+// Win32 original: WM_MDIGETACTIVE
+const uint WM_MDIGETACTIVE = 553;
+
+// Win32 original: WM_MDIICONARRANGE
+const uint WM_MDIICONARRANGE = 552;
+
+// Win32 original: WM_MDIMAXIMIZE
+const uint WM_MDIMAXIMIZE = 549;
+
+// Win32 original: WM_MDINEXT
+const uint WM_MDINEXT = 548;
+
+// Win32 original: WM_MDIREFRESHMENU
+const uint WM_MDIREFRESHMENU = 564;
+
+// Win32 original: WM_MDIRESTORE
+const uint WM_MDIRESTORE = 547;
+
+// Win32 original: WM_MDISETMENU
+const uint WM_MDISETMENU = 560;
+
+// Win32 original: WM_MDITILE
+const uint WM_MDITILE = 550;
+
+// Win32 original: WM_MEASUREITEM
+const uint WM_MEASUREITEM = 44;
+
+// Win32 original: WM_MENUCHAR
+const uint WM_MENUCHAR = 288;
+
+// Win32 original: WM_MENUCOMMAND
+const uint WM_MENUCOMMAND = 294;
+
+// Win32 original: WM_MENUDRAG
+const uint WM_MENUDRAG = 291;
+
+// Win32 original: WM_MENUGETOBJECT
+const uint WM_MENUGETOBJECT = 292;
+
+// Win32 original: WM_MENURBUTTONUP
+const uint WM_MENURBUTTONUP = 290;
+
+// Win32 original: WM_MENUSELECT
+const uint WM_MENUSELECT = 287;
+
+// Win32 original: WM_MOUSEACTIVATE
+const uint WM_MOUSEACTIVATE = 33;
+
+// Win32 original: WM_MOUSEFIRST
+const uint WM_MOUSEFIRST = 512;
+
+// Win32 original: WM_MOUSEHWHEEL
+const uint WM_MOUSEHWHEEL = 526;
+
+// Win32 original: WM_MOUSELAST
+const uint WM_MOUSELAST = 526;
+
+// Win32 original: WM_MOUSEMOVE
+const uint WM_MOUSEMOVE = 512;
+
+// Win32 original: WM_MOUSEWHEEL
+const uint WM_MOUSEWHEEL = 522;
+
+// Win32 original: WM_MOVE
+const uint WM_MOVE = 3;
+
+// Win32 original: WM_MOVING
+const uint WM_MOVING = 534;
+
+// Win32 original: WM_NCACTIVATE
+const uint WM_NCACTIVATE = 134;
+
+// Win32 original: WM_NCCALCSIZE
+const uint WM_NCCALCSIZE = 131;
+
+// Win32 original: WM_NCCREATE
+const uint WM_NCCREATE = 129;
+
+// Win32 original: WM_NCDESTROY
+const uint WM_NCDESTROY = 130;
+
+// Win32 original: WM_NCHITTEST
+const uint WM_NCHITTEST = 132;
+
+// Win32 original: WM_NCLBUTTONDBLCLK
+const uint WM_NCLBUTTONDBLCLK = 163;
+
+// Win32 original: WM_NCLBUTTONDOWN
+const uint WM_NCLBUTTONDOWN = 161;
+
+// Win32 original: WM_NCLBUTTONUP
+const uint WM_NCLBUTTONUP = 162;
+
+// Win32 original: WM_NCMBUTTONDBLCLK
+const uint WM_NCMBUTTONDBLCLK = 169;
+
+// Win32 original: WM_NCMBUTTONDOWN
+const uint WM_NCMBUTTONDOWN = 167;
+
+// Win32 original: WM_NCMBUTTONUP
+const uint WM_NCMBUTTONUP = 168;
+
+// Win32 original: WM_NCMOUSEHOVER
+const uint WM_NCMOUSEHOVER = 672;
+
+// Win32 original: WM_NCMOUSELEAVE
+const uint WM_NCMOUSELEAVE = 674;
+
+// Win32 original: WM_NCMOUSEMOVE
+const uint WM_NCMOUSEMOVE = 160;
+
+// Win32 original: WM_NCPAINT
+const uint WM_NCPAINT = 133;
+
+// Win32 original: WM_NCPOINTERDOWN
+const uint WM_NCPOINTERDOWN = 578;
+
+// Win32 original: WM_NCPOINTERUP
+const uint WM_NCPOINTERUP = 579;
+
+// Win32 original: WM_NCPOINTERUPDATE
+const uint WM_NCPOINTERUPDATE = 577;
+
+// Win32 original: WM_NCRBUTTONDBLCLK
+const uint WM_NCRBUTTONDBLCLK = 166;
+
+// Win32 original: WM_NCRBUTTONDOWN
+const uint WM_NCRBUTTONDOWN = 164;
+
+// Win32 original: WM_NCRBUTTONUP
+const uint WM_NCRBUTTONUP = 165;
+
+// Win32 original: WM_NCXBUTTONDBLCLK
+const uint WM_NCXBUTTONDBLCLK = 173;
+
+// Win32 original: WM_NCXBUTTONDOWN
+const uint WM_NCXBUTTONDOWN = 171;
+
+// Win32 original: WM_NCXBUTTONUP
+const uint WM_NCXBUTTONUP = 172;
+
+// Win32 original: WM_NEXTDLGCTL
+const uint WM_NEXTDLGCTL = 40;
+
+// Win32 original: WM_NEXTMENU
+const uint WM_NEXTMENU = 531;
+
+// Win32 original: WM_NOTIFY
+const uint WM_NOTIFY = 78;
+
+// Win32 original: WM_NOTIFYFORMAT
+const uint WM_NOTIFYFORMAT = 85;
+
+// Win32 original: WM_NULL
+const uint WM_NULL = 0;
+
+// Win32 original: WM_PAINT
+const uint WM_PAINT = 15;
+
+// Win32 original: WM_PAINTCLIPBOARD
+const uint WM_PAINTCLIPBOARD = 777;
+
+// Win32 original: WM_PAINTICON
+const uint WM_PAINTICON = 38;
+
+// Win32 original: WM_PALETTECHANGED
+const uint WM_PALETTECHANGED = 785;
+
+// Win32 original: WM_PALETTEISCHANGING
+const uint WM_PALETTEISCHANGING = 784;
+
+// Win32 original: WM_PARENTNOTIFY
+const uint WM_PARENTNOTIFY = 528;
+
+// Win32 original: WM_PASTE
+const uint WM_PASTE = 770;
+
+// Win32 original: WM_PENWINFIRST
+const uint WM_PENWINFIRST = 896;
+
+// Win32 original: WM_PENWINLAST
+const uint WM_PENWINLAST = 911;
+
+// Win32 original: WM_POINTERACTIVATE
+const uint WM_POINTERACTIVATE = 587;
+
+// Win32 original: WM_POINTERCAPTURECHANGED
+const uint WM_POINTERCAPTURECHANGED = 588;
+
+// Win32 original: WM_POINTERDEVICECHANGE
+const uint WM_POINTERDEVICECHANGE = 568;
+
+// Win32 original: WM_POINTERDEVICEINRANGE
+const uint WM_POINTERDEVICEINRANGE = 569;
+
+// Win32 original: WM_POINTERDEVICEOUTOFRANGE
+const uint WM_POINTERDEVICEOUTOFRANGE = 570;
+
+// Win32 original: WM_POINTERDOWN
+const uint WM_POINTERDOWN = 582;
+
+// Win32 original: WM_POINTERENTER
+const uint WM_POINTERENTER = 585;
+
+// Win32 original: WM_POINTERHWHEEL
+const uint WM_POINTERHWHEEL = 591;
+
+// Win32 original: WM_POINTERLEAVE
+const uint WM_POINTERLEAVE = 586;
+
+// Win32 original: WM_POINTERROUTEDAWAY
+const uint WM_POINTERROUTEDAWAY = 594;
+
+// Win32 original: WM_POINTERROUTEDRELEASED
+const uint WM_POINTERROUTEDRELEASED = 595;
+
+// Win32 original: WM_POINTERROUTEDTO
+const uint WM_POINTERROUTEDTO = 593;
+
+// Win32 original: WM_POINTERUP
+const uint WM_POINTERUP = 583;
+
+// Win32 original: WM_POINTERUPDATE
+const uint WM_POINTERUPDATE = 581;
+
+// Win32 original: WM_POINTERWHEEL
+const uint WM_POINTERWHEEL = 590;
+
+// Win32 original: WM_POWER
+const uint WM_POWER = 72;
+
+// Win32 original: WM_POWERBROADCAST
+const uint WM_POWERBROADCAST = 536;
+
+// Win32 original: WM_PRINT
+const uint WM_PRINT = 791;
+
+// Win32 original: WM_PRINTCLIENT
+const uint WM_PRINTCLIENT = 792;
+
+// Win32 original: WM_QUERYDRAGICON
+const uint WM_QUERYDRAGICON = 55;
+
+// Win32 original: WM_QUERYENDSESSION
+const uint WM_QUERYENDSESSION = 17;
+
+// Win32 original: WM_QUERYNEWPALETTE
+const uint WM_QUERYNEWPALETTE = 783;
+
+// Win32 original: WM_QUERYOPEN
+const uint WM_QUERYOPEN = 19;
+
+// Win32 original: WM_QUERYUISTATE
+const uint WM_QUERYUISTATE = 297;
+
+// Win32 original: WM_QUEUESYNC
+const uint WM_QUEUESYNC = 35;
+
+// Win32 original: WM_QUIT
+const uint WM_QUIT = 18;
+
+// Win32 original: WM_RBUTTONDBLCLK
+const uint WM_RBUTTONDBLCLK = 518;
+
+// Win32 original: WM_RBUTTONDOWN
+const uint WM_RBUTTONDOWN = 516;
+
+// Win32 original: WM_RBUTTONUP
+const uint WM_RBUTTONUP = 517;
+
+// Win32 original: WM_RENDERALLFORMATS
+const uint WM_RENDERALLFORMATS = 774;
+
+// Win32 original: WM_RENDERFORMAT
+const uint WM_RENDERFORMAT = 773;
+
+// Win32 original: WM_SETCURSOR
+const uint WM_SETCURSOR = 32;
+
+// Win32 original: WM_SETFOCUS
+const uint WM_SETFOCUS = 7;
+
+// Win32 original: WM_SETFONT
+const uint WM_SETFONT = 48;
+
+// Win32 original: WM_SETHOTKEY
+const uint WM_SETHOTKEY = 50;
+
+// Win32 original: WM_SETICON
+const uint WM_SETICON = 128;
+
+// Win32 original: WM_SETREDRAW
+const uint WM_SETREDRAW = 11;
+
+// Win32 original: WM_SETTEXT
+const uint WM_SETTEXT = 12;
+
+// Win32 original: WM_SETTINGCHANGE
+const uint WM_SETTINGCHANGE = 26;
+
+// Win32 original: WM_SHOWWINDOW
+const uint WM_SHOWWINDOW = 24;
+
+// Win32 original: WM_SIZE
+const uint WM_SIZE = 5;
+
+// Win32 original: WM_SIZECLIPBOARD
+const uint WM_SIZECLIPBOARD = 779;
+
+// Win32 original: WM_SIZING
+const uint WM_SIZING = 532;
+
+// Win32 original: WM_SPOOLERSTATUS
+const uint WM_SPOOLERSTATUS = 42;
+
+// Win32 original: WM_STYLECHANGED
+const uint WM_STYLECHANGED = 125;
+
+// Win32 original: WM_STYLECHANGING
+const uint WM_STYLECHANGING = 124;
+
+// Win32 original: WM_SYNCPAINT
+const uint WM_SYNCPAINT = 136;
+
+// Win32 original: WM_SYSCHAR
+const uint WM_SYSCHAR = 262;
+
+// Win32 original: WM_SYSCOLORCHANGE
+const uint WM_SYSCOLORCHANGE = 21;
+
+// Win32 original: WM_SYSCOMMAND
+const uint WM_SYSCOMMAND = 274;
+
+// Win32 original: WM_SYSDEADCHAR
+const uint WM_SYSDEADCHAR = 263;
+
+// Win32 original: WM_SYSKEYDOWN
+const uint WM_SYSKEYDOWN = 260;
+
+// Win32 original: WM_SYSKEYUP
+const uint WM_SYSKEYUP = 261;
+
+// Win32 original: WM_TABLET_FIRST
+const uint WM_TABLET_FIRST = 704;
+
+// Win32 original: WM_TABLET_LAST
+const uint WM_TABLET_LAST = 735;
+
+// Win32 original: WM_TCARD
+const uint WM_TCARD = 82;
+
+// Win32 original: WM_THEMECHANGED
+const uint WM_THEMECHANGED = 794;
+
+// Win32 original: WM_TIMECHANGE
+const uint WM_TIMECHANGE = 30;
+
+// Win32 original: WM_TIMER
+const uint WM_TIMER = 275;
+
+// Win32 original: WM_TOOLTIPDISMISS
+const uint WM_TOOLTIPDISMISS = 837;
+
+// Win32 original: WM_TOUCH
+const uint WM_TOUCH = 576;
+
+// Win32 original: WM_TOUCHHITTESTING
+const uint WM_TOUCHHITTESTING = 589;
+
+// Win32 original: WM_UNDO
+const uint WM_UNDO = 772;
+
+// Win32 original: WM_UNICHAR
+const uint WM_UNICHAR = 265;
+
+// Win32 original: WM_UNINITMENUPOPUP
+const uint WM_UNINITMENUPOPUP = 293;
+
+// Win32 original: WM_UPDATEUISTATE
+const uint WM_UPDATEUISTATE = 296;
+
+// Win32 original: WM_USER
+const uint WM_USER = 1024;
+
+// Win32 original: WM_USERCHANGED
+const uint WM_USERCHANGED = 84;
+
+// Win32 original: WM_VKEYTOITEM
+const uint WM_VKEYTOITEM = 46;
+
+// Win32 original: WM_VSCROLL
+const uint WM_VSCROLL = 277;
+
+// Win32 original: WM_VSCROLLCLIPBOARD
+const uint WM_VSCROLLCLIPBOARD = 778;
+
+// Win32 original: WM_WINDOWPOSCHANGED
+const uint WM_WINDOWPOSCHANGED = 71;
+
+// Win32 original: WM_WINDOWPOSCHANGING
+const uint WM_WINDOWPOSCHANGING = 70;
+
+// Win32 original: WM_WININICHANGE
+const uint WM_WININICHANGE = 26;
+
+// Win32 original: WM_WTSSESSION_CHANGE
+const uint WM_WTSSESSION_CHANGE = 689;
+
+// Win32 original: WM_XBUTTONDBLCLK
+const uint WM_XBUTTONDBLCLK = 525;
+
+// Win32 original: WM_XBUTTONDOWN
+const uint WM_XBUTTONDOWN = 523;
+
+// Win32 original: WM_XBUTTONUP
+const uint WM_XBUTTONUP = 524;
+
+<*
+ @param [&inout] lpRect
+*>
+extern fn Bool adjust_window_rect(Rect* lpRect, WindowStyle dwStyle, Bool bMenu)
+    @cname("AdjustWindowRect") @link("user32");
+
+<*
+ @param [&inout] lpRect
+*>
+extern fn Bool adjust_window_rect_ex(Rect* lpRect, WindowStyle dwStyle, Bool bMenu, WindowExStyle dwExStyle)
+    @cname("AdjustWindowRectEx") @link("user32");
+
+extern fn Bool allow_set_foreground_window(uint dwProcessId)
+    @cname("AllowSetForegroundWindow") @link("user32");
+
+extern fn Bool animate_window(HWnd hWnd, uint dwTime, AnimateWindowFlags dwFlags)
+    @cname("AnimateWindow") @link("user32");
+
+extern fn Bool any_popup()
+    @cname("AnyPopup") @link("user32");
+
+extern fn Bool append_menuA(HMenu hMenu, MenuItemFlags uFlags, uptr uIDNewItem, char* lpNewItem)
+    @cname("AppendMenuA") @link("user32");
+
+extern fn Bool append_menuW(HMenu hMenu, MenuItemFlags uFlags, uptr uIDNewItem, ushort* lpNewItem)
+    @cname("AppendMenuW") @link("user32");
+
+<*
+ @param [&inout] pAction
+*>
+extern fn Bool apply_window_action(HWnd hwnd, WindowAction* pAction)
+    @cname("ApplyWindowAction") @link("user32");
+
+extern fn uint arrange_iconic_windows(HWnd hWnd)
+    @cname("ArrangeIconicWindows") @link("user32");
+
+extern fn HDwp begin_defer_window_pos(int nNumWindows)
+    @cname("BeginDeferWindowPos") @link("user32");
+
+extern fn Bool bring_window_to_top(HWnd hWnd)
+    @cname("BringWindowToTop") @link("user32");
+
+<*
+ @param [&in] anchorPoint
+ @param [&in] windowSize
+ @param [in] excludeRect
+ @param [&out] popupWindowPosition
+*>
+extern fn Bool calculate_popup_window_position(Point* anchorPoint, Size* windowSize, uint flags, Rect* excludeRect, Rect* popupWindowPosition)
+    @cname("CalculatePopupWindowPosition") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn Bool call_msg_filterA(Msg* lpMsg, int nCode)
+    @cname("CallMsgFilterA") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn Bool call_msg_filterW(Msg* lpMsg, int nCode)
+    @cname("CallMsgFilterW") @link("user32");
+
+extern fn LResult call_next_hook_ex(HHook hhk, int nCode, WParam wParam, LParam lParam)
+    @cname("CallNextHookEx") @link("user32");
+
+extern fn LResult call_window_procA(WndProc lpPrevWndFunc, HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("CallWindowProcA") @link("user32");
+
+extern fn LResult call_window_procW(WndProc lpPrevWndFunc, HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("CallWindowProcW") @link("user32");
+
+extern fn Bool cancel_shutdown()
+    @cname("CancelShutdown") @link("user32");
+
+<*
+ @param [in] lpRect
+ @param [in] lpKids
+*>
+extern fn ushort cascade_windows(HWnd hwndParent, CascadeWindowsHow wHow, Rect* lpRect, uint cKids, HWnd* lpKids)
+    @cname("CascadeWindows") @link("user32");
+
+extern fn Bool change_menuA(HMenu hMenu, uint cmd, char* lpszNewItem, uint cmdInsert, uint flags)
+    @cname("ChangeMenuA") @link("user32");
+
+extern fn Bool change_menuW(HMenu hMenu, uint cmd, ushort* lpszNewItem, uint cmdInsert, uint flags)
+    @cname("ChangeMenuW") @link("user32");
+
+extern fn Bool change_window_message_filter(uint message, ChangeWindowMessageFilterFlags dwFlag)
+    @cname("ChangeWindowMessageFilter") @link("user32");
+
+<*
+ @param [inout] pChangeFilterStruct
+*>
+extern fn Bool change_window_message_filter_ex(HWnd hwnd, uint message, WindowMessageFilterAction action, ChangeFilterStruct* pChangeFilterStruct)
+    @cname("ChangeWindowMessageFilterEx") @link("user32");
+
+extern fn char* char_lowerA(char* lpsz)
+    @cname("CharLowerA") @link("user32");
+
+extern fn uint char_lower_buffA(char* lpsz, uint cchLength)
+    @cname("CharLowerBuffA") @link("user32");
+
+extern fn uint char_lower_buffW(ushort* lpsz, uint cchLength)
+    @cname("CharLowerBuffW") @link("user32");
+
+extern fn ushort* char_lowerW(ushort* lpsz)
+    @cname("CharLowerW") @link("user32");
+
+extern fn char* char_nextA(char* lpsz)
+    @cname("CharNextA") @link("user32");
+
+extern fn char* char_next_exA(ushort codePage, char* lpCurrentChar, uint dwFlags)
+    @cname("CharNextExA") @link("user32");
+
+extern fn ushort* char_nextW(ushort* lpsz)
+    @cname("CharNextW") @link("user32");
+
+extern fn char* char_prevA(char* lpszStart, char* lpszCurrent)
+    @cname("CharPrevA") @link("user32");
+
+extern fn char* char_prev_exA(ushort codePage, char* lpStart, char* lpCurrentChar, uint dwFlags)
+    @cname("CharPrevExA") @link("user32");
+
+extern fn ushort* char_prevW(ushort* lpszStart, ushort* lpszCurrent)
+    @cname("CharPrevW") @link("user32");
+
+extern fn Bool char_to_oemA(char* pSrc, char* pDst)
+    @cname("CharToOemA") @link("user32");
+
+extern fn Bool char_to_oem_buffA(char* lpszSrc, char* lpszDst, uint cchDstLength)
+    @cname("CharToOemBuffA") @link("user32");
+
+extern fn Bool char_to_oem_buffW(ushort* lpszSrc, char* lpszDst, uint cchDstLength)
+    @cname("CharToOemBuffW") @link("user32");
+
+extern fn Bool char_to_oemW(ushort* pSrc, char* pDst)
+    @cname("CharToOemW") @link("user32");
+
+extern fn char* char_upperA(char* lpsz)
+    @cname("CharUpperA") @link("user32");
+
+extern fn uint char_upper_buffA(char* lpsz, uint cchLength)
+    @cname("CharUpperBuffA") @link("user32");
+
+extern fn uint char_upper_buffW(ushort* lpsz, uint cchLength)
+    @cname("CharUpperBuffW") @link("user32");
+
+extern fn ushort* char_upperW(ushort* lpsz)
+    @cname("CharUpperW") @link("user32");
+
+extern fn uint check_menu_item(HMenu hMenu, uint uIDCheckItem, uint uCheck)
+    @cname("CheckMenuItem") @link("user32");
+
+extern fn Bool check_menu_radio_item(HMenu hmenu, uint first, uint last, uint check, uint flags)
+    @cname("CheckMenuRadioItem") @link("user32");
+
+extern fn HWnd child_window_from_point(HWnd hWndParent, Point point)
+    @cname("ChildWindowFromPoint") @link("user32");
+
+extern fn HWnd child_window_from_point_ex(HWnd hwnd, Point pt, CwpFlags flags)
+    @cname("ChildWindowFromPointEx") @link("user32");
+
+<*
+ @param [in] lpRect
+*>
+extern fn Bool clip_cursor(Rect* lpRect)
+    @cname("ClipCursor") @link("user32");
+
+extern fn Bool close_window(HWnd hWnd)
+    @cname("CloseWindow") @link("user32");
+
+extern fn Bool convert_primary_pointer_to_mouse_drag()
+    @cname("ConvertPrimaryPointerToMouseDrag") @link("user32");
+
+extern fn Bool convert_to_intercept_window(HWnd topLevelWindow)
+    @cname("ConvertToInterceptWindow") @link("user32");
+
+<*
+ @param [out] lpAccelDst
+*>
+extern fn int copy_accelerator_tableA(HAccel hAccelSrc, Accel* lpAccelDst, int cAccelEntries)
+    @cname("CopyAcceleratorTableA") @link("user32");
+
+<*
+ @param [out] lpAccelDst
+*>
+extern fn int copy_accelerator_tableW(HAccel hAccelSrc, Accel* lpAccelDst, int cAccelEntries)
+    @cname("CopyAcceleratorTableW") @link("user32");
+
+extern fn HIcon copy_icon(HIcon hIcon)
+    @cname("CopyIcon") @link("user32");
+
+extern fn Handle copy_image(Handle h, GdiImageType type, int cx, int cy, ImageFlags flags)
+    @cname("CopyImage") @link("user32");
+
+<*
+ @param [&in] paccel
+*>
+extern fn HAccel create_accelerator_tableA(Accel* paccel, int cAccel)
+    @cname("CreateAcceleratorTableA") @link("user32");
+
+<*
+ @param [&in] paccel
+*>
+extern fn HAccel create_accelerator_tableW(Accel* paccel, int cAccel)
+    @cname("CreateAcceleratorTableW") @link("user32");
+
+extern fn Bool create_caret(HWnd hWnd, HBitmap hBitmap, int nWidth, int nHeight)
+    @cname("CreateCaret") @link("user32");
+
+<*
+ @param [&in] pvANDPlane
+ @param [&in] pvXORPlane
+*>
+extern fn HCursor create_cursor(HInstance hInst, int xHotSpot, int yHotSpot, int nWidth, int nHeight, void* pvANDPlane, void* pvXORPlane)
+    @cname("CreateCursor") @link("user32");
+
+<*
+ @param [&in] lpTemplate
+*>
+extern fn HWnd create_dialog_indirect_paramA(HInstance hInstance, Dlgtemplate* lpTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("CreateDialogIndirectParamA") @link("user32");
+
+<*
+ @param [&in] lpTemplate
+*>
+extern fn HWnd create_dialog_indirect_paramW(HInstance hInstance, Dlgtemplate* lpTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("CreateDialogIndirectParamW") @link("user32");
+
+extern fn HWnd create_dialog_paramA(HInstance hInstance, char* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("CreateDialogParamA") @link("user32");
+
+extern fn HWnd create_dialog_paramW(HInstance hInstance, ushort* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("CreateDialogParamW") @link("user32");
+
+<*
+ @param [&in] lpbANDbits
+ @param [&in] lpbXORbits
+*>
+extern fn HIcon create_icon(HInstance hInstance, int nWidth, int nHeight, char cPlanes, char cBitsPixel, char* lpbANDbits, char* lpbXORbits)
+    @cname("CreateIcon") @link("user32");
+
+<*
+ @param [&in] presbits
+*>
+extern fn HIcon create_icon_from_resource(char* presbits, uint dwResSize, Bool fIcon, uint dwVer)
+    @cname("CreateIconFromResource") @link("user32");
+
+<*
+ @param [&in] presbits
+*>
+extern fn HIcon create_icon_from_resource_ex(char* presbits, uint dwResSize, Bool fIcon, uint dwVer, int cxDesired, int cyDesired, ImageFlags flags)
+    @cname("CreateIconFromResourceEx") @link("user32");
+
+<*
+ @param [&in] piconinfo
+*>
+extern fn HIcon create_icon_indirect(IconInfo* piconinfo)
+    @cname("CreateIconIndirect") @link("user32");
+
+extern fn HWnd create_mdi_windowA(char* lpClassName, char* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HInstance hInstance, LParam lParam)
+    @cname("CreateMDIWindowA") @link("user32");
+
+extern fn HWnd create_mdi_windowW(ushort* lpClassName, ushort* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HInstance hInstance, LParam lParam)
+    @cname("CreateMDIWindowW") @link("user32");
+
+extern fn HMenu create_menu()
+    @cname("CreateMenu") @link("user32");
+
+extern fn HMenu create_popup_menu()
+    @cname("CreatePopupMenu") @link("user32");
+
+<*
+ @param [&out] ppResourceIndexer
+*>
+extern fn Hresult create_resource_indexer(ushort* projectRoot, ushort* extensionDllPath, void** ppResourceIndexer)
+    @cname("CreateResourceIndexer") @link("mrmsupport");
+
+<*
+ @param [in] lpParam
+*>
+extern fn HWnd create_window_exA(WindowExStyle dwExStyle, char* lpClassName, char* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HMenu hMenu, HInstance hInstance, void* lpParam)
+    @cname("CreateWindowExA") @link("user32");
+
+<*
+ @param [in] lpParam
+*>
+extern fn HWnd create_window_exW(WindowExStyle dwExStyle, ushort* lpClassName, ushort* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HMenu hMenu, HInstance hInstance, void* lpParam)
+    @cname("CreateWindowExW") @link("user32");
+
+extern fn LResult def_dlg_procA(HWnd hDlg, uint msg, WParam wParam, LParam lParam)
+    @cname("DefDlgProcA") @link("user32");
+
+extern fn LResult def_dlg_procW(HWnd hDlg, uint msg, WParam wParam, LParam lParam)
+    @cname("DefDlgProcW") @link("user32");
+
+extern fn LResult def_frame_procA(HWnd hWnd, HWnd hWndMDIClient, uint uMsg, WParam wParam, LParam lParam)
+    @cname("DefFrameProcA") @link("user32");
+
+extern fn LResult def_frame_procW(HWnd hWnd, HWnd hWndMDIClient, uint uMsg, WParam wParam, LParam lParam)
+    @cname("DefFrameProcW") @link("user32");
+
+extern fn LResult def_mdi_child_procA(HWnd hWnd, uint uMsg, WParam wParam, LParam lParam)
+    @cname("DefMDIChildProcA") @link("user32");
+
+extern fn LResult def_mdi_child_procW(HWnd hWnd, uint uMsg, WParam wParam, LParam lParam)
+    @cname("DefMDIChildProcW") @link("user32");
+
+extern fn LResult def_window_procA(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("DefWindowProcA") @link("user32");
+
+extern fn LResult def_window_procW(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("DefWindowProcW") @link("user32");
+
+extern fn HDwp defer_window_pos(HDwp hWinPosInfo, HWnd hWnd, HWnd hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPosFlags uFlags)
+    @cname("DeferWindowPos") @link("user32");
+
+extern fn Bool delete_menu(HMenu hMenu, uint uPosition, MenuItemFlags uFlags)
+    @cname("DeleteMenu") @link("user32");
+
+extern fn Bool deregister_shell_hook_window(HWnd hwnd)
+    @cname("DeregisterShellHookWindow") @link("user32");
+
+extern fn Bool destroy_accelerator_table(HAccel hAccel)
+    @cname("DestroyAcceleratorTable") @link("user32");
+
+extern fn Bool destroy_caret()
+    @cname("DestroyCaret") @link("user32");
+
+extern fn Bool destroy_cursor(HCursor hCursor)
+    @cname("DestroyCursor") @link("user32");
+
+extern fn Bool destroy_icon(HIcon hIcon)
+    @cname("DestroyIcon") @link("user32");
+
+<*
+ @param [in] qualifiers
+*>
+extern fn void destroy_indexed_results(ushort* resourceUri, uint qualifierCount, IndexedResourceQualifier* qualifiers)
+    @cname("DestroyIndexedResults") @link("mrmsupport");
+
+extern fn Bool destroy_menu(HMenu hMenu)
+    @cname("DestroyMenu") @link("user32");
+
+<*
+ @param [in] resourceIndexer
+*>
+extern fn void destroy_resource_indexer(void* resourceIndexer)
+    @cname("DestroyResourceIndexer") @link("mrmsupport");
+
+extern fn Bool destroy_window(HWnd hWnd)
+    @cname("DestroyWindow") @link("user32");
+
+<*
+ @param [&in] hDialogTemplate
+*>
+extern fn iptr dialog_box_indirect_paramA(HInstance hInstance, Dlgtemplate* hDialogTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("DialogBoxIndirectParamA") @link("user32");
+
+<*
+ @param [&in] hDialogTemplate
+*>
+extern fn iptr dialog_box_indirect_paramW(HInstance hInstance, Dlgtemplate* hDialogTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("DialogBoxIndirectParamW") @link("user32");
+
+extern fn iptr dialog_box_paramA(HInstance hInstance, char* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("DialogBoxParamA") @link("user32");
+
+extern fn iptr dialog_box_paramW(HInstance hInstance, ushort* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+    @cname("DialogBoxParamW") @link("user32");
+
+extern fn void disable_process_windows_ghosting()
+    @cname("DisableProcessWindowsGhosting") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn LResult dispatch_messageA(Msg* lpMsg)
+    @cname("DispatchMessageA") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn LResult dispatch_messageW(Msg* lpMsg)
+    @cname("DispatchMessageW") @link("user32");
+
+extern fn uint drag_object(HWnd hwndParent, HWnd hwndFrom, uint fmt, uptr data, HCursor hcur)
+    @cname("DragObject") @link("user32");
+
+extern fn Bool draw_icon(Hdc hDC, int x, int y, HIcon hIcon)
+    @cname("DrawIcon") @link("user32");
+
+extern fn Bool draw_icon_ex(Hdc hdc, int xLeft, int yTop, HIcon hIcon, int cxWidth, int cyWidth, uint istepIfAniCur, HBrush hbrFlickerFreeDraw, DiFlags diFlags)
+    @cname("DrawIconEx") @link("user32");
+
+extern fn Bool draw_menu_bar(HWnd hWnd)
+    @cname("DrawMenuBar") @link("user32");
+
+extern fn Bool enable_menu_item(HMenu hMenu, uint uIDEnableItem, MenuItemFlags uEnable)
+    @cname("EnableMenuItem") @link("user32");
+
+extern fn Bool end_defer_window_pos(HDwp hWinPosInfo)
+    @cname("EndDeferWindowPos") @link("user32");
+
+extern fn Bool end_dialog(HWnd hDlg, iptr nResult)
+    @cname("EndDialog") @link("user32");
+
+extern fn Bool end_menu()
+    @cname("EndMenu") @link("user32");
+
+extern fn Bool enter_move_size_loop(HWnd hwnd, Point ptCursor, MovesizeOperation moveSizeCode)
+    @cname("EnterMoveSizeLoop") @link("user32");
+
+extern fn Bool enum_child_windows(HWnd hWndParent, WndEnumProc lpEnumFunc, LParam lParam)
+    @cname("EnumChildWindows") @link("user32");
+
+extern fn int enum_propsA(HWnd hWnd, PropEnumProcA lpEnumFunc)
+    @cname("EnumPropsA") @link("user32");
+
+extern fn int enum_props_exA(HWnd hWnd, PropEnumProcExA lpEnumFunc, LParam lParam)
+    @cname("EnumPropsExA") @link("user32");
+
+extern fn int enum_props_exW(HWnd hWnd, PropEnumProcExW lpEnumFunc, LParam lParam)
+    @cname("EnumPropsExW") @link("user32");
+
+extern fn int enum_propsW(HWnd hWnd, PropEnumProcW lpEnumFunc)
+    @cname("EnumPropsW") @link("user32");
+
+extern fn Bool enum_thread_windows(uint dwThreadId, WndEnumProc lpfn, LParam lParam)
+    @cname("EnumThreadWindows") @link("user32");
+
+extern fn Bool enum_windows(WndEnumProc lpEnumFunc, LParam lParam)
+    @cname("EnumWindows") @link("user32");
+
+extern fn HWnd find_windowA(char* lpClassName, char* lpWindowName)
+    @cname("FindWindowA") @link("user32");
+
+extern fn HWnd find_window_exA(HWnd hWndParent, HWnd hWndChildAfter, char* lpszClass, char* lpszWindow)
+    @cname("FindWindowExA") @link("user32");
+
+extern fn HWnd find_window_exW(HWnd hWndParent, HWnd hWndChildAfter, ushort* lpszClass, ushort* lpszWindow)
+    @cname("FindWindowExW") @link("user32");
+
+extern fn HWnd find_windowW(ushort* lpClassName, ushort* lpWindowName)
+    @cname("FindWindowW") @link("user32");
+
+extern fn Bool flash_window(HWnd hWnd, Bool bInvert)
+    @cname("FlashWindow") @link("user32");
+
+<*
+ @param [&in] pfwi
+*>
+extern fn Bool flash_window_ex(Flashwinfo* pfwi)
+    @cname("FlashWindowEx") @link("user32");
+
+<*
+ @param [&inout] pati
+*>
+extern fn Bool get_alt_tab_infoA(HWnd hwnd, int iItem, AltTabInfo* pati, char* pszItemText, uint cchItemText)
+    @cname("GetAltTabInfoA") @link("user32");
+
+<*
+ @param [&inout] pati
+*>
+extern fn Bool get_alt_tab_infoW(HWnd hwnd, int iItem, AltTabInfo* pati, ushort* pszItemText, uint cchItemText)
+    @cname("GetAltTabInfoW") @link("user32");
+
+extern fn HWnd get_ancestor(HWnd hwnd, GetAncestorFlags gaFlags)
+    @cname("GetAncestor") @link("user32");
+
+extern fn uint get_caret_blink_time()
+    @cname("GetCaretBlinkTime") @link("user32");
+
+<*
+ @param [&out] lpPoint
+*>
+extern fn Bool get_caret_pos(Point* lpPoint)
+    @cname("GetCaretPos") @link("user32");
+
+<*
+ @param [&out] lpWndClass
+*>
+extern fn Bool get_class_infoA(HInstance hInstance, char* lpClassName, WndClassA* lpWndClass)
+    @cname("GetClassInfoA") @link("user32");
+
+<*
+ @param [&out] lpwcx
+*>
+extern fn Bool get_class_info_exA(HInstance hInstance, char* lpszClass, WndClassExA* lpwcx)
+    @cname("GetClassInfoExA") @link("user32");
+
+<*
+ @param [&out] lpwcx
+*>
+extern fn Bool get_class_info_exW(HInstance hInstance, ushort* lpszClass, WndClassExW* lpwcx)
+    @cname("GetClassInfoExW") @link("user32");
+
+<*
+ @param [&out] lpWndClass
+*>
+extern fn Bool get_class_infoW(HInstance hInstance, ushort* lpClassName, WndClassW* lpWndClass)
+    @cname("GetClassInfoW") @link("user32");
+
+extern fn uint get_class_longA(HWnd hWnd, GetClassLongIndex nIndex)
+    @cname("GetClassLongA") @link("user32");
+
+extern fn uptr get_class_long_ptrA(HWnd hWnd, GetClassLongIndex nIndex)
+    @cname("GetClassLongPtrA") @link("user32");
+
+extern fn uptr get_class_long_ptrW(HWnd hWnd, GetClassLongIndex nIndex)
+    @cname("GetClassLongPtrW") @link("user32");
+
+extern fn uint get_class_longW(HWnd hWnd, GetClassLongIndex nIndex)
+    @cname("GetClassLongW") @link("user32");
+
+extern fn int get_class_nameA(HWnd hWnd, char* lpClassName, int nMaxCount)
+    @cname("GetClassNameA") @link("user32");
+
+extern fn int get_class_nameW(HWnd hWnd, ushort* lpClassName, int nMaxCount)
+    @cname("GetClassNameW") @link("user32");
+
+extern fn ushort get_class_word(HWnd hWnd, int nIndex)
+    @cname("GetClassWord") @link("user32");
+
+<*
+ @param [&out] lpRect
+*>
+extern fn Bool get_client_rect(HWnd hWnd, Rect* lpRect)
+    @cname("GetClientRect") @link("user32");
+
+<*
+ @param [&out] lpRect
+*>
+extern fn Bool get_clip_cursor(Rect* lpRect)
+    @cname("GetClipCursor") @link("user32");
+
+extern fn uint get_current_monitor_topology_id()
+    @cname("GetCurrentMonitorTopologyId") @link("user32");
+
+extern fn HCursor get_cursor()
+    @cname("GetCursor") @link("user32");
+
+<*
+ @param [&inout] pci
+*>
+extern fn Bool get_cursor_info(CursorInfo* pci)
+    @cname("GetCursorInfo") @link("user32");
+
+<*
+ @param [&out] lpPoint
+*>
+extern fn Bool get_cursor_pos(Point* lpPoint)
+    @cname("GetCursorPos") @link("user32");
+
+extern fn HWnd get_desktop_window()
+    @cname("GetDesktopWindow") @link("user32");
+
+extern fn int get_dialog_base_units()
+    @cname("GetDialogBaseUnits") @link("user32");
+
+extern fn int get_dlg_ctrl_id(HWnd hWnd)
+    @cname("GetDlgCtrlID") @link("user32");
+
+extern fn HWnd get_dlg_item(HWnd hDlg, int nIDDlgItem)
+    @cname("GetDlgItem") @link("user32");
+
+<*
+ @param [out] lpTranslated
+*>
+extern fn uint get_dlg_item_int(HWnd hDlg, int nIDDlgItem, Bool* lpTranslated, Bool bSigned)
+    @cname("GetDlgItemInt") @link("user32");
+
+extern fn uint get_dlg_item_textA(HWnd hDlg, int nIDDlgItem, char* lpString, int cchMax)
+    @cname("GetDlgItemTextA") @link("user32");
+
+extern fn uint get_dlg_item_textW(HWnd hDlg, int nIDDlgItem, ushort* lpString, int cchMax)
+    @cname("GetDlgItemTextW") @link("user32");
+
+extern fn HWnd get_foreground_window()
+    @cname("GetForegroundWindow") @link("user32");
+
+<*
+ @param [&inout] pgui
+*>
+extern fn Bool get_gui_thread_info(uint idThread, GuiThreadInfo* pgui)
+    @cname("GetGUIThreadInfo") @link("user32");
+
+<*
+ @param [&out] piconinfo
+*>
+extern fn Bool get_icon_info(HIcon hIcon, IconInfo* piconinfo)
+    @cname("GetIconInfo") @link("user32");
+
+<*
+ @param [&inout] piconinfo
+*>
+extern fn Bool get_icon_info_exA(HIcon hicon, IconInfoExA* piconinfo)
+    @cname("GetIconInfoExA") @link("user32");
+
+<*
+ @param [&inout] piconinfo
+*>
+extern fn Bool get_icon_info_exW(HIcon hicon, IconInfoExW* piconinfo)
+    @cname("GetIconInfoExW") @link("user32");
+
+extern fn Bool get_input_state()
+    @cname("GetInputState") @link("user32");
+
+extern fn HWnd get_last_active_popup(HWnd hWnd)
+    @cname("GetLastActivePopup") @link("user32");
+
+<*
+ @param [out] pcrKey
+ @param [out] pbAlpha
+ @param [out] pdwFlags
+*>
+extern fn Bool get_layered_window_attributes(HWnd hwnd, ColorRef* pcrKey, char* pbAlpha, LayeredWindowAttributesFlags* pdwFlags)
+    @cname("GetLayeredWindowAttributes") @link("user32");
+
+extern fn HMenu get_menu(HWnd hWnd)
+    @cname("GetMenu") @link("user32");
+
+<*
+ @param [&inout] pmbi
+*>
+extern fn Bool get_menu_bar_info(HWnd hwnd, ObjectIdentifier idObject, int idItem, MenuBarInfo* pmbi)
+    @cname("GetMenuBarInfo") @link("user32");
+
+extern fn int get_menu_check_mark_dimensions()
+    @cname("GetMenuCheckMarkDimensions") @link("user32");
+
+extern fn uint get_menu_default_item(HMenu hMenu, uint fByPos, GetMenuDefaultItemFlags gmdiFlags)
+    @cname("GetMenuDefaultItem") @link("user32");
+
+<*
+ @param [&inout] param1
+*>
+extern fn Bool get_menu_info(HMenu param0, MenuInfo* param1)
+    @cname("GetMenuInfo") @link("user32");
+
+extern fn int get_menu_item_count(HMenu hMenu)
+    @cname("GetMenuItemCount") @link("user32");
+
+extern fn uint get_menu_item_id(HMenu hMenu, int nPos)
+    @cname("GetMenuItemID") @link("user32");
+
+<*
+ @param [&inout] lpmii
+*>
+extern fn Bool get_menu_item_infoA(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoA* lpmii)
+    @cname("GetMenuItemInfoA") @link("user32");
+
+<*
+ @param [&inout] lpmii
+*>
+extern fn Bool get_menu_item_infoW(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoW* lpmii)
+    @cname("GetMenuItemInfoW") @link("user32");
+
+<*
+ @param [&out] lprcItem
+*>
+extern fn Bool get_menu_item_rect(HWnd hWnd, HMenu hMenu, uint uItem, Rect* lprcItem)
+    @cname("GetMenuItemRect") @link("user32");
+
+extern fn uint get_menu_state(HMenu hMenu, uint uId, MenuItemFlags uFlags)
+    @cname("GetMenuState") @link("user32");
+
+extern fn int get_menu_stringA(HMenu hMenu, uint uIDItem, char* lpString, int cchMax, MenuItemFlags flags)
+    @cname("GetMenuStringA") @link("user32");
+
+extern fn int get_menu_stringW(HMenu hMenu, uint uIDItem, ushort* lpString, int cchMax, MenuItemFlags flags)
+    @cname("GetMenuStringW") @link("user32");
+
+<*
+ @param [&out] lpMsg
+*>
+extern fn Bool get_messageA(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax)
+    @cname("GetMessageA") @link("user32");
+
+extern fn LParam get_message_extra_info()
+    @cname("GetMessageExtraInfo") @link("user32");
+
+extern fn uint get_message_pos()
+    @cname("GetMessagePos") @link("user32");
+
+extern fn int get_message_time()
+    @cname("GetMessageTime") @link("user32");
+
+<*
+ @param [&out] lpMsg
+*>
+extern fn Bool get_messageW(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax)
+    @cname("GetMessageW") @link("user32");
+
+extern fn HWnd get_next_dlg_group_item(HWnd hDlg, HWnd hCtl, Bool bPrevious)
+    @cname("GetNextDlgGroupItem") @link("user32");
+
+extern fn HWnd get_next_dlg_tab_item(HWnd hDlg, HWnd hCtl, Bool bPrevious)
+    @cname("GetNextDlgTabItem") @link("user32");
+
+extern fn HWnd get_parent(HWnd hWnd)
+    @cname("GetParent") @link("user32");
+
+<*
+ @param [&out] lpPoint
+*>
+extern fn Bool get_physical_cursor_pos(Point* lpPoint)
+    @cname("GetPhysicalCursorPos") @link("user32");
+
+<*
+ @param [&out] pdwDefaultLayout
+*>
+extern fn Bool get_process_default_layout(uint* pdwDefaultLayout)
+    @cname("GetProcessDefaultLayout") @link("user32");
+
+extern fn Handle get_propA(HWnd hWnd, char* lpString)
+    @cname("GetPropA") @link("user32");
+
+extern fn Handle get_propW(HWnd hWnd, ushort* lpString)
+    @cname("GetPropW") @link("user32");
+
+extern fn uint get_queue_status(QueueStatusFlags flags)
+    @cname("GetQueueStatus") @link("user32");
+
+<*
+ @param [&inout] psbi
+*>
+extern fn Bool get_scroll_bar_info(HWnd hwnd, ObjectIdentifier idObject, ScrollBarInfo* psbi)
+    @cname("GetScrollBarInfo") @link("user32");
+
+<*
+ @param [&inout] lpsi
+*>
+extern fn Bool get_scroll_info(HWnd hwnd, ScrollBarConstants nBar, ScrollInfo* lpsi)
+    @cname("GetScrollInfo") @link("user32");
+
+extern fn int get_scroll_pos(HWnd hWnd, ScrollBarConstants nBar)
+    @cname("GetScrollPos") @link("user32");
+
+<*
+ @param [&out] lpMinPos
+ @param [&out] lpMaxPos
+*>
+extern fn Bool get_scroll_range(HWnd hWnd, ScrollBarConstants nBar, int* lpMinPos, int* lpMaxPos)
+    @cname("GetScrollRange") @link("user32");
+
+extern fn HWnd get_shell_window()
+    @cname("GetShellWindow") @link("user32");
+
+extern fn HMenu get_sub_menu(HMenu hMenu, int nPos)
+    @cname("GetSubMenu") @link("user32");
+
+extern fn HMenu get_system_menu(HWnd hWnd, Bool bRevert)
+    @cname("GetSystemMenu") @link("user32");
+
+extern fn int get_system_metrics(SystemMetricsIndex nIndex)
+    @cname("GetSystemMetrics") @link("user32");
+
+<*
+ @param [&inout] pti
+*>
+extern fn Bool get_title_bar_info(HWnd hwnd, TitleBarInfo* pti)
+    @cname("GetTitleBarInfo") @link("user32");
+
+extern fn HWnd get_top_window(HWnd hWnd)
+    @cname("GetTopWindow") @link("user32");
+
+extern fn HWnd get_window(HWnd hWnd, GetWindowCmd uCmd)
+    @cname("GetWindow") @link("user32");
+
+<*
+ @param [&out] pdwAffinity
+*>
+extern fn Bool get_window_display_affinity(HWnd hWnd, uint* pdwAffinity)
+    @cname("GetWindowDisplayAffinity") @link("user32");
+
+<*
+ @param [&inout] pwi
+*>
+extern fn Bool get_window_info(HWnd hwnd, WindowInfo* pwi)
+    @cname("GetWindowInfo") @link("user32");
+
+extern fn int get_window_longA(HWnd hWnd, WindowLongPtrIndex nIndex)
+    @cname("GetWindowLongA") @link("user32");
+
+extern fn iptr get_window_long_ptrA(HWnd hWnd, WindowLongPtrIndex nIndex)
+    @cname("GetWindowLongPtrA") @link("user32");
+
+extern fn iptr get_window_long_ptrW(HWnd hWnd, WindowLongPtrIndex nIndex)
+    @cname("GetWindowLongPtrW") @link("user32");
+
+extern fn int get_window_longW(HWnd hWnd, WindowLongPtrIndex nIndex)
+    @cname("GetWindowLongW") @link("user32");
+
+extern fn uint get_window_module_file_nameA(HWnd hwnd, char* pszFileName, uint cchFileNameMax)
+    @cname("GetWindowModuleFileNameA") @link("user32");
+
+extern fn uint get_window_module_file_nameW(HWnd hwnd, ushort* pszFileName, uint cchFileNameMax)
+    @cname("GetWindowModuleFileNameW") @link("user32");
+
+<*
+ @param [&inout] lpwndpl
+*>
+extern fn Bool get_window_placement(HWnd hWnd, Windowplacement* lpwndpl)
+    @cname("GetWindowPlacement") @link("user32");
+
+<*
+ @param [&out] lpRect
+*>
+extern fn Bool get_window_rect(HWnd hWnd, Rect* lpRect)
+    @cname("GetWindowRect") @link("user32");
+
+extern fn int get_window_textA(HWnd hWnd, char* lpString, int nMaxCount)
+    @cname("GetWindowTextA") @link("user32");
+
+extern fn int get_window_text_lengthA(HWnd hWnd)
+    @cname("GetWindowTextLengthA") @link("user32");
+
+extern fn int get_window_text_lengthW(HWnd hWnd)
+    @cname("GetWindowTextLengthW") @link("user32");
+
+extern fn int get_window_textW(HWnd hWnd, ushort* lpString, int nMaxCount)
+    @cname("GetWindowTextW") @link("user32");
+
+<*
+ @param [out] lpdwProcessId
+*>
+extern fn uint get_window_thread_process_id(HWnd hWnd, uint* lpdwProcessId)
+    @cname("GetWindowThreadProcessId") @link("user32");
+
+extern fn ushort get_window_word(HWnd hWnd, int nIndex)
+    @cname("GetWindowWord") @link("user32");
+
+extern fn Bool hide_caret(HWnd hWnd)
+    @cname("HideCaret") @link("user32");
+
+extern fn Bool hilite_menu_item(HWnd hWnd, HMenu hMenu, uint uIDHiliteItem, uint uHilite)
+    @cname("HiliteMenuItem") @link("user32");
+
+extern fn Bool in_send_message()
+    @cname("InSendMessage") @link("user32");
+
+extern fn uint in_send_message_ex(void* lpReserved)
+    @cname("InSendMessageEx") @link("user32");
+
+<*
+ @param [&in] resourceIndexer
+ @param [&out] ppResourceUri
+ @param [&out] pQualifierCount
+ @param [&out] ppQualifiers
+*>
+extern fn Hresult index_file_path(void* resourceIndexer, ushort* filePath, ushort** ppResourceUri, uint* pQualifierCount, IndexedResourceQualifier** ppQualifiers)
+    @cname("IndexFilePath") @link("mrmsupport");
+
+extern fn Bool inherit_window_monitor(HWnd hwnd, HWnd hwndInherit)
+    @cname("InheritWindowMonitor") @link("user32");
+
+extern fn Bool insert_menuA(HMenu hMenu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, char* lpNewItem)
+    @cname("InsertMenuA") @link("user32");
+
+<*
+ @param [&in] lpmi
+*>
+extern fn Bool insert_menu_itemA(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoA* lpmi)
+    @cname("InsertMenuItemA") @link("user32");
+
+<*
+ @param [&in] lpmi
+*>
+extern fn Bool insert_menu_itemW(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoW* lpmi)
+    @cname("InsertMenuItemW") @link("user32");
+
+extern fn Bool insert_menuW(HMenu hMenu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, ushort* lpNewItem)
+    @cname("InsertMenuW") @link("user32");
+
+extern fn int internal_get_window_text(HWnd hWnd, ushort* pString, int cchMaxCount)
+    @cname("InternalGetWindowText") @link("user32");
+
+extern fn Bool is_char_alphaA(char ch)
+    @cname("IsCharAlphaA") @link("user32");
+
+extern fn Bool is_char_alpha_numericA(char ch)
+    @cname("IsCharAlphaNumericA") @link("user32");
+
+extern fn Bool is_char_alpha_numericW(ushort ch)
+    @cname("IsCharAlphaNumericW") @link("user32");
+
+extern fn Bool is_char_alphaW(ushort ch)
+    @cname("IsCharAlphaW") @link("user32");
+
+extern fn Bool is_char_lowerA(char ch)
+    @cname("IsCharLowerA") @link("user32");
+
+extern fn Bool is_char_lowerW(ushort ch)
+    @cname("IsCharLowerW") @link("user32");
+
+extern fn Bool is_char_upperA(char ch)
+    @cname("IsCharUpperA") @link("user32");
+
+extern fn Bool is_char_upperW(ushort ch)
+    @cname("IsCharUpperW") @link("user32");
+
+extern fn Bool is_child(HWnd hWndParent, HWnd hWnd)
+    @cname("IsChild") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn Bool is_dialog_messageA(HWnd hDlg, Msg* lpMsg)
+    @cname("IsDialogMessageA") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn Bool is_dialog_messageW(HWnd hDlg, Msg* lpMsg)
+    @cname("IsDialogMessageW") @link("user32");
+
+extern fn Bool is_gui_thread(Bool bConvert)
+    @cname("IsGUIThread") @link("user32");
+
+extern fn Bool is_hung_app_window(HWnd hwnd)
+    @cname("IsHungAppWindow") @link("user32");
+
+extern fn Bool is_iconic(HWnd hWnd)
+    @cname("IsIconic") @link("user32");
+
+<*
+ @param [&out] isIntercept
+*>
+extern fn Bool is_intercept_window(HWnd topLevelWindow, Bool* isIntercept)
+    @cname("IsInterceptWindow") @link("user32");
+
+extern fn Bool is_menu(HMenu hMenu)
+    @cname("IsMenu") @link("user32");
+
+extern fn Bool is_process_dpi_aware()
+    @cname("IsProcessDPIAware") @link("user32");
+
+extern fn Bool is_window(HWnd hWnd)
+    @cname("IsWindow") @link("user32");
+
+extern fn Bool is_window_arranged(HWnd hwnd)
+    @cname("IsWindowArranged") @link("user32");
+
+extern fn Bool is_window_unicode(HWnd hWnd)
+    @cname("IsWindowUnicode") @link("user32");
+
+extern fn Bool is_window_visible(HWnd hWnd)
+    @cname("IsWindowVisible") @link("user32");
+
+extern fn Bool is_wow_64_message()
+    @cname("IsWow64Message") @link("user32");
+
+extern fn Bool is_zoomed(HWnd hWnd)
+    @cname("IsZoomed") @link("user32");
+
+extern fn Bool kill_timer(HWnd hWnd, uptr uIDEvent)
+    @cname("KillTimer") @link("user32");
+
+extern fn HAccel load_acceleratorsA(HInstance hInstance, char* lpTableName)
+    @cname("LoadAcceleratorsA") @link("user32");
+
+extern fn HAccel load_acceleratorsW(HInstance hInstance, ushort* lpTableName)
+    @cname("LoadAcceleratorsW") @link("user32");
+
+extern fn HCursor load_cursorA(HInstance hInstance, char* lpCursorName)
+    @cname("LoadCursorA") @link("user32");
+
+extern fn HCursor load_cursor_from_fileA(char* lpFileName)
+    @cname("LoadCursorFromFileA") @link("user32");
+
+extern fn HCursor load_cursor_from_fileW(ushort* lpFileName)
+    @cname("LoadCursorFromFileW") @link("user32");
+
+extern fn HCursor load_cursorW(HInstance hInstance, ushort* lpCursorName)
+    @cname("LoadCursorW") @link("user32");
+
+extern fn HIcon load_iconA(HInstance hInstance, char* lpIconName)
+    @cname("LoadIconA") @link("user32");
+
+extern fn HIcon load_iconW(HInstance hInstance, ushort* lpIconName)
+    @cname("LoadIconW") @link("user32");
+
+extern fn Handle load_imageA(HInstance hInst, char* name, GdiImageType type, int cx, int cy, ImageFlags fuLoad)
+    @cname("LoadImageA") @link("user32");
+
+extern fn Handle load_imageW(HInstance hInst, ushort* name, GdiImageType type, int cx, int cy, ImageFlags fuLoad)
+    @cname("LoadImageW") @link("user32");
+
+extern fn HMenu load_menuA(HInstance hInstance, char* lpMenuName)
+    @cname("LoadMenuA") @link("user32");
+
+<*
+ @param [&in] lpMenuTemplate
+*>
+extern fn HMenu load_menu_indirectA(void* lpMenuTemplate)
+    @cname("LoadMenuIndirectA") @link("user32");
+
+<*
+ @param [&in] lpMenuTemplate
+*>
+extern fn HMenu load_menu_indirectW(void* lpMenuTemplate)
+    @cname("LoadMenuIndirectW") @link("user32");
+
+extern fn HMenu load_menuW(HInstance hInstance, ushort* lpMenuName)
+    @cname("LoadMenuW") @link("user32");
+
+extern fn int load_stringA(HInstance hInstance, uint uID, char* lpBuffer, int cchBufferMax)
+    @cname("LoadStringA") @link("user32");
+
+extern fn int load_stringW(HInstance hInstance, uint uID, ushort* lpBuffer, int cchBufferMax)
+    @cname("LoadStringW") @link("user32");
+
+extern fn Bool lock_set_foreground_window(ForegroundWindowLockCode uLockCode)
+    @cname("LockSetForegroundWindow") @link("user32");
+
+<*
+ @param [&inout] lpPoint
+*>
+extern fn Bool logical_to_physical_point(HWnd hWnd, Point* lpPoint)
+    @cname("LogicalToPhysicalPoint") @link("user32");
+
+<*
+ @param [&in] presbits
+*>
+extern fn int lookup_icon_id_from_directory(char* presbits, Bool fIcon)
+    @cname("LookupIconIdFromDirectory") @link("user32");
+
+<*
+ @param [&in] presbits
+*>
+extern fn int lookup_icon_id_from_directory_ex(char* presbits, Bool fIcon, int cxDesired, int cyDesired, ImageFlags flags)
+    @cname("LookupIconIdFromDirectoryEx") @link("user32");
+
+<*
+ @param [&inout] lpRect
+*>
+extern fn Bool map_dialog_rect(HWnd hDlg, Rect* lpRect)
+    @cname("MapDialogRect") @link("user32");
+
+extern fn int menu_item_from_point(HWnd hWnd, HMenu hMenu, Point ptScreen)
+    @cname("MenuItemFromPoint") @link("user32");
+
+extern fn MessageboxResult message_boxA(HWnd hWnd, char* lpText, char* lpCaption, MessageboxStyle uType)
+    @cname("MessageBoxA") @link("user32");
+
+extern fn MessageboxResult message_box_exA(HWnd hWnd, char* lpText, char* lpCaption, MessageboxStyle uType, ushort wLanguageId)
+    @cname("MessageBoxExA") @link("user32");
+
+extern fn MessageboxResult message_box_exW(HWnd hWnd, ushort* lpText, ushort* lpCaption, MessageboxStyle uType, ushort wLanguageId)
+    @cname("MessageBoxExW") @link("user32");
+
+<*
+ @param [&in] lpmbp
+*>
+extern fn MessageboxResult message_box_indirectA(MsgBoxParamsA* lpmbp)
+    @cname("MessageBoxIndirectA") @link("user32");
+
+<*
+ @param [&in] lpmbp
+*>
+extern fn MessageboxResult message_box_indirectW(MsgBoxParamsW* lpmbp)
+    @cname("MessageBoxIndirectW") @link("user32");
+
+extern fn MessageboxResult message_boxW(HWnd hWnd, ushort* lpText, ushort* lpCaption, MessageboxStyle uType)
+    @cname("MessageBoxW") @link("user32");
+
+extern fn Bool modify_menuA(HMenu hMnu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, char* lpNewItem)
+    @cname("ModifyMenuA") @link("user32");
+
+extern fn Bool modify_menuW(HMenu hMnu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, ushort* lpNewItem)
+    @cname("ModifyMenuW") @link("user32");
+
+extern fn Bool move_window(HWnd hWnd, int x, int y, int nWidth, int nHeight, Bool bRepaint)
+    @cname("MoveWindow") @link("user32");
+
+extern fn Hresult mrm_create_config(MrmPlatformVersion platformVersion, ushort* defaultQualifiers, ushort* outputXmlFile)
+    @cname("MrmCreateConfig") @link("mrmsupport");
+
+<*
+ @param [&out] outputXmlData
+ @param [&out] outputXmlSize
+*>
+extern fn Hresult mrm_create_config_in_memory(MrmPlatformVersion platformVersion, ushort* defaultQualifiers, char** outputXmlData, uint* outputXmlSize)
+    @cname("MrmCreateConfigInMemory") @link("mrmsupport");
+
+extern fn Hresult mrm_create_resource_file(MrmResourceIndexerHandle indexer, MrmPackagingMode packagingMode, MrmPackagingOptions packagingOptions, ushort* outputDirectory)
+    @cname("MrmCreateResourceFile") @link("mrmsupport");
+
+<*
+ @param [&out] outputPriData
+ @param [&out] outputPriSize
+*>
+extern fn Hresult mrm_create_resource_file_in_memory(MrmResourceIndexerHandle indexer, MrmPackagingMode packagingMode, MrmPackagingOptions packagingOptions, char** outputPriData, uint* outputPriSize)
+    @cname("MrmCreateResourceFileInMemory") @link("mrmsupport");
+
+extern fn Hresult mrm_create_resource_file_with_checksum(MrmResourceIndexerHandle indexer, MrmPackagingMode packagingMode, MrmPackagingOptions packagingOptions, uint checksum, ushort* outputDirectory)
+    @cname("MrmCreateResourceFileWithChecksum") @link("mrmsupport");
+
+<*
+ @param [&inout] indexer
+*>
+extern fn Hresult mrm_create_resource_indexer(ushort* packageFamilyName, ushort* projectRoot, MrmPlatformVersion platformVersion, ushort* defaultQualifiers, MrmResourceIndexerHandle* indexer)
+    @cname("MrmCreateResourceIndexer") @link("mrmsupport");
+
+<*
+ @param [&in] priData
+ @param [&inout] indexer
+*>
+extern fn Hresult mrm_create_resource_indexer_from_previous_pri_data(ushort* projectRoot, MrmPlatformVersion platformVersion, ushort* defaultQualifiers, char* priData, uint priSize, MrmResourceIndexerHandle* indexer)
+    @cname("MrmCreateResourceIndexerFromPreviousPriData") @link("mrmsupport");
+
+<*
+ @param [&inout] indexer
+*>
+extern fn Hresult mrm_create_resource_indexer_from_previous_pri_file(ushort* projectRoot, MrmPlatformVersion platformVersion, ushort* defaultQualifiers, ushort* priFile, MrmResourceIndexerHandle* indexer)
+    @cname("MrmCreateResourceIndexerFromPreviousPriFile") @link("mrmsupport");
+
+<*
+ @param [&in] schemaXmlData
+ @param [&inout] indexer
+*>
+extern fn Hresult mrm_create_resource_indexer_from_previous_schema_data(ushort* projectRoot, MrmPlatformVersion platformVersion, ushort* defaultQualifiers, char* schemaXmlData, uint schemaXmlSize, MrmResourceIndexerHandle* indexer)
+    @cname("MrmCreateResourceIndexerFromPreviousSchemaData") @link("mrmsupport");
+
+<*
+ @param [&inout] indexer
+*>
+extern fn Hresult mrm_create_resource_indexer_from_previous_schema_file(ushort* projectRoot, MrmPlatformVersion platformVersion, ushort* defaultQualifiers, ushort* schemaFile, MrmResourceIndexerHandle* indexer)
+    @cname("MrmCreateResourceIndexerFromPreviousSchemaFile") @link("mrmsupport");
+
+<*
+ @param [&inout] indexer
+*>
+extern fn Hresult mrm_create_resource_indexer_with_flags(ushort* packageFamilyName, ushort* projectRoot, MrmPlatformVersion platformVersion, ushort* defaultQualifiers, MrmIndexerFlags flags, MrmResourceIndexerHandle* indexer)
+    @cname("MrmCreateResourceIndexerWithFlags") @link("mrmsupport");
+
+extern fn Hresult mrm_destroy_indexer_and_messages(MrmResourceIndexerHandle indexer)
+    @cname("MrmDestroyIndexerAndMessages") @link("mrmsupport");
+
+<*
+ @param [&in] inputPriData
+ @param [in] schemaPriData
+ @param [&out] outputXmlData
+ @param [&out] outputXmlSize
+*>
+extern fn Hresult mrm_dump_pri_data_in_memory(char* inputPriData, uint inputPriSize, char* schemaPriData, uint schemaPriSize, MrmDumpType dumpType, char** outputXmlData, uint* outputXmlSize)
+    @cname("MrmDumpPriDataInMemory") @link("mrmsupport");
+
+extern fn Hresult mrm_dump_pri_file(ushort* indexFileName, ushort* schemaPriFile, MrmDumpType dumpType, ushort* outputXmlFile)
+    @cname("MrmDumpPriFile") @link("mrmsupport");
+
+<*
+ @param [&out] outputXmlData
+ @param [&out] outputXmlSize
+*>
+extern fn Hresult mrm_dump_pri_file_in_memory(ushort* indexFileName, ushort* schemaPriFile, MrmDumpType dumpType, char** outputXmlData, uint* outputXmlSize)
+    @cname("MrmDumpPriFileInMemory") @link("mrmsupport");
+
+<*
+ @param [&in] data
+*>
+extern fn Hresult mrm_free_memory(char* data)
+    @cname("MrmFreeMemory") @link("mrmsupport");
+
+<*
+ @param [&out] checksum
+*>
+extern fn Hresult mrm_get_pri_file_content_checksum(ushort* priFile, uint* checksum)
+    @cname("MrmGetPriFileContentChecksum") @link("mrmsupport");
+
+<*
+ @param [&in] embeddedData
+*>
+extern fn Hresult mrm_index_embedded_data(MrmResourceIndexerHandle indexer, ushort* resourceUri, char* embeddedData, uint embeddedDataSize, ushort* qualifiers)
+    @cname("MrmIndexEmbeddedData") @link("mrmsupport");
+
+extern fn Hresult mrm_index_file(MrmResourceIndexerHandle indexer, ushort* resourceUri, ushort* filePath, ushort* qualifiers)
+    @cname("MrmIndexFile") @link("mrmsupport");
+
+extern fn Hresult mrm_index_file_auto_qualifiers(MrmResourceIndexerHandle indexer, ushort* filePath)
+    @cname("MrmIndexFileAutoQualifiers") @link("mrmsupport");
+
+extern fn Hresult mrm_index_resource_container_auto_qualifiers(MrmResourceIndexerHandle indexer, ushort* containerPath)
+    @cname("MrmIndexResourceContainerAutoQualifiers") @link("mrmsupport");
+
+extern fn Hresult mrm_index_string(MrmResourceIndexerHandle indexer, ushort* resourceUri, ushort* resourceString, ushort* qualifiers)
+    @cname("MrmIndexString") @link("mrmsupport");
+
+<*
+ @param [&out] messages
+ @param [&out] numMsgs
+*>
+extern fn Hresult mrm_peek_resource_indexer_messages(MrmResourceIndexerHandle handle, MrmResourceIndexerMessage** messages, uint* numMsgs)
+    @cname("MrmPeekResourceIndexerMessages") @link("mrmsupport");
+
+<*
+ @param [in] pHandles
+*>
+extern fn WaitEvent msg_wait_for_multiple_objects(uint nCount, Handle* pHandles, Bool fWaitAll, uint dwMilliseconds, QueueStatusFlags dwWakeMask)
+    @cname("MsgWaitForMultipleObjects") @link("user32");
+
+<*
+ @param [in] pHandles
+*>
+extern fn WaitEvent msg_wait_for_multiple_objects_ex(uint nCount, Handle* pHandles, uint dwMilliseconds, QueueStatusFlags dwWakeMask, MsgWaitForMultipleObjectsExFlags dwFlags)
+    @cname("MsgWaitForMultipleObjectsEx") @link("user32");
+
+extern fn Bool oem_to_charA(char* pSrc, char* pDst)
+    @cname("OemToCharA") @link("user32");
+
+extern fn Bool oem_to_char_buffA(char* lpszSrc, char* lpszDst, uint cchDstLength)
+    @cname("OemToCharBuffA") @link("user32");
+
+extern fn Bool oem_to_char_buffW(char* lpszSrc, ushort* lpszDst, uint cchDstLength)
+    @cname("OemToCharBuffW") @link("user32");
+
+extern fn Bool oem_to_charW(char* pSrc, ushort* pDst)
+    @cname("OemToCharW") @link("user32");
+
+extern fn Bool open_icon(HWnd hWnd)
+    @cname("OpenIcon") @link("user32");
+
+<*
+ @param [&out] lpMsg
+*>
+extern fn Bool peek_messageA(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax, PeekMessageRemoveType wRemoveMsg)
+    @cname("PeekMessageA") @link("user32");
+
+<*
+ @param [&out] lpMsg
+*>
+extern fn Bool peek_messageW(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax, PeekMessageRemoveType wRemoveMsg)
+    @cname("PeekMessageW") @link("user32");
+
+<*
+ @param [&inout] lpPoint
+*>
+extern fn Bool physical_to_logical_point(HWnd hWnd, Point* lpPoint)
+    @cname("PhysicalToLogicalPoint") @link("user32");
+
+extern fn Bool post_messageA(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("PostMessageA") @link("user32");
+
+extern fn Bool post_messageW(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("PostMessageW") @link("user32");
+
+extern fn void post_quit_message(int nExitCode)
+    @cname("PostQuitMessage") @link("user32");
+
+extern fn Bool post_thread_messageA(uint idThread, uint msg, WParam wParam, LParam lParam)
+    @cname("PostThreadMessageA") @link("user32");
+
+extern fn Bool post_thread_messageW(uint idThread, uint msg, WParam wParam, LParam lParam)
+    @cname("PostThreadMessageW") @link("user32");
+
+<*
+ @param [out] phicon
+ @param [out] piconid
+*>
+extern fn uint private_extract_iconsA(char* szFileName, int nIconIndex, int cxIcon, int cyIcon, HIcon* phicon, uint* piconid, uint nIcons, uint flags)
+    @cname("PrivateExtractIconsA") @link("user32");
+
+<*
+ @param [out] phicon
+ @param [out] piconid
+*>
+extern fn uint private_extract_iconsW(ushort* szFileName, int nIconIndex, int cxIcon, int cyIcon, HIcon* phicon, uint* piconid, uint nIcons, uint flags)
+    @cname("PrivateExtractIconsW") @link("user32");
+
+extern fn HWnd real_child_window_from_point(HWnd hwndParent, Point ptParentClientCoords)
+    @cname("RealChildWindowFromPoint") @link("user32");
+
+extern fn uint real_get_window_classA(HWnd hwnd, char* ptszClassName, uint cchClassNameMax)
+    @cname("RealGetWindowClassA") @link("user32");
+
+extern fn uint real_get_window_classW(HWnd hwnd, ushort* ptszClassName, uint cchClassNameMax)
+    @cname("RealGetWindowClassW") @link("user32");
+
+<*
+ @param [&in] lpWndClass
+*>
+extern fn ushort register_classA(WndClassA* lpWndClass)
+    @cname("RegisterClassA") @link("user32");
+
+<*
+ @param [&in] param0
+*>
+extern fn ushort register_class_exA(WndClassExA* param0)
+    @cname("RegisterClassExA") @link("user32");
+
+<*
+ @param [&in] param0
+*>
+extern fn ushort register_class_exW(WndClassExW* param0)
+    @cname("RegisterClassExW") @link("user32");
+
+<*
+ @param [&in] lpWndClass
+*>
+extern fn ushort register_classW(WndClassW* lpWndClass)
+    @cname("RegisterClassW") @link("user32");
+
+extern fn Bool register_cloaked_notification(HWnd hwnd, Bool fRegister)
+    @cname("RegisterCloakedNotification") @link("user32");
+
+<*
+ @param [&in] notificationFilter
+*>
+extern fn HDevNotify register_device_notificationA(Handle hRecipient, void* notificationFilter, RegisterNotificationFlags flags)
+    @cname("RegisterDeviceNotificationA") @link("user32");
+
+<*
+ @param [&in] notificationFilter
+*>
+extern fn HDevNotify register_device_notificationW(Handle hRecipient, void* notificationFilter, RegisterNotificationFlags flags)
+    @cname("RegisterDeviceNotificationW") @link("user32");
+
+extern fn Bool register_for_tooltip_dismiss_notification(HWnd hWnd, TooltipDismissFlags tdFlags)
+    @cname("RegisterForTooltipDismissNotification") @link("user32");
+
+extern fn Bool register_shell_hook_window(HWnd hwnd)
+    @cname("RegisterShellHookWindow") @link("user32");
+
+extern fn uint register_window_messageA(char* lpString)
+    @cname("RegisterWindowMessageA") @link("user32");
+
+extern fn uint register_window_messageW(ushort* lpString)
+    @cname("RegisterWindowMessageW") @link("user32");
+
+extern fn Bool remove_menu(HMenu hMenu, uint uPosition, MenuItemFlags uFlags)
+    @cname("RemoveMenu") @link("user32");
+
+extern fn Handle remove_propA(HWnd hWnd, char* lpString)
+    @cname("RemovePropA") @link("user32");
+
+extern fn Handle remove_propW(HWnd hWnd, ushort* lpString)
+    @cname("RemovePropW") @link("user32");
+
+extern fn Bool reply_message(LResult lResult)
+    @cname("ReplyMessage") @link("user32");
+
+<*
+ @param [in] lprcScroll
+ @param [in] lprcClip
+ @param [out] lprcUpdate
+*>
+extern fn Bool scroll_dc(Hdc hDC, int dx, int dy, Rect* lprcScroll, Rect* lprcClip, HRgn hrgnUpdate, Rect* lprcUpdate)
+    @cname("ScrollDC") @link("user32");
+
+<*
+ @param [in] lpRect
+ @param [in] lpClipRect
+*>
+extern fn Bool scroll_window(HWnd hWnd, int xAmount, int yAmount, Rect* lpRect, Rect* lpClipRect)
+    @cname("ScrollWindow") @link("user32");
+
+<*
+ @param [in] prcScroll
+ @param [in] prcClip
+ @param [out] prcUpdate
+*>
+extern fn int scroll_window_ex(HWnd hWnd, int dx, int dy, Rect* prcScroll, Rect* prcClip, HRgn hrgnUpdate, Rect* prcUpdate, ScrollWindowFlags flags)
+    @cname("ScrollWindowEx") @link("user32");
+
+extern fn LResult send_dlg_item_messageA(HWnd hDlg, int nIDDlgItem, uint msg, WParam wParam, LParam lParam)
+    @cname("SendDlgItemMessageA") @link("user32");
+
+extern fn LResult send_dlg_item_messageW(HWnd hDlg, int nIDDlgItem, uint msg, WParam wParam, LParam lParam)
+    @cname("SendDlgItemMessageW") @link("user32");
+
+extern fn LResult send_messageA(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("SendMessageA") @link("user32");
+
+extern fn Bool send_message_callbackA(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendAsyncProc lpResultCallBack, uptr dwData)
+    @cname("SendMessageCallbackA") @link("user32");
+
+extern fn Bool send_message_callbackW(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendAsyncProc lpResultCallBack, uptr dwData)
+    @cname("SendMessageCallbackW") @link("user32");
+
+<*
+ @param [out] lpdwResult
+*>
+extern fn LResult send_message_timeoutA(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendMessageTimeoutFlags fuFlags, uint uTimeout, uptr* lpdwResult)
+    @cname("SendMessageTimeoutA") @link("user32");
+
+<*
+ @param [out] lpdwResult
+*>
+extern fn LResult send_message_timeoutW(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendMessageTimeoutFlags fuFlags, uint uTimeout, uptr* lpdwResult)
+    @cname("SendMessageTimeoutW") @link("user32");
+
+extern fn LResult send_messageW(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("SendMessageW") @link("user32");
+
+extern fn Bool send_notify_messageA(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("SendNotifyMessageA") @link("user32");
+
+extern fn Bool send_notify_messageW(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+    @cname("SendNotifyMessageW") @link("user32");
+
+<*
+ @param [&in] processHandleArray
+*>
+extern fn Bool set_additional_foreground_boost_processes(HWnd topLevelWindow, uint processHandleCount, Handle* processHandleArray)
+    @cname("SetAdditionalForegroundBoostProcesses") @link("user32");
+
+extern fn Bool set_caret_blink_time(uint uMSeconds)
+    @cname("SetCaretBlinkTime") @link("user32");
+
+extern fn Bool set_caret_pos(int x, int y)
+    @cname("SetCaretPos") @link("user32");
+
+extern fn uint set_class_longA(HWnd hWnd, GetClassLongIndex nIndex, int dwNewLong)
+    @cname("SetClassLongA") @link("user32");
+
+extern fn uptr set_class_long_ptrA(HWnd hWnd, GetClassLongIndex nIndex, iptr dwNewLong)
+    @cname("SetClassLongPtrA") @link("user32");
+
+extern fn uptr set_class_long_ptrW(HWnd hWnd, GetClassLongIndex nIndex, iptr dwNewLong)
+    @cname("SetClassLongPtrW") @link("user32");
+
+extern fn uint set_class_longW(HWnd hWnd, GetClassLongIndex nIndex, int dwNewLong)
+    @cname("SetClassLongW") @link("user32");
+
+extern fn ushort set_class_word(HWnd hWnd, int nIndex, ushort wNewWord)
+    @cname("SetClassWord") @link("user32");
+
+extern fn uptr set_coalescable_timer(HWnd hWnd, uptr nIDEvent, uint uElapse, TimerProc lpTimerFunc, uint uToleranceDelay)
+    @cname("SetCoalescableTimer") @link("user32");
+
+extern fn HCursor set_cursor(HCursor hCursor)
+    @cname("SetCursor") @link("user32");
+
+extern fn Bool set_cursor_pos(int x, int y)
+    @cname("SetCursorPos") @link("user32");
+
+extern fn void set_debug_error_level(uint dwLevel)
+    @cname("SetDebugErrorLevel") @link("user32");
+
+extern fn Bool set_dlg_item_int(HWnd hDlg, int nIDDlgItem, uint uValue, Bool bSigned)
+    @cname("SetDlgItemInt") @link("user32");
+
+extern fn Bool set_dlg_item_textA(HWnd hDlg, int nIDDlgItem, char* lpString)
+    @cname("SetDlgItemTextA") @link("user32");
+
+extern fn Bool set_dlg_item_textW(HWnd hDlg, int nIDDlgItem, ushort* lpString)
+    @cname("SetDlgItemTextW") @link("user32");
+
+extern fn Bool set_foreground_window(HWnd hWnd)
+    @cname("SetForegroundWindow") @link("user32");
+
+extern fn Bool set_layered_window_attributes(HWnd hwnd, ColorRef crKey, char bAlpha, LayeredWindowAttributesFlags dwFlags)
+    @cname("SetLayeredWindowAttributes") @link("user32");
+
+extern fn Bool set_menu(HWnd hWnd, HMenu hMenu)
+    @cname("SetMenu") @link("user32");
+
+extern fn Bool set_menu_default_item(HMenu hMenu, uint uItem, uint fByPos)
+    @cname("SetMenuDefaultItem") @link("user32");
+
+<*
+ @param [&in] param1
+*>
+extern fn Bool set_menu_info(HMenu param0, MenuInfo* param1)
+    @cname("SetMenuInfo") @link("user32");
+
+extern fn Bool set_menu_item_bitmaps(HMenu hMenu, uint uPosition, MenuItemFlags uFlags, HBitmap hBitmapUnchecked, HBitmap hBitmapChecked)
+    @cname("SetMenuItemBitmaps") @link("user32");
+
+<*
+ @param [&in] lpmii
+*>
+extern fn Bool set_menu_item_infoA(HMenu hmenu, uint item, Bool fByPositon, MenuItemInfoA* lpmii)
+    @cname("SetMenuItemInfoA") @link("user32");
+
+<*
+ @param [&in] lpmii
+*>
+extern fn Bool set_menu_item_infoW(HMenu hmenu, uint item, Bool fByPositon, MenuItemInfoW* lpmii)
+    @cname("SetMenuItemInfoW") @link("user32");
+
+extern fn LParam set_message_extra_info(LParam lParam)
+    @cname("SetMessageExtraInfo") @link("user32");
+
+extern fn Bool set_message_queue(int cMessagesMax)
+    @cname("SetMessageQueue") @link("user32");
+
+extern fn HWnd set_parent(HWnd hWndChild, HWnd hWndNewParent)
+    @cname("SetParent") @link("user32");
+
+extern fn Bool set_physical_cursor_pos(int x, int y)
+    @cname("SetPhysicalCursorPos") @link("user32");
+
+extern fn Bool set_process_dpi_aware()
+    @cname("SetProcessDPIAware") @link("user32");
+
+extern fn Bool set_process_default_layout(uint dwDefaultLayout)
+    @cname("SetProcessDefaultLayout") @link("user32");
+
+extern fn Bool set_propA(HWnd hWnd, char* lpString, Handle hData)
+    @cname("SetPropA") @link("user32");
+
+extern fn Bool set_propW(HWnd hWnd, ushort* lpString, Handle hData)
+    @cname("SetPropW") @link("user32");
+
+extern fn Bool set_system_cursor(HCursor hcur, SystemCursorId id)
+    @cname("SetSystemCursor") @link("user32");
+
+extern fn uptr set_timer(HWnd hWnd, uptr nIDEvent, uint uElapse, TimerProc lpTimerFunc)
+    @cname("SetTimer") @link("user32");
+
+extern fn Bool set_window_display_affinity(HWnd hWnd, WindowDisplayAffinity dwAffinity)
+    @cname("SetWindowDisplayAffinity") @link("user32");
+
+extern fn int set_window_longA(HWnd hWnd, WindowLongPtrIndex nIndex, int dwNewLong)
+    @cname("SetWindowLongA") @link("user32");
+
+extern fn iptr set_window_long_ptrA(HWnd hWnd, WindowLongPtrIndex nIndex, iptr dwNewLong)
+    @cname("SetWindowLongPtrA") @link("user32");
+
+extern fn iptr set_window_long_ptrW(HWnd hWnd, WindowLongPtrIndex nIndex, iptr dwNewLong)
+    @cname("SetWindowLongPtrW") @link("user32");
+
+extern fn int set_window_longW(HWnd hWnd, WindowLongPtrIndex nIndex, int dwNewLong)
+    @cname("SetWindowLongW") @link("user32");
+
+<*
+ @param [&in] lpwndpl
+*>
+extern fn Bool set_window_placement(HWnd hWnd, Windowplacement* lpwndpl)
+    @cname("SetWindowPlacement") @link("user32");
+
+extern fn Bool set_window_pos(HWnd hWnd, HWnd hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPosFlags uFlags)
+    @cname("SetWindowPos") @link("user32");
+
+extern fn Bool set_window_textA(HWnd hWnd, char* lpString)
+    @cname("SetWindowTextA") @link("user32");
+
+extern fn Bool set_window_textW(HWnd hWnd, ushort* lpString)
+    @cname("SetWindowTextW") @link("user32");
+
+extern fn ushort set_window_word(HWnd hWnd, int nIndex, ushort wNewWord)
+    @cname("SetWindowWord") @link("user32");
+
+extern fn HHook set_windows_hookA(int nFilterType, HookProc pfnFilterProc)
+    @cname("SetWindowsHookA") @link("user32");
+
+extern fn HHook set_windows_hook_exA(WindowsHookId idHook, HookProc lpfn, HInstance hmod, uint dwThreadId)
+    @cname("SetWindowsHookExA") @link("user32");
+
+extern fn HHook set_windows_hook_exW(WindowsHookId idHook, HookProc lpfn, HInstance hmod, uint dwThreadId)
+    @cname("SetWindowsHookExW") @link("user32");
+
+extern fn HHook set_windows_hookW(int nFilterType, HookProc pfnFilterProc)
+    @cname("SetWindowsHookW") @link("user32");
+
+extern fn Bool show_caret(HWnd hWnd)
+    @cname("ShowCaret") @link("user32");
+
+extern fn int show_cursor(Bool bShow)
+    @cname("ShowCursor") @link("user32");
+
+extern fn Bool show_owned_popups(HWnd hWnd, Bool fShow)
+    @cname("ShowOwnedPopups") @link("user32");
+
+extern fn Bool show_window(HWnd hWnd, ShowWindowCmd nCmdShow)
+    @cname("ShowWindow") @link("user32");
+
+extern fn Bool show_window_async(HWnd hWnd, ShowWindowCmd nCmdShow)
+    @cname("ShowWindowAsync") @link("user32");
+
+extern fn Bool sound_sentry()
+    @cname("SoundSentry") @link("user32");
+
+extern fn void switch_to_this_window(HWnd hwnd, Bool fUnknown)
+    @cname("SwitchToThisWindow") @link("user32");
+
+<*
+ @param [inout] pvParam
+*>
+extern fn Bool system_parameters_infoA(SystemParametersInfoAction uiAction, uint uiParam, void* pvParam, SystemParametersInfoUpdateFlags fWinIni)
+    @cname("SystemParametersInfoA") @link("user32");
+
+<*
+ @param [inout] pvParam
+*>
+extern fn Bool system_parameters_infoW(SystemParametersInfoAction uiAction, uint uiParam, void* pvParam, SystemParametersInfoUpdateFlags fWinIni)
+    @cname("SystemParametersInfoW") @link("user32");
+
+<*
+ @param [in] lpRect
+ @param [in] lpKids
+*>
+extern fn ushort tile_windows(HWnd hwndParent, TileWindowsHow wHow, Rect* lpRect, uint cKids, HWnd* lpKids)
+    @cname("TileWindows") @link("user32");
+
+<*
+ @param [in] prcRect
+*>
+extern fn Bool track_popup_menu(HMenu hMenu, TrackPopupMenuFlags uFlags, int x, int y, int nReserved, HWnd hWnd, Rect* prcRect)
+    @cname("TrackPopupMenu") @link("user32");
+
+<*
+ @param [in] lptpm
+*>
+extern fn Bool track_popup_menu_ex(HMenu hMenu, uint uFlags, int x, int y, HWnd hwnd, TpmParams* lptpm)
+    @cname("TrackPopupMenuEx") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn int translate_acceleratorA(HWnd hWnd, HAccel hAccTable, Msg* lpMsg)
+    @cname("TranslateAcceleratorA") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn int translate_acceleratorW(HWnd hWnd, HAccel hAccTable, Msg* lpMsg)
+    @cname("TranslateAcceleratorW") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn Bool translate_mdi_sys_accel(HWnd hWndClient, Msg* lpMsg)
+    @cname("TranslateMDISysAccel") @link("user32");
+
+<*
+ @param [&in] lpMsg
+*>
+extern fn Bool translate_message(Msg* lpMsg)
+    @cname("TranslateMessage") @link("user32");
+
+extern fn Bool unhook_windows_hook(int nCode, HookProc pfnFilterProc)
+    @cname("UnhookWindowsHook") @link("user32");
+
+extern fn Bool unhook_windows_hook_ex(HHook hhk)
+    @cname("UnhookWindowsHookEx") @link("user32");
+
+extern fn Bool unregister_classA(char* lpClassName, HInstance hInstance)
+    @cname("UnregisterClassA") @link("user32");
+
+extern fn Bool unregister_classW(ushort* lpClassName, HInstance hInstance)
+    @cname("UnregisterClassW") @link("user32");
+
+extern fn Bool unregister_device_notification(HDevNotify handle)
+    @cname("UnregisterDeviceNotification") @link("user32");
+
+<*
+ @param [in] pptDst
+ @param [in] psize
+ @param [in] pptSrc
+ @param [in] pblend
+*>
+extern fn Bool update_layered_window(HWnd hWnd, Hdc hdcDst, Point* pptDst, Size* psize, Hdc hdcSrc, Point* pptSrc, ColorRef crKey, BlendFunction* pblend, UpdateLayeredWindowFlags dwFlags)
+    @cname("UpdateLayeredWindow") @link("user32");
+
+<*
+ @param [&in] pULWInfo
+*>
+extern fn Bool update_layered_window_indirect(HWnd hWnd, UpdateLayeredWindowInfo* pULWInfo)
+    @cname("UpdateLayeredWindowIndirect") @link("user32");
+
+extern fn Bool wait_message()
+    @cname("WaitMessage") @link("user32");
+
+extern fn HWnd window_from_physical_point(Point point)
+    @cname("WindowFromPhysicalPoint") @link("user32");
+
+extern fn HWnd window_from_point(Point point)
+    @cname("WindowFromPoint") @link("user32");
+
+extern fn int wsprintfA(char* param0, char* param1)
+    @cname("wsprintfA") @link("user32");
+
+extern fn int wsprintfW(ushort* param0, ushort* param1)
+    @cname("wsprintfW") @link("user32");
+
+<*
+ @param [&in] arglist
+*>
+extern fn int wvsprintfA(char* param0, char* param1, ichar* arglist)
+    @cname("wvsprintfA") @link("user32");
+
+<*
+ @param [&in] arglist
+*>
+extern fn int wvsprintfW(ushort* param0, ushort* param1, ichar* arglist)
+    @cname("wvsprintfW") @link("user32");
+
+macro Bool append_menu(HMenu hMenu, MenuItemFlags uFlags, uptr uIDNewItem, char* lpNewItem)
+@if(!$feature(WIN32_UNICODE))
+{
+    return append_menuA(hMenu, uFlags, uIDNewItem, lpNewItem);
+}
+
+macro Bool append_menu(HMenu hMenu, MenuItemFlags uFlags, uptr uIDNewItem, ushort* lpNewItem)
+@if($feature(WIN32_UNICODE))
+{
+    return append_menuW(hMenu, uFlags, uIDNewItem, lpNewItem);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro Bool call_msg_filter(Msg* lpMsg, int nCode)
+@if(!$feature(WIN32_UNICODE))
+{
+    return call_msg_filterA(lpMsg, nCode);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro Bool call_msg_filter(Msg* lpMsg, int nCode)
+@if($feature(WIN32_UNICODE))
+{
+    return call_msg_filterW(lpMsg, nCode);
+}
+
+macro LResult call_window_proc(WndProc lpPrevWndFunc, HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return call_window_procA(lpPrevWndFunc, hWnd, msg, wParam, lParam);
+}
+
+macro LResult call_window_proc(WndProc lpPrevWndFunc, HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return call_window_procW(lpPrevWndFunc, hWnd, msg, wParam, lParam);
+}
+
+macro Bool change_menu(HMenu hMenu, uint cmd, char* lpszNewItem, uint cmdInsert, uint flags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return change_menuA(hMenu, cmd, lpszNewItem, cmdInsert, flags);
+}
+
+macro Bool change_menu(HMenu hMenu, uint cmd, ushort* lpszNewItem, uint cmdInsert, uint flags)
+@if($feature(WIN32_UNICODE))
+{
+    return change_menuW(hMenu, cmd, lpszNewItem, cmdInsert, flags);
+}
+
+macro uint char_lower_buff(char* lpsz, uint cchLength)
+@if(!$feature(WIN32_UNICODE))
+{
+    return char_lower_buffA(lpsz, cchLength);
+}
+
+macro uint char_lower_buff(ushort* lpsz, uint cchLength)
+@if($feature(WIN32_UNICODE))
+{
+    return char_lower_buffW(lpsz, cchLength);
+}
+
+macro Bool char_to_oem(char* pSrc, char* pDst)
+@if(!$feature(WIN32_UNICODE))
+{
+    return char_to_oemA(pSrc, pDst);
+}
+
+macro Bool char_to_oem(ushort* pSrc, char* pDst)
+@if($feature(WIN32_UNICODE))
+{
+    return char_to_oemW(pSrc, pDst);
+}
+
+macro Bool char_to_oem_buff(char* lpszSrc, char* lpszDst, uint cchDstLength)
+@if(!$feature(WIN32_UNICODE))
+{
+    return char_to_oem_buffA(lpszSrc, lpszDst, cchDstLength);
+}
+
+macro Bool char_to_oem_buff(ushort* lpszSrc, char* lpszDst, uint cchDstLength)
+@if($feature(WIN32_UNICODE))
+{
+    return char_to_oem_buffW(lpszSrc, lpszDst, cchDstLength);
+}
+
+macro uint char_upper_buff(char* lpsz, uint cchLength)
+@if(!$feature(WIN32_UNICODE))
+{
+    return char_upper_buffA(lpsz, cchLength);
+}
+
+macro uint char_upper_buff(ushort* lpsz, uint cchLength)
+@if($feature(WIN32_UNICODE))
+{
+    return char_upper_buffW(lpsz, cchLength);
+}
+
+<*
+ @param [out] lpAccelDst
+*>
+macro int copy_accelerator_table(HAccel hAccelSrc, Accel* lpAccelDst, int cAccelEntries)
+@if(!$feature(WIN32_UNICODE))
+{
+    return copy_accelerator_tableA(hAccelSrc, lpAccelDst, cAccelEntries);
+}
+
+<*
+ @param [out] lpAccelDst
+*>
+macro int copy_accelerator_table(HAccel hAccelSrc, Accel* lpAccelDst, int cAccelEntries)
+@if($feature(WIN32_UNICODE))
+{
+    return copy_accelerator_tableW(hAccelSrc, lpAccelDst, cAccelEntries);
+}
+
+<*
+ @param [&in] paccel
+*>
+macro HAccel create_accelerator_table(Accel* paccel, int cAccel)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_accelerator_tableA(paccel, cAccel);
+}
+
+<*
+ @param [&in] paccel
+*>
+macro HAccel create_accelerator_table(Accel* paccel, int cAccel)
+@if($feature(WIN32_UNICODE))
+{
+    return create_accelerator_tableW(paccel, cAccel);
+}
+
+<*
+ @param [&in] lpTemplate
+*>
+macro HWnd create_dialog_indirect_param(HInstance hInstance, Dlgtemplate* lpTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_dialog_indirect_paramA(hInstance, lpTemplate, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+<*
+ @param [&in] lpTemplate
+*>
+macro HWnd create_dialog_indirect_param(HInstance hInstance, Dlgtemplate* lpTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if($feature(WIN32_UNICODE))
+{
+    return create_dialog_indirect_paramW(hInstance, lpTemplate, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+macro HWnd create_dialog_param(HInstance hInstance, char* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_dialog_paramA(hInstance, lpTemplateName, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+macro HWnd create_dialog_param(HInstance hInstance, ushort* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if($feature(WIN32_UNICODE))
+{
+    return create_dialog_paramW(hInstance, lpTemplateName, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+macro HWnd create_mdi_window(char* lpClassName, char* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HInstance hInstance, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_mdi_windowA(lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hInstance, lParam);
+}
+
+macro HWnd create_mdi_window(ushort* lpClassName, ushort* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HInstance hInstance, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return create_mdi_windowW(lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hInstance, lParam);
+}
+
+<*
+ @param [in] lpParam
+*>
+macro HWnd create_window_ex(WindowExStyle dwExStyle, char* lpClassName, char* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HMenu hMenu, HInstance hInstance, void* lpParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_window_exA(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
+
+<*
+ @param [in] lpParam
+*>
+macro HWnd create_window_ex(WindowExStyle dwExStyle, ushort* lpClassName, ushort* lpWindowName, WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, HWnd hWndParent, HMenu hMenu, HInstance hInstance, void* lpParam)
+@if($feature(WIN32_UNICODE))
+{
+    return create_window_exW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
+
+macro LResult def_dlg_proc(HWnd hDlg, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return def_dlg_procA(hDlg, msg, wParam, lParam);
+}
+
+macro LResult def_dlg_proc(HWnd hDlg, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return def_dlg_procW(hDlg, msg, wParam, lParam);
+}
+
+macro LResult def_frame_proc(HWnd hWnd, HWnd hWndMDIClient, uint uMsg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return def_frame_procA(hWnd, hWndMDIClient, uMsg, wParam, lParam);
+}
+
+macro LResult def_frame_proc(HWnd hWnd, HWnd hWndMDIClient, uint uMsg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return def_frame_procW(hWnd, hWndMDIClient, uMsg, wParam, lParam);
+}
+
+macro LResult def_mdi_child_proc(HWnd hWnd, uint uMsg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return def_mdi_child_procA(hWnd, uMsg, wParam, lParam);
+}
+
+macro LResult def_mdi_child_proc(HWnd hWnd, uint uMsg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return def_mdi_child_procW(hWnd, uMsg, wParam, lParam);
+}
+
+macro LResult def_window_proc(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return def_window_procA(hWnd, msg, wParam, lParam);
+}
+
+macro LResult def_window_proc(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return def_window_procW(hWnd, msg, wParam, lParam);
+}
+
+<*
+ @param [&in] hDialogTemplate
+*>
+macro iptr dialog_box_indirect_param(HInstance hInstance, Dlgtemplate* hDialogTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return dialog_box_indirect_paramA(hInstance, hDialogTemplate, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+<*
+ @param [&in] hDialogTemplate
+*>
+macro iptr dialog_box_indirect_param(HInstance hInstance, Dlgtemplate* hDialogTemplate, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if($feature(WIN32_UNICODE))
+{
+    return dialog_box_indirect_paramW(hInstance, hDialogTemplate, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+macro iptr dialog_box_param(HInstance hInstance, char* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return dialog_box_paramA(hInstance, lpTemplateName, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+macro iptr dialog_box_param(HInstance hInstance, ushort* lpTemplateName, HWnd hWndParent, DlgProc lpDialogFunc, LParam dwInitParam)
+@if($feature(WIN32_UNICODE))
+{
+    return dialog_box_paramW(hInstance, lpTemplateName, hWndParent, lpDialogFunc, dwInitParam);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro LResult dispatch_message(Msg* lpMsg)
+@if(!$feature(WIN32_UNICODE))
+{
+    return dispatch_messageA(lpMsg);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro LResult dispatch_message(Msg* lpMsg)
+@if($feature(WIN32_UNICODE))
+{
+    return dispatch_messageW(lpMsg);
+}
+
+macro int enum_props(HWnd hWnd, PropEnumProcA lpEnumFunc)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_propsA(hWnd, lpEnumFunc);
+}
+
+macro int enum_props(HWnd hWnd, PropEnumProcW lpEnumFunc)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_propsW(hWnd, lpEnumFunc);
+}
+
+macro int enum_props_ex(HWnd hWnd, PropEnumProcExA lpEnumFunc, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_props_exA(hWnd, lpEnumFunc, lParam);
+}
+
+macro int enum_props_ex(HWnd hWnd, PropEnumProcExW lpEnumFunc, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_props_exW(hWnd, lpEnumFunc, lParam);
+}
+
+macro HWnd find_window(char* lpClassName, char* lpWindowName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return find_windowA(lpClassName, lpWindowName);
+}
+
+macro HWnd find_window(ushort* lpClassName, ushort* lpWindowName)
+@if($feature(WIN32_UNICODE))
+{
+    return find_windowW(lpClassName, lpWindowName);
+}
+
+macro HWnd find_window_ex(HWnd hWndParent, HWnd hWndChildAfter, char* lpszClass, char* lpszWindow)
+@if(!$feature(WIN32_UNICODE))
+{
+    return find_window_exA(hWndParent, hWndChildAfter, lpszClass, lpszWindow);
+}
+
+macro HWnd find_window_ex(HWnd hWndParent, HWnd hWndChildAfter, ushort* lpszClass, ushort* lpszWindow)
+@if($feature(WIN32_UNICODE))
+{
+    return find_window_exW(hWndParent, hWndChildAfter, lpszClass, lpszWindow);
+}
+
+<*
+ @param [&inout] pati
+*>
+macro Bool get_alt_tab_info(HWnd hwnd, int iItem, AltTabInfo* pati, char* pszItemText, uint cchItemText)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_alt_tab_infoA(hwnd, iItem, pati, pszItemText, cchItemText);
+}
+
+<*
+ @param [&inout] pati
+*>
+macro Bool get_alt_tab_info(HWnd hwnd, int iItem, AltTabInfo* pati, ushort* pszItemText, uint cchItemText)
+@if($feature(WIN32_UNICODE))
+{
+    return get_alt_tab_infoW(hwnd, iItem, pati, pszItemText, cchItemText);
+}
+
+<*
+ @param [&out] lpWndClass
+*>
+macro Bool get_class_info(HInstance hInstance, char* lpClassName, WndClassA* lpWndClass)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_class_infoA(hInstance, lpClassName, lpWndClass);
+}
+
+<*
+ @param [&out] lpWndClass
+*>
+macro Bool get_class_info(HInstance hInstance, ushort* lpClassName, WndClassW* lpWndClass)
+@if($feature(WIN32_UNICODE))
+{
+    return get_class_infoW(hInstance, lpClassName, lpWndClass);
+}
+
+<*
+ @param [&out] lpwcx
+*>
+macro Bool get_class_info_ex(HInstance hInstance, char* lpszClass, WndClassExA* lpwcx)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_class_info_exA(hInstance, lpszClass, lpwcx);
+}
+
+<*
+ @param [&out] lpwcx
+*>
+macro Bool get_class_info_ex(HInstance hInstance, ushort* lpszClass, WndClassExW* lpwcx)
+@if($feature(WIN32_UNICODE))
+{
+    return get_class_info_exW(hInstance, lpszClass, lpwcx);
+}
+
+macro uint get_class_long(HWnd hWnd, GetClassLongIndex nIndex)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_class_longA(hWnd, nIndex);
+}
+
+macro uint get_class_long(HWnd hWnd, GetClassLongIndex nIndex)
+@if($feature(WIN32_UNICODE))
+{
+    return get_class_longW(hWnd, nIndex);
+}
+
+macro uptr get_class_long_ptr(HWnd hWnd, GetClassLongIndex nIndex)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_class_long_ptrA(hWnd, nIndex);
+}
+
+macro uptr get_class_long_ptr(HWnd hWnd, GetClassLongIndex nIndex)
+@if($feature(WIN32_UNICODE))
+{
+    return get_class_long_ptrW(hWnd, nIndex);
+}
+
+macro int get_class_name(HWnd hWnd, char* lpClassName, int nMaxCount)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_class_nameA(hWnd, lpClassName, nMaxCount);
+}
+
+macro int get_class_name(HWnd hWnd, ushort* lpClassName, int nMaxCount)
+@if($feature(WIN32_UNICODE))
+{
+    return get_class_nameW(hWnd, lpClassName, nMaxCount);
+}
+
+macro uint get_dlg_item_text(HWnd hDlg, int nIDDlgItem, char* lpString, int cchMax)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_dlg_item_textA(hDlg, nIDDlgItem, lpString, cchMax);
+}
+
+macro uint get_dlg_item_text(HWnd hDlg, int nIDDlgItem, ushort* lpString, int cchMax)
+@if($feature(WIN32_UNICODE))
+{
+    return get_dlg_item_textW(hDlg, nIDDlgItem, lpString, cchMax);
+}
+
+<*
+ @param [&inout] piconinfo
+*>
+macro Bool get_icon_info_ex(HIcon hicon, IconInfoExA* piconinfo)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_icon_info_exA(hicon, piconinfo);
+}
+
+<*
+ @param [&inout] piconinfo
+*>
+macro Bool get_icon_info_ex(HIcon hicon, IconInfoExW* piconinfo)
+@if($feature(WIN32_UNICODE))
+{
+    return get_icon_info_exW(hicon, piconinfo);
+}
+
+<*
+ @param [&inout] lpmii
+*>
+macro Bool get_menu_item_info(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoA* lpmii)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_menu_item_infoA(hmenu, item, fByPosition, lpmii);
+}
+
+<*
+ @param [&inout] lpmii
+*>
+macro Bool get_menu_item_info(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoW* lpmii)
+@if($feature(WIN32_UNICODE))
+{
+    return get_menu_item_infoW(hmenu, item, fByPosition, lpmii);
+}
+
+macro int get_menu_string(HMenu hMenu, uint uIDItem, char* lpString, int cchMax, MenuItemFlags flags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_menu_stringA(hMenu, uIDItem, lpString, cchMax, flags);
+}
+
+macro int get_menu_string(HMenu hMenu, uint uIDItem, ushort* lpString, int cchMax, MenuItemFlags flags)
+@if($feature(WIN32_UNICODE))
+{
+    return get_menu_stringW(hMenu, uIDItem, lpString, cchMax, flags);
+}
+
+<*
+ @param [&out] lpMsg
+*>
+macro Bool get_message(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_messageA(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
+}
+
+<*
+ @param [&out] lpMsg
+*>
+macro Bool get_message(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax)
+@if($feature(WIN32_UNICODE))
+{
+    return get_messageW(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
+}
+
+macro Handle get_prop(HWnd hWnd, char* lpString)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_propA(hWnd, lpString);
+}
+
+macro Handle get_prop(HWnd hWnd, ushort* lpString)
+@if($feature(WIN32_UNICODE))
+{
+    return get_propW(hWnd, lpString);
+}
+
+macro int get_window_long(HWnd hWnd, WindowLongPtrIndex nIndex)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_window_longA(hWnd, nIndex);
+}
+
+macro int get_window_long(HWnd hWnd, WindowLongPtrIndex nIndex)
+@if($feature(WIN32_UNICODE))
+{
+    return get_window_longW(hWnd, nIndex);
+}
+
+macro iptr get_window_long_ptr(HWnd hWnd, WindowLongPtrIndex nIndex)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_window_long_ptrA(hWnd, nIndex);
+}
+
+macro iptr get_window_long_ptr(HWnd hWnd, WindowLongPtrIndex nIndex)
+@if($feature(WIN32_UNICODE))
+{
+    return get_window_long_ptrW(hWnd, nIndex);
+}
+
+macro uint get_window_module_file_name(HWnd hwnd, char* pszFileName, uint cchFileNameMax)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_window_module_file_nameA(hwnd, pszFileName, cchFileNameMax);
+}
+
+macro uint get_window_module_file_name(HWnd hwnd, ushort* pszFileName, uint cchFileNameMax)
+@if($feature(WIN32_UNICODE))
+{
+    return get_window_module_file_nameW(hwnd, pszFileName, cchFileNameMax);
+}
+
+macro int get_window_text(HWnd hWnd, char* lpString, int nMaxCount)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_window_textA(hWnd, lpString, nMaxCount);
+}
+
+macro int get_window_text(HWnd hWnd, ushort* lpString, int nMaxCount)
+@if($feature(WIN32_UNICODE))
+{
+    return get_window_textW(hWnd, lpString, nMaxCount);
+}
+
+macro int get_window_text_length(HWnd hWnd)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_window_text_lengthA(hWnd);
+}
+
+macro int get_window_text_length(HWnd hWnd)
+@if($feature(WIN32_UNICODE))
+{
+    return get_window_text_lengthW(hWnd);
+}
+
+macro Bool insert_menu(HMenu hMenu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, char* lpNewItem)
+@if(!$feature(WIN32_UNICODE))
+{
+    return insert_menuA(hMenu, uPosition, uFlags, uIDNewItem, lpNewItem);
+}
+
+macro Bool insert_menu(HMenu hMenu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, ushort* lpNewItem)
+@if($feature(WIN32_UNICODE))
+{
+    return insert_menuW(hMenu, uPosition, uFlags, uIDNewItem, lpNewItem);
+}
+
+<*
+ @param [&in] lpmi
+*>
+macro Bool insert_menu_item(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoA* lpmi)
+@if(!$feature(WIN32_UNICODE))
+{
+    return insert_menu_itemA(hmenu, item, fByPosition, lpmi);
+}
+
+<*
+ @param [&in] lpmi
+*>
+macro Bool insert_menu_item(HMenu hmenu, uint item, Bool fByPosition, MenuItemInfoW* lpmi)
+@if($feature(WIN32_UNICODE))
+{
+    return insert_menu_itemW(hmenu, item, fByPosition, lpmi);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro Bool is_dialog_message(HWnd hDlg, Msg* lpMsg)
+@if(!$feature(WIN32_UNICODE))
+{
+    return is_dialog_messageA(hDlg, lpMsg);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro Bool is_dialog_message(HWnd hDlg, Msg* lpMsg)
+@if($feature(WIN32_UNICODE))
+{
+    return is_dialog_messageW(hDlg, lpMsg);
+}
+
+macro HAccel load_accelerators(HInstance hInstance, char* lpTableName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_acceleratorsA(hInstance, lpTableName);
+}
+
+macro HAccel load_accelerators(HInstance hInstance, ushort* lpTableName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_acceleratorsW(hInstance, lpTableName);
+}
+
+macro HCursor load_cursor(HInstance hInstance, char* lpCursorName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_cursorA(hInstance, lpCursorName);
+}
+
+macro HCursor load_cursor(HInstance hInstance, ushort* lpCursorName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_cursorW(hInstance, lpCursorName);
+}
+
+macro HCursor load_cursor_from_file(char* lpFileName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_cursor_from_fileA(lpFileName);
+}
+
+macro HCursor load_cursor_from_file(ushort* lpFileName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_cursor_from_fileW(lpFileName);
+}
+
+macro HIcon load_icon(HInstance hInstance, char* lpIconName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_iconA(hInstance, lpIconName);
+}
+
+macro HIcon load_icon(HInstance hInstance, ushort* lpIconName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_iconW(hInstance, lpIconName);
+}
+
+macro Handle load_image(HInstance hInst, char* name, GdiImageType type, int cx, int cy, ImageFlags fuLoad)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_imageA(hInst, name, type, cx, cy, fuLoad);
+}
+
+macro Handle load_image(HInstance hInst, ushort* name, GdiImageType type, int cx, int cy, ImageFlags fuLoad)
+@if($feature(WIN32_UNICODE))
+{
+    return load_imageW(hInst, name, type, cx, cy, fuLoad);
+}
+
+macro HMenu load_menu(HInstance hInstance, char* lpMenuName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_menuA(hInstance, lpMenuName);
+}
+
+macro HMenu load_menu(HInstance hInstance, ushort* lpMenuName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_menuW(hInstance, lpMenuName);
+}
+
+<*
+ @param [&in] lpMenuTemplate
+*>
+macro HMenu load_menu_indirect(void* lpMenuTemplate)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_menu_indirectA(lpMenuTemplate);
+}
+
+<*
+ @param [&in] lpMenuTemplate
+*>
+macro HMenu load_menu_indirect(void* lpMenuTemplate)
+@if($feature(WIN32_UNICODE))
+{
+    return load_menu_indirectW(lpMenuTemplate);
+}
+
+macro int load_string(HInstance hInstance, uint uID, char* lpBuffer, int cchBufferMax)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_stringA(hInstance, uID, lpBuffer, cchBufferMax);
+}
+
+macro int load_string(HInstance hInstance, uint uID, ushort* lpBuffer, int cchBufferMax)
+@if($feature(WIN32_UNICODE))
+{
+    return load_stringW(hInstance, uID, lpBuffer, cchBufferMax);
+}
+
+macro MessageboxResult message_box(HWnd hWnd, char* lpText, char* lpCaption, MessageboxStyle uType)
+@if(!$feature(WIN32_UNICODE))
+{
+    return message_boxA(hWnd, lpText, lpCaption, uType);
+}
+
+macro MessageboxResult message_box(HWnd hWnd, ushort* lpText, ushort* lpCaption, MessageboxStyle uType)
+@if($feature(WIN32_UNICODE))
+{
+    return message_boxW(hWnd, lpText, lpCaption, uType);
+}
+
+macro MessageboxResult message_box_ex(HWnd hWnd, char* lpText, char* lpCaption, MessageboxStyle uType, ushort wLanguageId)
+@if(!$feature(WIN32_UNICODE))
+{
+    return message_box_exA(hWnd, lpText, lpCaption, uType, wLanguageId);
+}
+
+macro MessageboxResult message_box_ex(HWnd hWnd, ushort* lpText, ushort* lpCaption, MessageboxStyle uType, ushort wLanguageId)
+@if($feature(WIN32_UNICODE))
+{
+    return message_box_exW(hWnd, lpText, lpCaption, uType, wLanguageId);
+}
+
+<*
+ @param [&in] lpmbp
+*>
+macro MessageboxResult message_box_indirect(MsgBoxParamsA* lpmbp)
+@if(!$feature(WIN32_UNICODE))
+{
+    return message_box_indirectA(lpmbp);
+}
+
+<*
+ @param [&in] lpmbp
+*>
+macro MessageboxResult message_box_indirect(MsgBoxParamsW* lpmbp)
+@if($feature(WIN32_UNICODE))
+{
+    return message_box_indirectW(lpmbp);
+}
+
+macro Bool modify_menu(HMenu hMnu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, char* lpNewItem)
+@if(!$feature(WIN32_UNICODE))
+{
+    return modify_menuA(hMnu, uPosition, uFlags, uIDNewItem, lpNewItem);
+}
+
+macro Bool modify_menu(HMenu hMnu, uint uPosition, MenuItemFlags uFlags, uptr uIDNewItem, ushort* lpNewItem)
+@if($feature(WIN32_UNICODE))
+{
+    return modify_menuW(hMnu, uPosition, uFlags, uIDNewItem, lpNewItem);
+}
+
+macro Bool oem_to_char(char* pSrc, char* pDst)
+@if(!$feature(WIN32_UNICODE))
+{
+    return oem_to_charA(pSrc, pDst);
+}
+
+macro Bool oem_to_char(char* pSrc, ushort* pDst)
+@if($feature(WIN32_UNICODE))
+{
+    return oem_to_charW(pSrc, pDst);
+}
+
+macro Bool oem_to_char_buff(char* lpszSrc, char* lpszDst, uint cchDstLength)
+@if(!$feature(WIN32_UNICODE))
+{
+    return oem_to_char_buffA(lpszSrc, lpszDst, cchDstLength);
+}
+
+macro Bool oem_to_char_buff(char* lpszSrc, ushort* lpszDst, uint cchDstLength)
+@if($feature(WIN32_UNICODE))
+{
+    return oem_to_char_buffW(lpszSrc, lpszDst, cchDstLength);
+}
+
+<*
+ @param [&out] lpMsg
+*>
+macro Bool peek_message(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax, PeekMessageRemoveType wRemoveMsg)
+@if(!$feature(WIN32_UNICODE))
+{
+    return peek_messageA(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
+}
+
+<*
+ @param [&out] lpMsg
+*>
+macro Bool peek_message(Msg* lpMsg, HWnd hWnd, uint wMsgFilterMin, uint wMsgFilterMax, PeekMessageRemoveType wRemoveMsg)
+@if($feature(WIN32_UNICODE))
+{
+    return peek_messageW(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
+}
+
+macro Bool post_message(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return post_messageA(hWnd, msg, wParam, lParam);
+}
+
+macro Bool post_message(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return post_messageW(hWnd, msg, wParam, lParam);
+}
+
+macro Bool post_thread_message(uint idThread, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return post_thread_messageA(idThread, msg, wParam, lParam);
+}
+
+macro Bool post_thread_message(uint idThread, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return post_thread_messageW(idThread, msg, wParam, lParam);
+}
+
+<*
+ @param [out] phicon
+ @param [out] piconid
+*>
+macro uint private_extract_icons(char* szFileName, int nIconIndex, int cxIcon, int cyIcon, HIcon* phicon, uint* piconid, uint nIcons, uint flags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return private_extract_iconsA(szFileName, nIconIndex, cxIcon, cyIcon, phicon, piconid, nIcons, flags);
+}
+
+<*
+ @param [out] phicon
+ @param [out] piconid
+*>
+macro uint private_extract_icons(ushort* szFileName, int nIconIndex, int cxIcon, int cyIcon, HIcon* phicon, uint* piconid, uint nIcons, uint flags)
+@if($feature(WIN32_UNICODE))
+{
+    return private_extract_iconsW(szFileName, nIconIndex, cxIcon, cyIcon, phicon, piconid, nIcons, flags);
+}
+
+macro uint real_get_window_class(HWnd hwnd, char* ptszClassName, uint cchClassNameMax)
+@if(!$feature(WIN32_UNICODE))
+{
+    return real_get_window_classA(hwnd, ptszClassName, cchClassNameMax);
+}
+
+macro uint real_get_window_class(HWnd hwnd, ushort* ptszClassName, uint cchClassNameMax)
+@if($feature(WIN32_UNICODE))
+{
+    return real_get_window_classW(hwnd, ptszClassName, cchClassNameMax);
+}
+
+<*
+ @param [&in] lpWndClass
+*>
+macro ushort register_class(WndClassA* lpWndClass)
+@if(!$feature(WIN32_UNICODE))
+{
+    return register_classA(lpWndClass);
+}
+
+<*
+ @param [&in] lpWndClass
+*>
+macro ushort register_class(WndClassW* lpWndClass)
+@if($feature(WIN32_UNICODE))
+{
+    return register_classW(lpWndClass);
+}
+
+<*
+ @param [&in] param0
+*>
+macro ushort register_class_ex(WndClassExA* param0)
+@if(!$feature(WIN32_UNICODE))
+{
+    return register_class_exA(param0);
+}
+
+<*
+ @param [&in] param0
+*>
+macro ushort register_class_ex(WndClassExW* param0)
+@if($feature(WIN32_UNICODE))
+{
+    return register_class_exW(param0);
+}
+
+<*
+ @param [&in] notificationFilter
+*>
+macro HDevNotify register_device_notification(Handle hRecipient, void* notificationFilter, RegisterNotificationFlags flags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return register_device_notificationA(hRecipient, notificationFilter, flags);
+}
+
+<*
+ @param [&in] notificationFilter
+*>
+macro HDevNotify register_device_notification(Handle hRecipient, void* notificationFilter, RegisterNotificationFlags flags)
+@if($feature(WIN32_UNICODE))
+{
+    return register_device_notificationW(hRecipient, notificationFilter, flags);
+}
+
+macro uint register_window_message(char* lpString)
+@if(!$feature(WIN32_UNICODE))
+{
+    return register_window_messageA(lpString);
+}
+
+macro uint register_window_message(ushort* lpString)
+@if($feature(WIN32_UNICODE))
+{
+    return register_window_messageW(lpString);
+}
+
+macro Handle remove_prop(HWnd hWnd, char* lpString)
+@if(!$feature(WIN32_UNICODE))
+{
+    return remove_propA(hWnd, lpString);
+}
+
+macro Handle remove_prop(HWnd hWnd, ushort* lpString)
+@if($feature(WIN32_UNICODE))
+{
+    return remove_propW(hWnd, lpString);
+}
+
+macro LResult send_dlg_item_message(HWnd hDlg, int nIDDlgItem, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return send_dlg_item_messageA(hDlg, nIDDlgItem, msg, wParam, lParam);
+}
+
+macro LResult send_dlg_item_message(HWnd hDlg, int nIDDlgItem, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return send_dlg_item_messageW(hDlg, nIDDlgItem, msg, wParam, lParam);
+}
+
+macro LResult send_message(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return send_messageA(hWnd, msg, wParam, lParam);
+}
+
+macro LResult send_message(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return send_messageW(hWnd, msg, wParam, lParam);
+}
+
+macro Bool send_message_callback(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendAsyncProc lpResultCallBack, uptr dwData)
+@if(!$feature(WIN32_UNICODE))
+{
+    return send_message_callbackA(hWnd, msg, wParam, lParam, lpResultCallBack, dwData);
+}
+
+macro Bool send_message_callback(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendAsyncProc lpResultCallBack, uptr dwData)
+@if($feature(WIN32_UNICODE))
+{
+    return send_message_callbackW(hWnd, msg, wParam, lParam, lpResultCallBack, dwData);
+}
+
+<*
+ @param [out] lpdwResult
+*>
+macro LResult send_message_timeout(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendMessageTimeoutFlags fuFlags, uint uTimeout, uptr* lpdwResult)
+@if(!$feature(WIN32_UNICODE))
+{
+    return send_message_timeoutA(hWnd, msg, wParam, lParam, fuFlags, uTimeout, lpdwResult);
+}
+
+<*
+ @param [out] lpdwResult
+*>
+macro LResult send_message_timeout(HWnd hWnd, uint msg, WParam wParam, LParam lParam, SendMessageTimeoutFlags fuFlags, uint uTimeout, uptr* lpdwResult)
+@if($feature(WIN32_UNICODE))
+{
+    return send_message_timeoutW(hWnd, msg, wParam, lParam, fuFlags, uTimeout, lpdwResult);
+}
+
+macro Bool send_notify_message(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return send_notify_messageA(hWnd, msg, wParam, lParam);
+}
+
+macro Bool send_notify_message(HWnd hWnd, uint msg, WParam wParam, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return send_notify_messageW(hWnd, msg, wParam, lParam);
+}
+
+macro uint set_class_long(HWnd hWnd, GetClassLongIndex nIndex, int dwNewLong)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_class_longA(hWnd, nIndex, dwNewLong);
+}
+
+macro uint set_class_long(HWnd hWnd, GetClassLongIndex nIndex, int dwNewLong)
+@if($feature(WIN32_UNICODE))
+{
+    return set_class_longW(hWnd, nIndex, dwNewLong);
+}
+
+macro uptr set_class_long_ptr(HWnd hWnd, GetClassLongIndex nIndex, iptr dwNewLong)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_class_long_ptrA(hWnd, nIndex, dwNewLong);
+}
+
+macro uptr set_class_long_ptr(HWnd hWnd, GetClassLongIndex nIndex, iptr dwNewLong)
+@if($feature(WIN32_UNICODE))
+{
+    return set_class_long_ptrW(hWnd, nIndex, dwNewLong);
+}
+
+macro Bool set_dlg_item_text(HWnd hDlg, int nIDDlgItem, char* lpString)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_dlg_item_textA(hDlg, nIDDlgItem, lpString);
+}
+
+macro Bool set_dlg_item_text(HWnd hDlg, int nIDDlgItem, ushort* lpString)
+@if($feature(WIN32_UNICODE))
+{
+    return set_dlg_item_textW(hDlg, nIDDlgItem, lpString);
+}
+
+<*
+ @param [&in] lpmii
+*>
+macro Bool set_menu_item_info(HMenu hmenu, uint item, Bool fByPositon, MenuItemInfoA* lpmii)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_menu_item_infoA(hmenu, item, fByPositon, lpmii);
+}
+
+<*
+ @param [&in] lpmii
+*>
+macro Bool set_menu_item_info(HMenu hmenu, uint item, Bool fByPositon, MenuItemInfoW* lpmii)
+@if($feature(WIN32_UNICODE))
+{
+    return set_menu_item_infoW(hmenu, item, fByPositon, lpmii);
+}
+
+macro Bool set_prop(HWnd hWnd, char* lpString, Handle hData)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_propA(hWnd, lpString, hData);
+}
+
+macro Bool set_prop(HWnd hWnd, ushort* lpString, Handle hData)
+@if($feature(WIN32_UNICODE))
+{
+    return set_propW(hWnd, lpString, hData);
+}
+
+macro int set_window_long(HWnd hWnd, WindowLongPtrIndex nIndex, int dwNewLong)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_window_longA(hWnd, nIndex, dwNewLong);
+}
+
+macro int set_window_long(HWnd hWnd, WindowLongPtrIndex nIndex, int dwNewLong)
+@if($feature(WIN32_UNICODE))
+{
+    return set_window_longW(hWnd, nIndex, dwNewLong);
+}
+
+macro iptr set_window_long_ptr(HWnd hWnd, WindowLongPtrIndex nIndex, iptr dwNewLong)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_window_long_ptrA(hWnd, nIndex, dwNewLong);
+}
+
+macro iptr set_window_long_ptr(HWnd hWnd, WindowLongPtrIndex nIndex, iptr dwNewLong)
+@if($feature(WIN32_UNICODE))
+{
+    return set_window_long_ptrW(hWnd, nIndex, dwNewLong);
+}
+
+macro Bool set_window_text(HWnd hWnd, char* lpString)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_window_textA(hWnd, lpString);
+}
+
+macro Bool set_window_text(HWnd hWnd, ushort* lpString)
+@if($feature(WIN32_UNICODE))
+{
+    return set_window_textW(hWnd, lpString);
+}
+
+macro HHook set_windows_hook(int nFilterType, HookProc pfnFilterProc)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_windows_hookA(nFilterType, pfnFilterProc);
+}
+
+macro HHook set_windows_hook(int nFilterType, HookProc pfnFilterProc)
+@if($feature(WIN32_UNICODE))
+{
+    return set_windows_hookW(nFilterType, pfnFilterProc);
+}
+
+macro HHook set_windows_hook_ex(WindowsHookId idHook, HookProc lpfn, HInstance hmod, uint dwThreadId)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_windows_hook_exA(idHook, lpfn, hmod, dwThreadId);
+}
+
+macro HHook set_windows_hook_ex(WindowsHookId idHook, HookProc lpfn, HInstance hmod, uint dwThreadId)
+@if($feature(WIN32_UNICODE))
+{
+    return set_windows_hook_exW(idHook, lpfn, hmod, dwThreadId);
+}
+
+<*
+ @param [inout] pvParam
+*>
+macro Bool system_parameters_info(SystemParametersInfoAction uiAction, uint uiParam, void* pvParam, SystemParametersInfoUpdateFlags fWinIni)
+@if(!$feature(WIN32_UNICODE))
+{
+    return system_parameters_infoA(uiAction, uiParam, pvParam, fWinIni);
+}
+
+<*
+ @param [inout] pvParam
+*>
+macro Bool system_parameters_info(SystemParametersInfoAction uiAction, uint uiParam, void* pvParam, SystemParametersInfoUpdateFlags fWinIni)
+@if($feature(WIN32_UNICODE))
+{
+    return system_parameters_infoW(uiAction, uiParam, pvParam, fWinIni);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro int translate_accelerator(HWnd hWnd, HAccel hAccTable, Msg* lpMsg)
+@if(!$feature(WIN32_UNICODE))
+{
+    return translate_acceleratorA(hWnd, hAccTable, lpMsg);
+}
+
+<*
+ @param [&in] lpMsg
+*>
+macro int translate_accelerator(HWnd hWnd, HAccel hAccTable, Msg* lpMsg)
+@if($feature(WIN32_UNICODE))
+{
+    return translate_acceleratorW(hWnd, hAccTable, lpMsg);
+}
+
+macro Bool unregister_class(char* lpClassName, HInstance hInstance)
+@if(!$feature(WIN32_UNICODE))
+{
+    return unregister_classA(lpClassName, hInstance);
+}
+
+macro Bool unregister_class(ushort* lpClassName, HInstance hInstance)
+@if($feature(WIN32_UNICODE))
+{
+    return unregister_classW(lpClassName, hInstance);
+}
+
+macro int wsprintf(char* param0, char* param1)
+@if(!$feature(WIN32_UNICODE))
+{
+    return wsprintfA(param0, param1);
+}
+
+macro int wsprintf(ushort* param0, ushort* param1)
+@if($feature(WIN32_UNICODE))
+{
+    return wsprintfW(param0, param1);
+}
+
+<*
+ @param [&in] arglist
+*>
+macro int wvsprintf(char* param0, char* param1, ichar* arglist)
+@if(!$feature(WIN32_UNICODE))
+{
+    return wvsprintfA(param0, param1, arglist);
+}
+
+<*
+ @param [&in] arglist
+*>
+macro int wvsprintf(ushort* param0, ushort* param1, ichar* arglist)
+@if($feature(WIN32_UNICODE))
+{
+    return wvsprintfW(param0, param1, arglist);
+}
+

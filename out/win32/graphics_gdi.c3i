@@ -1,0 +1,4644 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.Graphics.Gdi
+
+// Win32 original: ABC
+struct Abc
+{
+    int abcA;
+    uint abcB;
+    int abcC;
+}
+
+// Win32 original: ABCFLOAT
+struct AbcFloat
+{
+    float abcfA;
+    float abcfB;
+    float abcfC;
+}
+
+// Win32 original: ARC_DIRECTION
+constdef ArcDirection : int
+{
+    AD_COUNTERCLOCKWISE = 1,
+    AD_CLOCKWISE = 2
+}
+
+// Win32 original: BITMAP
+struct Bitmap
+{
+    int bmType;
+    int bmWidth;
+    int bmHeight;
+    int bmWidthBytes;
+    ushort bmPlanes;
+    ushort bmBitsPixel;
+    void* bmBits;
+}
+
+// Win32 original: BITMAPINFO
+struct BitmapInfo
+{
+    BitmapInfoHeader bmiHeader;
+    RgbQuad[1] bmiColors;
+}
+
+// Win32 original: BITMAPINFOHEADER
+struct BitmapInfoHeader
+{
+    uint biSize;
+    int biWidth;
+    int biHeight;
+    ushort biPlanes;
+    ushort biBitCount;
+    uint biCompression;
+    uint biSizeImage;
+    int biXPelsPerMeter;
+    int biYPelsPerMeter;
+    uint biClrUsed;
+    uint biClrImportant;
+}
+
+// Win32 original: BI_COMPRESSION
+constdef BiCompression : uint
+{
+    BI_RGB = 0,
+    BI_RLE8 = 1,
+    BI_RLE4 = 2,
+    BI_BITFIELDS = 3,
+    BI_JPEG = 4,
+    BI_PNG = 5
+}
+
+// Win32 original: BLENDFUNCTION
+struct BlendFunction
+{
+    char blendOp;
+    char blendFlags;
+    char sourceConstantAlpha;
+    char alphaFormat;
+}
+
+// Win32 original: BRUSH_STYLE
+constdef BrushStyle : uint
+{
+    BS_SOLID = 0,
+    BS_NULL = 1,
+    BS_HOLLOW = 1,
+    BS_HATCHED = 2,
+    BS_PATTERN = 3,
+    BS_INDEXED = 4,
+    BS_DIBPATTERN = 5,
+    BS_DIBPATTERNPT = 6,
+    BS_PATTERN8X8 = 7,
+    BS_DIBPATTERN8X8 = 8,
+    BS_MONOPATTERN = 9
+}
+
+// Win32 original: CDS_TYPE
+constdef CdsType : uint
+{
+    CDS_FULLSCREEN = 4,
+    CDS_GLOBAL = 8,
+    CDS_NORESET = 268435456,
+    CDS_RESET = 1073741824,
+    CDS_SET_PRIMARY = 16,
+    CDS_TEST = 2,
+    CDS_UPDATEREGISTRY = 1,
+    CDS_VIDEOPARAMETERS = 32,
+    CDS_ENABLE_UNSAFE_MODES = 256,
+    CDS_DISABLE_UNSAFE_MODES = 512,
+    CDS_RESET_EX = 536870912
+}
+
+// Win32 original: CFP_ALLOCPROC
+alias CfpAllocProc = fn void*(uptr param0);
+
+// Win32 original: CFP_FREEPROC
+alias CfpFreeProc = fn void(void* param0);
+
+// Win32 original: CFP_REALLOCPROC
+alias CfpReallocProc = fn void*(void* param0, uptr param1);
+
+// Win32 original: COLORADJUSTMENT
+struct ColorAdjustment
+{
+    ushort caSize;
+    ushort caFlags;
+    ushort caIlluminantIndex;
+    ushort caRedGamma;
+    ushort caGreenGamma;
+    ushort caBlueGamma;
+    ushort caReferenceBlack;
+    ushort caReferenceWhite;
+    short caContrast;
+    short caBrightness;
+    short caColorfulness;
+    short caRedGreenTint;
+}
+
+// Win32 original: CREATE_FONT_PACKAGE_SUBSET_ENCODING
+constdef CreateFontPackageSubsetEncoding : short
+{
+    TTFCFP_STD_MAC_CHAR_SET = 0,
+    TTFCFP_SYMBOL_CHAR_SET = 0,
+    TTFCFP_UNICODE_CHAR_SET = 1
+}
+
+// Win32 original: CREATE_FONT_PACKAGE_SUBSET_PLATFORM
+constdef CreateFontPackageSubsetPlatform : short
+{
+    TTFCFP_UNICODE_PLATFORMID = 0,
+    TTFCFP_ISO_PLATFORMID = 2
+}
+
+// Win32 original: CREATE_POLYGON_RGN_MODE
+constdef CreatePolygonRgnMode : int
+{
+    ALTERNATE = 1,
+    WINDING = 2
+}
+
+// Win32 original: DC_LAYOUT
+constdef DcLayout : uint
+{
+    LAYOUT_BITMAPORIENTATIONPRESERVED = 8,
+    LAYOUT_RTL = 1
+}
+
+// Win32 original: DESIGNVECTOR
+struct DesignVector
+{
+    uint dvReserved;
+    uint dvNumAxes;
+    int[16] dvValues;
+}
+
+// Win32 original: DEVMODEA
+struct DevModeA
+{
+    char[32] dmDeviceName;
+    ushort dmSpecVersion;
+    ushort dmDriverVersion;
+    ushort dmSize;
+    ushort dmDriverExtra;
+    DevModeFieldFlags dmFields;
+    DevModeColor dmColor;
+    DevModeDuplex dmDuplex;
+    short dmYResolution;
+    DevModeTruetypeOption dmTTOption;
+    DevModeCollate dmCollate;
+    char[32] dmFormName;
+    ushort dmLogPixels;
+    uint dmBitsPerPel;
+    uint dmPelsWidth;
+    uint dmPelsHeight;
+    uint dmDisplayFrequency;
+    uint dmICMMethod;
+    uint dmICMIntent;
+    uint dmMediaType;
+    uint dmDitherType;
+    uint dmReserved1;
+    uint dmReserved2;
+    uint dmPanningWidth;
+    uint dmPanningHeight;
+}
+
+// Win32 original: DEVMODEW
+struct DevModeW
+{
+    ushort[32] dmDeviceName;
+    ushort dmSpecVersion;
+    ushort dmDriverVersion;
+    ushort dmSize;
+    ushort dmDriverExtra;
+    DevModeFieldFlags dmFields;
+    DevModeColor dmColor;
+    DevModeDuplex dmDuplex;
+    short dmYResolution;
+    DevModeTruetypeOption dmTTOption;
+    DevModeCollate dmCollate;
+    ushort[32] dmFormName;
+    ushort dmLogPixels;
+    uint dmBitsPerPel;
+    uint dmPelsWidth;
+    uint dmPelsHeight;
+    uint dmDisplayFrequency;
+    uint dmICMMethod;
+    uint dmICMIntent;
+    uint dmMediaType;
+    uint dmDitherType;
+    uint dmReserved1;
+    uint dmReserved2;
+    uint dmPanningWidth;
+    uint dmPanningHeight;
+}
+
+// Win32 original: DEVMODE_COLLATE
+constdef DevModeCollate : short
+{
+    DMCOLLATE_FALSE = 0,
+    DMCOLLATE_TRUE = 1
+}
+
+// Win32 original: DEVMODE_COLOR
+constdef DevModeColor : short
+{
+    DMCOLOR_MONOCHROME = 1,
+    DMCOLOR_COLOR = 2
+}
+
+// Win32 original: DEVMODE_DUPLEX
+constdef DevModeDuplex : short
+{
+    DMDUP_SIMPLEX = 1,
+    DMDUP_VERTICAL = 2,
+    DMDUP_HORIZONTAL = 3
+}
+
+// Win32 original: DEVMODE_FIELD_FLAGS
+constdef DevModeFieldFlags : uint
+{
+    DM_SPECVERSION = 1025,
+    DM_ORIENTATION = 1,
+    DM_PAPERSIZE = 2,
+    DM_PAPERLENGTH = 4,
+    DM_PAPERWIDTH = 8,
+    DM_SCALE = 16,
+    DM_POSITION = 32,
+    DM_NUP = 64,
+    DM_DISPLAYORIENTATION = 128,
+    DM_COPIES = 256,
+    DM_DEFAULTSOURCE = 512,
+    DM_PRINTQUALITY = 1024,
+    DM_COLOR = 2048,
+    DM_DUPLEX = 4096,
+    DM_YRESOLUTION = 8192,
+    DM_TTOPTION = 16384,
+    DM_COLLATE = 32768,
+    DM_FORMNAME = 65536,
+    DM_LOGPIXELS = 131072,
+    DM_BITSPERPEL = 262144,
+    DM_PELSWIDTH = 524288,
+    DM_PELSHEIGHT = 1048576,
+    DM_DISPLAYFLAGS = 2097152,
+    DM_DISPLAYFREQUENCY = 4194304,
+    DM_ICMMETHOD = 8388608,
+    DM_ICMINTENT = 16777216,
+    DM_MEDIATYPE = 33554432,
+    DM_DITHERTYPE = 67108864,
+    DM_PANNINGWIDTH = 134217728,
+    DM_PANNINGHEIGHT = 268435456,
+    DM_DISPLAYFIXEDOUTPUT = 536870912,
+    DM_INTERLACED = 2,
+    DM_UPDATE = 1,
+    DM_COPY = 2,
+    DM_PROMPT = 4,
+    DM_MODIFY = 8,
+    DM_IN_BUFFER = 8,
+    DM_IN_PROMPT = 4,
+    DM_OUT_BUFFER = 2,
+    DM_OUT_DEFAULT = 1
+}
+
+// Win32 original: DEVMODE_TRUETYPE_OPTION
+constdef DevModeTruetypeOption : short
+{
+    DMTT_BITMAP = 1,
+    DMTT_DOWNLOAD = 2,
+    DMTT_SUBDEV = 3,
+    DMTT_DOWNLOAD_OUTLINE = 4
+}
+
+// Win32 original: DIB_USAGE
+constdef DibUsage : uint
+{
+    DIB_RGB_COLORS = 0,
+    DIB_PAL_COLORS = 1
+}
+
+// Win32 original: DISPLAY_DEVICEA
+struct DisplayDeviceA
+{
+    uint cb;
+    char[32] deviceName;
+    char[128] deviceString;
+    DisplayDeviceStateFlags stateFlags;
+    char[128] deviceID;
+    char[128] deviceKey;
+}
+
+// Win32 original: DISPLAY_DEVICEW
+struct DisplayDeviceW
+{
+    uint cb;
+    ushort[32] deviceName;
+    ushort[128] deviceString;
+    DisplayDeviceStateFlags stateFlags;
+    ushort[128] deviceID;
+    ushort[128] deviceKey;
+}
+
+// Win32 original: DISPLAY_DEVICE_STATE_FLAGS
+constdef DisplayDeviceStateFlags : uint
+{
+    DISPLAY_DEVICE_ATTACHED_TO_DESKTOP = 1,
+    DISPLAY_DEVICE_MULTI_DRIVER = 2,
+    DISPLAY_DEVICE_PRIMARY_DEVICE = 4,
+    DISPLAY_DEVICE_MIRRORING_DRIVER = 8,
+    DISPLAY_DEVICE_VGA_COMPATIBLE = 16,
+    DISPLAY_DEVICE_REMOVABLE = 32,
+    DISPLAY_DEVICE_ACC_DRIVER = 64,
+    DISPLAY_DEVICE_MODESPRUNED = 134217728,
+    DISPLAY_DEVICE_RDPUDD = 16777216,
+    DISPLAY_DEVICE_REMOTE = 67108864,
+    DISPLAY_DEVICE_DISCONNECT = 33554432,
+    DISPLAY_DEVICE_TS_COMPATIBLE = 2097152,
+    DISPLAY_DEVICE_UNSAFE_MODES_ON = 524288,
+    DISPLAY_DEVICE_ACTIVE = 1,
+    DISPLAY_DEVICE_ATTACHED = 2
+}
+
+// Win32 original: DISP_CHANGE
+constdef DispChange : int
+{
+    DISP_CHANGE_SUCCESSFUL = 0,
+    DISP_CHANGE_RESTART = 1,
+    DISP_CHANGE_FAILED = -1,
+    DISP_CHANGE_BADMODE = -2,
+    DISP_CHANGE_NOTUPDATED = -3,
+    DISP_CHANGE_BADFLAGS = -4,
+    DISP_CHANGE_BADPARAM = -5,
+    DISP_CHANGE_BADDUALVIEW = -6
+}
+
+// Win32 original: DRAWEDGE_FLAGS
+constdef DrawedgeFlags : uint
+{
+    BDR_RAISEDOUTER = 1,
+    BDR_SUNKENOUTER = 2,
+    BDR_RAISEDINNER = 4,
+    BDR_SUNKENINNER = 8,
+    BDR_OUTER = 3,
+    BDR_INNER = 12,
+    BDR_RAISED = 5,
+    BDR_SUNKEN = 10,
+    EDGE_RAISED = 5,
+    EDGE_SUNKEN = 10,
+    EDGE_ETCHED = 6,
+    EDGE_BUMP = 9
+}
+
+// Win32 original: DRAWSTATEPROC
+alias DrawStateProc = fn Bool(Hdc hdc, LParam lData, WParam wData, int cx, int cy);
+
+// Win32 original: DRAWSTATE_FLAGS
+constdef DrawStateFlags : uint
+{
+    DST_COMPLEX = 0,
+    DST_TEXT = 1,
+    DST_PREFIXTEXT = 2,
+    DST_ICON = 3,
+    DST_BITMAP = 4,
+    DSS_NORMAL = 0,
+    DSS_UNION = 16,
+    DSS_DISABLED = 32,
+    DSS_MONO = 128,
+    DSS_HIDEPREFIX = 512,
+    DSS_PREFIXONLY = 1024,
+    DSS_RIGHT = 32768
+}
+
+// Win32 original: DRAWTEXTPARAMS
+struct DrawTextParams
+{
+    uint cbSize;
+    int iTabLength;
+    int iLeftMargin;
+    int iRightMargin;
+    uint uiLengthDrawn;
+}
+
+// Win32 original: DRAW_CAPTION_FLAGS
+constdef DrawCaptionFlags : uint
+{
+    DC_ACTIVE = 1,
+    DC_BUTTONS = 4096,
+    DC_GRADIENT = 32,
+    DC_ICON = 4,
+    DC_INBUTTON = 16,
+    DC_SMALLCAP = 2,
+    DC_TEXT = 8
+}
+
+// Win32 original: DRAW_EDGE_FLAGS
+constdef DrawEdgeFlags : uint
+{
+    BF_ADJUST = 8192,
+    BF_BOTTOM = 8,
+    BF_BOTTOMLEFT = 9,
+    BF_BOTTOMRIGHT = 12,
+    BF_DIAGONAL = 16,
+    BF_DIAGONAL_ENDBOTTOMLEFT = 25,
+    BF_DIAGONAL_ENDBOTTOMRIGHT = 28,
+    BF_DIAGONAL_ENDTOPLEFT = 19,
+    BF_DIAGONAL_ENDTOPRIGHT = 22,
+    BF_FLAT = 16384,
+    BF_LEFT = 1,
+    BF_MIDDLE = 2048,
+    BF_MONO = 32768,
+    BF_RECT = 15,
+    BF_RIGHT = 4,
+    BF_SOFT = 4096,
+    BF_TOP = 2,
+    BF_TOPLEFT = 3,
+    BF_TOPRIGHT = 6
+}
+
+// Win32 original: DRAW_TEXT_FORMAT
+constdef DrawTextFormat : uint
+{
+    DT_BOTTOM = 8,
+    DT_CALCRECT = 1024,
+    DT_CENTER = 1,
+    DT_EDITCONTROL = 8192,
+    DT_END_ELLIPSIS = 32768,
+    DT_EXPANDTABS = 64,
+    DT_EXTERNALLEADING = 512,
+    DT_HIDEPREFIX = 1048576,
+    DT_INTERNAL = 4096,
+    DT_LEFT = 0,
+    DT_MODIFYSTRING = 65536,
+    DT_NOCLIP = 256,
+    DT_NOFULLWIDTHCHARBREAK = 524288,
+    DT_NOPREFIX = 2048,
+    DT_PATH_ELLIPSIS = 16384,
+    DT_PREFIXONLY = 2097152,
+    DT_RIGHT = 2,
+    DT_RTLREADING = 131072,
+    DT_SINGLELINE = 32,
+    DT_TABSTOP = 128,
+    DT_TOP = 0,
+    DT_VCENTER = 4,
+    DT_WORDBREAK = 16,
+    DT_WORD_ELLIPSIS = 262144
+}
+
+// Win32 original: EMBEDDED_FONT_PRIV_STATUS
+constdef EmbeddedFontPrivStatus : uint
+{
+    EMBED_PREVIEWPRINT = 1,
+    EMBED_EDITABLE = 2,
+    EMBED_INSTALLABLE = 3,
+    EMBED_NOEMBEDDING = 4
+}
+
+// Win32 original: EMBED_FONT_CHARSET
+constdef EmbedFontCharset : uint
+{
+    CHARSET_UNICODE = 1,
+    CHARSET_SYMBOL = 2
+}
+
+// Win32 original: ENHANCED_METAFILE_RECORD_TYPE
+constdef EnhancedMetafileRecordType : uint
+{
+    EMR_HEADER = 1,
+    EMR_POLYBEZIER = 2,
+    EMR_POLYGON = 3,
+    EMR_POLYLINE = 4,
+    EMR_POLYBEZIERTO = 5,
+    EMR_POLYLINETO = 6,
+    EMR_POLYPOLYLINE = 7,
+    EMR_POLYPOLYGON = 8,
+    EMR_SETWINDOWEXTEX = 9,
+    EMR_SETWINDOWORGEX = 10,
+    EMR_SETVIEWPORTEXTEX = 11,
+    EMR_SETVIEWPORTORGEX = 12,
+    EMR_SETBRUSHORGEX = 13,
+    EMR_EOF = 14,
+    EMR_SETPIXELV = 15,
+    EMR_SETMAPPERFLAGS = 16,
+    EMR_SETMAPMODE = 17,
+    EMR_SETBKMODE = 18,
+    EMR_SETPOLYFILLMODE = 19,
+    EMR_SETROP2 = 20,
+    EMR_SETSTRETCHBLTMODE = 21,
+    EMR_SETTEXTALIGN = 22,
+    EMR_SETCOLORADJUSTMENT = 23,
+    EMR_SETTEXTCOLOR = 24,
+    EMR_SETBKCOLOR = 25,
+    EMR_OFFSETCLIPRGN = 26,
+    EMR_MOVETOEX = 27,
+    EMR_SETMETARGN = 28,
+    EMR_EXCLUDECLIPRECT = 29,
+    EMR_INTERSECTCLIPRECT = 30,
+    EMR_SCALEVIEWPORTEXTEX = 31,
+    EMR_SCALEWINDOWEXTEX = 32,
+    EMR_SAVEDC = 33,
+    EMR_RESTOREDC = 34,
+    EMR_SETWORLDTRANSFORM = 35,
+    EMR_MODIFYWORLDTRANSFORM = 36,
+    EMR_SELECTOBJECT = 37,
+    EMR_CREATEPEN = 38,
+    EMR_CREATEBRUSHINDIRECT = 39,
+    EMR_DELETEOBJECT = 40,
+    EMR_ANGLEARC = 41,
+    EMR_ELLIPSE = 42,
+    EMR_RECTANGLE = 43,
+    EMR_ROUNDRECT = 44,
+    EMR_ARC = 45,
+    EMR_CHORD = 46,
+    EMR_PIE = 47,
+    EMR_SELECTPALETTE = 48,
+    EMR_CREATEPALETTE = 49,
+    EMR_SETPALETTEENTRIES = 50,
+    EMR_RESIZEPALETTE = 51,
+    EMR_REALIZEPALETTE = 52,
+    EMR_EXTFLOODFILL = 53,
+    EMR_LINETO = 54,
+    EMR_ARCTO = 55,
+    EMR_POLYDRAW = 56,
+    EMR_SETARCDIRECTION = 57,
+    EMR_SETMITERLIMIT = 58,
+    EMR_BEGINPATH = 59,
+    EMR_ENDPATH = 60,
+    EMR_CLOSEFIGURE = 61,
+    EMR_FILLPATH = 62,
+    EMR_STROKEANDFILLPATH = 63,
+    EMR_STROKEPATH = 64,
+    EMR_FLATTENPATH = 65,
+    EMR_WIDENPATH = 66,
+    EMR_SELECTCLIPPATH = 67,
+    EMR_ABORTPATH = 68,
+    EMR_GDICOMMENT = 70,
+    EMR_FILLRGN = 71,
+    EMR_FRAMERGN = 72,
+    EMR_INVERTRGN = 73,
+    EMR_PAINTRGN = 74,
+    EMR_EXTSELECTCLIPRGN = 75,
+    EMR_BITBLT = 76,
+    EMR_STRETCHBLT = 77,
+    EMR_MASKBLT = 78,
+    EMR_PLGBLT = 79,
+    EMR_SETDIBITSTODEVICE = 80,
+    EMR_STRETCHDIBITS = 81,
+    EMR_EXTCREATEFONTINDIRECTW = 82,
+    EMR_EXTTEXTOUTA = 83,
+    EMR_EXTTEXTOUTW = 84,
+    EMR_POLYBEZIER16 = 85,
+    EMR_POLYGON16 = 86,
+    EMR_POLYLINE16 = 87,
+    EMR_POLYBEZIERTO16 = 88,
+    EMR_POLYLINETO16 = 89,
+    EMR_POLYPOLYLINE16 = 90,
+    EMR_POLYPOLYGON16 = 91,
+    EMR_POLYDRAW16 = 92,
+    EMR_CREATEMONOBRUSH = 93,
+    EMR_CREATEDIBPATTERNBRUSHPT = 94,
+    EMR_EXTCREATEPEN = 95,
+    EMR_POLYTEXTOUTA = 96,
+    EMR_POLYTEXTOUTW = 97,
+    EMR_SETICMMODE = 98,
+    EMR_CREATECOLORSPACE = 99,
+    EMR_SETCOLORSPACE = 100,
+    EMR_DELETECOLORSPACE = 101,
+    EMR_GLSRECORD = 102,
+    EMR_GLSBOUNDEDRECORD = 103,
+    EMR_PIXELFORMAT = 104,
+    EMR_RESERVED_105 = 105,
+    EMR_RESERVED_106 = 106,
+    EMR_RESERVED_107 = 107,
+    EMR_RESERVED_108 = 108,
+    EMR_RESERVED_109 = 109,
+    EMR_RESERVED_110 = 110,
+    EMR_COLORCORRECTPALETTE = 111,
+    EMR_SETICMPROFILEA = 112,
+    EMR_SETICMPROFILEW = 113,
+    EMR_ALPHABLEND = 114,
+    EMR_SETLAYOUT = 115,
+    EMR_TRANSPARENTBLT = 116,
+    EMR_RESERVED_117 = 117,
+    EMR_GRADIENTFILL = 118,
+    EMR_RESERVED_119 = 119,
+    EMR_RESERVED_120 = 120,
+    EMR_COLORMATCHTOTARGETW = 121,
+    EMR_CREATECOLORSPACEW = 122,
+    EMR_MIN = 1,
+    EMR_MAX = 122
+}
+
+// Win32 original: ENHMETAHEADER
+struct EnhMetaHeader
+{
+    uint iType;
+    uint nSize;
+    RectL rclBounds;
+    RectL rclFrame;
+    uint dSignature;
+    uint nVersion;
+    uint nBytes;
+    uint nRecords;
+    ushort nHandles;
+    ushort sReserved;
+    uint nDescription;
+    uint offDescription;
+    uint nPalEntries;
+    Size szlDevice;
+    Size szlMillimeters;
+    uint cbPixelFormat;
+    uint offPixelFormat;
+    uint bOpenGL;
+    Size szlMicrometers;
+}
+
+// Win32 original: ENHMETARECORD
+struct EnhMetaRecord
+{
+    EnhancedMetafileRecordType iType;
+    uint nSize;
+    uint[1] dParm;
+}
+
+// Win32 original: ENHMFENUMPROC
+alias EnhMfEnumProc = fn int(Hdc hdc, HandleTable* lpht, EnhMetaRecord* lpmr, int nHandles, LParam data);
+
+// Win32 original: ENUMLOGFONTEXA
+struct EnumLogFontExA
+{
+    LogFontA elfLogFont;
+    char[64] elfFullName;
+    char[32] elfStyle;
+    char[32] elfScript;
+}
+
+// Win32 original: ENUMLOGFONTEXDVA
+struct EnumLogFontExDvA
+{
+    EnumLogFontExA elfEnumLogfontEx;
+    DesignVector elfDesignVector;
+}
+
+// Win32 original: ENUMLOGFONTEXDVW
+struct EnumLogFontExDvW
+{
+    EnumLogFontExW elfEnumLogfontEx;
+    DesignVector elfDesignVector;
+}
+
+// Win32 original: ENUMLOGFONTEXW
+struct EnumLogFontExW
+{
+    LogFontW elfLogFont;
+    ushort[64] elfFullName;
+    ushort[32] elfStyle;
+    ushort[32] elfScript;
+}
+
+// Win32 original: ENUM_DISPLAY_SETTINGS_FLAGS
+constdef EnumDisplaySettingsFlags : uint
+{
+    EDS_RAWMODE = 2,
+    EDS_ROTATEDMODE = 4
+}
+
+// Win32 original: ENUM_DISPLAY_SETTINGS_MODE
+constdef EnumDisplaySettingsMode : uint
+{
+    ENUM_CURRENT_SETTINGS = 4294967295,
+    ENUM_REGISTRY_SETTINGS = 4294967294
+}
+
+// Win32 original: ETO_OPTIONS
+constdef EtoOptions : uint
+{
+    ETO_OPAQUE = 2,
+    ETO_CLIPPED = 4,
+    ETO_GLYPH_INDEX = 16,
+    ETO_RTLREADING = 128,
+    ETO_NUMERICSLOCAL = 1024,
+    ETO_NUMERICSLATIN = 2048,
+    ETO_IGNORELANGUAGE = 4096,
+    ETO_PDY = 8192,
+    ETO_REVERSE_INDEX_MAP = 65536
+}
+
+// Win32 original: EXT_FLOOD_FILL_TYPE
+constdef ExtFloodFillType : uint
+{
+    FLOODFILLBORDER = 0,
+    FLOODFILLSURFACE = 1
+}
+
+// Win32 original: FIXED
+struct Fixed
+{
+    ushort fract;
+    short value;
+}
+
+// Win32 original: FONTENUMPROCA
+alias FontEnumProcA = fn int(LogFontA* param0, TextMetricA* param1, uint param2, LParam param3);
+
+// Win32 original: FONTENUMPROCW
+alias FontEnumProcW = fn int(LogFontW* param0, TextMetricW* param1, uint param2, LParam param3);
+
+// Win32 original: FONT_CHARSET
+constdef FontCharset : char
+{
+    ANSI_CHARSET = 0,
+    DEFAULT_CHARSET = 1,
+    SYMBOL_CHARSET = 2,
+    SHIFTJIS_CHARSET = 128,
+    HANGEUL_CHARSET = 129,
+    HANGUL_CHARSET = 129,
+    GB2312_CHARSET = 134,
+    CHINESEBIG5_CHARSET = 136,
+    OEM_CHARSET = 255,
+    JOHAB_CHARSET = 130,
+    HEBREW_CHARSET = 177,
+    ARABIC_CHARSET = 178,
+    GREEK_CHARSET = 161,
+    TURKISH_CHARSET = 162,
+    VIETNAMESE_CHARSET = 163,
+    THAI_CHARSET = 222,
+    EASTEUROPE_CHARSET = 238,
+    RUSSIAN_CHARSET = 204,
+    MAC_CHARSET = 77,
+    BALTIC_CHARSET = 186
+}
+
+// Win32 original: FONT_CLIP_PRECISION
+constdef FontClipPrecision : char
+{
+    CLIP_DEFAULT_PRECIS = 0,
+    CLIP_CHARACTER_PRECIS = 1,
+    CLIP_STROKE_PRECIS = 2,
+    CLIP_MASK = 15,
+    CLIP_LH_ANGLES = 16,
+    CLIP_TT_ALWAYS = 32,
+    CLIP_DFA_DISABLE = 64,
+    CLIP_EMBEDDED = 128,
+    CLIP_DFA_OVERRIDE = 64
+}
+
+// Win32 original: FONT_LICENSE_PRIVS
+constdef FontLicensePrivs : uint
+{
+    LICENSE_PREVIEWPRINT = 4,
+    LICENSE_EDITABLE = 8,
+    LICENSE_INSTALLABLE = 0,
+    LICENSE_NOEMBEDDING = 2,
+    LICENSE_DEFAULT = 0
+}
+
+// Win32 original: FONT_OUTPUT_PRECISION
+constdef FontOutputPrecision : char
+{
+    OUT_DEFAULT_PRECIS = 0,
+    OUT_STRING_PRECIS = 1,
+    OUT_CHARACTER_PRECIS = 2,
+    OUT_STROKE_PRECIS = 3,
+    OUT_TT_PRECIS = 4,
+    OUT_DEVICE_PRECIS = 5,
+    OUT_RASTER_PRECIS = 6,
+    OUT_TT_ONLY_PRECIS = 7,
+    OUT_OUTLINE_PRECIS = 8,
+    OUT_SCREEN_OUTLINE_PRECIS = 9,
+    OUT_PS_ONLY_PRECIS = 10
+}
+
+// Win32 original: FONT_QUALITY
+constdef FontQuality : char
+{
+    DEFAULT_QUALITY = 0,
+    DRAFT_QUALITY = 1,
+    PROOF_QUALITY = 2,
+    NONANTIALIASED_QUALITY = 3,
+    ANTIALIASED_QUALITY = 4,
+    CLEARTYPE_QUALITY = 5
+}
+
+// Win32 original: FONT_RESOURCE_CHARACTERISTICS
+constdef FontResourceCharacteristics : uint
+{
+    FR_PRIVATE = 16,
+    FR_NOT_ENUM = 32
+}
+
+// Win32 original: GCP_RESULTSA
+struct GcpResultsA
+{
+    uint lStructSize;
+    char* lpOutString;
+    uint* lpOrder;
+    int* lpDx;
+    int* lpCaretPos;
+    char* lpClass;
+    ushort* lpGlyphs;
+    uint nGlyphs;
+    int nMaxFit;
+}
+
+// Win32 original: GCP_RESULTSW
+struct GcpResultsW
+{
+    uint lStructSize;
+    ushort* lpOutString;
+    uint* lpOrder;
+    int* lpDx;
+    int* lpCaretPos;
+    char* lpClass;
+    ushort* lpGlyphs;
+    uint nGlyphs;
+    int nMaxFit;
+}
+
+// Win32 original: GDI_REGION_TYPE
+constdef GdiRegionType : int
+{
+    RGN_ERROR = 0,
+    NULLREGION = 1,
+    SIMPLEREGION = 2,
+    COMPLEXREGION = 3
+}
+
+// Win32 original: GET_CHARACTER_PLACEMENT_FLAGS
+constdef GetCharacterPlacementFlags : uint
+{
+    GCP_CLASSIN = 524288,
+    GCP_DIACRITIC = 256,
+    GCP_DISPLAYZWG = 4194304,
+    GCP_GLYPHSHAPE = 16,
+    GCP_JUSTIFY = 65536,
+    GCP_KASHIDA = 1024,
+    GCP_LIGATE = 32,
+    GCP_MAXEXTENT = 1048576,
+    GCP_NEUTRALOVERRIDE = 33554432,
+    GCP_NUMERICOVERRIDE = 16777216,
+    GCP_NUMERICSLATIN = 67108864,
+    GCP_NUMERICSLOCAL = 134217728,
+    GCP_REORDER = 2,
+    GCP_SYMSWAPOFF = 8388608,
+    GCP_USEKERNING = 8
+}
+
+// Win32 original: GET_DCX_FLAGS
+constdef GetDcxFlags : uint
+{
+    DCX_WINDOW = 1,
+    DCX_CACHE = 2,
+    DCX_PARENTCLIP = 32,
+    DCX_CLIPSIBLINGS = 16,
+    DCX_CLIPCHILDREN = 8,
+    DCX_NORESETATTRS = 4,
+    DCX_LOCKWINDOWUPDATE = 1024,
+    DCX_EXCLUDERGN = 64,
+    DCX_INTERSECTRGN = 128,
+    DCX_INTERSECTUPDATE = 512,
+    DCX_VALIDATE = 2097152
+}
+
+// Win32 original: GET_GLYPH_OUTLINE_FORMAT
+constdef GetGlyphOutlineFormat : uint
+{
+    GGO_BEZIER = 3,
+    GGO_BITMAP = 1,
+    GGO_GLYPH_INDEX = 128,
+    GGO_GRAY2_BITMAP = 4,
+    GGO_GRAY4_BITMAP = 5,
+    GGO_GRAY8_BITMAP = 6,
+    GGO_METRICS = 0,
+    GGO_NATIVE = 2,
+    GGO_UNHINTED = 256
+}
+
+// Win32 original: GET_STOCK_OBJECT_FLAGS
+constdef GetStockObjectFlags : int
+{
+    BLACK_BRUSH = 4,
+    DKGRAY_BRUSH = 3,
+    DC_BRUSH = 18,
+    GRAY_BRUSH = 2,
+    HOLLOW_BRUSH = 5,
+    LTGRAY_BRUSH = 1,
+    NULL_BRUSH = 5,
+    WHITE_BRUSH = 0,
+    BLACK_PEN = 7,
+    DC_PEN = 19,
+    NULL_PEN = 8,
+    WHITE_PEN = 6,
+    ANSI_FIXED_FONT = 11,
+    ANSI_VAR_FONT = 12,
+    DEVICE_DEFAULT_FONT = 14,
+    DEFAULT_GUI_FONT = 17,
+    OEM_FIXED_FONT = 10,
+    SYSTEM_FONT = 13,
+    SYSTEM_FIXED_FONT = 16,
+    DEFAULT_PALETTE = 15
+}
+
+// Win32 original: GLYPHMETRICS
+struct GlyphMetrics
+{
+    uint gmBlackBoxX;
+    uint gmBlackBoxY;
+    Point gmptGlyphOrigin;
+    short gmCellIncX;
+    short gmCellIncY;
+}
+
+// Win32 original: GLYPHSET
+struct GlyphSet
+{
+    uint cbThis;
+    uint flAccel;
+    uint cGlyphsSupported;
+    uint cRanges;
+    WcRange[1] ranges;
+}
+
+// Win32 original: GOBJENUMPROC
+alias GObjEnumProc = fn int(void* param0, LParam param1);
+
+// Win32 original: GRADIENT_FILL
+constdef GradientFill : uint
+{
+    GRADIENT_FILL_RECT_H = 0,
+    GRADIENT_FILL_RECT_V = 1,
+    GRADIENT_FILL_TRIANGLE = 2
+}
+
+// Win32 original: GRAPHICS_MODE
+constdef GraphicsMode : int
+{
+    GM_COMPATIBLE = 1,
+    GM_ADVANCED = 2
+}
+
+// Win32 original: GRAYSTRINGPROC
+alias GrayStringProc = fn Bool(Hdc param0, LParam param1, int param2);
+
+// Win32 original: HANDLETABLE
+struct HandleTable
+{
+    HGdiObj[1] objectHandle;
+}
+
+// Win32 original: HATCH_BRUSH_STYLE
+constdef HatchBrushStyle : int
+{
+    HS_BDIAGONAL = 3,
+    HS_CROSS = 4,
+    HS_DIAGCROSS = 5,
+    HS_FDIAGONAL = 2,
+    HS_HORIZONTAL = 0,
+    HS_VERTICAL = 1
+}
+
+// Win32 original: HBITMAP
+alias HBitmap = void*;
+
+// Win32 original: HBRUSH
+alias HBrush = void*;
+
+// Win32 original: HDC
+alias Hdc = void*;
+
+// Win32 original: HDC_MAP_MODE
+constdef HdcMapMode : int
+{
+    MM_ANISOTROPIC = 8,
+    MM_HIENGLISH = 5,
+    MM_HIMETRIC = 3,
+    MM_ISOTROPIC = 7,
+    MM_LOENGLISH = 4,
+    MM_LOMETRIC = 2,
+    MM_TEXT = 1,
+    MM_TWIPS = 6
+}
+
+// Win32 original: HENHMETAFILE
+alias HEnhMetafile = void*;
+
+// Win32 original: HFONT
+alias HFont = void*;
+
+// Win32 original: HGDIOBJ
+alias HGdiObj = void*;
+
+// Win32 original: HMETAFILE
+alias HMetafile = void*;
+
+// Win32 original: HMONITOR
+alias HMonitor = void*;
+
+// Win32 original: HPALETTE
+alias HPalette = void*;
+
+// Win32 original: HPEN
+alias HPen = void*;
+
+// Win32 original: HRGN
+alias HRgn = void*;
+
+// Win32 original: KERNINGPAIR
+struct KerningPair
+{
+    ushort wFirst;
+    ushort wSecond;
+    int iKernAmount;
+}
+
+// Win32 original: LINEDDAPROC
+alias LineDdaProc = fn void(int param0, int param1, LParam param2);
+
+// Win32 original: LOGBRUSH
+struct LogBrush
+{
+    BrushStyle lbStyle;
+    ColorRef lbColor;
+    uptr lbHatch;
+}
+
+// Win32 original: LOGFONTA
+struct LogFontA
+{
+    int lfHeight;
+    int lfWidth;
+    int lfEscapement;
+    int lfOrientation;
+    int lfWeight;
+    char lfItalic;
+    char lfUnderline;
+    char lfStrikeOut;
+    FontCharset lfCharSet;
+    FontOutputPrecision lfOutPrecision;
+    FontClipPrecision lfClipPrecision;
+    FontQuality lfQuality;
+    char lfPitchAndFamily;
+    char[32] lfFaceName;
+}
+
+// Win32 original: LOGFONTW
+struct LogFontW
+{
+    int lfHeight;
+    int lfWidth;
+    int lfEscapement;
+    int lfOrientation;
+    int lfWeight;
+    char lfItalic;
+    char lfUnderline;
+    char lfStrikeOut;
+    FontCharset lfCharSet;
+    FontOutputPrecision lfOutPrecision;
+    FontClipPrecision lfClipPrecision;
+    FontQuality lfQuality;
+    char lfPitchAndFamily;
+    ushort[32] lfFaceName;
+}
+
+// Win32 original: LOGPALETTE
+struct LogPalette
+{
+    ushort palVersion;
+    ushort palNumEntries;
+    PaletteEntry[1] palPalEntry;
+}
+
+// Win32 original: LOGPEN
+struct LogPen
+{
+    uint lopnStyle;
+    Point lopnWidth;
+    ColorRef lopnColor;
+}
+
+// Win32 original: MAT2
+struct MAT2Type
+{
+    Fixed eM11;
+    Fixed eM12;
+    Fixed eM21;
+    Fixed eM22;
+}
+
+// Win32 original: METARECORD
+struct MetaRecord
+{
+    uint rdSize;
+    ushort rdFunction;
+    ushort[1] rdParm;
+}
+
+// Win32 original: MFENUMPROC
+alias MfEnumProc = fn int(Hdc hdc, HandleTable* lpht, MetaRecord* lpMR, int nObj, LParam param4);
+
+// Win32 original: MODIFY_WORLD_TRANSFORM_MODE
+constdef ModifyWorldTransformMode : uint
+{
+    MWT_IDENTITY = 1,
+    MWT_LEFTMULTIPLY = 2,
+    MWT_RIGHTMULTIPLY = 3
+}
+
+// Win32 original: MONITORENUMPROC
+alias MonitorEnumProc = fn Bool(HMonitor param0, Hdc param1, Rect* param2, LParam param3);
+
+// Win32 original: MONITORINFO
+struct MonitorInfo
+{
+    uint cbSize;
+    Rect rcMonitor;
+    Rect rcWork;
+    uint dwFlags;
+}
+
+// Win32 original: MONITOR_FROM_FLAGS
+constdef MonitorFromFlags : uint
+{
+    MONITOR_DEFAULTTONEAREST = 2,
+    MONITOR_DEFAULTTONULL = 0,
+    MONITOR_DEFAULTTOPRIMARY = 1
+}
+
+// Win32 original: OBJ_TYPE
+constdef ObjType : int
+{
+    OBJ_PEN = 1,
+    OBJ_BRUSH = 2,
+    OBJ_DC = 3,
+    OBJ_METADC = 4,
+    OBJ_PAL = 5,
+    OBJ_FONT = 6,
+    OBJ_BITMAP = 7,
+    OBJ_REGION = 8,
+    OBJ_METAFILE = 9,
+    OBJ_MEMDC = 10,
+    OBJ_EXTPEN = 11,
+    OBJ_ENHMETADC = 12,
+    OBJ_ENHMETAFILE = 13,
+    OBJ_COLORSPACE = 14
+}
+
+// Win32 original: OUTLINETEXTMETRICA
+struct OutlineTextMetricA
+{
+    uint otmSize;
+    TextMetricA otmTextMetrics;
+    char otmFiller;
+    Panose otmPanoseNumber;
+    uint otmfsSelection;
+    uint otmfsType;
+    int otmsCharSlopeRise;
+    int otmsCharSlopeRun;
+    int otmItalicAngle;
+    uint otmEMSquare;
+    int otmAscent;
+    int otmDescent;
+    uint otmLineGap;
+    uint otmsCapEmHeight;
+    uint otmsXHeight;
+    Rect otmrcFontBox;
+    int otmMacAscent;
+    int otmMacDescent;
+    uint otmMacLineGap;
+    uint otmusMinimumPPEM;
+    Point otmptSubscriptSize;
+    Point otmptSubscriptOffset;
+    Point otmptSuperscriptSize;
+    Point otmptSuperscriptOffset;
+    uint otmsStrikeoutSize;
+    int otmsStrikeoutPosition;
+    int otmsUnderscoreSize;
+    int otmsUnderscorePosition;
+    char* otmpFamilyName;
+    char* otmpFaceName;
+    char* otmpStyleName;
+    char* otmpFullName;
+}
+
+// Win32 original: OUTLINETEXTMETRICW
+struct OutlineTextMetricW
+{
+    uint otmSize;
+    TextMetricW otmTextMetrics;
+    char otmFiller;
+    Panose otmPanoseNumber;
+    uint otmfsSelection;
+    uint otmfsType;
+    int otmsCharSlopeRise;
+    int otmsCharSlopeRun;
+    int otmItalicAngle;
+    uint otmEMSquare;
+    int otmAscent;
+    int otmDescent;
+    uint otmLineGap;
+    uint otmsCapEmHeight;
+    uint otmsXHeight;
+    Rect otmrcFontBox;
+    int otmMacAscent;
+    int otmMacDescent;
+    uint otmMacLineGap;
+    uint otmusMinimumPPEM;
+    Point otmptSubscriptSize;
+    Point otmptSubscriptOffset;
+    Point otmptSuperscriptSize;
+    Point otmptSuperscriptOffset;
+    uint otmsStrikeoutSize;
+    int otmsStrikeoutPosition;
+    int otmsUnderscoreSize;
+    int otmsUnderscorePosition;
+    char* otmpFamilyName;
+    char* otmpFaceName;
+    char* otmpStyleName;
+    char* otmpFullName;
+}
+
+// Win32 original: PAINTSTRUCT
+struct PaintStruct
+{
+    Hdc hdc;
+    Bool fErase;
+    Rect rcPaint;
+    Bool fRestore;
+    Bool fIncUpdate;
+    char[32] rgbReserved;
+}
+
+// Win32 original: PALETTEENTRY
+struct PaletteEntry
+{
+    char peRed;
+    char peGreen;
+    char peBlue;
+    char peFlags;
+}
+
+// Win32 original: PANOSE
+struct Panose
+{
+    PanFamilyType bFamilyType;
+    PanSerifStyle bSerifStyle;
+    PanWeight bWeight;
+    PanProportion bProportion;
+    PanContrast bContrast;
+    PanStrokeVariation bStrokeVariation;
+    PanArmStyle bArmStyle;
+    PanLettForm bLetterform;
+    PanMidline bMidline;
+    PanXheight bXHeight;
+}
+
+// Win32 original: PAN_ARM_STYLE
+constdef PanArmStyle : char
+{
+    PAN_ARM_ANY = 0,
+    PAN_ARM_NO_FIT = 1,
+    PAN_STRAIGHT_ARMS_HORZ = 2,
+    PAN_STRAIGHT_ARMS_WEDGE = 3,
+    PAN_STRAIGHT_ARMS_VERT = 4,
+    PAN_STRAIGHT_ARMS_SINGLE_SERIF = 5,
+    PAN_STRAIGHT_ARMS_DOUBLE_SERIF = 6,
+    PAN_BENT_ARMS_HORZ = 7,
+    PAN_BENT_ARMS_WEDGE = 8,
+    PAN_BENT_ARMS_VERT = 9,
+    PAN_BENT_ARMS_SINGLE_SERIF = 10,
+    PAN_BENT_ARMS_DOUBLE_SERIF = 11
+}
+
+// Win32 original: PAN_CONTRAST
+constdef PanContrast : char
+{
+    PAN_CONTRAST_ANY = 0,
+    PAN_CONTRAST_NO_FIT = 1,
+    PAN_CONTRAST_INDEX = 4,
+    PAN_CONTRAST_NONE = 2,
+    PAN_CONTRAST_VERY_LOW = 3,
+    PAN_CONTRAST_LOW = 4,
+    PAN_CONTRAST_MEDIUM_LOW = 5,
+    PAN_CONTRAST_MEDIUM = 6,
+    PAN_CONTRAST_MEDIUM_HIGH = 7,
+    PAN_CONTRAST_HIGH = 8,
+    PAN_CONTRAST_VERY_HIGH = 9
+}
+
+// Win32 original: PAN_FAMILY_TYPE
+constdef PanFamilyType : char
+{
+    PAN_FAMILY_ANY = 0,
+    PAN_FAMILY_NO_FIT = 1,
+    PAN_FAMILY_TEXT_DISPLAY = 2,
+    PAN_FAMILY_SCRIPT = 3,
+    PAN_FAMILY_DECORATIVE = 4,
+    PAN_FAMILY_PICTORIAL = 5
+}
+
+// Win32 original: PAN_LETT_FORM
+constdef PanLettForm : char
+{
+    PAN_LETT_FORM_ANY = 0,
+    PAN_LETT_FORM_NO_FIT = 1,
+    PAN_LETT_NORMAL_CONTACT = 2,
+    PAN_LETT_NORMAL_WEIGHTED = 3,
+    PAN_LETT_NORMAL_BOXED = 4,
+    PAN_LETT_NORMAL_FLATTENED = 5,
+    PAN_LETT_NORMAL_ROUNDED = 6,
+    PAN_LETT_NORMAL_OFF_CENTER = 7,
+    PAN_LETT_NORMAL_SQUARE = 8,
+    PAN_LETT_OBLIQUE_CONTACT = 9,
+    PAN_LETT_OBLIQUE_WEIGHTED = 10,
+    PAN_LETT_OBLIQUE_BOXED = 11,
+    PAN_LETT_OBLIQUE_FLATTENED = 12,
+    PAN_LETT_OBLIQUE_ROUNDED = 13,
+    PAN_LETT_OBLIQUE_OFF_CENTER = 14,
+    PAN_LETT_OBLIQUE_SQUARE = 15
+}
+
+// Win32 original: PAN_MIDLINE
+constdef PanMidline : char
+{
+    PAN_MIDLINE_ANY = 0,
+    PAN_MIDLINE_NO_FIT = 1,
+    PAN_MIDLINE_INDEX = 8,
+    PAN_MIDLINE_STANDARD_TRIMMED = 2,
+    PAN_MIDLINE_STANDARD_POINTED = 3,
+    PAN_MIDLINE_STANDARD_SERIFED = 4,
+    PAN_MIDLINE_HIGH_TRIMMED = 5,
+    PAN_MIDLINE_HIGH_POINTED = 6,
+    PAN_MIDLINE_HIGH_SERIFED = 7,
+    PAN_MIDLINE_CONSTANT_TRIMMED = 8,
+    PAN_MIDLINE_CONSTANT_POINTED = 9,
+    PAN_MIDLINE_CONSTANT_SERIFED = 10,
+    PAN_MIDLINE_LOW_TRIMMED = 11,
+    PAN_MIDLINE_LOW_POINTED = 12,
+    PAN_MIDLINE_LOW_SERIFED = 13
+}
+
+// Win32 original: PAN_PROPORTION
+constdef PanProportion : char
+{
+    PAN_PROP_ANY = 0,
+    PAN_PROP_NO_FIT = 1,
+    PAN_PROP_OLD_STYLE = 2,
+    PAN_PROP_MODERN = 3,
+    PAN_PROP_EVEN_WIDTH = 4,
+    PAN_PROP_EXPANDED = 5,
+    PAN_PROP_CONDENSED = 6,
+    PAN_PROP_VERY_EXPANDED = 7,
+    PAN_PROP_VERY_CONDENSED = 8,
+    PAN_PROP_MONOSPACED = 9
+}
+
+// Win32 original: PAN_SERIF_STYLE
+constdef PanSerifStyle : char
+{
+    PAN_SERIF_ANY = 0,
+    PAN_SERIF_NO_FIT = 1,
+    PAN_SERIF_COVE = 2,
+    PAN_SERIF_OBTUSE_COVE = 3,
+    PAN_SERIF_SQUARE_COVE = 4,
+    PAN_SERIF_OBTUSE_SQUARE_COVE = 5,
+    PAN_SERIF_SQUARE = 6,
+    PAN_SERIF_THIN = 7,
+    PAN_SERIF_BONE = 8,
+    PAN_SERIF_EXAGGERATED = 9,
+    PAN_SERIF_TRIANGLE = 10,
+    PAN_SERIF_NORMAL_SANS = 11,
+    PAN_SERIF_OBTUSE_SANS = 12,
+    PAN_SERIF_PERP_SANS = 13,
+    PAN_SERIF_FLARED = 14,
+    PAN_SERIF_ROUNDED = 15
+}
+
+// Win32 original: PAN_STROKE_VARIATION
+constdef PanStrokeVariation : char
+{
+    PAN_STROKE_ANY = 0,
+    PAN_STROKE_NO_FIT = 1,
+    PAN_STROKE_GRADUAL_DIAG = 2,
+    PAN_STROKE_GRADUAL_TRAN = 3,
+    PAN_STROKE_GRADUAL_VERT = 4,
+    PAN_STROKE_GRADUAL_HORZ = 5,
+    PAN_STROKE_RAPID_VERT = 6,
+    PAN_STROKE_RAPID_HORZ = 7,
+    PAN_STROKE_INSTANT_VERT = 8
+}
+
+// Win32 original: PAN_WEIGHT
+constdef PanWeight : char
+{
+    PAN_WEIGHT_ANY = 0,
+    PAN_WEIGHT_NO_FIT = 1,
+    PAN_WEIGHT_INDEX = 2,
+    PAN_WEIGHT_VERY_LIGHT = 2,
+    PAN_WEIGHT_LIGHT = 3,
+    PAN_WEIGHT_THIN = 4,
+    PAN_WEIGHT_BOOK = 5,
+    PAN_WEIGHT_MEDIUM = 6,
+    PAN_WEIGHT_DEMI = 7,
+    PAN_WEIGHT_BOLD = 8,
+    PAN_WEIGHT_HEAVY = 9,
+    PAN_WEIGHT_BLACK = 10,
+    PAN_WEIGHT_NORD = 11
+}
+
+// Win32 original: PAN_XHEIGHT
+constdef PanXheight : char
+{
+    PAN_XHEIGHT_ANY = 0,
+    PAN_XHEIGHT_NO_FIT = 1,
+    PAN_XHEIGHT_INDEX = 9,
+    PAN_XHEIGHT_CONSTANT_SMALL = 2,
+    PAN_XHEIGHT_CONSTANT_STD = 3,
+    PAN_XHEIGHT_CONSTANT_LARGE = 4,
+    PAN_XHEIGHT_DUCKING_SMALL = 5,
+    PAN_XHEIGHT_DUCKING_STD = 6,
+    PAN_XHEIGHT_DUCKING_LARGE = 7
+}
+
+// Win32 original: PEN_STYLE
+constdef PenStyle : int
+{
+    PS_GEOMETRIC = 65536,
+    PS_COSMETIC = 0,
+    PS_SOLID = 0,
+    PS_DASH = 1,
+    PS_DOT = 2,
+    PS_DASHDOT = 3,
+    PS_DASHDOTDOT = 4,
+    PS_NULL = 5,
+    PS_INSIDEFRAME = 6,
+    PS_USERSTYLE = 7,
+    PS_ALTERNATE = 8,
+    PS_STYLE_MASK = 15,
+    PS_ENDCAP_ROUND = 0,
+    PS_ENDCAP_SQUARE = 256,
+    PS_ENDCAP_FLAT = 512,
+    PS_ENDCAP_MASK = 3840,
+    PS_JOIN_ROUND = 0,
+    PS_JOIN_BEVEL = 4096,
+    PS_JOIN_MITER = 8192,
+    PS_JOIN_MASK = 61440,
+    PS_TYPE_MASK = 983040
+}
+
+// Win32 original: POLYTEXTA
+struct PolyTextA
+{
+    int x;
+    int y;
+    uint n;
+    char* lpstr;
+    uint uiFlags;
+    Rect rcl;
+    int* pdx;
+}
+
+// Win32 original: POLYTEXTW
+struct PolyTextW
+{
+    int x;
+    int y;
+    uint n;
+    ushort* lpstr;
+    uint uiFlags;
+    Rect rcl;
+    int* pdx;
+}
+
+// Win32 original: R2_MODE
+constdef R2Mode : int
+{
+    R2_BLACK = 1,
+    R2_NOTMERGEPEN = 2,
+    R2_MASKNOTPEN = 3,
+    R2_NOTCOPYPEN = 4,
+    R2_MASKPENNOT = 5,
+    R2_NOT = 6,
+    R2_XORPEN = 7,
+    R2_NOTMASKPEN = 8,
+    R2_MASKPEN = 9,
+    R2_NOTXORPEN = 10,
+    R2_NOP = 11,
+    R2_MERGENOTPEN = 12,
+    R2_COPYPEN = 13,
+    R2_MERGEPENNOT = 14,
+    R2_MERGEPEN = 15,
+    R2_WHITE = 16,
+    R2_LAST = 16
+}
+
+// Win32 original: RASTERIZER_STATUS
+struct RasterizerStatus
+{
+    short nSize;
+    short wFlags;
+    short nLanguageID;
+}
+
+// Win32 original: READEMBEDPROC
+alias ReadEmbedProc = fn uint(void* param0, void* param1, uint param2);
+
+// Win32 original: REDRAW_WINDOW_FLAGS
+constdef RedrawWindowFlags : uint
+{
+    RDW_INVALIDATE = 1,
+    RDW_INTERNALPAINT = 2,
+    RDW_ERASE = 4,
+    RDW_VALIDATE = 8,
+    RDW_NOINTERNALPAINT = 16,
+    RDW_NOERASE = 32,
+    RDW_NOCHILDREN = 64,
+    RDW_ALLCHILDREN = 128,
+    RDW_UPDATENOW = 256,
+    RDW_ERASENOW = 512,
+    RDW_FRAME = 1024,
+    RDW_NOFRAME = 2048
+}
+
+// Win32 original: RGBQUAD
+struct RgbQuad
+{
+    char rgbBlue;
+    char rgbGreen;
+    char rgbRed;
+    char rgbReserved;
+}
+
+// Win32 original: RGNDATA
+struct RgnData
+{
+    RgnDataHeader rdh;
+    char[1] buffer;
+}
+
+// Win32 original: RGNDATAHEADER
+struct RgnDataHeader
+{
+    uint dwSize;
+    uint iType;
+    uint nCount;
+    uint nRgnSize;
+    Rect rcBound;
+}
+
+// Win32 original: RGN_COMBINE_MODE
+constdef RgnCombineMode : int
+{
+    RGN_AND = 1,
+    RGN_OR = 2,
+    RGN_XOR = 3,
+    RGN_DIFF = 4,
+    RGN_COPY = 5,
+    RGN_MIN = 1,
+    RGN_MAX = 5
+}
+
+// Win32 original: ROP_CODE
+constdef RopCode : uint
+{
+    BLACKNESS = 66,
+    NOTSRCERASE = 1114278,
+    NOTSRCCOPY = 3342344,
+    SRCERASE = 4457256,
+    DSTINVERT = 5570569,
+    PATINVERT = 5898313,
+    SRCINVERT = 6684742,
+    SRCAND = 8913094,
+    MERGEPAINT = 12255782,
+    MERGECOPY = 12583114,
+    SRCCOPY = 13369376,
+    SRCPAINT = 15597702,
+    PATCOPY = 15728673,
+    PATPAINT = 16452105,
+    WHITENESS = 16711778,
+    CAPTUREBLT = 1073741824,
+    NOMIRRORBITMAP = 2147483648
+}
+
+// Win32 original: SET_BOUNDS_RECT_FLAGS
+constdef SetBoundsRectFlags : uint
+{
+    DCB_ACCUMULATE = 2,
+    DCB_DISABLE = 8,
+    DCB_ENABLE = 4,
+    DCB_RESET = 1
+}
+
+// Win32 original: STRETCH_BLT_MODE
+constdef StretchBltMode : int
+{
+    BLACKONWHITE = 1,
+    COLORONCOLOR = 3,
+    HALFTONE = 4,
+    STRETCH_ANDSCANS = 1,
+    STRETCH_DELETESCANS = 3,
+    STRETCH_HALFTONE = 4,
+    STRETCH_ORSCANS = 2,
+    WHITEONBLACK = 2
+}
+
+// Win32 original: SYSTEM_PALETTE_USE
+constdef SystemPaletteUse : uint
+{
+    SYSPAL_NOSTATIC = 2,
+    SYSPAL_NOSTATIC256 = 3,
+    SYSPAL_STATIC = 1
+}
+
+// Win32 original: SYS_COLOR_INDEX
+constdef SysColorIndex : int
+{
+    COLOR_SCROLLBAR = 0,
+    COLOR_BACKGROUND = 1,
+    COLOR_ACTIVECAPTION = 2,
+    COLOR_INACTIVECAPTION = 3,
+    COLOR_MENU = 4,
+    COLOR_WINDOW = 5,
+    COLOR_WINDOWFRAME = 6,
+    COLOR_MENUTEXT = 7,
+    COLOR_WINDOWTEXT = 8,
+    COLOR_CAPTIONTEXT = 9,
+    COLOR_ACTIVEBORDER = 10,
+    COLOR_INACTIVEBORDER = 11,
+    COLOR_APPWORKSPACE = 12,
+    COLOR_HIGHLIGHT = 13,
+    COLOR_HIGHLIGHTTEXT = 14,
+    COLOR_BTNFACE = 15,
+    COLOR_BTNSHADOW = 16,
+    COLOR_GRAYTEXT = 17,
+    COLOR_BTNTEXT = 18,
+    COLOR_INACTIVECAPTIONTEXT = 19,
+    COLOR_BTNHIGHLIGHT = 20,
+    COLOR_3DDKSHADOW = 21,
+    COLOR_3DLIGHT = 22,
+    COLOR_INFOTEXT = 23,
+    COLOR_INFOBK = 24,
+    COLOR_HOTLIGHT = 26,
+    COLOR_GRADIENTACTIVECAPTION = 27,
+    COLOR_GRADIENTINACTIVECAPTION = 28,
+    COLOR_MENUHILIGHT = 29,
+    COLOR_MENUBAR = 30,
+    COLOR_DESKTOP = 1,
+    COLOR_3DFACE = 15,
+    COLOR_3DSHADOW = 16,
+    COLOR_3DHIGHLIGHT = 20,
+    COLOR_3DHILIGHT = 20,
+    COLOR_BTNHILIGHT = 20
+}
+
+// Win32 original: TEXTMETRICA
+struct TextMetricA
+{
+    int tmHeight;
+    int tmAscent;
+    int tmDescent;
+    int tmInternalLeading;
+    int tmExternalLeading;
+    int tmAveCharWidth;
+    int tmMaxCharWidth;
+    int tmWeight;
+    int tmOverhang;
+    int tmDigitizedAspectX;
+    int tmDigitizedAspectY;
+    char tmFirstChar;
+    char tmLastChar;
+    char tmDefaultChar;
+    char tmBreakChar;
+    char tmItalic;
+    char tmUnderlined;
+    char tmStruckOut;
+    TmpfFlags tmPitchAndFamily;
+    char tmCharSet;
+}
+
+// Win32 original: TEXTMETRICW
+struct TextMetricW
+{
+    int tmHeight;
+    int tmAscent;
+    int tmDescent;
+    int tmInternalLeading;
+    int tmExternalLeading;
+    int tmAveCharWidth;
+    int tmMaxCharWidth;
+    int tmWeight;
+    int tmOverhang;
+    int tmDigitizedAspectX;
+    int tmDigitizedAspectY;
+    ushort tmFirstChar;
+    ushort tmLastChar;
+    ushort tmDefaultChar;
+    ushort tmBreakChar;
+    char tmItalic;
+    char tmUnderlined;
+    char tmStruckOut;
+    TmpfFlags tmPitchAndFamily;
+    char tmCharSet;
+}
+
+// Win32 original: TEXT_ALIGN_OPTIONS
+constdef TextAlignOptions : uint
+{
+    TA_NOUPDATECP = 0,
+    TA_UPDATECP = 1,
+    TA_LEFT = 0,
+    TA_RIGHT = 2,
+    TA_CENTER = 6,
+    TA_TOP = 0,
+    TA_BOTTOM = 8,
+    TA_BASELINE = 24,
+    TA_RTLREADING = 256,
+    TA_MASK = 287,
+    VTA_BASELINE = 24,
+    VTA_LEFT = 8,
+    VTA_RIGHT = 0,
+    VTA_CENTER = 6,
+    VTA_BOTTOM = 2,
+    VTA_TOP = 0
+}
+
+// Win32 original: TMPF_FLAGS
+constdef TmpfFlags : char
+{
+    TMPF_FIXED_PITCH = 1,
+    TMPF_VECTOR = 2,
+    TMPF_DEVICE = 8,
+    TMPF_TRUETYPE = 4
+}
+
+// Win32 original: TRIVERTEX
+struct TriVertex
+{
+    int x;
+    int y;
+    ushort red;
+    ushort green;
+    ushort blue;
+    ushort alpha;
+}
+
+// Win32 original: TTEMBEDINFO
+struct TtEmbedInfo
+{
+    ushort usStructSize;
+    ushort usRootStrSize;
+    ushort* pusRootStr;
+}
+
+// Win32 original: TTEMBED_FLAGS
+constdef TtEmbedFlags : uint
+{
+    TTEMBED_EMBEDEUDC = 32,
+    TTEMBED_RAW = 0,
+    TTEMBED_SUBSET = 1,
+    TTEMBED_TTCOMPRESSED = 4
+}
+
+// Win32 original: TTLOADINFO
+struct TtLoadInfo
+{
+    ushort usStructSize;
+    ushort usRefStrSize;
+    ushort* pusRefStr;
+}
+
+// Win32 original: TTLOAD_EMBEDDED_FONT_STATUS
+constdef TtLoadEmbeddedFontStatus : uint
+{
+    TTLOAD_FONT_SUBSETTED = 1,
+    TTLOAD_FONT_IN_SYSSTARTUP = 2
+}
+
+// Win32 original: TTVALIDATIONTESTSPARAMS
+struct TtValidationTestsParams
+{
+    uint ulStructSize;
+    int lTestFromSize;
+    int lTestToSize;
+    uint ulCharSet;
+    ushort usReserved1;
+    ushort usCharCodeCount;
+    ushort* pusCharCodeSet;
+}
+
+// Win32 original: TTVALIDATIONTESTSPARAMSEX
+struct TtValidationTestsParamsEx
+{
+    uint ulStructSize;
+    int lTestFromSize;
+    int lTestToSize;
+    uint ulCharSet;
+    ushort usReserved1;
+    ushort usCharCodeCount;
+    uint* pulCharCodeSet;
+}
+
+// Win32 original: WCRANGE
+struct WcRange
+{
+    ushort wcLow;
+    ushort cGlyphs;
+}
+
+// Win32 original: WGLSWAP
+struct WglSwap
+{
+    Hdc hdc;
+    uint uiFlags;
+}
+
+// Win32 original: WRITEEMBEDPROC
+alias WriteEmbedProc = fn uint(void* param0, void* param1, uint param2);
+
+// Win32 original: XFORM
+struct XForm
+{
+    float eM11;
+    float eM12;
+    float eM21;
+    float eM22;
+    float eDx;
+    float eDy;
+}
+
+// Win32 original: DC_BINADJUST
+const uint DC_BINADJUST = 19;
+
+// Win32 original: DC_DATATYPE_PRODUCED
+const uint DC_DATATYPE_PRODUCED = 21;
+
+// Win32 original: DC_EMF_COMPLIANT
+const uint DC_EMF_COMPLIANT = 20;
+
+// Win32 original: DC_MANUFACTURER
+const uint DC_MANUFACTURER = 23;
+
+// Win32 original: DC_MODEL
+const uint DC_MODEL = 24;
+
+extern fn Bool abort_path(Hdc hdc)
+    @cname("AbortPath") @link("gdi32");
+
+<*
+ @param [&in] pFileView
+ @param [&in] pNumFonts
+*>
+extern fn Handle add_font_mem_resource_ex(void* pFileView, uint cjSize, void* pvResrved, uint* pNumFonts)
+    @cname("AddFontMemResourceEx") @link("gdi32");
+
+extern fn int add_font_resourceA(char* param0)
+    @cname("AddFontResourceA") @link("gdi32");
+
+extern fn int add_font_resource_exA(char* name, FontResourceCharacteristics fl, void* res)
+    @cname("AddFontResourceExA") @link("gdi32");
+
+extern fn int add_font_resource_exW(ushort* name, FontResourceCharacteristics fl, void* res)
+    @cname("AddFontResourceExW") @link("gdi32");
+
+extern fn int add_font_resourceW(ushort* param0)
+    @cname("AddFontResourceW") @link("gdi32");
+
+extern fn Bool alpha_blend(Hdc hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, Hdc hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BlendFunction ftn)
+    @cname("AlphaBlend") @link("msimg32");
+
+extern fn Bool angle_arc(Hdc hdc, int x, int y, uint r, float startAngle, float sweepAngle)
+    @cname("AngleArc") @link("gdi32");
+
+<*
+ @param [&in] ppe
+*>
+extern fn Bool animate_palette(HPalette hPal, uint iStartIndex, uint cEntries, PaletteEntry* ppe)
+    @cname("AnimatePalette") @link("gdi32");
+
+extern fn Bool arc(Hdc hdc, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+    @cname("Arc") @link("gdi32");
+
+extern fn Bool arc_to(Hdc hdc, int left, int top, int right, int bottom, int xr1, int yr1, int xr2, int yr2)
+    @cname("ArcTo") @link("gdi32");
+
+<*
+ @param [&out] lpPaint
+*>
+extern fn Hdc begin_paint(HWnd hWnd, PaintStruct* lpPaint)
+    @cname("BeginPaint") @link("user32");
+
+extern fn Bool begin_path(Hdc hdc)
+    @cname("BeginPath") @link("gdi32");
+
+extern fn Bool bit_blt(Hdc hdc, int x, int y, int cx, int cy, Hdc hdcSrc, int x1, int y1, RopCode rop)
+    @cname("BitBlt") @link("gdi32");
+
+extern fn Bool cancel_dc(Hdc hdc)
+    @cname("CancelDC") @link("gdi32");
+
+<*
+ @param [in] lpDevMode
+*>
+extern fn DispChange change_display_settingsA(DevModeA* lpDevMode, CdsType dwFlags)
+    @cname("ChangeDisplaySettingsA") @link("user32");
+
+<*
+ @param [in] lpDevMode
+ @param [in] lParam
+*>
+extern fn DispChange change_display_settings_exA(char* lpszDeviceName, DevModeA* lpDevMode, HWnd hwnd, CdsType dwflags, void* lParam)
+    @cname("ChangeDisplaySettingsExA") @link("user32");
+
+<*
+ @param [in] lpDevMode
+ @param [in] lParam
+*>
+extern fn DispChange change_display_settings_exW(ushort* lpszDeviceName, DevModeW* lpDevMode, HWnd hwnd, CdsType dwflags, void* lParam)
+    @cname("ChangeDisplaySettingsExW") @link("user32");
+
+<*
+ @param [in] lpDevMode
+*>
+extern fn DispChange change_display_settingsW(DevModeW* lpDevMode, CdsType dwFlags)
+    @cname("ChangeDisplaySettingsW") @link("user32");
+
+extern fn Bool chord(Hdc hdc, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+    @cname("Chord") @link("gdi32");
+
+<*
+ @param [&inout] lpPoint
+*>
+extern fn Bool client_to_screen(HWnd hWnd, Point* lpPoint)
+    @cname("ClientToScreen") @link("user32");
+
+extern fn HEnhMetafile close_enh_meta_file(Hdc hdc)
+    @cname("CloseEnhMetaFile") @link("gdi32");
+
+extern fn Bool close_figure(Hdc hdc)
+    @cname("CloseFigure") @link("gdi32");
+
+extern fn HMetafile close_meta_file(Hdc hdc)
+    @cname("CloseMetaFile") @link("gdi32");
+
+extern fn GdiRegionType combine_rgn(HRgn hrgnDst, HRgn hrgnSrc1, HRgn hrgnSrc2, RgnCombineMode iMode)
+    @cname("CombineRgn") @link("gdi32");
+
+<*
+ @param [&out] lpxfOut
+ @param [&in] lpxf1
+ @param [&in] lpxf2
+*>
+extern fn Bool combine_transform(XForm* lpxfOut, XForm* lpxf1, XForm* lpxf2)
+    @cname("CombineTransform") @link("gdi32");
+
+extern fn HEnhMetafile copy_enh_meta_fileA(HEnhMetafile hEnh, char* lpFileName)
+    @cname("CopyEnhMetaFileA") @link("gdi32");
+
+extern fn HEnhMetafile copy_enh_meta_fileW(HEnhMetafile hEnh, ushort* lpFileName)
+    @cname("CopyEnhMetaFileW") @link("gdi32");
+
+extern fn HMetafile copy_meta_fileA(HMetafile param0, char* param1)
+    @cname("CopyMetaFileA") @link("gdi32");
+
+extern fn HMetafile copy_meta_fileW(HMetafile param0, ushort* param1)
+    @cname("CopyMetaFileW") @link("gdi32");
+
+<*
+ @param [&out] lprcDst
+ @param [&in] lprcSrc
+*>
+extern fn Bool copy_rect(Rect* lprcDst, Rect* lprcSrc)
+    @cname("CopyRect") @link("user32");
+
+<*
+ @param [in] lpBits
+*>
+extern fn HBitmap create_bitmap(int nWidth, int nHeight, uint nPlanes, uint nBitCount, void* lpBits)
+    @cname("CreateBitmap") @link("gdi32");
+
+<*
+ @param [&in] pbm
+*>
+extern fn HBitmap create_bitmap_indirect(Bitmap* pbm)
+    @cname("CreateBitmapIndirect") @link("gdi32");
+
+<*
+ @param [&in] plbrush
+*>
+extern fn HBrush create_brush_indirect(LogBrush* plbrush)
+    @cname("CreateBrushIndirect") @link("gdi32");
+
+extern fn HBitmap create_compatible_bitmap(Hdc hdc, int cx, int cy)
+    @cname("CreateCompatibleBitmap") @link("gdi32");
+
+extern fn Hdc create_compatible_dc(Hdc hdc)
+    @cname("CreateCompatibleDC") @link("gdi32");
+
+<*
+ @param [in] pdm
+*>
+extern fn Hdc create_dcA(char* pwszDriver, char* pwszDevice, char* pszPort, DevModeA* pdm)
+    @cname("CreateDCA") @link("gdi32");
+
+<*
+ @param [in] pdm
+*>
+extern fn Hdc create_dcW(ushort* pwszDriver, ushort* pwszDevice, ushort* pszPort, DevModeW* pdm)
+    @cname("CreateDCW") @link("gdi32");
+
+extern fn HBrush create_dib_pattern_brush(HGlobal h, DibUsage iUsage)
+    @cname("CreateDIBPatternBrush") @link("gdi32");
+
+<*
+ @param [&in] lpPackedDIB
+*>
+extern fn HBrush create_dib_pattern_brush_pt(void* lpPackedDIB, DibUsage iUsage)
+    @cname("CreateDIBPatternBrushPt") @link("gdi32");
+
+<*
+ @param [&in] pbmi
+ @param [&out] ppvBits
+*>
+extern fn HBitmap create_dib_section(Hdc hdc, BitmapInfo* pbmi, DibUsage usage, void** ppvBits, Handle hSection, uint offset)
+    @cname("CreateDIBSection") @link("gdi32");
+
+<*
+ @param [in] pbmih
+ @param [in] pjBits
+ @param [in] pbmi
+*>
+extern fn HBitmap create_di_bitmap(Hdc hdc, BitmapInfoHeader* pbmih, uint flInit, void* pjBits, BitmapInfo* pbmi, DibUsage iUsage)
+    @cname("CreateDIBitmap") @link("gdi32");
+
+extern fn HBitmap create_discardable_bitmap(Hdc hdc, int cx, int cy)
+    @cname("CreateDiscardableBitmap") @link("gdi32");
+
+extern fn HRgn create_elliptic_rgn(int x1, int y1, int x2, int y2)
+    @cname("CreateEllipticRgn") @link("gdi32");
+
+<*
+ @param [&in] lprect
+*>
+extern fn HRgn create_elliptic_rgn_indirect(Rect* lprect)
+    @cname("CreateEllipticRgnIndirect") @link("gdi32");
+
+<*
+ @param [in] lprc
+*>
+extern fn Hdc create_enh_meta_fileA(Hdc hdc, char* lpFilename, Rect* lprc, char* lpDesc)
+    @cname("CreateEnhMetaFileA") @link("gdi32");
+
+<*
+ @param [in] lprc
+*>
+extern fn Hdc create_enh_meta_fileW(Hdc hdc, ushort* lpFilename, Rect* lprc, ushort* lpDesc)
+    @cname("CreateEnhMetaFileW") @link("gdi32");
+
+extern fn HFont create_fontA(int cHeight, int cWidth, int cEscapement, int cOrientation, int cWeight, uint bItalic, uint bUnderline, uint bStrikeOut, uint iCharSet, uint iOutPrecision, uint iClipPrecision, uint iQuality, uint iPitchAndFamily, char* pszFaceName)
+    @cname("CreateFontA") @link("gdi32");
+
+<*
+ @param [&in] lplf
+*>
+extern fn HFont create_font_indirectA(LogFontA* lplf)
+    @cname("CreateFontIndirectA") @link("gdi32");
+
+<*
+ @param [&in] param0
+*>
+extern fn HFont create_font_indirect_exA(EnumLogFontExDvA* param0)
+    @cname("CreateFontIndirectExA") @link("gdi32");
+
+<*
+ @param [&in] param0
+*>
+extern fn HFont create_font_indirect_exW(EnumLogFontExDvW* param0)
+    @cname("CreateFontIndirectExW") @link("gdi32");
+
+<*
+ @param [&in] lplf
+*>
+extern fn HFont create_font_indirectW(LogFontW* lplf)
+    @cname("CreateFontIndirectW") @link("gdi32");
+
+<*
+ @param [&in] puchSrcBuffer
+ @param [&inout] ppuchFontPackageBuffer
+ @param [&inout] pulFontPackageBufferSize
+ @param [&inout] pulBytesWritten
+ @param [&in] pusSubsetKeepList
+ @param [&inout] lpvReserved
+*>
+extern fn uint create_font_package(char* puchSrcBuffer, uint ulSrcBufferSize, char** ppuchFontPackageBuffer, uint* pulFontPackageBufferSize, uint* pulBytesWritten, ushort usFlag, ushort usTTCIndex, ushort usSubsetFormat, ushort usSubsetLanguage, CreateFontPackageSubsetPlatform usSubsetPlatform, CreateFontPackageSubsetEncoding usSubsetEncoding, ushort* pusSubsetKeepList, ushort usSubsetListCount, CfpAllocProc lpfnAllocate, CfpReallocProc lpfnReAllocate, CfpFreeProc lpfnFree, void* lpvReserved)
+    @cname("CreateFontPackage") @link("fontsub");
+
+extern fn HFont create_fontW(int cHeight, int cWidth, int cEscapement, int cOrientation, int cWeight, uint bItalic, uint bUnderline, uint bStrikeOut, uint iCharSet, uint iOutPrecision, uint iClipPrecision, uint iQuality, uint iPitchAndFamily, ushort* pszFaceName)
+    @cname("CreateFontW") @link("gdi32");
+
+extern fn HPalette create_halftone_palette(Hdc hdc)
+    @cname("CreateHalftonePalette") @link("gdi32");
+
+extern fn HBrush create_hatch_brush(HatchBrushStyle iHatch, ColorRef color)
+    @cname("CreateHatchBrush") @link("gdi32");
+
+<*
+ @param [in] pdm
+*>
+extern fn Hdc create_icA(char* pszDriver, char* pszDevice, char* pszPort, DevModeA* pdm)
+    @cname("CreateICA") @link("gdi32");
+
+<*
+ @param [in] pdm
+*>
+extern fn Hdc create_icW(ushort* pszDriver, ushort* pszDevice, ushort* pszPort, DevModeW* pdm)
+    @cname("CreateICW") @link("gdi32");
+
+extern fn Hdc create_meta_fileA(char* pszFile)
+    @cname("CreateMetaFileA") @link("gdi32");
+
+extern fn Hdc create_meta_fileW(ushort* pszFile)
+    @cname("CreateMetaFileW") @link("gdi32");
+
+<*
+ @param [&in] plpal
+*>
+extern fn HPalette create_palette(LogPalette* plpal)
+    @cname("CreatePalette") @link("gdi32");
+
+extern fn HBrush create_pattern_brush(HBitmap hbm)
+    @cname("CreatePatternBrush") @link("gdi32");
+
+extern fn HPen create_pen(PenStyle iStyle, int cWidth, ColorRef color)
+    @cname("CreatePen") @link("gdi32");
+
+<*
+ @param [&in] plpen
+*>
+extern fn HPen create_pen_indirect(LogPen* plpen)
+    @cname("CreatePenIndirect") @link("gdi32");
+
+<*
+ @param [&in] pptl
+ @param [&in] pc
+*>
+extern fn HRgn create_poly_polygon_rgn(Point* pptl, int* pc, int cPoly, CreatePolygonRgnMode iMode)
+    @cname("CreatePolyPolygonRgn") @link("gdi32");
+
+<*
+ @param [&in] pptl
+*>
+extern fn HRgn create_polygon_rgn(Point* pptl, int cPoint, CreatePolygonRgnMode iMode)
+    @cname("CreatePolygonRgn") @link("gdi32");
+
+extern fn HRgn create_rect_rgn(int x1, int y1, int x2, int y2)
+    @cname("CreateRectRgn") @link("gdi32");
+
+<*
+ @param [&in] lprect
+*>
+extern fn HRgn create_rect_rgn_indirect(Rect* lprect)
+    @cname("CreateRectRgnIndirect") @link("gdi32");
+
+extern fn HRgn create_round_rect_rgn(int x1, int y1, int x2, int y2, int w, int h)
+    @cname("CreateRoundRectRgn") @link("gdi32");
+
+extern fn Bool create_scalable_font_resourceA(uint fdwHidden, char* lpszFont, char* lpszFile, char* lpszPath)
+    @cname("CreateScalableFontResourceA") @link("gdi32");
+
+extern fn Bool create_scalable_font_resourceW(uint fdwHidden, ushort* lpszFont, ushort* lpszFile, ushort* lpszPath)
+    @cname("CreateScalableFontResourceW") @link("gdi32");
+
+extern fn HBrush create_solid_brush(ColorRef color)
+    @cname("CreateSolidBrush") @link("gdi32");
+
+<*
+ @param [&inout] lppt
+*>
+extern fn Bool d_pto_lp(Hdc hdc, Point* lppt, int c)
+    @cname("DPtoLP") @link("gdi32");
+
+extern fn Bool delete_dc(Hdc hdc)
+    @cname("DeleteDC") @link("gdi32");
+
+extern fn Bool delete_enh_meta_file(HEnhMetafile hmf)
+    @cname("DeleteEnhMetaFile") @link("gdi32");
+
+extern fn Bool delete_meta_file(HMetafile hmf)
+    @cname("DeleteMetaFile") @link("gdi32");
+
+extern fn Bool delete_object(HGdiObj ho)
+    @cname("DeleteObject") @link("gdi32");
+
+<*
+ @param [&in] lprcFrom
+ @param [&in] lprcTo
+*>
+extern fn Bool draw_animated_rects(HWnd hwnd, int idAni, Rect* lprcFrom, Rect* lprcTo)
+    @cname("DrawAnimatedRects") @link("user32");
+
+<*
+ @param [&in] lprect
+*>
+extern fn Bool draw_caption(HWnd hwnd, Hdc hdc, Rect* lprect, DrawCaptionFlags flags)
+    @cname("DrawCaption") @link("user32");
+
+<*
+ @param [&inout] qrc
+*>
+extern fn Bool draw_edge(Hdc hdc, Rect* qrc, DrawedgeFlags edge, DrawEdgeFlags grfFlags)
+    @cname("DrawEdge") @link("user32");
+
+extern fn int draw_escape(Hdc hdc, int iEscape, int cjIn, char* lpIn)
+    @cname("DrawEscape") @link("gdi32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn Bool draw_focus_rect(Hdc hDC, Rect* lprc)
+    @cname("DrawFocusRect") @link("user32");
+
+<*
+ @param [&inout] lprc
+*>
+extern fn Bool draw_frame_control(Hdc hdc, Rect* lprc, uint uType, uint uState)
+    @cname("DrawFrameControl") @link("user32");
+
+extern fn Bool draw_stateA(Hdc hdc, HBrush hbrFore, DrawStateProc qfnCallBack, LParam lData, WParam wData, int x, int y, int cx, int cy, DrawStateFlags uFlags)
+    @cname("DrawStateA") @link("user32");
+
+extern fn Bool draw_stateW(Hdc hdc, HBrush hbrFore, DrawStateProc qfnCallBack, LParam lData, WParam wData, int x, int y, int cx, int cy, DrawStateFlags uFlags)
+    @cname("DrawStateW") @link("user32");
+
+<*
+ @param [&inout] lprc
+*>
+extern fn int draw_textA(Hdc hdc, char* lpchText, int cchText, Rect* lprc, DrawTextFormat format)
+    @cname("DrawTextA") @link("user32");
+
+<*
+ @param [&inout] lprc
+ @param [in] lpdtp
+*>
+extern fn int draw_text_exA(Hdc hdc, char* lpchText, int cchText, Rect* lprc, DrawTextFormat format, DrawTextParams* lpdtp)
+    @cname("DrawTextExA") @link("user32");
+
+<*
+ @param [&inout] lprc
+ @param [in] lpdtp
+*>
+extern fn int draw_text_exW(Hdc hdc, ushort* lpchText, int cchText, Rect* lprc, DrawTextFormat format, DrawTextParams* lpdtp)
+    @cname("DrawTextExW") @link("user32");
+
+<*
+ @param [&inout] lprc
+*>
+extern fn int draw_textW(Hdc hdc, ushort* lpchText, int cchText, Rect* lprc, DrawTextFormat format)
+    @cname("DrawTextW") @link("user32");
+
+extern fn Bool ellipse(Hdc hdc, int left, int top, int right, int bottom)
+    @cname("Ellipse") @link("gdi32");
+
+<*
+ @param [&in] lpPaint
+*>
+extern fn Bool end_paint(HWnd hWnd, PaintStruct* lpPaint)
+    @cname("EndPaint") @link("user32");
+
+extern fn Bool end_path(Hdc hdc)
+    @cname("EndPath") @link("gdi32");
+
+<*
+ @param [&inout] lpDisplayDevice
+*>
+extern fn Bool enum_display_devicesA(char* lpDevice, uint iDevNum, DisplayDeviceA* lpDisplayDevice, uint dwFlags)
+    @cname("EnumDisplayDevicesA") @link("user32");
+
+<*
+ @param [&inout] lpDisplayDevice
+*>
+extern fn Bool enum_display_devicesW(ushort* lpDevice, uint iDevNum, DisplayDeviceW* lpDisplayDevice, uint dwFlags)
+    @cname("EnumDisplayDevicesW") @link("user32");
+
+<*
+ @param [in] lprcClip
+*>
+extern fn Bool enum_display_monitors(Hdc hdc, Rect* lprcClip, MonitorEnumProc lpfnEnum, LParam dwData)
+    @cname("EnumDisplayMonitors") @link("user32");
+
+<*
+ @param [&inout] lpDevMode
+*>
+extern fn Bool enum_display_settingsA(char* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeA* lpDevMode)
+    @cname("EnumDisplaySettingsA") @link("user32");
+
+<*
+ @param [&inout] lpDevMode
+*>
+extern fn Bool enum_display_settings_exA(char* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeA* lpDevMode, EnumDisplaySettingsFlags dwFlags)
+    @cname("EnumDisplaySettingsExA") @link("user32");
+
+<*
+ @param [&inout] lpDevMode
+*>
+extern fn Bool enum_display_settings_exW(ushort* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeW* lpDevMode, EnumDisplaySettingsFlags dwFlags)
+    @cname("EnumDisplaySettingsExW") @link("user32");
+
+<*
+ @param [&inout] lpDevMode
+*>
+extern fn Bool enum_display_settingsW(ushort* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeW* lpDevMode)
+    @cname("EnumDisplaySettingsW") @link("user32");
+
+<*
+ @param [in] param3
+ @param [in] lpRect
+*>
+extern fn Bool enum_enh_meta_file(Hdc hdc, HEnhMetafile hmf, EnhMfEnumProc proc, void* param3, Rect* lpRect)
+    @cname("EnumEnhMetaFile") @link("gdi32");
+
+extern fn int enum_font_familiesA(Hdc hdc, char* lpLogfont, FontEnumProcA lpProc, LParam lParam)
+    @cname("EnumFontFamiliesA") @link("gdi32");
+
+<*
+ @param [&in] lpLogfont
+*>
+extern fn int enum_font_families_exA(Hdc hdc, LogFontA* lpLogfont, FontEnumProcA lpProc, LParam lParam, uint dwFlags)
+    @cname("EnumFontFamiliesExA") @link("gdi32");
+
+<*
+ @param [&in] lpLogfont
+*>
+extern fn int enum_font_families_exW(Hdc hdc, LogFontW* lpLogfont, FontEnumProcW lpProc, LParam lParam, uint dwFlags)
+    @cname("EnumFontFamiliesExW") @link("gdi32");
+
+extern fn int enum_font_familiesW(Hdc hdc, ushort* lpLogfont, FontEnumProcW lpProc, LParam lParam)
+    @cname("EnumFontFamiliesW") @link("gdi32");
+
+extern fn int enum_fontsA(Hdc hdc, char* lpLogfont, FontEnumProcA lpProc, LParam lParam)
+    @cname("EnumFontsA") @link("gdi32");
+
+extern fn int enum_fontsW(Hdc hdc, ushort* lpLogfont, FontEnumProcW lpProc, LParam lParam)
+    @cname("EnumFontsW") @link("gdi32");
+
+extern fn Bool enum_meta_file(Hdc hdc, HMetafile hmf, MfEnumProc proc, LParam param3)
+    @cname("EnumMetaFile") @link("gdi32");
+
+extern fn int enum_objects(Hdc hdc, ObjType nType, GObjEnumProc lpFunc, LParam lParam)
+    @cname("EnumObjects") @link("gdi32");
+
+<*
+ @param [&in] lprc1
+ @param [&in] lprc2
+*>
+extern fn Bool equal_rect(Rect* lprc1, Rect* lprc2)
+    @cname("EqualRect") @link("user32");
+
+extern fn Bool equal_rgn(HRgn hrgn1, HRgn hrgn2)
+    @cname("EqualRgn") @link("gdi32");
+
+extern fn GdiRegionType exclude_clip_rect(Hdc hdc, int left, int top, int right, int bottom)
+    @cname("ExcludeClipRect") @link("gdi32");
+
+extern fn int exclude_update_rgn(Hdc hDC, HWnd hWnd)
+    @cname("ExcludeUpdateRgn") @link("user32");
+
+<*
+ @param [&in] plbrush
+ @param [in] pstyle
+*>
+extern fn HPen ext_create_pen(uint iPenStyle, uint cWidth, LogBrush* plbrush, uint cStyle, uint* pstyle)
+    @cname("ExtCreatePen") @link("gdi32");
+
+<*
+ @param [in] lpx
+ @param [&in] lpData
+*>
+extern fn HRgn ext_create_region(XForm* lpx, uint nCount, RgnData* lpData)
+    @cname("ExtCreateRegion") @link("gdi32");
+
+extern fn Bool ext_flood_fill(Hdc hdc, int x, int y, ColorRef color, ExtFloodFillType type)
+    @cname("ExtFloodFill") @link("gdi32");
+
+extern fn GdiRegionType ext_select_clip_rgn(Hdc hdc, HRgn hrgn, RgnCombineMode mode)
+    @cname("ExtSelectClipRgn") @link("gdi32");
+
+<*
+ @param [in] lprect
+ @param [in] lpDx
+*>
+extern fn Bool ext_text_outA(Hdc hdc, int x, int y, EtoOptions options, Rect* lprect, char* lpString, uint c, int* lpDx)
+    @cname("ExtTextOutA") @link("gdi32");
+
+<*
+ @param [in] lprect
+ @param [in] lpDx
+*>
+extern fn Bool ext_text_outW(Hdc hdc, int x, int y, EtoOptions options, Rect* lprect, ushort* lpString, uint c, int* lpDx)
+    @cname("ExtTextOutW") @link("gdi32");
+
+extern fn Bool fill_path(Hdc hdc)
+    @cname("FillPath") @link("gdi32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn int fill_rect(Hdc hDC, Rect* lprc, HBrush hbr)
+    @cname("FillRect") @link("user32");
+
+extern fn Bool fill_rgn(Hdc hdc, HRgn hrgn, HBrush hbr)
+    @cname("FillRgn") @link("gdi32");
+
+<*
+ @param [in] ptl
+*>
+extern fn Bool fix_brush_org_ex(Hdc hdc, int x, int y, Point* ptl)
+    @cname("FixBrushOrgEx") @link("gdi32");
+
+extern fn Bool flatten_path(Hdc hdc)
+    @cname("FlattenPath") @link("gdi32");
+
+extern fn Bool flood_fill(Hdc hdc, int x, int y, ColorRef color)
+    @cname("FloodFill") @link("gdi32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn int frame_rect(Hdc hDC, Rect* lprc, HBrush hbr)
+    @cname("FrameRect") @link("user32");
+
+extern fn Bool frame_rgn(Hdc hdc, HRgn hrgn, HBrush hbr, int w, int h)
+    @cname("FrameRgn") @link("gdi32");
+
+extern fn Bool gdi_alpha_blend(Hdc hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, Hdc hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BlendFunction ftn)
+    @cname("GdiAlphaBlend") @link("gdi32");
+
+<*
+ @param [&in] lpData
+*>
+extern fn Bool gdi_comment(Hdc hdc, uint nSize, char* lpData)
+    @cname("GdiComment") @link("gdi32");
+
+extern fn Bool gdi_flush()
+    @cname("GdiFlush") @link("gdi32");
+
+extern fn uint gdi_get_batch_limit()
+    @cname("GdiGetBatchLimit") @link("gdi32");
+
+<*
+ @param [&in] pVertex
+ @param [&in] pMesh
+*>
+extern fn Bool gdi_gradient_fill(Hdc hdc, TriVertex* pVertex, uint nVertex, void* pMesh, uint nCount, GradientFill ulMode)
+    @cname("GdiGradientFill") @link("gdi32");
+
+extern fn uint gdi_set_batch_limit(uint dw)
+    @cname("GdiSetBatchLimit") @link("gdi32");
+
+extern fn Bool gdi_transparent_blt(Hdc hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, Hdc hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, uint crTransparent)
+    @cname("GdiTransparentBlt") @link("gdi32");
+
+extern fn int get_arc_direction(Hdc hdc)
+    @cname("GetArcDirection") @link("gdi32");
+
+<*
+ @param [&out] lpsize
+*>
+extern fn Bool get_aspect_ratio_filter_ex(Hdc hdc, Size* lpsize)
+    @cname("GetAspectRatioFilterEx") @link("gdi32");
+
+<*
+ @param [&out] lpvBits
+*>
+extern fn int get_bitmap_bits(HBitmap hbit, int cb, void* lpvBits)
+    @cname("GetBitmapBits") @link("gdi32");
+
+<*
+ @param [&out] lpsize
+*>
+extern fn Bool get_bitmap_dimension_ex(HBitmap hbit, Size* lpsize)
+    @cname("GetBitmapDimensionEx") @link("gdi32");
+
+extern fn ColorRef get_bk_color(Hdc hdc)
+    @cname("GetBkColor") @link("gdi32");
+
+extern fn int get_bk_mode(Hdc hdc)
+    @cname("GetBkMode") @link("gdi32");
+
+<*
+ @param [&out] lprect
+*>
+extern fn uint get_bounds_rect(Hdc hdc, Rect* lprect, uint flags)
+    @cname("GetBoundsRect") @link("gdi32");
+
+<*
+ @param [&out] lppt
+*>
+extern fn Bool get_brush_org_ex(Hdc hdc, Point* lppt)
+    @cname("GetBrushOrgEx") @link("gdi32");
+
+<*
+ @param [&out] lpABC
+*>
+extern fn Bool get_char_abc_widthsA(Hdc hdc, uint wFirst, uint wLast, Abc* lpABC)
+    @cname("GetCharABCWidthsA") @link("gdi32");
+
+<*
+ @param [&out] lpABC
+*>
+extern fn Bool get_char_abc_widths_floatA(Hdc hdc, uint iFirst, uint iLast, AbcFloat* lpABC)
+    @cname("GetCharABCWidthsFloatA") @link("gdi32");
+
+<*
+ @param [&out] lpABC
+*>
+extern fn Bool get_char_abc_widths_floatW(Hdc hdc, uint iFirst, uint iLast, AbcFloat* lpABC)
+    @cname("GetCharABCWidthsFloatW") @link("gdi32");
+
+<*
+ @param [in] pgi
+ @param [&out] pabc
+*>
+extern fn Bool get_char_abc_widths_i(Hdc hdc, uint giFirst, uint cgi, ushort* pgi, Abc* pabc)
+    @cname("GetCharABCWidthsI") @link("gdi32");
+
+<*
+ @param [&out] lpABC
+*>
+extern fn Bool get_char_abc_widthsW(Hdc hdc, uint wFirst, uint wLast, Abc* lpABC)
+    @cname("GetCharABCWidthsW") @link("gdi32");
+
+<*
+ @param [&out] lpBuffer
+*>
+extern fn Bool get_char_width_32A(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+    @cname("GetCharWidth32A") @link("gdi32");
+
+<*
+ @param [&out] lpBuffer
+*>
+extern fn Bool get_char_width_32W(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+    @cname("GetCharWidth32W") @link("gdi32");
+
+<*
+ @param [&out] lpBuffer
+*>
+extern fn Bool get_char_widthA(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+    @cname("GetCharWidthA") @link("gdi32");
+
+<*
+ @param [&out] lpBuffer
+*>
+extern fn Bool get_char_width_floatA(Hdc hdc, uint iFirst, uint iLast, float* lpBuffer)
+    @cname("GetCharWidthFloatA") @link("gdi32");
+
+<*
+ @param [&out] lpBuffer
+*>
+extern fn Bool get_char_width_floatW(Hdc hdc, uint iFirst, uint iLast, float* lpBuffer)
+    @cname("GetCharWidthFloatW") @link("gdi32");
+
+<*
+ @param [in] pgi
+ @param [&out] piWidths
+*>
+extern fn Bool get_char_width_i(Hdc hdc, uint giFirst, uint cgi, ushort* pgi, int* piWidths)
+    @cname("GetCharWidthI") @link("gdi32");
+
+<*
+ @param [&out] lpBuffer
+*>
+extern fn Bool get_char_widthW(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+    @cname("GetCharWidthW") @link("gdi32");
+
+<*
+ @param [&inout] lpResults
+*>
+extern fn uint get_character_placementA(Hdc hdc, char* lpString, int nCount, int nMexExtent, GcpResultsA* lpResults, GetCharacterPlacementFlags dwFlags)
+    @cname("GetCharacterPlacementA") @link("gdi32");
+
+<*
+ @param [&inout] lpResults
+*>
+extern fn uint get_character_placementW(Hdc hdc, ushort* lpString, int nCount, int nMexExtent, GcpResultsW* lpResults, GetCharacterPlacementFlags dwFlags)
+    @cname("GetCharacterPlacementW") @link("gdi32");
+
+<*
+ @param [&out] lprect
+*>
+extern fn GdiRegionType get_clip_box(Hdc hdc, Rect* lprect)
+    @cname("GetClipBox") @link("gdi32");
+
+extern fn int get_clip_rgn(Hdc hdc, HRgn hrgn)
+    @cname("GetClipRgn") @link("gdi32");
+
+<*
+ @param [&out] lpca
+*>
+extern fn Bool get_color_adjustment(Hdc hdc, ColorAdjustment* lpca)
+    @cname("GetColorAdjustment") @link("gdi32");
+
+extern fn HGdiObj get_current_object(Hdc hdc, uint type)
+    @cname("GetCurrentObject") @link("gdi32");
+
+<*
+ @param [&out] lppt
+*>
+extern fn Bool get_current_position_ex(Hdc hdc, Point* lppt)
+    @cname("GetCurrentPositionEx") @link("gdi32");
+
+extern fn Hdc get_dc(HWnd hWnd)
+    @cname("GetDC") @link("user32");
+
+extern fn ColorRef get_dc_brush_color(Hdc hdc)
+    @cname("GetDCBrushColor") @link("gdi32");
+
+extern fn Hdc get_dc_ex(HWnd hWnd, HRgn hrgnClip, GetDcxFlags flags)
+    @cname("GetDCEx") @link("user32");
+
+<*
+ @param [&out] lppt
+*>
+extern fn Bool get_dc_org_ex(Hdc hdc, Point* lppt)
+    @cname("GetDCOrgEx") @link("gdi32");
+
+extern fn ColorRef get_dc_pen_color(Hdc hdc)
+    @cname("GetDCPenColor") @link("gdi32");
+
+<*
+ @param [&out] prgbq
+*>
+extern fn uint get_dib_color_table(Hdc hdc, uint iStart, uint cEntries, RgbQuad* prgbq)
+    @cname("GetDIBColorTable") @link("gdi32");
+
+<*
+ @param [out] lpvBits
+ @param [&inout] lpbmi
+*>
+extern fn int get_di_bits(Hdc hdc, HBitmap hbm, uint start, uint cLines, void* lpvBits, BitmapInfo* lpbmi, DibUsage usage)
+    @cname("GetDIBits") @link("gdi32");
+
+extern fn int get_device_caps(Hdc hdc, int index)
+    @cname("GetDeviceCaps") @link("gdi32");
+
+extern fn HEnhMetafile get_enh_meta_fileA(char* lpName)
+    @cname("GetEnhMetaFileA") @link("gdi32");
+
+<*
+ @param [out] lpData
+*>
+extern fn uint get_enh_meta_file_bits(HEnhMetafile hEMF, uint nSize, char* lpData)
+    @cname("GetEnhMetaFileBits") @link("gdi32");
+
+extern fn uint get_enh_meta_file_descriptionA(HEnhMetafile hemf, uint cchBuffer, char* lpDescription)
+    @cname("GetEnhMetaFileDescriptionA") @link("gdi32");
+
+extern fn uint get_enh_meta_file_descriptionW(HEnhMetafile hemf, uint cchBuffer, ushort* lpDescription)
+    @cname("GetEnhMetaFileDescriptionW") @link("gdi32");
+
+<*
+ @param [out] lpEnhMetaHeader
+*>
+extern fn uint get_enh_meta_file_header(HEnhMetafile hemf, uint nSize, EnhMetaHeader* lpEnhMetaHeader)
+    @cname("GetEnhMetaFileHeader") @link("gdi32");
+
+<*
+ @param [out] lpPaletteEntries
+*>
+extern fn uint get_enh_meta_file_palette_entries(HEnhMetafile hemf, uint nNumEntries, PaletteEntry* lpPaletteEntries)
+    @cname("GetEnhMetaFilePaletteEntries") @link("gdi32");
+
+extern fn HEnhMetafile get_enh_meta_fileW(ushort* lpName)
+    @cname("GetEnhMetaFileW") @link("gdi32");
+
+<*
+ @param [out] pvBuffer
+*>
+extern fn uint get_font_data(Hdc hdc, uint dwTable, uint dwOffset, void* pvBuffer, uint cjBuffer)
+    @cname("GetFontData") @link("gdi32");
+
+extern fn uint get_font_language_info(Hdc hdc)
+    @cname("GetFontLanguageInfo") @link("gdi32");
+
+<*
+ @param [out] lpgs
+*>
+extern fn uint get_font_unicode_ranges(Hdc hdc, GlyphSet* lpgs)
+    @cname("GetFontUnicodeRanges") @link("gdi32");
+
+<*
+ @param [&out] pgi
+*>
+extern fn uint get_glyph_indicesA(Hdc hdc, char* lpstr, int c, ushort* pgi, uint fl)
+    @cname("GetGlyphIndicesA") @link("gdi32");
+
+<*
+ @param [&out] pgi
+*>
+extern fn uint get_glyph_indicesW(Hdc hdc, ushort* lpstr, int c, ushort* pgi, uint fl)
+    @cname("GetGlyphIndicesW") @link("gdi32");
+
+<*
+ @param [&out] lpgm
+ @param [out] pvBuffer
+ @param [&in] lpmat2
+*>
+extern fn uint get_glyph_outlineA(Hdc hdc, uint uChar, GetGlyphOutlineFormat fuFormat, GlyphMetrics* lpgm, uint cjBuffer, void* pvBuffer, MAT2Type* lpmat2)
+    @cname("GetGlyphOutlineA") @link("gdi32");
+
+<*
+ @param [&out] lpgm
+ @param [out] pvBuffer
+ @param [&in] lpmat2
+*>
+extern fn uint get_glyph_outlineW(Hdc hdc, uint uChar, GetGlyphOutlineFormat fuFormat, GlyphMetrics* lpgm, uint cjBuffer, void* pvBuffer, MAT2Type* lpmat2)
+    @cname("GetGlyphOutlineW") @link("gdi32");
+
+extern fn int get_graphics_mode(Hdc hdc)
+    @cname("GetGraphicsMode") @link("gdi32");
+
+<*
+ @param [out] lpKernPair
+*>
+extern fn uint get_kerning_pairsA(Hdc hdc, uint nPairs, KerningPair* lpKernPair)
+    @cname("GetKerningPairsA") @link("gdi32");
+
+<*
+ @param [out] lpKernPair
+*>
+extern fn uint get_kerning_pairsW(Hdc hdc, uint nPairs, KerningPair* lpKernPair)
+    @cname("GetKerningPairsW") @link("gdi32");
+
+extern fn uint get_layout(Hdc hdc)
+    @cname("GetLayout") @link("gdi32");
+
+extern fn HdcMapMode get_map_mode(Hdc hdc)
+    @cname("GetMapMode") @link("gdi32");
+
+extern fn HMetafile get_meta_fileA(char* lpName)
+    @cname("GetMetaFileA") @link("gdi32");
+
+<*
+ @param [out] lpData
+*>
+extern fn uint get_meta_file_bits_ex(HMetafile hMF, uint cbBuffer, void* lpData)
+    @cname("GetMetaFileBitsEx") @link("gdi32");
+
+extern fn HMetafile get_meta_fileW(ushort* lpName)
+    @cname("GetMetaFileW") @link("gdi32");
+
+extern fn int get_meta_rgn(Hdc hdc, HRgn hrgn)
+    @cname("GetMetaRgn") @link("gdi32");
+
+<*
+ @param [&out] plimit
+*>
+extern fn Bool get_miter_limit(Hdc hdc, float* plimit)
+    @cname("GetMiterLimit") @link("gdi32");
+
+<*
+ @param [&inout] lpmi
+*>
+extern fn Bool get_monitor_infoA(HMonitor hMonitor, MonitorInfo* lpmi)
+    @cname("GetMonitorInfoA") @link("user32");
+
+<*
+ @param [&inout] lpmi
+*>
+extern fn Bool get_monitor_infoW(HMonitor hMonitor, MonitorInfo* lpmi)
+    @cname("GetMonitorInfoW") @link("user32");
+
+extern fn ColorRef get_nearest_color(Hdc hdc, ColorRef color)
+    @cname("GetNearestColor") @link("gdi32");
+
+extern fn uint get_nearest_palette_index(HPalette h, ColorRef color)
+    @cname("GetNearestPaletteIndex") @link("gdi32");
+
+<*
+ @param [out] pv
+*>
+extern fn int get_objectA(HGdiObj h, int c, void* pv)
+    @cname("GetObjectA") @link("gdi32");
+
+extern fn uint get_object_type(HGdiObj h)
+    @cname("GetObjectType") @link("gdi32");
+
+<*
+ @param [out] pv
+*>
+extern fn int get_objectW(HGdiObj h, int c, void* pv)
+    @cname("GetObjectW") @link("gdi32");
+
+<*
+ @param [out] potm
+*>
+extern fn uint get_outline_text_metricsA(Hdc hdc, uint cjCopy, OutlineTextMetricA* potm)
+    @cname("GetOutlineTextMetricsA") @link("gdi32");
+
+<*
+ @param [out] potm
+*>
+extern fn uint get_outline_text_metricsW(Hdc hdc, uint cjCopy, OutlineTextMetricW* potm)
+    @cname("GetOutlineTextMetricsW") @link("gdi32");
+
+<*
+ @param [out] pPalEntries
+*>
+extern fn uint get_palette_entries(HPalette hpal, uint iStart, uint cEntries, PaletteEntry* pPalEntries)
+    @cname("GetPaletteEntries") @link("gdi32");
+
+<*
+ @param [out] apt
+ @param [out] aj
+*>
+extern fn int get_path(Hdc hdc, Point* apt, char* aj, int cpt)
+    @cname("GetPath") @link("gdi32");
+
+extern fn ColorRef get_pixel(Hdc hdc, int x, int y)
+    @cname("GetPixel") @link("gdi32");
+
+extern fn int get_poly_fill_mode(Hdc hdc)
+    @cname("GetPolyFillMode") @link("gdi32");
+
+extern fn R2Mode get_rop_2(Hdc hdc)
+    @cname("GetROP2") @link("gdi32");
+
+extern fn int get_random_rgn(Hdc hdc, HRgn hrgn, int i)
+    @cname("GetRandomRgn") @link("gdi32");
+
+<*
+ @param [&out] lpraststat
+*>
+extern fn Bool get_rasterizer_caps(RasterizerStatus* lpraststat, uint cjBytes)
+    @cname("GetRasterizerCaps") @link("gdi32");
+
+<*
+ @param [out] lpRgnData
+*>
+extern fn uint get_region_data(HRgn hrgn, uint nCount, RgnData* lpRgnData)
+    @cname("GetRegionData") @link("gdi32");
+
+<*
+ @param [&out] lprc
+*>
+extern fn GdiRegionType get_rgn_box(HRgn hrgn, Rect* lprc)
+    @cname("GetRgnBox") @link("gdi32");
+
+extern fn HGdiObj get_stock_object(GetStockObjectFlags i)
+    @cname("GetStockObject") @link("gdi32");
+
+extern fn int get_stretch_blt_mode(Hdc hdc)
+    @cname("GetStretchBltMode") @link("gdi32");
+
+extern fn uint get_sys_color(SysColorIndex nIndex)
+    @cname("GetSysColor") @link("user32");
+
+extern fn HBrush get_sys_color_brush(SysColorIndex nIndex)
+    @cname("GetSysColorBrush") @link("user32");
+
+<*
+ @param [out] pPalEntries
+*>
+extern fn uint get_system_palette_entries(Hdc hdc, uint iStart, uint cEntries, PaletteEntry* pPalEntries)
+    @cname("GetSystemPaletteEntries") @link("gdi32");
+
+extern fn uint get_system_palette_use(Hdc hdc)
+    @cname("GetSystemPaletteUse") @link("gdi32");
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+extern fn uint get_tabbed_text_extentA(Hdc hdc, char* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions)
+    @cname("GetTabbedTextExtentA") @link("user32");
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+extern fn uint get_tabbed_text_extentW(Hdc hdc, ushort* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions)
+    @cname("GetTabbedTextExtentW") @link("user32");
+
+extern fn TextAlignOptions get_text_align(Hdc hdc)
+    @cname("GetTextAlign") @link("gdi32");
+
+extern fn int get_text_character_extra(Hdc hdc)
+    @cname("GetTextCharacterExtra") @link("gdi32");
+
+extern fn ColorRef get_text_color(Hdc hdc)
+    @cname("GetTextColor") @link("gdi32");
+
+<*
+ @param [out] lpnFit
+ @param [out] lpnDx
+ @param [&out] lpSize
+*>
+extern fn Bool get_text_extent_ex_pointA(Hdc hdc, char* lpszString, int cchString, int nMaxExtent, int* lpnFit, int* lpnDx, Size* lpSize)
+    @cname("GetTextExtentExPointA") @link("gdi32");
+
+<*
+ @param [&in] lpwszString
+ @param [out] lpnFit
+ @param [out] lpnDx
+ @param [&out] lpSize
+*>
+extern fn Bool get_text_extent_ex_point_i(Hdc hdc, ushort* lpwszString, int cwchString, int nMaxExtent, int* lpnFit, int* lpnDx, Size* lpSize)
+    @cname("GetTextExtentExPointI") @link("gdi32");
+
+<*
+ @param [out] lpnFit
+ @param [out] lpnDx
+ @param [&out] lpSize
+*>
+extern fn Bool get_text_extent_ex_pointW(Hdc hdc, ushort* lpszString, int cchString, int nMaxExtent, int* lpnFit, int* lpnDx, Size* lpSize)
+    @cname("GetTextExtentExPointW") @link("gdi32");
+
+<*
+ @param [&out] psizl
+*>
+extern fn Bool get_text_extent_point_32A(Hdc hdc, char* lpString, int c, Size* psizl)
+    @cname("GetTextExtentPoint32A") @link("gdi32");
+
+<*
+ @param [&out] psizl
+*>
+extern fn Bool get_text_extent_point_32W(Hdc hdc, ushort* lpString, int c, Size* psizl)
+    @cname("GetTextExtentPoint32W") @link("gdi32");
+
+<*
+ @param [&out] lpsz
+*>
+extern fn Bool get_text_extent_pointA(Hdc hdc, char* lpString, int c, Size* lpsz)
+    @cname("GetTextExtentPointA") @link("gdi32");
+
+<*
+ @param [&in] pgiIn
+ @param [&out] psize
+*>
+extern fn Bool get_text_extent_point_i(Hdc hdc, ushort* pgiIn, int cgi, Size* psize)
+    @cname("GetTextExtentPointI") @link("gdi32");
+
+<*
+ @param [&out] lpsz
+*>
+extern fn Bool get_text_extent_pointW(Hdc hdc, ushort* lpString, int c, Size* lpsz)
+    @cname("GetTextExtentPointW") @link("gdi32");
+
+extern fn int get_text_faceA(Hdc hdc, int c, char* lpName)
+    @cname("GetTextFaceA") @link("gdi32");
+
+extern fn int get_text_faceW(Hdc hdc, int c, ushort* lpName)
+    @cname("GetTextFaceW") @link("gdi32");
+
+<*
+ @param [&out] lptm
+*>
+extern fn Bool get_text_metricsA(Hdc hdc, TextMetricA* lptm)
+    @cname("GetTextMetricsA") @link("gdi32");
+
+<*
+ @param [&out] lptm
+*>
+extern fn Bool get_text_metricsW(Hdc hdc, TextMetricW* lptm)
+    @cname("GetTextMetricsW") @link("gdi32");
+
+<*
+ @param [out] lpRect
+*>
+extern fn Bool get_update_rect(HWnd hWnd, Rect* lpRect, Bool bErase)
+    @cname("GetUpdateRect") @link("user32");
+
+extern fn GdiRegionType get_update_rgn(HWnd hWnd, HRgn hRgn, Bool bErase)
+    @cname("GetUpdateRgn") @link("user32");
+
+<*
+ @param [&out] lpsize
+*>
+extern fn Bool get_viewport_ext_ex(Hdc hdc, Size* lpsize)
+    @cname("GetViewportExtEx") @link("gdi32");
+
+<*
+ @param [&out] lppoint
+*>
+extern fn Bool get_viewport_org_ex(Hdc hdc, Point* lppoint)
+    @cname("GetViewportOrgEx") @link("gdi32");
+
+<*
+ @param [out] pData16
+*>
+extern fn uint get_win_meta_file_bits(HEnhMetafile hemf, uint cbData16, char* pData16, int iMapMode, Hdc hdcRef)
+    @cname("GetWinMetaFileBits") @link("gdi32");
+
+extern fn Hdc get_window_dc(HWnd hWnd)
+    @cname("GetWindowDC") @link("user32");
+
+<*
+ @param [&out] lpsize
+*>
+extern fn Bool get_window_ext_ex(Hdc hdc, Size* lpsize)
+    @cname("GetWindowExtEx") @link("gdi32");
+
+<*
+ @param [&out] lppoint
+*>
+extern fn Bool get_window_org_ex(Hdc hdc, Point* lppoint)
+    @cname("GetWindowOrgEx") @link("gdi32");
+
+extern fn GdiRegionType get_window_rgn(HWnd hWnd, HRgn hRgn)
+    @cname("GetWindowRgn") @link("user32");
+
+<*
+ @param [&out] lprc
+*>
+extern fn GdiRegionType get_window_rgn_box(HWnd hWnd, Rect* lprc)
+    @cname("GetWindowRgnBox") @link("user32");
+
+<*
+ @param [&out] lpxf
+*>
+extern fn Bool get_world_transform(Hdc hdc, XForm* lpxf)
+    @cname("GetWorldTransform") @link("gdi32");
+
+<*
+ @param [&in] pVertex
+ @param [&in] pMesh
+*>
+extern fn Bool gradient_fill(Hdc hdc, TriVertex* pVertex, uint nVertex, void* pMesh, uint nMesh, GradientFill ulMode)
+    @cname("GradientFill") @link("msimg32");
+
+extern fn Bool gray_stringA(Hdc hDC, HBrush hBrush, GrayStringProc lpOutputFunc, LParam lpData, int nCount, int x, int y, int nWidth, int nHeight)
+    @cname("GrayStringA") @link("user32");
+
+extern fn Bool gray_stringW(Hdc hDC, HBrush hBrush, GrayStringProc lpOutputFunc, LParam lpData, int nCount, int x, int y, int nWidth, int nHeight)
+    @cname("GrayStringW") @link("user32");
+
+<*
+ @param [&inout] lprc
+*>
+extern fn Bool inflate_rect(Rect* lprc, int dx, int dy)
+    @cname("InflateRect") @link("user32");
+
+extern fn GdiRegionType intersect_clip_rect(Hdc hdc, int left, int top, int right, int bottom)
+    @cname("IntersectClipRect") @link("gdi32");
+
+<*
+ @param [&out] lprcDst
+ @param [&in] lprcSrc1
+ @param [&in] lprcSrc2
+*>
+extern fn Bool intersect_rect(Rect* lprcDst, Rect* lprcSrc1, Rect* lprcSrc2)
+    @cname("IntersectRect") @link("user32");
+
+<*
+ @param [in] lpRect
+*>
+extern fn Bool invalidate_rect(HWnd hWnd, Rect* lpRect, Bool bErase)
+    @cname("InvalidateRect") @link("user32");
+
+extern fn Bool invalidate_rgn(HWnd hWnd, HRgn hRgn, Bool bErase)
+    @cname("InvalidateRgn") @link("user32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn Bool invert_rect(Hdc hDC, Rect* lprc)
+    @cname("InvertRect") @link("user32");
+
+extern fn Bool invert_rgn(Hdc hdc, HRgn hrgn)
+    @cname("InvertRgn") @link("gdi32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn Bool is_rect_empty(Rect* lprc)
+    @cname("IsRectEmpty") @link("user32");
+
+<*
+ @param [&inout] lppt
+*>
+extern fn Bool l_pto_dp(Hdc hdc, Point* lppt, int c)
+    @cname("LPtoDP") @link("gdi32");
+
+extern fn Bool line_ddA(int xStart, int yStart, int xEnd, int yEnd, LineDdaProc lpProc, LParam data)
+    @cname("LineDDA") @link("gdi32");
+
+extern fn Bool line_to(Hdc hdc, int x, int y)
+    @cname("LineTo") @link("gdi32");
+
+extern fn HBitmap load_bitmapA(HInstance hInstance, char* lpBitmapName)
+    @cname("LoadBitmapA") @link("user32");
+
+extern fn HBitmap load_bitmapW(HInstance hInstance, ushort* lpBitmapName)
+    @cname("LoadBitmapW") @link("user32");
+
+extern fn Bool lock_window_update(HWnd hWndLock)
+    @cname("LockWindowUpdate") @link("user32");
+
+<*
+ @param [&inout] lpPoints
+*>
+extern fn int map_window_points(HWnd hWndFrom, HWnd hWndTo, Point* lpPoints, uint cPoints)
+    @cname("MapWindowPoints") @link("user32");
+
+extern fn Bool mask_blt(Hdc hdcDest, int xDest, int yDest, int width, int height, Hdc hdcSrc, int xSrc, int ySrc, HBitmap hbmMask, int xMask, int yMask, uint rop)
+    @cname("MaskBlt") @link("gdi32");
+
+<*
+ @param [&in] puchMergeFontBuffer
+ @param [&in] puchFontPackageBuffer
+ @param [&inout] ppuchDestBuffer
+ @param [&inout] pulDestBufferSize
+ @param [&inout] pulBytesWritten
+ @param [&inout] lpvReserved
+*>
+extern fn uint merge_font_package(char* puchMergeFontBuffer, uint ulMergeFontBufferSize, char* puchFontPackageBuffer, uint ulFontPackageBufferSize, char** ppuchDestBuffer, uint* pulDestBufferSize, uint* pulBytesWritten, ushort usMode, CfpAllocProc lpfnAllocate, CfpReallocProc lpfnReAllocate, CfpFreeProc lpfnFree, void* lpvReserved)
+    @cname("MergeFontPackage") @link("fontsub");
+
+<*
+ @param [in] lpxf
+*>
+extern fn Bool modify_world_transform(Hdc hdc, XForm* lpxf, ModifyWorldTransformMode mode)
+    @cname("ModifyWorldTransform") @link("gdi32");
+
+extern fn HMonitor monitor_from_point(Point pt, MonitorFromFlags dwFlags)
+    @cname("MonitorFromPoint") @link("user32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn HMonitor monitor_from_rect(Rect* lprc, MonitorFromFlags dwFlags)
+    @cname("MonitorFromRect") @link("user32");
+
+extern fn HMonitor monitor_from_window(HWnd hwnd, MonitorFromFlags dwFlags)
+    @cname("MonitorFromWindow") @link("user32");
+
+<*
+ @param [out] lppt
+*>
+extern fn Bool move_to_ex(Hdc hdc, int x, int y, Point* lppt)
+    @cname("MoveToEx") @link("gdi32");
+
+extern fn GdiRegionType offset_clip_rgn(Hdc hdc, int x, int y)
+    @cname("OffsetClipRgn") @link("gdi32");
+
+<*
+ @param [&inout] lprc
+*>
+extern fn Bool offset_rect(Rect* lprc, int dx, int dy)
+    @cname("OffsetRect") @link("user32");
+
+extern fn GdiRegionType offset_rgn(HRgn hrgn, int x, int y)
+    @cname("OffsetRgn") @link("gdi32");
+
+<*
+ @param [out] lppt
+*>
+extern fn Bool offset_viewport_org_ex(Hdc hdc, int x, int y, Point* lppt)
+    @cname("OffsetViewportOrgEx") @link("gdi32");
+
+<*
+ @param [out] lppt
+*>
+extern fn Bool offset_window_org_ex(Hdc hdc, int x, int y, Point* lppt)
+    @cname("OffsetWindowOrgEx") @link("gdi32");
+
+extern fn Bool paint_desktop(Hdc hdc)
+    @cname("PaintDesktop") @link("user32");
+
+extern fn Bool paint_rgn(Hdc hdc, HRgn hrgn)
+    @cname("PaintRgn") @link("gdi32");
+
+extern fn Bool pat_blt(Hdc hdc, int x, int y, int w, int h, RopCode rop)
+    @cname("PatBlt") @link("gdi32");
+
+extern fn HRgn path_to_region(Hdc hdc)
+    @cname("PathToRegion") @link("gdi32");
+
+extern fn Bool pie(Hdc hdc, int left, int top, int right, int bottom, int xr1, int yr1, int xr2, int yr2)
+    @cname("Pie") @link("gdi32");
+
+<*
+ @param [&in] lprect
+*>
+extern fn Bool play_enh_meta_file(Hdc hdc, HEnhMetafile hmf, Rect* lprect)
+    @cname("PlayEnhMetaFile") @link("gdi32");
+
+<*
+ @param [&in] pht
+ @param [&in] pmr
+*>
+extern fn Bool play_enh_meta_file_record(Hdc hdc, HandleTable* pht, EnhMetaRecord* pmr, uint cht)
+    @cname("PlayEnhMetaFileRecord") @link("gdi32");
+
+extern fn Bool play_meta_file(Hdc hdc, HMetafile hmf)
+    @cname("PlayMetaFile") @link("gdi32");
+
+<*
+ @param [&in] lpHandleTable
+ @param [&in] lpMR
+*>
+extern fn Bool play_meta_file_record(Hdc hdc, HandleTable* lpHandleTable, MetaRecord* lpMR, uint noObjs)
+    @cname("PlayMetaFileRecord") @link("gdi32");
+
+<*
+ @param [&in] lpPoint
+*>
+extern fn Bool plg_blt(Hdc hdcDest, Point* lpPoint, Hdc hdcSrc, int xSrc, int ySrc, int width, int height, HBitmap hbmMask, int xMask, int yMask)
+    @cname("PlgBlt") @link("gdi32");
+
+<*
+ @param [&in] apt
+*>
+extern fn Bool poly_bezier(Hdc hdc, Point* apt, uint cpt)
+    @cname("PolyBezier") @link("gdi32");
+
+<*
+ @param [&in] apt
+*>
+extern fn Bool poly_bezier_to(Hdc hdc, Point* apt, uint cpt)
+    @cname("PolyBezierTo") @link("gdi32");
+
+<*
+ @param [&in] apt
+ @param [&in] aj
+*>
+extern fn Bool poly_draw(Hdc hdc, Point* apt, char* aj, int cpt)
+    @cname("PolyDraw") @link("gdi32");
+
+<*
+ @param [&in] apt
+ @param [&in] asz
+*>
+extern fn Bool poly_polygon(Hdc hdc, Point* apt, int* asz, int csz)
+    @cname("PolyPolygon") @link("gdi32");
+
+<*
+ @param [&in] apt
+ @param [&in] asz
+*>
+extern fn Bool poly_polyline(Hdc hdc, Point* apt, uint* asz, uint csz)
+    @cname("PolyPolyline") @link("gdi32");
+
+<*
+ @param [&in] ppt
+*>
+extern fn Bool poly_text_outA(Hdc hdc, PolyTextA* ppt, int nstrings)
+    @cname("PolyTextOutA") @link("gdi32");
+
+<*
+ @param [&in] ppt
+*>
+extern fn Bool poly_text_outW(Hdc hdc, PolyTextW* ppt, int nstrings)
+    @cname("PolyTextOutW") @link("gdi32");
+
+<*
+ @param [&in] apt
+*>
+extern fn Bool polygon(Hdc hdc, Point* apt, int cpt)
+    @cname("Polygon") @link("gdi32");
+
+<*
+ @param [&in] apt
+*>
+extern fn Bool polyline(Hdc hdc, Point* apt, int cpt)
+    @cname("Polyline") @link("gdi32");
+
+<*
+ @param [&in] apt
+*>
+extern fn Bool polyline_to(Hdc hdc, Point* apt, uint cpt)
+    @cname("PolylineTo") @link("gdi32");
+
+<*
+ @param [&in] lprc
+*>
+extern fn Bool pt_in_rect(Rect* lprc, Point pt)
+    @cname("PtInRect") @link("user32");
+
+extern fn Bool pt_in_region(HRgn hrgn, int x, int y)
+    @cname("PtInRegion") @link("gdi32");
+
+extern fn Bool pt_visible(Hdc hdc, int x, int y)
+    @cname("PtVisible") @link("gdi32");
+
+extern fn uint realize_palette(Hdc hdc)
+    @cname("RealizePalette") @link("gdi32");
+
+<*
+ @param [&in] lprect
+*>
+extern fn Bool rect_in_region(HRgn hrgn, Rect* lprect)
+    @cname("RectInRegion") @link("gdi32");
+
+<*
+ @param [&in] lprect
+*>
+extern fn Bool rect_visible(Hdc hdc, Rect* lprect)
+    @cname("RectVisible") @link("gdi32");
+
+extern fn Bool rectangle(Hdc hdc, int left, int top, int right, int bottom)
+    @cname("Rectangle") @link("gdi32");
+
+<*
+ @param [in] lprcUpdate
+*>
+extern fn Bool redraw_window(HWnd hWnd, Rect* lprcUpdate, HRgn hrgnUpdate, RedrawWindowFlags flags)
+    @cname("RedrawWindow") @link("user32");
+
+extern fn int release_dc(HWnd hWnd, Hdc hDC)
+    @cname("ReleaseDC") @link("user32");
+
+extern fn Bool remove_font_mem_resource_ex(Handle h)
+    @cname("RemoveFontMemResourceEx") @link("gdi32");
+
+extern fn Bool remove_font_resourceA(char* lpFileName)
+    @cname("RemoveFontResourceA") @link("gdi32");
+
+extern fn Bool remove_font_resource_exA(char* name, uint fl, void* pdv)
+    @cname("RemoveFontResourceExA") @link("gdi32");
+
+extern fn Bool remove_font_resource_exW(ushort* name, uint fl, void* pdv)
+    @cname("RemoveFontResourceExW") @link("gdi32");
+
+extern fn Bool remove_font_resourceW(ushort* lpFileName)
+    @cname("RemoveFontResourceW") @link("gdi32");
+
+<*
+ @param [&in] lpdm
+*>
+extern fn Hdc reset_dcA(Hdc hdc, DevModeA* lpdm)
+    @cname("ResetDCA") @link("gdi32");
+
+<*
+ @param [&in] lpdm
+*>
+extern fn Hdc reset_dcW(Hdc hdc, DevModeW* lpdm)
+    @cname("ResetDCW") @link("gdi32");
+
+extern fn Bool resize_palette(HPalette hpal, uint n)
+    @cname("ResizePalette") @link("gdi32");
+
+extern fn Bool restore_dc(Hdc hdc, int nSavedDC)
+    @cname("RestoreDC") @link("gdi32");
+
+extern fn Bool round_rect(Hdc hdc, int left, int top, int right, int bottom, int width, int height)
+    @cname("RoundRect") @link("gdi32");
+
+extern fn int save_dc(Hdc hdc)
+    @cname("SaveDC") @link("gdi32");
+
+<*
+ @param [out] lpsz
+*>
+extern fn Bool scale_viewport_ext_ex(Hdc hdc, int xn, int dx, int yn, int yd, Size* lpsz)
+    @cname("ScaleViewportExtEx") @link("gdi32");
+
+<*
+ @param [out] lpsz
+*>
+extern fn Bool scale_window_ext_ex(Hdc hdc, int xn, int xd, int yn, int yd, Size* lpsz)
+    @cname("ScaleWindowExtEx") @link("gdi32");
+
+<*
+ @param [&inout] lpPoint
+*>
+extern fn Bool screen_to_client(HWnd hWnd, Point* lpPoint)
+    @cname("ScreenToClient") @link("user32");
+
+extern fn Bool select_clip_path(Hdc hdc, RgnCombineMode mode)
+    @cname("SelectClipPath") @link("gdi32");
+
+extern fn GdiRegionType select_clip_rgn(Hdc hdc, HRgn hrgn)
+    @cname("SelectClipRgn") @link("gdi32");
+
+extern fn HGdiObj select_object(Hdc hdc, HGdiObj h)
+    @cname("SelectObject") @link("gdi32");
+
+extern fn HPalette select_palette(Hdc hdc, HPalette hPal, Bool bForceBkgd)
+    @cname("SelectPalette") @link("gdi32");
+
+extern fn int set_arc_direction(Hdc hdc, ArcDirection dir)
+    @cname("SetArcDirection") @link("gdi32");
+
+<*
+ @param [&in] pvBits
+*>
+extern fn int set_bitmap_bits(HBitmap hbm, uint cb, void* pvBits)
+    @cname("SetBitmapBits") @link("gdi32");
+
+<*
+ @param [out] lpsz
+*>
+extern fn Bool set_bitmap_dimension_ex(HBitmap hbm, int w, int h, Size* lpsz)
+    @cname("SetBitmapDimensionEx") @link("gdi32");
+
+extern fn ColorRef set_bk_color(Hdc hdc, ColorRef color)
+    @cname("SetBkColor") @link("gdi32");
+
+extern fn int set_bk_mode(Hdc hdc, int mode)
+    @cname("SetBkMode") @link("gdi32");
+
+<*
+ @param [in] lprect
+*>
+extern fn uint set_bounds_rect(Hdc hdc, Rect* lprect, SetBoundsRectFlags flags)
+    @cname("SetBoundsRect") @link("gdi32");
+
+<*
+ @param [out] lppt
+*>
+extern fn Bool set_brush_org_ex(Hdc hdc, int x, int y, Point* lppt)
+    @cname("SetBrushOrgEx") @link("gdi32");
+
+<*
+ @param [&in] lpca
+*>
+extern fn Bool set_color_adjustment(Hdc hdc, ColorAdjustment* lpca)
+    @cname("SetColorAdjustment") @link("gdi32");
+
+extern fn ColorRef set_dc_brush_color(Hdc hdc, ColorRef color)
+    @cname("SetDCBrushColor") @link("gdi32");
+
+extern fn ColorRef set_dc_pen_color(Hdc hdc, ColorRef color)
+    @cname("SetDCPenColor") @link("gdi32");
+
+<*
+ @param [&in] prgbq
+*>
+extern fn uint set_dib_color_table(Hdc hdc, uint iStart, uint cEntries, RgbQuad* prgbq)
+    @cname("SetDIBColorTable") @link("gdi32");
+
+<*
+ @param [&in] lpBits
+ @param [&in] lpbmi
+*>
+extern fn int set_di_bits(Hdc hdc, HBitmap hbm, uint start, uint cLines, void* lpBits, BitmapInfo* lpbmi, DibUsage colorUse)
+    @cname("SetDIBits") @link("gdi32");
+
+<*
+ @param [&in] lpvBits
+ @param [&in] lpbmi
+*>
+extern fn int set_di_bits_to_device(Hdc hdc, int xDest, int yDest, uint w, uint h, int xSrc, int ySrc, uint startScan, uint cLines, void* lpvBits, BitmapInfo* lpbmi, DibUsage colorUse)
+    @cname("SetDIBitsToDevice") @link("gdi32");
+
+<*
+ @param [&in] pb
+*>
+extern fn HEnhMetafile set_enh_meta_file_bits(uint nSize, char* pb)
+    @cname("SetEnhMetaFileBits") @link("gdi32");
+
+extern fn int set_graphics_mode(Hdc hdc, GraphicsMode iMode)
+    @cname("SetGraphicsMode") @link("gdi32");
+
+extern fn uint set_layout(Hdc hdc, DcLayout l)
+    @cname("SetLayout") @link("gdi32");
+
+extern fn int set_map_mode(Hdc hdc, HdcMapMode iMode)
+    @cname("SetMapMode") @link("gdi32");
+
+extern fn uint set_mapper_flags(Hdc hdc, uint flags)
+    @cname("SetMapperFlags") @link("gdi32");
+
+<*
+ @param [&in] lpData
+*>
+extern fn HMetafile set_meta_file_bits_ex(uint cbBuffer, char* lpData)
+    @cname("SetMetaFileBitsEx") @link("gdi32");
+
+extern fn GdiRegionType set_meta_rgn(Hdc hdc)
+    @cname("SetMetaRgn") @link("gdi32");
+
+<*
+ @param [out] old
+*>
+extern fn Bool set_miter_limit(Hdc hdc, float limit, float* old)
+    @cname("SetMiterLimit") @link("gdi32");
+
+<*
+ @param [&in] pPalEntries
+*>
+extern fn uint set_palette_entries(HPalette hpal, uint iStart, uint cEntries, PaletteEntry* pPalEntries)
+    @cname("SetPaletteEntries") @link("gdi32");
+
+extern fn ColorRef set_pixel(Hdc hdc, int x, int y, ColorRef color)
+    @cname("SetPixel") @link("gdi32");
+
+extern fn Bool set_pixel_v(Hdc hdc, int x, int y, ColorRef color)
+    @cname("SetPixelV") @link("gdi32");
+
+extern fn int set_poly_fill_mode(Hdc hdc, CreatePolygonRgnMode mode)
+    @cname("SetPolyFillMode") @link("gdi32");
+
+extern fn int set_rop_2(Hdc hdc, R2Mode rop2)
+    @cname("SetROP2") @link("gdi32");
+
+<*
+ @param [&out] lprc
+*>
+extern fn Bool set_rect(Rect* lprc, int xLeft, int yTop, int xRight, int yBottom)
+    @cname("SetRect") @link("user32");
+
+<*
+ @param [&out] lprc
+*>
+extern fn Bool set_rect_empty(Rect* lprc)
+    @cname("SetRectEmpty") @link("user32");
+
+extern fn Bool set_rect_rgn(HRgn hrgn, int left, int top, int right, int bottom)
+    @cname("SetRectRgn") @link("gdi32");
+
+extern fn int set_stretch_blt_mode(Hdc hdc, StretchBltMode mode)
+    @cname("SetStretchBltMode") @link("gdi32");
+
+<*
+ @param [&in] lpaElements
+ @param [&in] lpaRgbValues
+*>
+extern fn Bool set_sys_colors(int cElements, int* lpaElements, ColorRef* lpaRgbValues)
+    @cname("SetSysColors") @link("user32");
+
+extern fn uint set_system_palette_use(Hdc hdc, SystemPaletteUse use)
+    @cname("SetSystemPaletteUse") @link("gdi32");
+
+extern fn uint set_text_align(Hdc hdc, TextAlignOptions align)
+    @cname("SetTextAlign") @link("gdi32");
+
+extern fn int set_text_character_extra(Hdc hdc, int extra)
+    @cname("SetTextCharacterExtra") @link("gdi32");
+
+extern fn ColorRef set_text_color(Hdc hdc, ColorRef color)
+    @cname("SetTextColor") @link("gdi32");
+
+extern fn Bool set_text_justification(Hdc hdc, int extra, int count)
+    @cname("SetTextJustification") @link("gdi32");
+
+<*
+ @param [out] lpsz
+*>
+extern fn Bool set_viewport_ext_ex(Hdc hdc, int x, int y, Size* lpsz)
+    @cname("SetViewportExtEx") @link("gdi32");
+
+<*
+ @param [out] lppt
+*>
+extern fn Bool set_viewport_org_ex(Hdc hdc, int x, int y, Point* lppt)
+    @cname("SetViewportOrgEx") @link("gdi32");
+
+<*
+ @param [out] lpsz
+*>
+extern fn Bool set_window_ext_ex(Hdc hdc, int x, int y, Size* lpsz)
+    @cname("SetWindowExtEx") @link("gdi32");
+
+<*
+ @param [out] lppt
+*>
+extern fn Bool set_window_org_ex(Hdc hdc, int x, int y, Point* lppt)
+    @cname("SetWindowOrgEx") @link("gdi32");
+
+extern fn int set_window_rgn(HWnd hWnd, HRgn hRgn, Bool bRedraw)
+    @cname("SetWindowRgn") @link("user32");
+
+<*
+ @param [&in] lpxf
+*>
+extern fn Bool set_world_transform(Hdc hdc, XForm* lpxf)
+    @cname("SetWorldTransform") @link("gdi32");
+
+extern fn Bool stretch_blt(Hdc hdcDest, int xDest, int yDest, int wDest, int hDest, Hdc hdcSrc, int xSrc, int ySrc, int wSrc, int hSrc, RopCode rop)
+    @cname("StretchBlt") @link("gdi32");
+
+<*
+ @param [in] lpBits
+ @param [&in] lpbmi
+*>
+extern fn int stretch_di_bits(Hdc hdc, int xDest, int yDest, int destWidth, int destHeight, int xSrc, int ySrc, int srcWidth, int srcHeight, void* lpBits, BitmapInfo* lpbmi, DibUsage iUsage, RopCode rop)
+    @cname("StretchDIBits") @link("gdi32");
+
+extern fn Bool stroke_and_fill_path(Hdc hdc)
+    @cname("StrokeAndFillPath") @link("gdi32");
+
+extern fn Bool stroke_path(Hdc hdc)
+    @cname("StrokePath") @link("gdi32");
+
+<*
+ @param [&out] lprcDst
+ @param [&in] lprcSrc1
+ @param [&in] lprcSrc2
+*>
+extern fn Bool subtract_rect(Rect* lprcDst, Rect* lprcSrc1, Rect* lprcSrc2)
+    @cname("SubtractRect") @link("user32");
+
+<*
+ @param [&in] pucCharCodes
+ @param [&out] pusShortCodes
+*>
+extern fn int tt_char_to_unicode(Hdc hDC, char* pucCharCodes, uint ulCharCodeSize, ushort* pusShortCodes, uint ulShortCodeSize, uint ulFlags)
+    @cname("TTCharToUnicode") @link("t2embed");
+
+<*
+ @param [&out] pulStatus
+*>
+extern fn int tt_delete_embedded_font(Handle hFontReference, uint ulFlags, uint* pulStatus)
+    @cname("TTDeleteEmbeddedFont") @link("t2embed");
+
+<*
+ @param [&out] pulPrivStatus
+ @param [&out] pulStatus
+ @param [&in] lpvWriteStream
+ @param [&in] pusCharCodeSet
+ @param [in] pTTEmbedInfo
+*>
+extern fn int tt_embed_font(Hdc hDC, TtEmbedFlags ulFlags, EmbedFontCharset ulCharSet, EmbeddedFontPrivStatus* pulPrivStatus, uint* pulStatus, WriteEmbedProc lpfnWriteToStream, void* lpvWriteStream, ushort* pusCharCodeSet, ushort usCharCodeCount, ushort usLanguage, TtEmbedInfo* pTTEmbedInfo)
+    @cname("TTEmbedFont") @link("t2embed");
+
+<*
+ @param [&out] pulPrivStatus
+ @param [&out] pulStatus
+ @param [&in] lpvWriteStream
+ @param [&in] pulCharCodeSet
+ @param [in] pTTEmbedInfo
+*>
+extern fn int tt_embed_font_ex(Hdc hDC, TtEmbedFlags ulFlags, EmbedFontCharset ulCharSet, EmbeddedFontPrivStatus* pulPrivStatus, uint* pulStatus, WriteEmbedProc lpfnWriteToStream, void* lpvWriteStream, uint* pulCharCodeSet, ushort usCharCodeCount, ushort usLanguage, TtEmbedInfo* pTTEmbedInfo)
+    @cname("TTEmbedFontEx") @link("t2embed");
+
+<*
+ @param [&out] pulPrivStatus
+ @param [&out] pulStatus
+ @param [&in] lpvWriteStream
+ @param [&in] pusCharCodeSet
+ @param [in] pTTEmbedInfo
+*>
+extern fn int tt_embed_font_from_fileA(Hdc hDC, char* szFontFileName, ushort usTTCIndex, TtEmbedFlags ulFlags, EmbedFontCharset ulCharSet, EmbeddedFontPrivStatus* pulPrivStatus, uint* pulStatus, WriteEmbedProc lpfnWriteToStream, void* lpvWriteStream, ushort* pusCharCodeSet, ushort usCharCodeCount, ushort usLanguage, TtEmbedInfo* pTTEmbedInfo)
+    @cname("TTEmbedFontFromFileA") @link("t2embed");
+
+extern fn int tt_enable_embedding_for_facename(char* lpszFacename, Bool bEnable)
+    @cname("TTEnableEmbeddingForFacename") @link("t2embed");
+
+<*
+ @param [&out] pulPrivStatus
+ @param [&out] pulStatus
+ @param [&in] lpvReadStream
+ @param [in] pTTLoadInfo
+*>
+extern fn int tt_get_embedded_font_info(TtEmbedFlags ulFlags, uint* pulPrivStatus, FontLicensePrivs ulPrivs, uint* pulStatus, ReadEmbedProc lpfnReadFromStream, void* lpvReadStream, TtLoadInfo* pTTLoadInfo)
+    @cname("TTGetEmbeddedFontInfo") @link("t2embed");
+
+<*
+ @param [&out] pulEmbedType
+*>
+extern fn int tt_get_embedding_type(Hdc hDC, EmbeddedFontPrivStatus* pulEmbedType)
+    @cname("TTGetEmbeddingType") @link("t2embed");
+
+<*
+ @param [&in] phFontReference
+*>
+extern fn int tt_get_new_font_name(Handle* phFontReference, ushort* wzWinFamilyName, int cchMaxWinName, char* szMacFamilyName, int cchMaxMacName)
+    @cname("TTGetNewFontName") @link("t2embed");
+
+<*
+ @param [&out] pbEnabled
+*>
+extern fn int tt_is_embedding_enabled(Hdc hDC, Bool* pbEnabled)
+    @cname("TTIsEmbeddingEnabled") @link("t2embed");
+
+<*
+ @param [&out] pbEnabled
+*>
+extern fn int tt_is_embedding_enabled_for_facename(char* lpszFacename, Bool* pbEnabled)
+    @cname("TTIsEmbeddingEnabledForFacename") @link("t2embed");
+
+<*
+ @param [&out] phFontReference
+ @param [&out] pulPrivStatus
+ @param [&out] pulStatus
+ @param [&in] lpvReadStream
+ @param [in] pTTLoadInfo
+*>
+extern fn int tt_load_embedded_font(Handle* phFontReference, uint ulFlags, EmbeddedFontPrivStatus* pulPrivStatus, FontLicensePrivs ulPrivs, TtLoadEmbeddedFontStatus* pulStatus, ReadEmbedProc lpfnReadFromStream, void* lpvReadStream, ushort* szWinFamilyName, char* szMacFamilyName, TtLoadInfo* pTTLoadInfo)
+    @cname("TTLoadEmbeddedFont") @link("t2embed");
+
+<*
+ @param [&in] pTestParam
+*>
+extern fn int tt_run_validation_tests(Hdc hDC, TtValidationTestsParams* pTestParam)
+    @cname("TTRunValidationTests") @link("t2embed");
+
+<*
+ @param [&in] pTestParam
+*>
+extern fn int tt_run_validation_tests_ex(Hdc hDC, TtValidationTestsParamsEx* pTestParam)
+    @cname("TTRunValidationTestsEx") @link("t2embed");
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+extern fn int tabbed_text_outA(Hdc hdc, int x, int y, char* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions, int nTabOrigin)
+    @cname("TabbedTextOutA") @link("user32");
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+extern fn int tabbed_text_outW(Hdc hdc, int x, int y, ushort* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions, int nTabOrigin)
+    @cname("TabbedTextOutW") @link("user32");
+
+extern fn Bool text_outA(Hdc hdc, int x, int y, char* lpString, int c)
+    @cname("TextOutA") @link("gdi32");
+
+extern fn Bool text_outW(Hdc hdc, int x, int y, ushort* lpString, int c)
+    @cname("TextOutW") @link("gdi32");
+
+extern fn Bool transparent_blt(Hdc hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, Hdc hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, uint crTransparent)
+    @cname("TransparentBlt") @link("msimg32");
+
+<*
+ @param [&out] lprcDst
+ @param [&in] lprcSrc1
+ @param [&in] lprcSrc2
+*>
+extern fn Bool union_rect(Rect* lprcDst, Rect* lprcSrc1, Rect* lprcSrc2)
+    @cname("UnionRect") @link("user32");
+
+extern fn Bool unrealize_object(HGdiObj h)
+    @cname("UnrealizeObject") @link("gdi32");
+
+extern fn Bool update_colors(Hdc hdc)
+    @cname("UpdateColors") @link("gdi32");
+
+extern fn Bool update_window(HWnd hWnd)
+    @cname("UpdateWindow") @link("user32");
+
+<*
+ @param [in] lpRect
+*>
+extern fn Bool validate_rect(HWnd hWnd, Rect* lpRect)
+    @cname("ValidateRect") @link("user32");
+
+extern fn Bool validate_rgn(HWnd hWnd, HRgn hRgn)
+    @cname("ValidateRgn") @link("user32");
+
+extern fn Bool widen_path(Hdc hdc)
+    @cname("WidenPath") @link("gdi32");
+
+extern fn HWnd window_from_dc(Hdc hDC)
+    @cname("WindowFromDC") @link("user32");
+
+<*
+ @param [&in] param1
+*>
+extern fn uint wgl_swap_multiple_buffers(uint param0, WglSwap* param1)
+    @cname("wglSwapMultipleBuffers") @link("opengl32");
+
+macro int add_font_resource(char* param0)
+@if(!$feature(WIN32_UNICODE))
+{
+    return add_font_resourceA(param0);
+}
+
+macro int add_font_resource(ushort* param0)
+@if($feature(WIN32_UNICODE))
+{
+    return add_font_resourceW(param0);
+}
+
+macro int add_font_resource_ex(char* name, FontResourceCharacteristics fl, void* res)
+@if(!$feature(WIN32_UNICODE))
+{
+    return add_font_resource_exA(name, fl, res);
+}
+
+macro int add_font_resource_ex(ushort* name, FontResourceCharacteristics fl, void* res)
+@if($feature(WIN32_UNICODE))
+{
+    return add_font_resource_exW(name, fl, res);
+}
+
+<*
+ @param [in] lpDevMode
+*>
+macro DispChange change_display_settings(DevModeA* lpDevMode, CdsType dwFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return change_display_settingsA(lpDevMode, dwFlags);
+}
+
+<*
+ @param [in] lpDevMode
+*>
+macro DispChange change_display_settings(DevModeW* lpDevMode, CdsType dwFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return change_display_settingsW(lpDevMode, dwFlags);
+}
+
+<*
+ @param [in] lpDevMode
+ @param [in] lParam
+*>
+macro DispChange change_display_settings_ex(char* lpszDeviceName, DevModeA* lpDevMode, HWnd hwnd, CdsType dwflags, void* lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return change_display_settings_exA(lpszDeviceName, lpDevMode, hwnd, dwflags, lParam);
+}
+
+<*
+ @param [in] lpDevMode
+ @param [in] lParam
+*>
+macro DispChange change_display_settings_ex(ushort* lpszDeviceName, DevModeW* lpDevMode, HWnd hwnd, CdsType dwflags, void* lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return change_display_settings_exW(lpszDeviceName, lpDevMode, hwnd, dwflags, lParam);
+}
+
+macro HEnhMetafile copy_enh_meta_file(HEnhMetafile hEnh, char* lpFileName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return copy_enh_meta_fileA(hEnh, lpFileName);
+}
+
+macro HEnhMetafile copy_enh_meta_file(HEnhMetafile hEnh, ushort* lpFileName)
+@if($feature(WIN32_UNICODE))
+{
+    return copy_enh_meta_fileW(hEnh, lpFileName);
+}
+
+macro HMetafile copy_meta_file(HMetafile param0, char* param1)
+@if(!$feature(WIN32_UNICODE))
+{
+    return copy_meta_fileA(param0, param1);
+}
+
+macro HMetafile copy_meta_file(HMetafile param0, ushort* param1)
+@if($feature(WIN32_UNICODE))
+{
+    return copy_meta_fileW(param0, param1);
+}
+
+<*
+ @param [in] pdm
+*>
+macro Hdc create_dc(char* pwszDriver, char* pwszDevice, char* pszPort, DevModeA* pdm)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_dcA(pwszDriver, pwszDevice, pszPort, pdm);
+}
+
+<*
+ @param [in] pdm
+*>
+macro Hdc create_dc(ushort* pwszDriver, ushort* pwszDevice, ushort* pszPort, DevModeW* pdm)
+@if($feature(WIN32_UNICODE))
+{
+    return create_dcW(pwszDriver, pwszDevice, pszPort, pdm);
+}
+
+<*
+ @param [in] lprc
+*>
+macro Hdc create_enh_meta_file(Hdc hdc, char* lpFilename, Rect* lprc, char* lpDesc)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_enh_meta_fileA(hdc, lpFilename, lprc, lpDesc);
+}
+
+<*
+ @param [in] lprc
+*>
+macro Hdc create_enh_meta_file(Hdc hdc, ushort* lpFilename, Rect* lprc, ushort* lpDesc)
+@if($feature(WIN32_UNICODE))
+{
+    return create_enh_meta_fileW(hdc, lpFilename, lprc, lpDesc);
+}
+
+macro HFont create_font(int cHeight, int cWidth, int cEscapement, int cOrientation, int cWeight, uint bItalic, uint bUnderline, uint bStrikeOut, uint iCharSet, uint iOutPrecision, uint iClipPrecision, uint iQuality, uint iPitchAndFamily, char* pszFaceName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_fontA(cHeight, cWidth, cEscapement, cOrientation, cWeight, bItalic, bUnderline, bStrikeOut, iCharSet, iOutPrecision, iClipPrecision, iQuality, iPitchAndFamily, pszFaceName);
+}
+
+macro HFont create_font(int cHeight, int cWidth, int cEscapement, int cOrientation, int cWeight, uint bItalic, uint bUnderline, uint bStrikeOut, uint iCharSet, uint iOutPrecision, uint iClipPrecision, uint iQuality, uint iPitchAndFamily, ushort* pszFaceName)
+@if($feature(WIN32_UNICODE))
+{
+    return create_fontW(cHeight, cWidth, cEscapement, cOrientation, cWeight, bItalic, bUnderline, bStrikeOut, iCharSet, iOutPrecision, iClipPrecision, iQuality, iPitchAndFamily, pszFaceName);
+}
+
+<*
+ @param [&in] lplf
+*>
+macro HFont create_font_indirect(LogFontA* lplf)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_font_indirectA(lplf);
+}
+
+<*
+ @param [&in] lplf
+*>
+macro HFont create_font_indirect(LogFontW* lplf)
+@if($feature(WIN32_UNICODE))
+{
+    return create_font_indirectW(lplf);
+}
+
+<*
+ @param [&in] param0
+*>
+macro HFont create_font_indirect_ex(EnumLogFontExDvA* param0)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_font_indirect_exA(param0);
+}
+
+<*
+ @param [&in] param0
+*>
+macro HFont create_font_indirect_ex(EnumLogFontExDvW* param0)
+@if($feature(WIN32_UNICODE))
+{
+    return create_font_indirect_exW(param0);
+}
+
+<*
+ @param [in] pdm
+*>
+macro Hdc create_ic(char* pszDriver, char* pszDevice, char* pszPort, DevModeA* pdm)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_icA(pszDriver, pszDevice, pszPort, pdm);
+}
+
+<*
+ @param [in] pdm
+*>
+macro Hdc create_ic(ushort* pszDriver, ushort* pszDevice, ushort* pszPort, DevModeW* pdm)
+@if($feature(WIN32_UNICODE))
+{
+    return create_icW(pszDriver, pszDevice, pszPort, pdm);
+}
+
+macro Hdc create_meta_file(char* pszFile)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_meta_fileA(pszFile);
+}
+
+macro Hdc create_meta_file(ushort* pszFile)
+@if($feature(WIN32_UNICODE))
+{
+    return create_meta_fileW(pszFile);
+}
+
+macro Bool create_scalable_font_resource(uint fdwHidden, char* lpszFont, char* lpszFile, char* lpszPath)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_scalable_font_resourceA(fdwHidden, lpszFont, lpszFile, lpszPath);
+}
+
+macro Bool create_scalable_font_resource(uint fdwHidden, ushort* lpszFont, ushort* lpszFile, ushort* lpszPath)
+@if($feature(WIN32_UNICODE))
+{
+    return create_scalable_font_resourceW(fdwHidden, lpszFont, lpszFile, lpszPath);
+}
+
+macro Bool draw_state(Hdc hdc, HBrush hbrFore, DrawStateProc qfnCallBack, LParam lData, WParam wData, int x, int y, int cx, int cy, DrawStateFlags uFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return draw_stateA(hdc, hbrFore, qfnCallBack, lData, wData, x, y, cx, cy, uFlags);
+}
+
+macro Bool draw_state(Hdc hdc, HBrush hbrFore, DrawStateProc qfnCallBack, LParam lData, WParam wData, int x, int y, int cx, int cy, DrawStateFlags uFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return draw_stateW(hdc, hbrFore, qfnCallBack, lData, wData, x, y, cx, cy, uFlags);
+}
+
+<*
+ @param [&inout] lprc
+*>
+macro int draw_text(Hdc hdc, char* lpchText, int cchText, Rect* lprc, DrawTextFormat format)
+@if(!$feature(WIN32_UNICODE))
+{
+    return draw_textA(hdc, lpchText, cchText, lprc, format);
+}
+
+<*
+ @param [&inout] lprc
+*>
+macro int draw_text(Hdc hdc, ushort* lpchText, int cchText, Rect* lprc, DrawTextFormat format)
+@if($feature(WIN32_UNICODE))
+{
+    return draw_textW(hdc, lpchText, cchText, lprc, format);
+}
+
+<*
+ @param [&inout] lprc
+ @param [in] lpdtp
+*>
+macro int draw_text_ex(Hdc hdc, char* lpchText, int cchText, Rect* lprc, DrawTextFormat format, DrawTextParams* lpdtp)
+@if(!$feature(WIN32_UNICODE))
+{
+    return draw_text_exA(hdc, lpchText, cchText, lprc, format, lpdtp);
+}
+
+<*
+ @param [&inout] lprc
+ @param [in] lpdtp
+*>
+macro int draw_text_ex(Hdc hdc, ushort* lpchText, int cchText, Rect* lprc, DrawTextFormat format, DrawTextParams* lpdtp)
+@if($feature(WIN32_UNICODE))
+{
+    return draw_text_exW(hdc, lpchText, cchText, lprc, format, lpdtp);
+}
+
+<*
+ @param [&inout] lpDisplayDevice
+*>
+macro Bool enum_display_devices(char* lpDevice, uint iDevNum, DisplayDeviceA* lpDisplayDevice, uint dwFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_display_devicesA(lpDevice, iDevNum, lpDisplayDevice, dwFlags);
+}
+
+<*
+ @param [&inout] lpDisplayDevice
+*>
+macro Bool enum_display_devices(ushort* lpDevice, uint iDevNum, DisplayDeviceW* lpDisplayDevice, uint dwFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_display_devicesW(lpDevice, iDevNum, lpDisplayDevice, dwFlags);
+}
+
+<*
+ @param [&inout] lpDevMode
+*>
+macro Bool enum_display_settings(char* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeA* lpDevMode)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_display_settingsA(lpszDeviceName, iModeNum, lpDevMode);
+}
+
+<*
+ @param [&inout] lpDevMode
+*>
+macro Bool enum_display_settings(ushort* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeW* lpDevMode)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_display_settingsW(lpszDeviceName, iModeNum, lpDevMode);
+}
+
+<*
+ @param [&inout] lpDevMode
+*>
+macro Bool enum_display_settings_ex(char* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeA* lpDevMode, EnumDisplaySettingsFlags dwFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_display_settings_exA(lpszDeviceName, iModeNum, lpDevMode, dwFlags);
+}
+
+<*
+ @param [&inout] lpDevMode
+*>
+macro Bool enum_display_settings_ex(ushort* lpszDeviceName, EnumDisplaySettingsMode iModeNum, DevModeW* lpDevMode, EnumDisplaySettingsFlags dwFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_display_settings_exW(lpszDeviceName, iModeNum, lpDevMode, dwFlags);
+}
+
+macro int enum_font_families(Hdc hdc, char* lpLogfont, FontEnumProcA lpProc, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_font_familiesA(hdc, lpLogfont, lpProc, lParam);
+}
+
+macro int enum_font_families(Hdc hdc, ushort* lpLogfont, FontEnumProcW lpProc, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_font_familiesW(hdc, lpLogfont, lpProc, lParam);
+}
+
+<*
+ @param [&in] lpLogfont
+*>
+macro int enum_font_families_ex(Hdc hdc, LogFontA* lpLogfont, FontEnumProcA lpProc, LParam lParam, uint dwFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_font_families_exA(hdc, lpLogfont, lpProc, lParam, dwFlags);
+}
+
+<*
+ @param [&in] lpLogfont
+*>
+macro int enum_font_families_ex(Hdc hdc, LogFontW* lpLogfont, FontEnumProcW lpProc, LParam lParam, uint dwFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_font_families_exW(hdc, lpLogfont, lpProc, lParam, dwFlags);
+}
+
+macro int enum_fonts(Hdc hdc, char* lpLogfont, FontEnumProcA lpProc, LParam lParam)
+@if(!$feature(WIN32_UNICODE))
+{
+    return enum_fontsA(hdc, lpLogfont, lpProc, lParam);
+}
+
+macro int enum_fonts(Hdc hdc, ushort* lpLogfont, FontEnumProcW lpProc, LParam lParam)
+@if($feature(WIN32_UNICODE))
+{
+    return enum_fontsW(hdc, lpLogfont, lpProc, lParam);
+}
+
+<*
+ @param [in] lprect
+ @param [in] lpDx
+*>
+macro Bool ext_text_out(Hdc hdc, int x, int y, EtoOptions options, Rect* lprect, char* lpString, uint c, int* lpDx)
+@if(!$feature(WIN32_UNICODE))
+{
+    return ext_text_outA(hdc, x, y, options, lprect, lpString, c, lpDx);
+}
+
+<*
+ @param [in] lprect
+ @param [in] lpDx
+*>
+macro Bool ext_text_out(Hdc hdc, int x, int y, EtoOptions options, Rect* lprect, ushort* lpString, uint c, int* lpDx)
+@if($feature(WIN32_UNICODE))
+{
+    return ext_text_outW(hdc, x, y, options, lprect, lpString, c, lpDx);
+}
+
+<*
+ @param [&out] lpABC
+*>
+macro Bool get_char_abc_widths(Hdc hdc, uint wFirst, uint wLast, Abc* lpABC)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_char_abc_widthsA(hdc, wFirst, wLast, lpABC);
+}
+
+<*
+ @param [&out] lpABC
+*>
+macro Bool get_char_abc_widths(Hdc hdc, uint wFirst, uint wLast, Abc* lpABC)
+@if($feature(WIN32_UNICODE))
+{
+    return get_char_abc_widthsW(hdc, wFirst, wLast, lpABC);
+}
+
+<*
+ @param [&out] lpABC
+*>
+macro Bool get_char_abc_widths_float(Hdc hdc, uint iFirst, uint iLast, AbcFloat* lpABC)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_char_abc_widths_floatA(hdc, iFirst, iLast, lpABC);
+}
+
+<*
+ @param [&out] lpABC
+*>
+macro Bool get_char_abc_widths_float(Hdc hdc, uint iFirst, uint iLast, AbcFloat* lpABC)
+@if($feature(WIN32_UNICODE))
+{
+    return get_char_abc_widths_floatW(hdc, iFirst, iLast, lpABC);
+}
+
+<*
+ @param [&out] lpBuffer
+*>
+macro Bool get_char_width(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_char_widthA(hdc, iFirst, iLast, lpBuffer);
+}
+
+<*
+ @param [&out] lpBuffer
+*>
+macro Bool get_char_width(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+@if($feature(WIN32_UNICODE))
+{
+    return get_char_widthW(hdc, iFirst, iLast, lpBuffer);
+}
+
+<*
+ @param [&out] lpBuffer
+*>
+macro Bool get_char_width_32(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_char_width_32A(hdc, iFirst, iLast, lpBuffer);
+}
+
+<*
+ @param [&out] lpBuffer
+*>
+macro Bool get_char_width_32(Hdc hdc, uint iFirst, uint iLast, int* lpBuffer)
+@if($feature(WIN32_UNICODE))
+{
+    return get_char_width_32W(hdc, iFirst, iLast, lpBuffer);
+}
+
+<*
+ @param [&out] lpBuffer
+*>
+macro Bool get_char_width_float(Hdc hdc, uint iFirst, uint iLast, float* lpBuffer)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_char_width_floatA(hdc, iFirst, iLast, lpBuffer);
+}
+
+<*
+ @param [&out] lpBuffer
+*>
+macro Bool get_char_width_float(Hdc hdc, uint iFirst, uint iLast, float* lpBuffer)
+@if($feature(WIN32_UNICODE))
+{
+    return get_char_width_floatW(hdc, iFirst, iLast, lpBuffer);
+}
+
+<*
+ @param [&inout] lpResults
+*>
+macro uint get_character_placement(Hdc hdc, char* lpString, int nCount, int nMexExtent, GcpResultsA* lpResults, GetCharacterPlacementFlags dwFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_character_placementA(hdc, lpString, nCount, nMexExtent, lpResults, dwFlags);
+}
+
+<*
+ @param [&inout] lpResults
+*>
+macro uint get_character_placement(Hdc hdc, ushort* lpString, int nCount, int nMexExtent, GcpResultsW* lpResults, GetCharacterPlacementFlags dwFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return get_character_placementW(hdc, lpString, nCount, nMexExtent, lpResults, dwFlags);
+}
+
+macro HEnhMetafile get_enh_meta_file(char* lpName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_enh_meta_fileA(lpName);
+}
+
+macro HEnhMetafile get_enh_meta_file(ushort* lpName)
+@if($feature(WIN32_UNICODE))
+{
+    return get_enh_meta_fileW(lpName);
+}
+
+macro uint get_enh_meta_file_description(HEnhMetafile hemf, uint cchBuffer, char* lpDescription)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_enh_meta_file_descriptionA(hemf, cchBuffer, lpDescription);
+}
+
+macro uint get_enh_meta_file_description(HEnhMetafile hemf, uint cchBuffer, ushort* lpDescription)
+@if($feature(WIN32_UNICODE))
+{
+    return get_enh_meta_file_descriptionW(hemf, cchBuffer, lpDescription);
+}
+
+<*
+ @param [&out] pgi
+*>
+macro uint get_glyph_indices(Hdc hdc, char* lpstr, int c, ushort* pgi, uint fl)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_glyph_indicesA(hdc, lpstr, c, pgi, fl);
+}
+
+<*
+ @param [&out] pgi
+*>
+macro uint get_glyph_indices(Hdc hdc, ushort* lpstr, int c, ushort* pgi, uint fl)
+@if($feature(WIN32_UNICODE))
+{
+    return get_glyph_indicesW(hdc, lpstr, c, pgi, fl);
+}
+
+<*
+ @param [&out] lpgm
+ @param [out] pvBuffer
+ @param [&in] lpmat2
+*>
+macro uint get_glyph_outline(Hdc hdc, uint uChar, GetGlyphOutlineFormat fuFormat, GlyphMetrics* lpgm, uint cjBuffer, void* pvBuffer, MAT2Type* lpmat2)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_glyph_outlineA(hdc, uChar, fuFormat, lpgm, cjBuffer, pvBuffer, lpmat2);
+}
+
+<*
+ @param [&out] lpgm
+ @param [out] pvBuffer
+ @param [&in] lpmat2
+*>
+macro uint get_glyph_outline(Hdc hdc, uint uChar, GetGlyphOutlineFormat fuFormat, GlyphMetrics* lpgm, uint cjBuffer, void* pvBuffer, MAT2Type* lpmat2)
+@if($feature(WIN32_UNICODE))
+{
+    return get_glyph_outlineW(hdc, uChar, fuFormat, lpgm, cjBuffer, pvBuffer, lpmat2);
+}
+
+<*
+ @param [out] lpKernPair
+*>
+macro uint get_kerning_pairs(Hdc hdc, uint nPairs, KerningPair* lpKernPair)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_kerning_pairsA(hdc, nPairs, lpKernPair);
+}
+
+<*
+ @param [out] lpKernPair
+*>
+macro uint get_kerning_pairs(Hdc hdc, uint nPairs, KerningPair* lpKernPair)
+@if($feature(WIN32_UNICODE))
+{
+    return get_kerning_pairsW(hdc, nPairs, lpKernPair);
+}
+
+macro HMetafile get_meta_file(char* lpName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_meta_fileA(lpName);
+}
+
+macro HMetafile get_meta_file(ushort* lpName)
+@if($feature(WIN32_UNICODE))
+{
+    return get_meta_fileW(lpName);
+}
+
+<*
+ @param [&inout] lpmi
+*>
+macro Bool get_monitor_info(HMonitor hMonitor, MonitorInfo* lpmi)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_monitor_infoA(hMonitor, lpmi);
+}
+
+<*
+ @param [&inout] lpmi
+*>
+macro Bool get_monitor_info(HMonitor hMonitor, MonitorInfo* lpmi)
+@if($feature(WIN32_UNICODE))
+{
+    return get_monitor_infoW(hMonitor, lpmi);
+}
+
+<*
+ @param [out] pv
+*>
+macro int get_object(HGdiObj h, int c, void* pv)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_objectA(h, c, pv);
+}
+
+<*
+ @param [out] pv
+*>
+macro int get_object(HGdiObj h, int c, void* pv)
+@if($feature(WIN32_UNICODE))
+{
+    return get_objectW(h, c, pv);
+}
+
+<*
+ @param [out] potm
+*>
+macro uint get_outline_text_metrics(Hdc hdc, uint cjCopy, OutlineTextMetricA* potm)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_outline_text_metricsA(hdc, cjCopy, potm);
+}
+
+<*
+ @param [out] potm
+*>
+macro uint get_outline_text_metrics(Hdc hdc, uint cjCopy, OutlineTextMetricW* potm)
+@if($feature(WIN32_UNICODE))
+{
+    return get_outline_text_metricsW(hdc, cjCopy, potm);
+}
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+macro uint get_tabbed_text_extent(Hdc hdc, char* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_tabbed_text_extentA(hdc, lpString, chCount, nTabPositions, lpnTabStopPositions);
+}
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+macro uint get_tabbed_text_extent(Hdc hdc, ushort* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions)
+@if($feature(WIN32_UNICODE))
+{
+    return get_tabbed_text_extentW(hdc, lpString, chCount, nTabPositions, lpnTabStopPositions);
+}
+
+<*
+ @param [out] lpnFit
+ @param [out] lpnDx
+ @param [&out] lpSize
+*>
+macro Bool get_text_extent_ex_point(Hdc hdc, char* lpszString, int cchString, int nMaxExtent, int* lpnFit, int* lpnDx, Size* lpSize)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_text_extent_ex_pointA(hdc, lpszString, cchString, nMaxExtent, lpnFit, lpnDx, lpSize);
+}
+
+<*
+ @param [out] lpnFit
+ @param [out] lpnDx
+ @param [&out] lpSize
+*>
+macro Bool get_text_extent_ex_point(Hdc hdc, ushort* lpszString, int cchString, int nMaxExtent, int* lpnFit, int* lpnDx, Size* lpSize)
+@if($feature(WIN32_UNICODE))
+{
+    return get_text_extent_ex_pointW(hdc, lpszString, cchString, nMaxExtent, lpnFit, lpnDx, lpSize);
+}
+
+<*
+ @param [&out] lpsz
+*>
+macro Bool get_text_extent_point(Hdc hdc, char* lpString, int c, Size* lpsz)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_text_extent_pointA(hdc, lpString, c, lpsz);
+}
+
+<*
+ @param [&out] lpsz
+*>
+macro Bool get_text_extent_point(Hdc hdc, ushort* lpString, int c, Size* lpsz)
+@if($feature(WIN32_UNICODE))
+{
+    return get_text_extent_pointW(hdc, lpString, c, lpsz);
+}
+
+<*
+ @param [&out] psizl
+*>
+macro Bool get_text_extent_point_32(Hdc hdc, char* lpString, int c, Size* psizl)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_text_extent_point_32A(hdc, lpString, c, psizl);
+}
+
+<*
+ @param [&out] psizl
+*>
+macro Bool get_text_extent_point_32(Hdc hdc, ushort* lpString, int c, Size* psizl)
+@if($feature(WIN32_UNICODE))
+{
+    return get_text_extent_point_32W(hdc, lpString, c, psizl);
+}
+
+macro int get_text_face(Hdc hdc, int c, char* lpName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_text_faceA(hdc, c, lpName);
+}
+
+macro int get_text_face(Hdc hdc, int c, ushort* lpName)
+@if($feature(WIN32_UNICODE))
+{
+    return get_text_faceW(hdc, c, lpName);
+}
+
+<*
+ @param [&out] lptm
+*>
+macro Bool get_text_metrics(Hdc hdc, TextMetricA* lptm)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_text_metricsA(hdc, lptm);
+}
+
+<*
+ @param [&out] lptm
+*>
+macro Bool get_text_metrics(Hdc hdc, TextMetricW* lptm)
+@if($feature(WIN32_UNICODE))
+{
+    return get_text_metricsW(hdc, lptm);
+}
+
+macro Bool gray_string(Hdc hDC, HBrush hBrush, GrayStringProc lpOutputFunc, LParam lpData, int nCount, int x, int y, int nWidth, int nHeight)
+@if(!$feature(WIN32_UNICODE))
+{
+    return gray_stringA(hDC, hBrush, lpOutputFunc, lpData, nCount, x, y, nWidth, nHeight);
+}
+
+macro Bool gray_string(Hdc hDC, HBrush hBrush, GrayStringProc lpOutputFunc, LParam lpData, int nCount, int x, int y, int nWidth, int nHeight)
+@if($feature(WIN32_UNICODE))
+{
+    return gray_stringW(hDC, hBrush, lpOutputFunc, lpData, nCount, x, y, nWidth, nHeight);
+}
+
+macro HBitmap load_bitmap(HInstance hInstance, char* lpBitmapName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_bitmapA(hInstance, lpBitmapName);
+}
+
+macro HBitmap load_bitmap(HInstance hInstance, ushort* lpBitmapName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_bitmapW(hInstance, lpBitmapName);
+}
+
+<*
+ @param [&in] ppt
+*>
+macro Bool poly_text_out(Hdc hdc, PolyTextA* ppt, int nstrings)
+@if(!$feature(WIN32_UNICODE))
+{
+    return poly_text_outA(hdc, ppt, nstrings);
+}
+
+<*
+ @param [&in] ppt
+*>
+macro Bool poly_text_out(Hdc hdc, PolyTextW* ppt, int nstrings)
+@if($feature(WIN32_UNICODE))
+{
+    return poly_text_outW(hdc, ppt, nstrings);
+}
+
+macro Bool remove_font_resource(char* lpFileName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return remove_font_resourceA(lpFileName);
+}
+
+macro Bool remove_font_resource(ushort* lpFileName)
+@if($feature(WIN32_UNICODE))
+{
+    return remove_font_resourceW(lpFileName);
+}
+
+macro Bool remove_font_resource_ex(char* name, uint fl, void* pdv)
+@if(!$feature(WIN32_UNICODE))
+{
+    return remove_font_resource_exA(name, fl, pdv);
+}
+
+macro Bool remove_font_resource_ex(ushort* name, uint fl, void* pdv)
+@if($feature(WIN32_UNICODE))
+{
+    return remove_font_resource_exW(name, fl, pdv);
+}
+
+<*
+ @param [&in] lpdm
+*>
+macro Hdc reset_dc(Hdc hdc, DevModeA* lpdm)
+@if(!$feature(WIN32_UNICODE))
+{
+    return reset_dcA(hdc, lpdm);
+}
+
+<*
+ @param [&in] lpdm
+*>
+macro Hdc reset_dc(Hdc hdc, DevModeW* lpdm)
+@if($feature(WIN32_UNICODE))
+{
+    return reset_dcW(hdc, lpdm);
+}
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+macro int tabbed_text_out(Hdc hdc, int x, int y, char* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions, int nTabOrigin)
+@if(!$feature(WIN32_UNICODE))
+{
+    return tabbed_text_outA(hdc, x, y, lpString, chCount, nTabPositions, lpnTabStopPositions, nTabOrigin);
+}
+
+<*
+ @param [in] lpnTabStopPositions
+*>
+macro int tabbed_text_out(Hdc hdc, int x, int y, ushort* lpString, int chCount, int nTabPositions, int* lpnTabStopPositions, int nTabOrigin)
+@if($feature(WIN32_UNICODE))
+{
+    return tabbed_text_outW(hdc, x, y, lpString, chCount, nTabPositions, lpnTabStopPositions, nTabOrigin);
+}
+
+macro Bool text_out(Hdc hdc, int x, int y, char* lpString, int c)
+@if(!$feature(WIN32_UNICODE))
+{
+    return text_outA(hdc, x, y, lpString, c);
+}
+
+macro Bool text_out(Hdc hdc, int x, int y, ushort* lpString, int c)
+@if($feature(WIN32_UNICODE))
+{
+    return text_outW(hdc, x, y, lpString, c);
+}
+

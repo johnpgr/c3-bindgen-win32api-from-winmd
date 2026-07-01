@@ -12,6 +12,7 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
         AddTypes(binding, api, subset);
         AddConstants(binding, api, subset);
         AddFunctions(binding, api, subset);
+        AddFunctionMacros(binding);
         return binding;
     }
 
@@ -143,6 +144,8 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
 
     private void AddFunctions(GeneratedBinding binding, ApiDatabase api, SubsetResult subset)
     {
+        var c3FunctionNames = new Dictionary<string, string>(StringComparer.Ordinal);
+
         foreach (var functionName in subset.Functions)
         {
             if (!api.Functions.TryGetValue(functionName, out var fn))
@@ -158,10 +161,19 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
                 }
             }
 
+            var c3Name = names.FunctionName(fn.OriginalName);
+            if (c3FunctionNames.TryGetValue(c3Name, out var otherOriginal) && otherOriginal != fn.OriginalName)
+            {
+                throw new InvalidOperationException(
+                    $"C3 function name collision: {fn.OriginalName} and {otherOriginal} both project to {c3Name}");
+            }
+
+            c3FunctionNames[c3Name] = fn.OriginalName;
+
             var generated = new GeneratedFunction
             {
                 OriginalName = fn.OriginalName,
-                C3Name = names.FunctionName(fn.OriginalName),
+                C3Name = c3Name,
                 Namespace = fn.Namespace,
                 ReturnType = fn.ReturnType,
                 C3ReturnType = types.Map(fn.ReturnType),
@@ -191,6 +203,104 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
 
             binding.Functions.Add(generated);
         }
+    }
+
+    private void AddFunctionMacros(GeneratedBinding binding)
+    {
+        var realFunctionNames = binding.Functions
+            .Select(fn => fn.C3Name)
+            .ToHashSet(StringComparer.Ordinal);
+        var macrosByName = new Dictionary<string, string>(StringComparer.Ordinal);
+        var variantsByBase = new Dictionary<(string Namespace, string BaseName), (GeneratedFunction? Ansi, GeneratedFunction? Unicode)>();
+
+        foreach (var fn in binding.Functions.Where(fn => fn.Emitted))
+        {
+            if (fn.OriginalName.Length <= 1 || fn.OriginalName[^1] is not ('A' or 'W'))
+                continue;
+
+            var key = (fn.Namespace, fn.OriginalName[..^1]);
+            variantsByBase.TryGetValue(key, out var variants);
+            if (fn.OriginalName[^1] == 'A')
+                variants.Ansi = fn;
+            else
+                variants.Unicode = fn;
+            variantsByBase[key] = variants;
+        }
+
+        foreach (var ((ns, baseName), variants) in variantsByBase.OrderBy(pair => pair.Key.Namespace, StringComparer.Ordinal)
+                     .ThenBy(pair => pair.Key.BaseName, StringComparer.Ordinal))
+        {
+            if (variants.Ansi is null || variants.Unicode is null)
+                continue;
+
+            if (!CanGenerateNeutralMacro(variants.Ansi, variants.Unicode))
+                continue;
+
+            var neutralName = names.FunctionName(baseName);
+            if (realFunctionNames.Contains(neutralName))
+                continue;
+
+            if (macrosByName.TryGetValue(neutralName, out var otherBase) && otherBase != $"{ns}.{baseName}")
+                continue;
+
+            macrosByName[neutralName] = $"{ns}.{baseName}";
+            binding.FunctionMacros.Add(new GeneratedFunctionMacro
+            {
+                C3Name = neutralName,
+                Namespace = ns,
+                AnsiFunction = variants.Ansi,
+                UnicodeFunction = variants.Unicode
+            });
+        }
+    }
+
+    private static bool CanGenerateNeutralMacro(GeneratedFunction ansi, GeneratedFunction unicode)
+    {
+        if (ansi.C3ReturnType != unicode.C3ReturnType ||
+            ansi.Parameters.Count != unicode.Parameters.Count)
+        {
+            return false;
+        }
+
+        for (var i = 0; i < ansi.Parameters.Count; i++)
+        {
+            if (!CompatibleNeutralMacroType(ansi.Parameters[i].C3Type, unicode.Parameters[i].C3Type))
+                return false;
+        }
+
+        return true;
+    }
+
+    private static bool CompatibleNeutralMacroType(string ansiType, string unicodeType)
+    {
+        if (ansiType == unicodeType)
+            return true;
+
+        if (ansiType == "char*" && unicodeType == "ushort*")
+            return true;
+
+        return TryStripSuffixType(ansiType, 'A', out var ansiBase) &&
+            TryStripSuffixType(unicodeType, 'W', out var unicodeBase) &&
+            ansiBase == unicodeBase;
+    }
+
+    private static bool TryStripSuffixType(string type, char suffix, out string stripped)
+    {
+        var pointerSuffix = "";
+        while (type.EndsWith('*'))
+        {
+            pointerSuffix += "*";
+            type = type[..^1];
+        }
+
+        if (type.Length > 1 && type[^1] == suffix)
+        {
+            stripped = type[..^1] + pointerSuffix;
+            return true;
+        }
+
+        stripped = "";
+        return false;
     }
 
     private static string C3DeclKind(ApiType type)

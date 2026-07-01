@@ -1,0 +1,16 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.Foundation.Metadata
+
+// Win32 original: Architecture
+constdef Architecture : int
+{
+    NONE = 0,
+    X86 = 1,
+    X64 = 2,
+    ARM64 = 4,
+    ALL = 7
+}
+

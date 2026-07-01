@@ -1,0 +1,3241 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.System.Diagnostics.Debug
+
+// Win32 original: ADDRESS
+struct Address
+{
+    uint offset;
+    ushort segment;
+    AddressMode mode;
+}
+
+// Win32 original: ADDRESS64
+struct ADDRESS64Type
+{
+    ulong offset;
+    ushort segment;
+    AddressMode mode;
+}
+
+// Win32 original: ADDRESS_MODE
+constdef AddressMode : int
+{
+    ADDRMODE1616 = 0,
+    ADDRMODE1632 = 1,
+    ADDRMODEREAL = 2,
+    ADDRMODEFLAT = 3
+}
+
+// Win32 original: API_VERSION
+struct ApiVersion
+{
+    ushort majorVersion;
+    ushort minorVersion;
+    ushort revision;
+    ushort reserved;
+}
+
+// Win32 original: CONTEXT
+struct Context
+{
+    ContextFlags contextFlags;
+    uint dr0;
+    uint dr1;
+    uint dr2;
+    uint dr3;
+    uint dr6;
+    uint dr7;
+    FloatingSaveArea floatSave;
+    uint segGs;
+    uint segFs;
+    uint segEs;
+    uint segDs;
+    uint edi;
+    uint esi;
+    uint ebx;
+    uint edx;
+    uint ecx;
+    uint eax;
+    uint ebp;
+    uint eip;
+    uint segCs;
+    uint eFlags;
+    uint esp;
+    uint segSs;
+    char[512] extendedRegisters;
+}
+
+// Win32 original: CONTEXT_FLAGS
+constdef ContextFlags : uint
+{
+    CONTEXT_AMD64 = 1048576,
+    CONTEXT_CONTROL_AMD64 = 1048577,
+    CONTEXT_INTEGER_AMD64 = 1048578,
+    CONTEXT_SEGMENTS_AMD64 = 1048580,
+    CONTEXT_FLOATING_POINT_AMD64 = 1048584,
+    CONTEXT_DEBUG_REGISTERS_AMD64 = 1048592,
+    CONTEXT_FULL_AMD64 = 1048587,
+    CONTEXT_ALL_AMD64 = 1048607,
+    CONTEXT_XSTATE_AMD64 = 1048640,
+    CONTEXT_KERNEL_CET_AMD64 = 1048704,
+    CONTEXT_KERNEL_DEBUGGER_AMD64 = 67108864,
+    CONTEXT_EXCEPTION_ACTIVE_AMD64 = 134217728,
+    CONTEXT_SERVICE_ACTIVE_AMD64 = 268435456,
+    CONTEXT_EXCEPTION_REQUEST_AMD64 = 1073741824,
+    CONTEXT_EXCEPTION_REPORTING_AMD64 = 2147483648,
+    CONTEXT_UNWOUND_TO_CALL_AMD64 = 536870912,
+    CONTEXT_X86 = 65536,
+    CONTEXT_CONTROL_X86 = 65537,
+    CONTEXT_INTEGER_X86 = 65538,
+    CONTEXT_SEGMENTS_X86 = 65540,
+    CONTEXT_FLOATING_POINT_X86 = 65544,
+    CONTEXT_DEBUG_REGISTERS_X86 = 65552,
+    CONTEXT_EXTENDED_REGISTERS_X86 = 65568,
+    CONTEXT_FULL_X86 = 65543,
+    CONTEXT_ALL_X86 = 65599,
+    CONTEXT_XSTATE_X86 = 65600,
+    CONTEXT_EXCEPTION_ACTIVE_X86 = 134217728,
+    CONTEXT_SERVICE_ACTIVE_X86 = 268435456,
+    CONTEXT_EXCEPTION_REQUEST_X86 = 1073741824,
+    CONTEXT_EXCEPTION_REPORTING_X86 = 2147483648,
+    CONTEXT_ARM64 = 4194304,
+    CONTEXT_CONTROL_ARM64 = 4194305,
+    CONTEXT_INTEGER_ARM64 = 4194306,
+    CONTEXT_FLOATING_POINT_ARM64 = 4194308,
+    CONTEXT_DEBUG_REGISTERS_ARM64 = 4194312,
+    CONTEXT_X18_ARM64 = 4194320,
+    CONTEXT_FULL_ARM64 = 4194311,
+    CONTEXT_ALL_ARM64 = 4194335,
+    CONTEXT_EXCEPTION_ACTIVE_ARM64 = 134217728,
+    CONTEXT_SERVICE_ACTIVE_ARM64 = 268435456,
+    CONTEXT_EXCEPTION_REQUEST_ARM64 = 1073741824,
+    CONTEXT_EXCEPTION_REPORTING_ARM64 = 2147483648,
+    CONTEXT_UNWOUND_TO_CALL_ARM64 = 536870912,
+    CONTEXT_RET_TO_GUEST_ARM64 = 1073741824,
+    CONTEXT_ARM = 2097152,
+    CONTEXT_CONTROL_ARM = 2097153,
+    CONTEXT_INTEGER_ARM = 2097154,
+    CONTEXT_FLOATING_POINT_ARM = 2097156,
+    CONTEXT_DEBUG_REGISTERS_ARM = 2097160,
+    CONTEXT_FULL_ARM = 2097159,
+    CONTEXT_ALL_ARM = 2097167,
+    CONTEXT_EXCEPTION_ACTIVE_ARM = 134217728,
+    CONTEXT_SERVICE_ACTIVE_ARM = 268435456,
+    CONTEXT_EXCEPTION_REQUEST_ARM = 1073741824,
+    CONTEXT_EXCEPTION_REPORTING_ARM = 2147483648,
+    CONTEXT_UNWOUND_TO_CALL_ARM = 536870912
+}
+
+// Win32 original: DBGHELP_DATA_REPORT_STRUCT
+struct DbghelpDataReportStruct
+{
+    ushort* pBinPathNonExist;
+    ushort* pSymbolPathNonExist;
+}
+
+// Win32 original: DEBUG_EVENT
+struct DebugEvent
+{
+    DebugEventCode dwDebugEventCode;
+    uint dwProcessId;
+    uint dwThreadId;
+    UEUnion u;
+}
+
+// Win32 original: DEBUG_EVENT_CODE
+constdef DebugEventCode : uint
+{
+    CREATE_PROCESS_DEBUG_EVENT = 3,
+    CREATE_THREAD_DEBUG_EVENT = 2,
+    EXCEPTION_DEBUG_EVENT = 1,
+    EXIT_PROCESS_DEBUG_EVENT = 5,
+    EXIT_THREAD_DEBUG_EVENT = 4,
+    LOAD_DLL_DEBUG_EVENT = 6,
+    OUTPUT_DEBUG_STRING_EVENT = 8,
+    RIP_EVENT = 9,
+    UNLOAD_DLL_DEBUG_EVENT = 7
+}
+
+// Win32 original: DIGEST_FUNCTION
+alias DigestFunction = fn Bool(void* refdata, char* pData, uint dwLength);
+
+// Win32 original: EXCEPTION_POINTERS
+struct ExceptionPointers
+{
+    ExceptionRecord* exceptionRecord;
+    Context* contextRecord;
+}
+
+// Win32 original: EXCEPTION_RECORD
+struct ExceptionRecord
+{
+    Ntstatus exceptionCode;
+    uint exceptionFlags;
+    ExceptionRecord* exceptionRecord;
+    void* exceptionAddress;
+    uint numberParameters;
+    uptr[15] exceptionInformation;
+}
+
+// Win32 original: FORMAT_MESSAGE_OPTIONS
+constdef FormatMessageOptions : uint
+{
+    FORMAT_MESSAGE_ALLOCATE_BUFFER = 256,
+    FORMAT_MESSAGE_ARGUMENT_ARRAY = 8192,
+    FORMAT_MESSAGE_FROM_HMODULE = 2048,
+    FORMAT_MESSAGE_FROM_STRING = 1024,
+    FORMAT_MESSAGE_FROM_SYSTEM = 4096,
+    FORMAT_MESSAGE_IGNORE_INSERTS = 512
+}
+
+// Win32 original: IMAGEHLP_EXTENDED_OPTIONS
+constdef ImagehlpExtendedOptions : int
+{
+    SYMOPT_EX_DISABLEACCESSTIMEUPDATE = 0,
+    SYMOPT_EX_LASTVALIDDEBUGDIRECTORY = 1,
+    SYMOPT_EX_NOIMPLICITPATTERNSEARCH = 2,
+    SYMOPT_EX_NEVERLOADSYMBOLS = 3,
+    SYMOPT_EX_MAX = 4
+}
+
+// Win32 original: IMAGEHLP_GET_TYPE_INFO_FLAGS
+constdef ImagehlpGetTypeInfoFlags : uint
+{
+    IMAGEHLP_GET_TYPE_INFO_CHILDREN = 2,
+    IMAGEHLP_GET_TYPE_INFO_UNCACHED = 1
+}
+
+// Win32 original: IMAGEHLP_GET_TYPE_INFO_PARAMS
+struct ImagehlpGetTypeInfoParams
+{
+    uint sizeOfStruct;
+    ImagehlpGetTypeInfoFlags flags;
+    uint numIds;
+    uint* typeIds;
+    ulong tagFilter;
+    uint numReqs;
+    ImagehlpSymbolTypeInfo* reqKinds;
+    uptr* reqOffsets;
+    uint* reqSizes;
+    uptr reqStride;
+    uptr bufferSize;
+    void* buffer;
+    uint entriesMatched;
+    uint entriesFilled;
+    ulong tagsFound;
+    ulong allReqsValid;
+    uint numReqsValid;
+    ulong* reqsValid;
+}
+
+// Win32 original: IMAGEHLP_LINE
+struct ImagehlpLine
+{
+    uint sizeOfStruct;
+    void* key;
+    uint lineNumber;
+    char* fileName;
+    uint address;
+}
+
+// Win32 original: IMAGEHLP_LINE64
+struct ImagehlpLINE64
+{
+    uint sizeOfStruct;
+    void* key;
+    uint lineNumber;
+    char* fileName;
+    ulong address;
+}
+
+// Win32 original: IMAGEHLP_LINEW64
+struct ImagehlpLINEW64
+{
+    uint sizeOfStruct;
+    void* key;
+    uint lineNumber;
+    ushort* fileName;
+    ulong address;
+}
+
+// Win32 original: IMAGEHLP_MODULE
+struct ImagehlpModule
+{
+    uint sizeOfStruct;
+    uint baseOfImage;
+    uint imageSize;
+    uint timeDateStamp;
+    uint checkSum;
+    uint numSyms;
+    SymType symType;
+    char[32] moduleName;
+    char[256] imageName;
+    char[256] loadedImageName;
+}
+
+// Win32 original: IMAGEHLP_MODULE64
+struct ImagehlpMODULE64
+{
+    uint sizeOfStruct;
+    ulong baseOfImage;
+    uint imageSize;
+    uint timeDateStamp;
+    uint checkSum;
+    uint numSyms;
+    SymType symType;
+    char[32] moduleName;
+    char[256] imageName;
+    char[256] loadedImageName;
+    char[256] loadedPdbName;
+    uint cVSig;
+    char[780] cVData;
+    uint pdbSig;
+    Guid pdbSig70;
+    uint pdbAge;
+    Bool pdbUnmatched;
+    Bool dbgUnmatched;
+    Bool lineNumbers;
+    Bool globalSymbols;
+    Bool typeInfo;
+    Bool sourceIndexed;
+    Bool publics;
+    uint machineType;
+    uint reserved;
+}
+
+// Win32 original: IMAGEHLP_MODULEW
+struct ImagehlpModulew
+{
+    uint sizeOfStruct;
+    uint baseOfImage;
+    uint imageSize;
+    uint timeDateStamp;
+    uint checkSum;
+    uint numSyms;
+    SymType symType;
+    ushort[32] moduleName;
+    ushort[256] imageName;
+    ushort[256] loadedImageName;
+}
+
+// Win32 original: IMAGEHLP_MODULEW64
+struct ImagehlpMODULEW64
+{
+    uint sizeOfStruct;
+    ulong baseOfImage;
+    uint imageSize;
+    uint timeDateStamp;
+    uint checkSum;
+    uint numSyms;
+    SymType symType;
+    ushort[32] moduleName;
+    ushort[256] imageName;
+    ushort[256] loadedImageName;
+    ushort[256] loadedPdbName;
+    uint cVSig;
+    ushort[780] cVData;
+    uint pdbSig;
+    Guid pdbSig70;
+    uint pdbAge;
+    Bool pdbUnmatched;
+    Bool dbgUnmatched;
+    Bool lineNumbers;
+    Bool globalSymbols;
+    Bool typeInfo;
+    Bool sourceIndexed;
+    Bool publics;
+    uint machineType;
+    uint reserved;
+}
+
+// Win32 original: IMAGEHLP_STACK_FRAME
+struct ImagehlpStackFrame
+{
+    ulong instructionOffset;
+    ulong returnOffset;
+    ulong frameOffset;
+    ulong stackOffset;
+    ulong backingStoreOffset;
+    ulong funcTableEntry;
+    ulong[4] params;
+    ulong[5] reserved;
+    Bool virtual;
+    uint reserved2;
+}
+
+// Win32 original: IMAGEHLP_STATUS_REASON
+constdef ImagehlpStatusReason : int
+{
+    BINDOUTOFMEMORY = 0,
+    BINDRVATOVAFAILED = 1,
+    BINDNOROOMINIMAGE = 2,
+    BINDIMPORTMODULEFAILED = 3,
+    BINDIMPORTPROCEDUREFAILED = 4,
+    BINDIMPORTMODULE = 5,
+    BINDIMPORTPROCEDURE = 6,
+    BINDFORWARDER = 7,
+    BINDFORWARDERNOT = 8,
+    BINDIMAGEMODIFIED = 9,
+    BINDEXPANDFILEHEADERS = 10,
+    BINDIMAGECOMPLETE = 11,
+    BINDMISMATCHEDSYMBOLS = 12,
+    BINDSYMBOLSNOTUPDATED = 13,
+    BINDIMPORTPROCEDURE32 = 14,
+    BINDIMPORTPROCEDURE64 = 15,
+    BINDFORWARDER32 = 16,
+    BINDFORWARDER64 = 17,
+    BINDFORWARDERNOT32 = 18,
+    BINDFORWARDERNOT64 = 19
+}
+
+// Win32 original: IMAGEHLP_SYMBOL
+struct ImagehlpSymbol
+{
+    uint sizeOfStruct;
+    uint address;
+    uint size;
+    uint flags;
+    uint maxNameLength;
+    char[1] name;
+}
+
+// Win32 original: IMAGEHLP_SYMBOL64
+struct ImagehlpSYMBOL64
+{
+    uint sizeOfStruct;
+    ulong address;
+    uint size;
+    uint flags;
+    uint maxNameLength;
+    char[1] name;
+}
+
+// Win32 original: IMAGEHLP_SYMBOL_TYPE_INFO
+constdef ImagehlpSymbolTypeInfo : int
+{
+    TI_GET_SYMTAG = 0,
+    TI_GET_SYMNAME = 1,
+    TI_GET_LENGTH = 2,
+    TI_GET_TYPE = 3,
+    TI_GET_TYPEID = 4,
+    TI_GET_BASETYPE = 5,
+    TI_GET_ARRAYINDEXTYPEID = 6,
+    TI_FINDCHILDREN = 7,
+    TI_GET_DATAKIND = 8,
+    TI_GET_ADDRESSOFFSET = 9,
+    TI_GET_OFFSET = 10,
+    TI_GET_VALUE = 11,
+    TI_GET_COUNT = 12,
+    TI_GET_CHILDRENCOUNT = 13,
+    TI_GET_BITPOSITION = 14,
+    TI_GET_VIRTUALBASECLASS = 15,
+    TI_GET_VIRTUALTABLESHAPEID = 16,
+    TI_GET_VIRTUALBASEPOINTEROFFSET = 17,
+    TI_GET_CLASSPARENTID = 18,
+    TI_GET_NESTED = 19,
+    TI_GET_SYMINDEX = 20,
+    TI_GET_LEXICALPARENT = 21,
+    TI_GET_ADDRESS = 22,
+    TI_GET_THISADJUST = 23,
+    TI_GET_UDTKIND = 24,
+    TI_IS_EQUIV_TO = 25,
+    TI_GET_CALLING_CONVENTION = 26,
+    TI_IS_CLOSE_EQUIV_TO = 27,
+    TI_GTIEX_REQS_VALID = 28,
+    TI_GET_VIRTUALBASEOFFSET = 29,
+    TI_GET_VIRTUALBASEDISPINDEX = 30,
+    TI_GET_IS_REFERENCE = 31,
+    TI_GET_INDIRECTVIRTUALBASECLASS = 32,
+    TI_GET_VIRTUALBASETABLETYPE = 33,
+    TI_GET_OBJECTPOINTERTYPE = 34,
+    TI_GET_DISCRIMINATEDUNION_TAG_TYPEID = 35,
+    TI_GET_DISCRIMINATEDUNION_TAG_OFFSET = 36,
+    TI_GET_DISCRIMINATEDUNION_TAG_RANGESCOUNT = 37,
+    TI_GET_DISCRIMINATEDUNION_TAG_RANGES = 38,
+    IMAGEHLP_SYMBOL_TYPE_INFO_MAX = 39
+}
+
+// Win32 original: IMAGE_DATA_DIRECTORY
+struct ImageDataDirectory
+{
+    uint virtualAddress;
+    uint size;
+}
+
+// Win32 original: IMAGE_DIRECTORY_ENTRY
+constdef ImageDirectoryEntry : ushort
+{
+    IMAGE_DIRECTORY_ENTRY_ARCHITECTURE = 7,
+    IMAGE_DIRECTORY_ENTRY_BASERELOC = 5,
+    IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT = 11,
+    IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR = 14,
+    IMAGE_DIRECTORY_ENTRY_DEBUG = 6,
+    IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT = 13,
+    IMAGE_DIRECTORY_ENTRY_EXCEPTION = 3,
+    IMAGE_DIRECTORY_ENTRY_EXPORT = 0,
+    IMAGE_DIRECTORY_ENTRY_GLOBALPTR = 8,
+    IMAGE_DIRECTORY_ENTRY_IAT = 12,
+    IMAGE_DIRECTORY_ENTRY_IMPORT = 1,
+    IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG = 10,
+    IMAGE_DIRECTORY_ENTRY_RESOURCE = 2,
+    IMAGE_DIRECTORY_ENTRY_SECURITY = 4,
+    IMAGE_DIRECTORY_ENTRY_TLS = 9
+}
+
+// Win32 original: IMAGE_DLL_CHARACTERISTICS
+constdef ImageDllCharacteristics : ushort
+{
+    IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA = 32,
+    IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE = 64,
+    IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY = 128,
+    IMAGE_DLLCHARACTERISTICS_NX_COMPAT = 256,
+    IMAGE_DLLCHARACTERISTICS_NO_ISOLATION = 512,
+    IMAGE_DLLCHARACTERISTICS_NO_SEH = 1024,
+    IMAGE_DLLCHARACTERISTICS_NO_BIND = 2048,
+    IMAGE_DLLCHARACTERISTICS_APPCONTAINER = 4096,
+    IMAGE_DLLCHARACTERISTICS_WDM_DRIVER = 8192,
+    IMAGE_DLLCHARACTERISTICS_GUARD_CF = 16384,
+    IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE = 32768,
+    IMAGE_DLLCHARACTERISTICS_EX_CET_COMPAT = 1,
+    IMAGE_DLLCHARACTERISTICS_EX_CET_COMPAT_STRICT_MODE = 2,
+    IMAGE_DLLCHARACTERISTICS_EX_CET_SET_CONTEXT_IP_VALIDATION_RELAXED_MODE = 4,
+    IMAGE_DLLCHARACTERISTICS_EX_CET_DYNAMIC_APIS_ALLOW_IN_PROC = 8,
+    IMAGE_DLLCHARACTERISTICS_EX_CET_RESERVED_1 = 16,
+    IMAGE_DLLCHARACTERISTICS_EX_CET_RESERVED_2 = 32,
+    IMAGE_DLLCHARACTERISTICS_EX_FORWARD_CFI_COMPAT = 64,
+    IMAGE_DLLCHARACTERISTICS_EX_HOTPATCH_COMPATIBLE = 128
+}
+
+// Win32 original: IMAGE_FILE_CHARACTERISTICS
+constdef ImageFileCharacteristics : ushort
+{
+    IMAGE_FILE_RELOCS_STRIPPED = 1,
+    IMAGE_FILE_EXECUTABLE_IMAGE = 2,
+    IMAGE_FILE_LINE_NUMS_STRIPPED = 4,
+    IMAGE_FILE_LOCAL_SYMS_STRIPPED = 8,
+    IMAGE_FILE_AGGRESIVE_WS_TRIM = 16,
+    IMAGE_FILE_LARGE_ADDRESS_AWARE = 32,
+    IMAGE_FILE_BYTES_REVERSED_LO = 128,
+    IMAGE_FILE_32BIT_MACHINE = 256,
+    IMAGE_FILE_DEBUG_STRIPPED = 512,
+    IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP = 1024,
+    IMAGE_FILE_NET_RUN_FROM_SWAP = 2048,
+    IMAGE_FILE_SYSTEM = 4096,
+    IMAGE_FILE_DLL = 8192,
+    IMAGE_FILE_UP_SYSTEM_ONLY = 16384,
+    IMAGE_FILE_BYTES_REVERSED_HI = 32768
+}
+
+// Win32 original: IMAGE_FILE_CHARACTERISTICS2
+constdef ImageFileCHARACTERISTICS2 : uint
+{
+    IMAGE_FILE_RELOCS_STRIPPED2 = 1,
+    IMAGE_FILE_EXECUTABLE_IMAGE2 = 2,
+    IMAGE_FILE_LINE_NUMS_STRIPPED2 = 4,
+    IMAGE_FILE_LOCAL_SYMS_STRIPPED2 = 8,
+    IMAGE_FILE_AGGRESIVE_WS_TRIM2 = 16,
+    IMAGE_FILE_LARGE_ADDRESS_AWARE2 = 32,
+    IMAGE_FILE_BYTES_REVERSED_LO2 = 128,
+    IMAGE_FILE_32BIT_MACHINE2 = 256,
+    IMAGE_FILE_DEBUG_STRIPPED2 = 512,
+    IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP2 = 1024,
+    IMAGE_FILE_NET_RUN_FROM_SWAP2 = 2048,
+    IMAGE_FILE_SYSTEM_2 = 4096,
+    IMAGE_FILE_DLL_2 = 8192,
+    IMAGE_FILE_UP_SYSTEM_ONLY_2 = 16384,
+    IMAGE_FILE_BYTES_REVERSED_HI_2 = 32768
+}
+
+// Win32 original: IMAGE_FILE_HEADER
+struct ImageFileHeader
+{
+    ImageFileMachine machine;
+    ushort numberOfSections;
+    uint timeDateStamp;
+    uint pointerToSymbolTable;
+    uint numberOfSymbols;
+    ushort sizeOfOptionalHeader;
+    ImageFileCharacteristics characteristics;
+}
+
+// Win32 original: IMAGE_LOAD_CONFIG_CODE_INTEGRITY
+struct ImageLoadConfigCodeIntegrity
+{
+    ushort flags;
+    ushort catalog;
+    uint catalogOffset;
+    uint reserved;
+}
+
+// Win32 original: IMAGE_LOAD_CONFIG_DIRECTORY32
+struct ImageLoadConfigDIRECTORY32
+{
+    uint size;
+    uint timeDateStamp;
+    ushort majorVersion;
+    ushort minorVersion;
+    uint globalFlagsClear;
+    uint globalFlagsSet;
+    uint criticalSectionDefaultTimeout;
+    uint deCommitFreeBlockThreshold;
+    uint deCommitTotalFreeThreshold;
+    uint lockPrefixTable;
+    uint maximumAllocationSize;
+    uint virtualMemoryThreshold;
+    uint processHeapFlags;
+    uint processAffinityMask;
+    ushort cSDVersion;
+    ushort dependentLoadFlags;
+    uint editList;
+    uint securityCookie;
+    uint sEHandlerTable;
+    uint sEHandlerCount;
+    uint guardCFCheckFunctionPointer;
+    uint guardCFDispatchFunctionPointer;
+    uint guardCFFunctionTable;
+    uint guardCFFunctionCount;
+    uint guardFlags;
+    ImageLoadConfigCodeIntegrity codeIntegrity;
+    uint guardAddressTakenIatEntryTable;
+    uint guardAddressTakenIatEntryCount;
+    uint guardLongJumpTargetTable;
+    uint guardLongJumpTargetCount;
+    uint dynamicValueRelocTable;
+    uint cHPEMetadataPointer;
+    uint guardRFFailureRoutine;
+    uint guardRFFailureRoutineFunctionPointer;
+    uint dynamicValueRelocTableOffset;
+    ushort dynamicValueRelocTableSection;
+    ushort reserved2;
+    uint guardRFVerifyStackPointerFunctionPointer;
+    uint hotPatchTableOffset;
+    uint reserved3;
+    uint enclaveConfigurationPointer;
+    uint volatileMetadataPointer;
+    uint guardEHContinuationTable;
+    uint guardEHContinuationCount;
+    uint guardXFGCheckFunctionPointer;
+    uint guardXFGDispatchFunctionPointer;
+    uint guardXFGTableDispatchFunctionPointer;
+    uint castGuardOsDeterminedFailureMode;
+    uint guardMemcpyFunctionPointer;
+    uint umaFunctionPointers;
+}
+
+// Win32 original: IMAGE_NT_HEADERS32
+struct ImageNtHEADERS32
+{
+    uint signature;
+    ImageFileHeader fileHeader;
+    ImageOptionalHEADER32 optionalHeader;
+}
+
+// Win32 original: IMAGE_OPTIONAL_HEADER32
+struct ImageOptionalHEADER32
+{
+    ImageOptionalHeaderMagic magic;
+    char majorLinkerVersion;
+    char minorLinkerVersion;
+    uint sizeOfCode;
+    uint sizeOfInitializedData;
+    uint sizeOfUninitializedData;
+    uint addressOfEntryPoint;
+    uint baseOfCode;
+    uint baseOfData;
+    uint imageBase;
+    uint sectionAlignment;
+    uint fileAlignment;
+    ushort majorOperatingSystemVersion;
+    ushort minorOperatingSystemVersion;
+    ushort majorImageVersion;
+    ushort minorImageVersion;
+    ushort majorSubsystemVersion;
+    ushort minorSubsystemVersion;
+    uint win32VersionValue;
+    uint sizeOfImage;
+    uint sizeOfHeaders;
+    uint checkSum;
+    ImageSubsystem subsystem;
+    ImageDllCharacteristics dllCharacteristics;
+    uint sizeOfStackReserve;
+    uint sizeOfStackCommit;
+    uint sizeOfHeapReserve;
+    uint sizeOfHeapCommit;
+    uint loaderFlags;
+    uint numberOfRvaAndSizes;
+    ImageDataDirectory[16] dataDirectory;
+}
+
+// Win32 original: IMAGE_OPTIONAL_HEADER_MAGIC
+constdef ImageOptionalHeaderMagic : ushort
+{
+    IMAGE_NT_OPTIONAL_HDR_MAGIC = 523,
+    IMAGE_NT_OPTIONAL_HDR32_MAGIC = 267,
+    IMAGE_NT_OPTIONAL_HDR64_MAGIC = 523,
+    IMAGE_ROM_OPTIONAL_HDR_MAGIC = 263
+}
+
+// Win32 original: IMAGE_RUNTIME_FUNCTION_ENTRY
+struct ImageRunTimeFunctionEntry
+{
+    uint beginAddress;
+    uint endAddress;
+}
+
+// Win32 original: IMAGE_SECTION_CHARACTERISTICS
+constdef ImageSectionCharacteristics : uint
+{
+    IMAGE_SCN_TYPE_NO_PAD = 8,
+    IMAGE_SCN_CNT_CODE = 32,
+    IMAGE_SCN_CNT_INITIALIZED_DATA = 64,
+    IMAGE_SCN_CNT_UNINITIALIZED_DATA = 128,
+    IMAGE_SCN_LNK_OTHER = 256,
+    IMAGE_SCN_LNK_INFO = 512,
+    IMAGE_SCN_LNK_REMOVE = 2048,
+    IMAGE_SCN_LNK_COMDAT = 4096,
+    IMAGE_SCN_NO_DEFER_SPEC_EXC = 16384,
+    IMAGE_SCN_GPREL = 32768,
+    IMAGE_SCN_MEM_FARDATA = 32768,
+    IMAGE_SCN_MEM_PURGEABLE = 131072,
+    IMAGE_SCN_MEM_16BIT = 131072,
+    IMAGE_SCN_MEM_LOCKED = 262144,
+    IMAGE_SCN_MEM_PRELOAD = 524288,
+    IMAGE_SCN_ALIGN_1BYTES = 1048576,
+    IMAGE_SCN_ALIGN_2BYTES = 2097152,
+    IMAGE_SCN_ALIGN_4BYTES = 3145728,
+    IMAGE_SCN_ALIGN_8BYTES = 4194304,
+    IMAGE_SCN_ALIGN_16BYTES = 5242880,
+    IMAGE_SCN_ALIGN_32BYTES = 6291456,
+    IMAGE_SCN_ALIGN_64BYTES = 7340032,
+    IMAGE_SCN_ALIGN_128BYTES = 8388608,
+    IMAGE_SCN_ALIGN_256BYTES = 9437184,
+    IMAGE_SCN_ALIGN_512BYTES = 10485760,
+    IMAGE_SCN_ALIGN_1024BYTES = 11534336,
+    IMAGE_SCN_ALIGN_2048BYTES = 12582912,
+    IMAGE_SCN_ALIGN_4096BYTES = 13631488,
+    IMAGE_SCN_ALIGN_8192BYTES = 14680064,
+    IMAGE_SCN_ALIGN_MASK = 15728640,
+    IMAGE_SCN_LNK_NRELOC_OVFL = 16777216,
+    IMAGE_SCN_MEM_DISCARDABLE = 33554432,
+    IMAGE_SCN_MEM_NOT_CACHED = 67108864,
+    IMAGE_SCN_MEM_NOT_PAGED = 134217728,
+    IMAGE_SCN_MEM_SHARED = 268435456,
+    IMAGE_SCN_MEM_EXECUTE = 536870912,
+    IMAGE_SCN_MEM_READ = 1073741824,
+    IMAGE_SCN_MEM_WRITE = 2147483648,
+    IMAGE_SCN_SCALE_INDEX = 1
+}
+
+// Win32 original: IMAGE_SECTION_HEADER
+struct ImageSectionHeader
+{
+    char[8] name;
+    MiscEUnion misc;
+    uint virtualAddress;
+    uint sizeOfRawData;
+    uint pointerToRawData;
+    uint pointerToRelocations;
+    uint pointerToLinenumbers;
+    ushort numberOfRelocations;
+    ushort numberOfLinenumbers;
+    ImageSectionCharacteristics characteristics;
+}
+
+// Win32 original: IMAGE_SUBSYSTEM
+constdef ImageSubsystem : ushort
+{
+    IMAGE_SUBSYSTEM_UNKNOWN = 0,
+    IMAGE_SUBSYSTEM_NATIVE = 1,
+    IMAGE_SUBSYSTEM_WINDOWS_GUI = 2,
+    IMAGE_SUBSYSTEM_WINDOWS_CUI = 3,
+    IMAGE_SUBSYSTEM_OS2_CUI = 5,
+    IMAGE_SUBSYSTEM_POSIX_CUI = 7,
+    IMAGE_SUBSYSTEM_NATIVE_WINDOWS = 8,
+    IMAGE_SUBSYSTEM_WINDOWS_CE_GUI = 9,
+    IMAGE_SUBSYSTEM_EFI_APPLICATION = 10,
+    IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER = 11,
+    IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER = 12,
+    IMAGE_SUBSYSTEM_EFI_ROM = 13,
+    IMAGE_SUBSYSTEM_XBOX = 14,
+    IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION = 16,
+    IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG = 17
+}
+
+// Win32 original: KDHELP
+struct Kdhelp
+{
+    uint thread;
+    uint thCallbackStack;
+    uint nextCallback;
+    uint framePointer;
+    uint kiCallUserMode;
+    uint keUserCallbackDispatcher;
+    uint systemRangeStart;
+    uint thCallbackBStore;
+    uint kiUserExceptionDispatcher;
+    uint stackBase;
+    uint stackLimit;
+    uint[5] reserved;
+}
+
+// Win32 original: KDHELP64
+struct KDHELP64Type
+{
+    ulong thread;
+    uint thCallbackStack;
+    uint thCallbackBStore;
+    uint nextCallback;
+    uint framePointer;
+    ulong kiCallUserMode;
+    ulong keUserCallbackDispatcher;
+    ulong systemRangeStart;
+    ulong kiUserExceptionDispatcher;
+    ulong stackBase;
+    ulong stackLimit;
+    uint buildVersion;
+    uint retpolineStubFunctionTableSize;
+    ulong retpolineStubFunctionTable;
+    uint retpolineStubOffset;
+    uint retpolineStubSize;
+    ulong[2] reserved0;
+}
+
+// Win32 original: KNONVOLATILE_CONTEXT_POINTERS
+struct KnonvolatileContextPointers
+{
+    uint dummy;
+}
+
+// Win32 original: LDT_ENTRY
+struct LdtEntry
+{
+    ushort limitLow;
+    ushort baseLow;
+    HighWordEUnion highWord;
+}
+
+// Win32 original: LOADED_IMAGE
+struct LoadedImage
+{
+    char* moduleName;
+    Handle hFile;
+    char* mappedAddress;
+    ImageNtHEADERS32* fileHeader;
+    ImageSectionHeader* lastRvaSection;
+    uint numberOfSections;
+    ImageSectionHeader* sections;
+    ImageFileCHARACTERISTICS2 characteristics;
+    Boolean fSystemImage;
+    Boolean fDOSImage;
+    Boolean fReadOnly;
+    char version;
+    ListEntry links;
+    uint sizeOfImage;
+}
+
+// Win32 original: LPCALL_BACK_USER_INTERRUPT_ROUTINE
+alias LpcallBackUserInterruptRoutine = fn uint();
+
+// Win32 original: LPTOP_LEVEL_EXCEPTION_FILTER
+alias LptopLevelExceptionFilter = fn int(ExceptionPointers* exceptionInfo);
+
+// Win32 original: MINIDUMP_CALLBACK_INFORMATION
+struct MinidumpCallbackInformation
+{
+    MinidumpCallbackRoutine callbackRoutine;
+    void* callbackParam;
+}
+
+// Win32 original: MINIDUMP_CALLBACK_INPUT
+struct MinidumpCallbackInput
+{
+    uint processId;
+    Handle processHandle;
+    uint callbackType;
+}
+
+// Win32 original: MINIDUMP_CALLBACK_OUTPUT
+struct MinidumpCallbackOutput
+{
+    char unused;
+}
+
+// Win32 original: MINIDUMP_CALLBACK_ROUTINE
+alias MinidumpCallbackRoutine = fn Bool(void* callbackParam, MinidumpCallbackInput* callbackInput, MinidumpCallbackOutput* callbackOutput);
+
+// Win32 original: MINIDUMP_DIRECTORY
+struct MinidumpDirectory
+{
+    uint streamType;
+    MinidumpLocationDescriptor location;
+}
+
+// Win32 original: MINIDUMP_EXCEPTION_INFORMATION
+struct MinidumpExceptionInformation
+{
+    uint threadId;
+    ExceptionPointers* exceptionPointers;
+    Bool clientPointers;
+}
+
+// Win32 original: MINIDUMP_LOCATION_DESCRIPTOR
+struct MinidumpLocationDescriptor
+{
+    uint dataSize;
+    uint rva;
+}
+
+// Win32 original: MINIDUMP_TYPE
+constdef MinidumpType : int
+{
+    MINIDUMPNORMAL = 0,
+    MINIDUMPWITHDATASEGS = 1,
+    MINIDUMPWITHFULLMEMORY = 2,
+    MINIDUMPWITHHANDLEDATA = 4,
+    MINIDUMPFILTERMEMORY = 8,
+    MINIDUMPSCANMEMORY = 16,
+    MINIDUMPWITHUNLOADEDMODULES = 32,
+    MINIDUMPWITHINDIRECTLYREFERENCEDMEMORY = 64,
+    MINIDUMPFILTERMODULEPATHS = 128,
+    MINIDUMPWITHPROCESSTHREADDATA = 256,
+    MINIDUMPWITHPRIVATEREADWRITEMEMORY = 512,
+    MINIDUMPWITHOUTOPTIONALDATA = 1024,
+    MINIDUMPWITHFULLMEMORYINFO = 2048,
+    MINIDUMPWITHTHREADINFO = 4096,
+    MINIDUMPWITHCODESEGS = 8192,
+    MINIDUMPWITHOUTAUXILIARYSTATE = 16384,
+    MINIDUMPWITHFULLAUXILIARYSTATE = 32768,
+    MINIDUMPWITHPRIVATEWRITECOPYMEMORY = 65536,
+    MINIDUMPIGNOREINACCESSIBLEMEMORY = 131072,
+    MINIDUMPWITHTOKENINFORMATION = 262144,
+    MINIDUMPWITHMODULEHEADERS = 524288,
+    MINIDUMPFILTERTRIAGE = 1048576,
+    MINIDUMPWITHAVXXSTATECONTEXT = 2097152,
+    MINIDUMPWITHIPTTRACE = 4194304,
+    MINIDUMPSCANINACCESSIBLEPARTIALPAGES = 8388608,
+    MINIDUMPFILTERWRITECOMBINEDMEMORY = 16777216,
+    MINIDUMPVALIDTYPEFLAGS = 33554431,
+    MINIDUMPNOIGNOREINACCESSIBLEMEMORY = 33554432,
+    MINIDUMPVALIDTYPEFLAGSEX = 67108863
+}
+
+// Win32 original: MINIDUMP_USER_STREAM
+struct MinidumpUserStream
+{
+    uint type;
+    uint bufferSize;
+    void* buffer;
+}
+
+// Win32 original: MINIDUMP_USER_STREAM_INFORMATION
+struct MinidumpUserStreamInformation
+{
+    uint userStreamCount;
+    MinidumpUserStream* userStreamArray;
+}
+
+// Win32 original: MODLOAD_DATA
+struct ModloadData
+{
+    uint ssize;
+    ModloadDataType ssig;
+    void* data;
+    uint size;
+    uint flags;
+}
+
+// Win32 original: MODLOAD_DATA_TYPE
+constdef ModloadDataType : uint
+{
+    DBHHEADER_DEBUGDIRS = 1,
+    DBHHEADER_CVMISC = 2
+}
+
+// Win32 original: OMAP
+struct Omap
+{
+    uint rva;
+    uint rvaTo;
+}
+
+// Win32 original: OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS
+constdef OpenThreadWaitChainSessionFlags : uint
+{
+    WCT_ASYNC_OPEN_FLAG = 1
+}
+
+// Win32 original: PCOGETACTIVATIONSTATE
+alias Pcogetactivationstate = fn Hresult(Guid param0, uint param1, uint* param2);
+
+// Win32 original: PCOGETCALLSTATE
+alias Pcogetcallstate = fn Hresult(int param0, uint* param1);
+
+// Win32 original: PDBGHELP_CREATE_USER_DUMP_CALLBACK
+alias PdbghelpCreateUserDumpCallback = fn Bool(uint dataType, void** data, uint* dataLength, void* userData);
+
+// Win32 original: PENUMDIRTREE_CALLBACK
+alias PenumdirtreeCallback = fn Bool(char* filePath, void* callerData);
+
+// Win32 original: PENUMDIRTREE_CALLBACKW
+alias PenumdirtreeCallbackW = fn Bool(ushort* filePath, void* callerData);
+
+// Win32 original: PENUMLOADED_MODULES_CALLBACK
+alias PenumloadedModulesCallback = fn Bool(char* moduleName, uint moduleBase, uint moduleSize, void* userContext);
+
+// Win32 original: PENUMLOADED_MODULES_CALLBACK64
+alias PenumloadedModulesCALLBACK64 = fn Bool(char* moduleName, ulong moduleBase, uint moduleSize, void* userContext);
+
+// Win32 original: PENUMLOADED_MODULES_CALLBACKW64
+alias PenumloadedModulesCALLBACKW64 = fn Bool(ushort* moduleName, ulong moduleBase, uint moduleSize, void* userContext);
+
+// Win32 original: PENUMSOURCEFILETOKENSCALLBACK
+alias Penumsourcefiletokenscallback = fn Bool(void* token, uptr size);
+
+// Win32 original: PFINDFILEINPATHCALLBACK
+alias Pfindfileinpathcallback = fn Bool(char* filename, void* context);
+
+// Win32 original: PFINDFILEINPATHCALLBACKW
+alias Pfindfileinpathcallbackw = fn Bool(ushort* filename, void* context);
+
+// Win32 original: PFIND_DEBUG_FILE_CALLBACK
+alias PfindDebugFileCallback = fn Bool(Handle fileHandle, char* fileName, void* callerData);
+
+// Win32 original: PFIND_DEBUG_FILE_CALLBACKW
+alias PfindDebugFileCallbackW = fn Bool(Handle fileHandle, ushort* fileName, void* callerData);
+
+// Win32 original: PFIND_EXE_FILE_CALLBACK
+alias PfindExeFileCallback = fn Bool(Handle fileHandle, char* fileName, void* callerData);
+
+// Win32 original: PFIND_EXE_FILE_CALLBACKW
+alias PfindExeFileCallbackW = fn Bool(Handle fileHandle, ushort* fileName, void* callerData);
+
+// Win32 original: PFUNCTION_TABLE_ACCESS_ROUTINE
+alias PFunctionTableAccessRoutine = fn void*(Handle hProcess, uint addrBase);
+
+// Win32 original: PFUNCTION_TABLE_ACCESS_ROUTINE64
+alias PFunctionTableAccessROUTINE64 = fn void*(Handle ahProcess, ulong addrBase);
+
+// Win32 original: PGET_MODULE_BASE_ROUTINE
+alias PgetModuleBaseRoutine = fn uint(Handle hProcess, uint address);
+
+// Win32 original: PGET_MODULE_BASE_ROUTINE64
+alias PgetModuleBaseROUTINE64 = fn ulong(Handle hProcess, ulong address);
+
+// Win32 original: PGET_RUNTIME_FUNCTION_CALLBACK
+alias PgetRunTimeFunctionCallback = fn ImageRunTimeFunctionEntry*(ulong controlPc, void* context);
+
+// Win32 original: PGET_TARGET_ATTRIBUTE_VALUE64
+alias PgetTargetAttributeVALUE64 = fn Bool(Handle hProcess, uint attribute, ulong attributeData, ulong* attributeValue);
+
+// Win32 original: PIMAGEHLP_STATUS_ROUTINE
+alias PimagehlpStatusRoutine = fn Bool(ImagehlpStatusReason reason, char* imageName, char* dllName, uptr va, uptr parameter);
+
+// Win32 original: PREAD_PROCESS_MEMORY_ROUTINE
+alias PReadProcessMemoryRoutine = fn Bool(Handle hProcess, uint lpBaseAddress, void* lpBuffer, uint nSize, uint* lpNumberOfBytesRead);
+
+// Win32 original: PREAD_PROCESS_MEMORY_ROUTINE64
+alias PReadProcessMemoryROUTINE64 = fn Bool(Handle hProcess, ulong qwBaseAddress, void* lpBuffer, uint nSize, uint* lpNumberOfBytesRead);
+
+// Win32 original: PSYMBOL_FUNCENTRY_CALLBACK
+alias PsymbolFuncentryCallback = fn void*(Handle hProcess, uint addrBase, void* userContext);
+
+// Win32 original: PSYMBOL_FUNCENTRY_CALLBACK64
+alias PsymbolFuncentryCALLBACK64 = fn void*(Handle hProcess, ulong addrBase, ulong userContext);
+
+// Win32 original: PSYMBOL_REGISTERED_CALLBACK
+alias PsymbolRegisteredCallback = fn Bool(Handle hProcess, uint actionCode, void* callbackData, void* userContext);
+
+// Win32 original: PSYMBOL_REGISTERED_CALLBACK64
+alias PsymbolRegisteredCALLBACK64 = fn Bool(Handle hProcess, uint actionCode, ulong callbackData, ulong userContext);
+
+// Win32 original: PSYM_ENUMERATESYMBOLS_CALLBACK
+alias PsymEnumeratesymbolsCallback = fn Bool(SymbolInfo* pSymInfo, uint symbolSize, void* userContext);
+
+// Win32 original: PSYM_ENUMERATESYMBOLS_CALLBACKW
+alias PsymEnumeratesymbolsCallbackW = fn Bool(SymbolInfoW* pSymInfo, uint symbolSize, void* userContext);
+
+// Win32 original: PSYM_ENUMLINES_CALLBACK
+alias PsymEnumlinesCallback = fn Bool(Srccodeinfo* lineInfo, void* userContext);
+
+// Win32 original: PSYM_ENUMLINES_CALLBACKW
+alias PsymEnumlinesCallbackW = fn Bool(Srccodeinfow* lineInfo, void* userContext);
+
+// Win32 original: PSYM_ENUMMODULES_CALLBACK
+alias PsymEnummodulesCallback = fn Bool(char* moduleName, uint baseOfDll, void* userContext);
+
+// Win32 original: PSYM_ENUMMODULES_CALLBACK64
+alias PsymEnummodulesCALLBACK64 = fn Bool(char* moduleName, ulong baseOfDll, void* userContext);
+
+// Win32 original: PSYM_ENUMMODULES_CALLBACKW64
+alias PsymEnummodulesCALLBACKW64 = fn Bool(ushort* moduleName, ulong baseOfDll, void* userContext);
+
+// Win32 original: PSYM_ENUMPROCESSES_CALLBACK
+alias PsymEnumprocessesCallback = fn Bool(Handle hProcess, void* userContext);
+
+// Win32 original: PSYM_ENUMSOURCEFILES_CALLBACK
+alias PsymEnumsourcefilesCallback = fn Bool(SourceFile* pSourceFile, void* userContext);
+
+// Win32 original: PSYM_ENUMSOURCEFILES_CALLBACKW
+alias PsymEnumsourcefilesCallbackW = fn Bool(SourceFileW* pSourceFile, void* userContext);
+
+// Win32 original: PSYM_ENUMSYMBOLS_CALLBACK
+alias PsymEnumsymbolsCallback = fn Bool(char* symbolName, uint symbolAddress, uint symbolSize, void* userContext);
+
+// Win32 original: PSYM_ENUMSYMBOLS_CALLBACK64
+alias PsymEnumsymbolsCALLBACK64 = fn Bool(char* symbolName, ulong symbolAddress, uint symbolSize, void* userContext);
+
+// Win32 original: PSYM_ENUMSYMBOLS_CALLBACK64W
+alias PsymEnumsymbolsCALLBACK64W = fn Bool(ushort* symbolName, ulong symbolAddress, uint symbolSize, void* userContext);
+
+// Win32 original: PSYM_ENUMSYMBOLS_CALLBACKW
+alias PsymEnumsymbolsCallbackW = fn Bool(ushort* symbolName, uint symbolAddress, uint symbolSize, void* userContext);
+
+// Win32 original: PTRANSLATE_ADDRESS_ROUTINE
+alias PtranslateAddressRoutine = fn uint(Handle hProcess, Handle hThread, Address* lpaddr);
+
+// Win32 original: PTRANSLATE_ADDRESS_ROUTINE64
+alias PtranslateAddressROUTINE64 = fn ulong(Handle hProcess, Handle hThread, ADDRESS64Type* lpaddr);
+
+// Win32 original: PVECTORED_EXCEPTION_HANDLER
+alias PvectoredExceptionHandler = fn int(ExceptionPointers* exceptionInfo);
+
+// Win32 original: PWAITCHAINCALLBACK
+alias Pwaitchaincallback = fn void(void* wctHandle, uptr context, uint callbackStatus, uint* nodeCount, WaitchainNodeInfo* nodeInfoArray, Bool* isCycle);
+
+// Win32 original: RTL_VIRTUAL_UNWIND_HANDLER_TYPE
+constdef RtlVirtualUnwindHandlerType : uint
+{
+    UNW_FLAG_NHANDLER = 0,
+    UNW_FLAG_EHANDLER = 1,
+    UNW_FLAG_UHANDLER = 2,
+    UNW_FLAG_CHAININFO = 4
+}
+
+// Win32 original: SOURCEFILE
+struct SourceFile
+{
+    ulong modBase;
+    char* fileName;
+}
+
+// Win32 original: SOURCEFILEW
+struct SourceFileW
+{
+    ulong modBase;
+    ushort* fileName;
+}
+
+// Win32 original: SRCCODEINFO
+struct Srccodeinfo
+{
+    uint sizeOfStruct;
+    void* key;
+    ulong modBase;
+    char[261] obj;
+    char[261] fileName;
+    uint lineNumber;
+    ulong address;
+}
+
+// Win32 original: SRCCODEINFOW
+struct Srccodeinfow
+{
+    uint sizeOfStruct;
+    void* key;
+    ulong modBase;
+    ushort[261] obj;
+    ushort[261] fileName;
+    uint lineNumber;
+    ulong address;
+}
+
+// Win32 original: STACKFRAME
+struct Stackframe
+{
+    Address addrPC;
+    Address addrReturn;
+    Address addrFrame;
+    Address addrStack;
+    void* funcTableEntry;
+    uint[4] params;
+    Bool far;
+    Bool virtual;
+    uint[3] reserved;
+    Kdhelp kdHelp;
+    Address addrBStore;
+}
+
+// Win32 original: STACKFRAME64
+struct STACKFRAME64Type
+{
+    ADDRESS64Type addrPC;
+    ADDRESS64Type addrReturn;
+    ADDRESS64Type addrFrame;
+    ADDRESS64Type addrStack;
+    ADDRESS64Type addrBStore;
+    void* funcTableEntry;
+    ulong[4] params;
+    Bool far;
+    Bool virtual;
+    ulong[3] reserved;
+    KDHELP64Type kdHelp;
+}
+
+// Win32 original: STACKFRAME_EX
+struct StackframeEx
+{
+    ADDRESS64Type addrPC;
+    ADDRESS64Type addrReturn;
+    ADDRESS64Type addrFrame;
+    ADDRESS64Type addrStack;
+    ADDRESS64Type addrBStore;
+    void* funcTableEntry;
+    ulong[4] params;
+    Bool far;
+    Bool virtual;
+    ulong[3] reserved;
+    KDHELP64Type kdHelp;
+    uint stackFrameSize;
+    uint inlineFrameContext;
+}
+
+// Win32 original: SYMBOL_INFO
+struct SymbolInfo
+{
+    uint sizeOfStruct;
+    uint typeIndex;
+    ulong[2] reserved;
+    uint index;
+    uint size;
+    ulong modBase;
+    SymbolInfoFlags flags;
+    ulong value;
+    ulong address;
+    uint register;
+    uint scope;
+    uint tag;
+    uint nameLen;
+    uint maxNameLen;
+    char[1] name;
+}
+
+// Win32 original: SYMBOL_INFOW
+struct SymbolInfoW
+{
+    uint sizeOfStruct;
+    uint typeIndex;
+    ulong[2] reserved;
+    uint index;
+    uint size;
+    ulong modBase;
+    SymbolInfoFlags flags;
+    ulong value;
+    ulong address;
+    uint register;
+    uint scope;
+    uint tag;
+    uint nameLen;
+    uint maxNameLen;
+    ushort[1] name;
+}
+
+// Win32 original: SYMBOL_INFO_FLAGS
+constdef SymbolInfoFlags : uint
+{
+    SYMFLAG_CLR_TOKEN = 262144,
+    SYMFLAG_CONSTANT = 256,
+    SYMFLAG_EXPORT = 512,
+    SYMFLAG_FORWARDER = 1024,
+    SYMFLAG_FRAMEREL = 32,
+    SYMFLAG_FUNCTION = 2048,
+    SYMFLAG_ILREL = 65536,
+    SYMFLAG_LOCAL = 128,
+    SYMFLAG_METADATA = 131072,
+    SYMFLAG_PARAMETER = 64,
+    SYMFLAG_REGISTER = 8,
+    SYMFLAG_REGREL = 16,
+    SYMFLAG_SLOT = 32768,
+    SYMFLAG_THUNK = 8192,
+    SYMFLAG_TLSREL = 16384,
+    SYMFLAG_VALUEPRESENT = 1,
+    SYMFLAG_VIRTUAL = 4096
+}
+
+// Win32 original: SYMSRV_INDEX_INFO
+struct SymsrvIndexInfo
+{
+    uint sizeofstruct;
+    char[261] file;
+    Bool stripped;
+    uint timestamp;
+    uint size;
+    char[261] dbgfile;
+    char[261] pdbfile;
+    Guid guid;
+    uint sig;
+    uint age;
+}
+
+// Win32 original: SYMSRV_INDEX_INFOW
+struct SymsrvIndexInfoW
+{
+    uint sizeofstruct;
+    ushort[261] file;
+    Bool stripped;
+    uint timestamp;
+    uint size;
+    ushort[261] dbgfile;
+    ushort[261] pdbfile;
+    Guid guid;
+    uint sig;
+    uint age;
+}
+
+// Win32 original: SYM_FIND_ID_OPTION
+constdef SymFindIdOption : uint
+{
+    SSRVOPT_DWORD = 2,
+    SSRVOPT_DWORDPTR = 4,
+    SSRVOPT_GUIDPTR = 8
+}
+
+// Win32 original: SYM_LOAD_FLAGS
+constdef SymLoadFlags : uint
+{
+    SLMFLAG_NONE = 0,
+    SLMFLAG_VIRTUAL = 1,
+    SLMFLAG_ALT_INDEX = 2,
+    SLMFLAG_NO_SYMBOLS = 4
+}
+
+// Win32 original: SYM_SRV_STORE_FILE_FLAGS
+constdef SymSrvStoreFileFlags : uint
+{
+    SYMSTOREOPT_COMPRESS = 1,
+    SYMSTOREOPT_OVERWRITE = 2,
+    SYMSTOREOPT_PASS_IF_EXISTS = 64,
+    SYMSTOREOPT_POINTER = 8,
+    SYMSTOREOPT_RETURNINDEX = 4
+}
+
+// Win32 original: SYM_TYPE
+constdef SymType : int
+{
+    SYMNONE = 0,
+    SYMCOFF = 1,
+    SYMCV = 2,
+    SYMPDB = 3,
+    SYMEXPORT = 4,
+    SYMDEFERRED = 5,
+    SYMSYM = 6,
+    SYMDIA = 7,
+    SYMVIRTUAL = 8,
+    NUMSYMTYPES = 9
+}
+
+// Win32 original: THREAD_ERROR_MODE
+constdef ThreadErrorMode : uint
+{
+    SEM_ALL_ERRORS = 0,
+    SEM_FAILCRITICALERRORS = 1,
+    SEM_NOGPFAULTERRORBOX = 2,
+    SEM_NOOPENFILEERRORBOX = 32768,
+    SEM_NOALIGNMENTFAULTEXCEPT = 4
+}
+
+// Win32 original: UNWIND_HISTORY_TABLE
+struct UnwindHistoryTable
+{
+    uint count;
+    char localHint;
+    char globalHint;
+    char search;
+    char once;
+    uptr lowAddress;
+    uptr highAddress;
+    UnwindHistoryTableEntry[12] entry;
+}
+
+// Win32 original: UNWIND_HISTORY_TABLE_ENTRY
+struct UnwindHistoryTableEntry
+{
+    uptr imageBase;
+    ImageRunTimeFunctionEntry* functionEntry;
+}
+
+// Win32 original: WAITCHAIN_NODE_INFO
+struct WaitchainNodeInfo
+{
+    WctObjectType objectType;
+    WctObjectStatus objectStatus;
+}
+
+// Win32 original: WAIT_CHAIN_THREAD_OPTIONS
+constdef WaitChainThreadOptions : uint
+{
+    WCT_OUT_OF_PROC_COM_FLAG = 2,
+    WCT_OUT_OF_PROC_CS_FLAG = 4,
+    WCT_OUT_OF_PROC_FLAG = 1
+}
+
+// Win32 original: WCT_OBJECT_STATUS
+constdef WctObjectStatus : int
+{
+    WCTSTATUSNOACCESS = 1,
+    WCTSTATUSRUNNING = 2,
+    WCTSTATUSBLOCKED = 3,
+    WCTSTATUSPIDONLY = 4,
+    WCTSTATUSPIDONLYRPCSS = 5,
+    WCTSTATUSOWNED = 6,
+    WCTSTATUSNOTOWNED = 7,
+    WCTSTATUSABANDONED = 8,
+    WCTSTATUSUNKNOWN = 9,
+    WCTSTATUSERROR = 10,
+    WCTSTATUSMAX = 11
+}
+
+// Win32 original: WCT_OBJECT_TYPE
+constdef WctObjectType : int
+{
+    WCTCRITICALSECTIONTYPE = 1,
+    WCTSENDMESSAGETYPE = 2,
+    WCTMUTEXTYPE = 3,
+    WCTALPCTYPE = 4,
+    WCTCOMTYPE = 5,
+    WCTTHREADWAITTYPE = 6,
+    WCTPROCESSWAITTYPE = 7,
+    WCTTHREADTYPE = 8,
+    WCTCOMACTIVATIONTYPE = 9,
+    WCTUNKNOWNTYPE = 10,
+    WCTSOCKETIOTYPE = 11,
+    WCTSMBIOTYPE = 12,
+    WCTMAXTYPE = 13
+}
+
+// Win32 original: WOW64_CONTEXT
+struct WOW64Context
+{
+    WOW64ContextFlags contextFlags;
+    uint dr0;
+    uint dr1;
+    uint dr2;
+    uint dr3;
+    uint dr6;
+    uint dr7;
+    WOW64FloatingSaveArea floatSave;
+    uint segGs;
+    uint segFs;
+    uint segEs;
+    uint segDs;
+    uint edi;
+    uint esi;
+    uint ebx;
+    uint edx;
+    uint ecx;
+    uint eax;
+    uint ebp;
+    uint eip;
+    uint segCs;
+    uint eFlags;
+    uint esp;
+    uint segSs;
+    char[512] extendedRegisters;
+}
+
+// Win32 original: WOW64_CONTEXT_FLAGS
+constdef WOW64ContextFlags : uint
+{
+    WOW64_CONTEXT_X86 = 65536,
+    WOW64_CONTEXT_CONTROL = 65537,
+    WOW64_CONTEXT_INTEGER = 65538,
+    WOW64_CONTEXT_SEGMENTS = 65540,
+    WOW64_CONTEXT_FLOATING_POINT = 65544,
+    WOW64_CONTEXT_DEBUG_REGISTERS = 65552,
+    WOW64_CONTEXT_EXTENDED_REGISTERS = 65568,
+    WOW64_CONTEXT_FULL = 65543,
+    WOW64_CONTEXT_ALL = 65599,
+    WOW64_CONTEXT_XSTATE = 65600,
+    WOW64_CONTEXT_EXCEPTION_ACTIVE = 134217728,
+    WOW64_CONTEXT_SERVICE_ACTIVE = 268435456,
+    WOW64_CONTEXT_EXCEPTION_REQUEST = 1073741824,
+    WOW64_CONTEXT_EXCEPTION_REPORTING = 2147483648
+}
+
+// Win32 original: WOW64_FLOATING_SAVE_AREA
+struct WOW64FloatingSaveArea
+{
+    uint controlWord;
+    uint statusWord;
+    uint tagWord;
+    uint errorOffset;
+    uint errorSelector;
+    uint dataOffset;
+    uint dataSelector;
+    char[80] registerArea;
+    uint cr0NpxState;
+}
+
+// Win32 original: WOW64_LDT_ENTRY
+struct WOW64LdtEntry
+{
+    ushort limitLow;
+    ushort baseLow;
+    HighWordEUnion highWord;
+}
+
+extern fn void* add_vectored_continue_handler(uint first, PvectoredExceptionHandler handler)
+    @cname("AddVectoredContinueHandler") @link("kernel32");
+
+extern fn void* add_vectored_exception_handler(uint first, PvectoredExceptionHandler handler)
+    @cname("AddVectoredExceptionHandler") @link("kernel32");
+
+extern fn Bool beep(uint dwFreq, uint dwDuration)
+    @cname("Beep") @link("kernel32");
+
+extern fn Bool bind_image(char* imageName, char* dllPath, char* symbolPath)
+    @cname("BindImage") @link("imagehlp");
+
+extern fn Bool bind_image_ex(uint flags, char* imageName, char* dllPath, char* symbolPath, PimagehlpStatusRoutine statusRoutine)
+    @cname("BindImageEx") @link("imagehlp");
+
+<*
+ @param [&out] pbDebuggerPresent
+*>
+extern fn Bool check_remote_debugger_present(Handle hProcess, Bool* pbDebuggerPresent)
+    @cname("CheckRemoteDebuggerPresent") @link("kernel32");
+
+<*
+ @param [&in] baseAddress
+ @param [&out] headerSum
+ @param [&out] checkSum
+*>
+extern fn ImageNtHEADERS32* check_sum_mapped_file(void* baseAddress, uint fileLength, uint* headerSum, uint* checkSum)
+    @cname("CheckSumMappedFile") @link("imagehlp");
+
+<*
+ @param [&in] wctHandle
+*>
+extern fn void close_thread_wait_chain_session(void* wctHandle)
+    @cname("CloseThreadWaitChainSession") @link("advapi32");
+
+extern fn Bool continue_debug_event(uint dwProcessId, uint dwThreadId, Ntstatus dwContinueStatus)
+    @cname("ContinueDebugEvent") @link("kernel32");
+
+<*
+ @param [&inout] destination
+ @param [&in] source
+*>
+extern fn Bool copy_context(Context* destination, ContextFlags contextFlags, Context* source)
+    @cname("CopyContext") @link("kernel32");
+
+<*
+ @param [in] userData
+*>
+extern fn Bool dbg_help_create_user_dump(char* fileName, PdbghelpCreateUserDumpCallback callback, void* userData)
+    @cname("DbgHelpCreateUserDump") @link("dbghelp");
+
+<*
+ @param [in] userData
+*>
+extern fn Bool dbg_help_create_user_dumpW(ushort* fileName, PdbghelpCreateUserDumpCallback callback, void* userData)
+    @cname("DbgHelpCreateUserDumpW") @link("dbghelp");
+
+extern fn Bool debug_active_process(uint dwProcessId)
+    @cname("DebugActiveProcess") @link("kernel32");
+
+extern fn Bool debug_active_process_stop(uint dwProcessId)
+    @cname("DebugActiveProcessStop") @link("kernel32");
+
+extern fn void debug_break()
+    @cname("DebugBreak") @link("kernel32");
+
+extern fn Bool debug_break_process(Handle process)
+    @cname("DebugBreakProcess") @link("kernel32");
+
+extern fn Bool debug_set_process_kill_on_exit(Bool killOnExit)
+    @cname("DebugSetProcessKillOnExit") @link("kernel32");
+
+<*
+ @param [in] ptr
+*>
+extern fn void* decode_pointer(void* ptr)
+    @cname("DecodePointer") @link("kernel32");
+
+<*
+ @param [in] ptr
+ @param [&out] decodedPtr
+*>
+extern fn Hresult decode_remote_pointer(Handle processHandle, void* ptr, void** decodedPtr)
+    @cname("DecodeRemotePointer");
+
+<*
+ @param [in] ptr
+*>
+extern fn void* decode_system_pointer(void* ptr)
+    @cname("DecodeSystemPointer") @link("kernel32");
+
+<*
+ @param [in] ptr
+*>
+extern fn void* encode_pointer(void* ptr)
+    @cname("EncodePointer") @link("kernel32");
+
+<*
+ @param [in] ptr
+ @param [&out] encodedPtr
+*>
+extern fn Hresult encode_remote_pointer(Handle processHandle, void* ptr, void** encodedPtr)
+    @cname("EncodeRemotePointer");
+
+<*
+ @param [in] ptr
+*>
+extern fn void* encode_system_pointer(void* ptr)
+    @cname("EncodeSystemPointer") @link("kernel32");
+
+<*
+ @param [in] data
+*>
+extern fn Bool enum_dir_tree(Handle hProcess, char* rootPath, char* inputPathName, char* outputPathBuffer, PenumdirtreeCallback cb, void* data)
+    @cname("EnumDirTree") @link("dbghelp");
+
+<*
+ @param [in] data
+*>
+extern fn Bool enum_dir_treeW(Handle hProcess, ushort* rootPath, ushort* inputPathName, ushort* outputPathBuffer, PenumdirtreeCallbackW cb, void* data)
+    @cname("EnumDirTreeW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool enumerate_loaded_modules(Handle hProcess, PenumloadedModulesCallback enumLoadedModulesCallback, void* userContext)
+    @cname("EnumerateLoadedModules") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool enumerate_loaded_modules_64(Handle hProcess, PenumloadedModulesCALLBACK64 enumLoadedModulesCallback, void* userContext)
+    @cname("EnumerateLoadedModules64") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool enumerate_loaded_modules_ex(Handle hProcess, PenumloadedModulesCALLBACK64 enumLoadedModulesCallback, void* userContext)
+    @cname("EnumerateLoadedModulesEx") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool enumerate_loaded_modules_exW(Handle hProcess, PenumloadedModulesCALLBACKW64 enumLoadedModulesCallback, void* userContext)
+    @cname("EnumerateLoadedModulesExW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool enumerate_loaded_modules_w_64(Handle hProcess, PenumloadedModulesCALLBACKW64 enumLoadedModulesCallback, void* userContext)
+    @cname("EnumerateLoadedModulesW64") @link("dbghelp");
+
+extern fn void fatal_app_exitA(uint uAction, char* lpMessageText)
+    @cname("FatalAppExitA") @link("kernel32");
+
+extern fn void fatal_app_exitW(uint uAction, ushort* lpMessageText)
+    @cname("FatalAppExitW") @link("kernel32");
+
+extern fn void fatal_exit(int exitCode)
+    @cname("FatalExit") @link("kernel32");
+
+extern fn Handle find_debug_info_file(char* fileName, char* symbolPath, char* debugFilePath)
+    @cname("FindDebugInfoFile") @link("dbghelp");
+
+<*
+ @param [in] callerData
+*>
+extern fn Handle find_debug_info_file_ex(char* fileName, char* symbolPath, char* debugFilePath, PfindDebugFileCallback callback, void* callerData)
+    @cname("FindDebugInfoFileEx") @link("dbghelp");
+
+<*
+ @param [in] callerData
+*>
+extern fn Handle find_debug_info_file_exW(ushort* fileName, ushort* symbolPath, ushort* debugFilePath, PfindDebugFileCallbackW callback, void* callerData)
+    @cname("FindDebugInfoFileExW") @link("dbghelp");
+
+extern fn Handle find_executable_image(char* fileName, char* symbolPath, char* imageFilePath)
+    @cname("FindExecutableImage") @link("dbghelp");
+
+<*
+ @param [in] callerData
+*>
+extern fn Handle find_executable_image_ex(char* fileName, char* symbolPath, char* imageFilePath, PfindExeFileCallback callback, void* callerData)
+    @cname("FindExecutableImageEx") @link("dbghelp");
+
+<*
+ @param [&in] callerData
+*>
+extern fn Handle find_executable_image_exW(ushort* fileName, ushort* symbolPath, ushort* imageFilePath, PfindExeFileCallbackW callback, void* callerData)
+    @cname("FindExecutableImageExW") @link("dbghelp");
+
+<*
+ @param [&in] id
+*>
+extern fn Bool find_file_in_path(Handle hprocess, char* searchPathA, char* fileName, void* id, uint two, uint three, uint flags, char* filePath)
+    @cname("FindFileInPath") @link("dbghelp");
+
+extern fn Bool find_file_in_search_path(Handle hprocess, char* searchPathA, char* fileName, uint one, uint two, uint three, char* filePath)
+    @cname("FindFileInSearchPath") @link("dbghelp");
+
+<*
+ @param [in] lpBaseAddress
+*>
+extern fn Bool flush_instruction_cache(Handle hProcess, void* lpBaseAddress, uptr dwSize)
+    @cname("FlushInstructionCache") @link("kernel32");
+
+<*
+ @param [in] lpSource
+ @param [in] arguments
+*>
+extern fn uint format_messageA(FormatMessageOptions dwFlags, void* lpSource, uint dwMessageId, uint dwLanguageId, char* lpBuffer, uint nSize, ichar** arguments)
+    @cname("FormatMessageA") @link("kernel32");
+
+<*
+ @param [in] lpSource
+ @param [in] arguments
+*>
+extern fn uint format_messageW(FormatMessageOptions dwFlags, void* lpSource, uint dwMessageId, uint dwLanguageId, ushort* lpBuffer, uint nSize, ichar** arguments)
+    @cname("FormatMessageW") @link("kernel32");
+
+extern fn ulong get_enabled_x_state_features()
+    @cname("GetEnabledXStateFeatures") @link("kernel32");
+
+extern fn uint get_error_mode()
+    @cname("GetErrorMode") @link("kernel32");
+
+<*
+ @param [&in] loadedImage
+ @param [&out] imageConfigInformation
+*>
+extern fn Bool get_image_config_information(LoadedImage* loadedImage, ImageLoadConfigDIRECTORY32* imageConfigInformation)
+    @cname("GetImageConfigInformation") @link("imagehlp");
+
+<*
+ @param [&in] loadedImage
+ @param [&out] sizeUnusedHeaderBytes
+*>
+extern fn uint get_image_unused_header_bytes(LoadedImage* loadedImage, uint* sizeUnusedHeaderBytes)
+    @cname("GetImageUnusedHeaderBytes") @link("imagehlp");
+
+extern fn uint get_sym_load_error()
+    @cname("GetSymLoadError") @link("dbghelp");
+
+<*
+ @param [&inout] lpContext
+*>
+extern fn Bool get_thread_context(Handle hThread, Context* lpContext)
+    @cname("GetThreadContext") @link("kernel32");
+
+extern fn uint get_thread_error_mode()
+    @cname("GetThreadErrorMode") @link("kernel32");
+
+<*
+ @param [&out] lpSelectorEntry
+*>
+extern fn Bool get_thread_selector_entry(Handle hThread, uint dwSelector, LdtEntry* lpSelectorEntry)
+    @cname("GetThreadSelectorEntry") @link("kernel32");
+
+<*
+ @param [&in] wctHandle
+ @param [&inout] nodeCount
+ @param [&out] nodeInfoArray
+ @param [&out] isCycle
+*>
+extern fn Bool get_thread_wait_chain(void* wctHandle, uptr context, WaitChainThreadOptions flags, uint threadId, uint* nodeCount, WaitchainNodeInfo* nodeInfoArray, Bool* isCycle)
+    @cname("GetThreadWaitChain") @link("advapi32");
+
+extern fn uint get_timestamp_for_loaded_library(HModule module_)
+    @cname("GetTimestampForLoadedLibrary") @link("dbghelp");
+
+<*
+ @param [&in] context
+ @param [&out] featureMask
+*>
+extern fn Bool get_x_state_features_mask(Context* context, ulong* featureMask)
+    @cname("GetXStateFeaturesMask") @link("kernel32");
+
+<*
+ @param [&in] certificate
+ @param [&out] index
+*>
+extern fn Bool image_add_certificate(Handle fileHandle, WinCertificate* certificate, uint* index)
+    @cname("ImageAddCertificate") @link("imagehlp");
+
+<*
+ @param [&in] base
+ @param [&out] size
+*>
+extern fn void* image_directory_entry_to_data(void* base, Boolean mappedAsImage, ImageDirectoryEntry directoryEntry, uint* size)
+    @cname("ImageDirectoryEntryToData") @link("dbghelp");
+
+<*
+ @param [&in] base
+ @param [&out] size
+ @param [out] foundHeader
+*>
+extern fn void* image_directory_entry_to_data_ex(void* base, Boolean mappedAsImage, ImageDirectoryEntry directoryEntry, uint* size, ImageSectionHeader** foundHeader)
+    @cname("ImageDirectoryEntryToDataEx") @link("dbghelp");
+
+<*
+ @param [&out] certificateCount
+ @param [inout] indices
+*>
+extern fn Bool image_enumerate_certificates(Handle fileHandle, ushort typeFilter, uint* certificateCount, uint* indices, uint indexCount)
+    @cname("ImageEnumerateCertificates") @link("imagehlp");
+
+<*
+ @param [&out] certificate
+ @param [&inout] requiredLength
+*>
+extern fn Bool image_get_certificate_data(Handle fileHandle, uint certificateIndex, WinCertificate* certificate, uint* requiredLength)
+    @cname("ImageGetCertificateData") @link("imagehlp");
+
+<*
+ @param [&inout] certificateheader
+*>
+extern fn Bool image_get_certificate_header(Handle fileHandle, uint certificateIndex, WinCertificate* certificateheader)
+    @cname("ImageGetCertificateHeader") @link("imagehlp");
+
+<*
+ @param [&in] digestHandle
+*>
+extern fn Bool image_get_digest_stream(Handle fileHandle, uint digestLevel, DigestFunction digestFunction, void* digestHandle)
+    @cname("ImageGetDigestStream") @link("imagehlp");
+
+extern fn LoadedImage* image_load(char* dllName, char* dllPath)
+    @cname("ImageLoad") @link("imagehlp");
+
+<*
+ @param [&in] base
+*>
+extern fn ImageNtHEADERS32* image_nt_header(void* base)
+    @cname("ImageNtHeader") @link("dbghelp");
+
+extern fn Bool image_remove_certificate(Handle fileHandle, uint index)
+    @cname("ImageRemoveCertificate") @link("imagehlp");
+
+<*
+ @param [&in] ntHeaders
+ @param [&in] base
+*>
+extern fn ImageSectionHeader* image_rva_to_section(ImageNtHEADERS32* ntHeaders, void* base, uint rva)
+    @cname("ImageRvaToSection") @link("dbghelp");
+
+<*
+ @param [&in] ntHeaders
+ @param [&in] base
+ @param [in] lastRvaSection
+*>
+extern fn void* image_rva_to_va(ImageNtHEADERS32* ntHeaders, void* base, uint rva, ImageSectionHeader** lastRvaSection)
+    @cname("ImageRvaToVa") @link("dbghelp");
+
+<*
+ @param [&inout] loadedImage
+*>
+extern fn Bool image_unload(LoadedImage* loadedImage)
+    @cname("ImageUnload") @link("imagehlp");
+
+extern fn ApiVersion* imagehlp_api_version()
+    @cname("ImagehlpApiVersion") @link("dbghelp");
+
+<*
+ @param [&in] appVersion
+*>
+extern fn ApiVersion* imagehlp_api_version_ex(ApiVersion* appVersion)
+    @cname("ImagehlpApiVersionEx") @link("dbghelp");
+
+<*
+ @param [out] buffer
+ @param [&out] context
+ @param [&inout] contextLength
+*>
+extern fn Bool initialize_context(void* buffer, ContextFlags contextFlags, Context** context, uint* contextLength)
+    @cname("InitializeContext") @link("kernel32");
+
+<*
+ @param [out] buffer
+ @param [&out] context
+ @param [&inout] contextLength
+*>
+extern fn Bool initialize_context_2(void* buffer, ContextFlags contextFlags, Context** context, uint* contextLength, ulong xStateCompactionMask)
+    @cname("InitializeContext2") @link("kernel32");
+
+extern fn Bool is_debugger_present()
+    @cname("IsDebuggerPresent") @link("kernel32");
+
+<*
+ @param [&in] context
+ @param [out] length
+*>
+extern fn void* locate_x_state_feature(Context* context, uint featureId, uint* length)
+    @cname("LocateXStateFeature") @link("kernel32");
+
+extern fn Bool make_sure_directory_path_exists(char* dirPath)
+    @cname("MakeSureDirectoryPathExists") @link("dbghelp");
+
+<*
+ @param [&out] loadedImage
+*>
+extern fn Bool map_and_load(char* imageName, char* dllPath, LoadedImage* loadedImage, Bool dotDll, Bool readOnly)
+    @cname("MapAndLoad") @link("imagehlp");
+
+<*
+ @param [&out] headerSum
+ @param [&out] checkSum
+*>
+extern fn uint map_file_and_check_sumA(char* filename, uint* headerSum, uint* checkSum)
+    @cname("MapFileAndCheckSumA") @link("imagehlp");
+
+<*
+ @param [&out] headerSum
+ @param [&out] checkSum
+*>
+extern fn uint map_file_and_check_sumW(ushort* filename, uint* headerSum, uint* checkSum)
+    @cname("MapFileAndCheckSumW") @link("imagehlp");
+
+extern fn Bool message_beep(MessageboxStyle uType)
+    @cname("MessageBeep") @link("user32");
+
+<*
+ @param [&in] baseOfDump
+ @param [&out] dir
+ @param [&out] streamPointer
+ @param [out] streamSize
+*>
+extern fn Bool mini_dump_read_dump_stream(void* baseOfDump, uint streamNumber, MinidumpDirectory** dir, void** streamPointer, uint* streamSize)
+    @cname("MiniDumpReadDumpStream") @link("dbghelp");
+
+<*
+ @param [in] exceptionParam
+ @param [in] userStreamParam
+ @param [in] callbackParam
+*>
+extern fn Bool mini_dump_write_dump(Handle hProcess, uint processId, Handle hFile, MinidumpType dumpType, MinidumpExceptionInformation* exceptionParam, MinidumpUserStreamInformation* userStreamParam, MinidumpCallbackInformation* callbackParam)
+    @cname("MiniDumpWriteDump") @link("dbghelp");
+
+extern fn void* open_thread_wait_chain_session(OpenThreadWaitChainSessionFlags flags, Pwaitchaincallback callback)
+    @cname("OpenThreadWaitChainSession") @link("advapi32");
+
+extern fn void output_debug_stringA(char* lpOutputString)
+    @cname("OutputDebugStringA") @link("kernel32");
+
+extern fn void output_debug_stringW(ushort* lpOutputString)
+    @cname("OutputDebugStringW") @link("kernel32");
+
+<*
+ @param [in] lpArguments
+*>
+extern fn void raise_exception(uint dwExceptionCode, uint dwExceptionFlags, uint nNumberOfArguments, uptr* lpArguments)
+    @cname("RaiseException") @link("kernel32");
+
+<*
+ @param [in] pExceptionRecord
+ @param [in] pContextRecord
+*>
+extern fn void raise_fail_fast_exception(ExceptionRecord* pExceptionRecord, Context* pContextRecord, uint dwFlags)
+    @cname("RaiseFailFastException") @link("kernel32");
+
+<*
+ @param [&in] rmapHandle
+ @param [&in] mappedImage
+*>
+extern fn Bool range_map_add_pe_image_sections(void* rmapHandle, ushort* imageName, void* mappedImage, uint mappingBytes, ulong imageBase, ulong userTag, uint mappingFlags)
+    @cname("RangeMapAddPeImageSections") @link("dbghelp");
+
+extern fn void* range_map_create()
+    @cname("RangeMapCreate") @link("dbghelp");
+
+<*
+ @param [in] rmapHandle
+*>
+extern fn void range_map_free(void* rmapHandle)
+    @cname("RangeMapFree") @link("dbghelp");
+
+<*
+ @param [&in] rmapHandle
+ @param [&out] buffer
+ @param [out] doneBytes
+*>
+extern fn Bool range_map_read(void* rmapHandle, ulong offset, void* buffer, uint requestBytes, uint flags, uint* doneBytes)
+    @cname("RangeMapRead") @link("dbghelp");
+
+<*
+ @param [&in] rmapHandle
+*>
+extern fn Bool range_map_remove(void* rmapHandle, ulong userTag)
+    @cname("RangeMapRemove") @link("dbghelp");
+
+<*
+ @param [&in] rmapHandle
+ @param [&in] buffer
+ @param [out] doneBytes
+*>
+extern fn Bool range_map_write(void* rmapHandle, ulong offset, void* buffer, uint requestBytes, uint flags, uint* doneBytes)
+    @cname("RangeMapWrite") @link("dbghelp");
+
+<*
+ @param [&out] oldImageSize
+ @param [&out] oldImageBase
+ @param [&out] newImageSize
+ @param [&inout] newImageBase
+*>
+extern fn Bool re_base_image(char* currentImageName, char* symbolPath, Bool fReBase, Bool fRebaseSysfileOk, Bool fGoingDown, uint checkImageSize, uint* oldImageSize, uptr* oldImageBase, uint* newImageSize, uptr* newImageBase, uint timeStamp)
+    @cname("ReBaseImage") @link("imagehlp");
+
+<*
+ @param [&out] oldImageSize
+ @param [&out] oldImageBase
+ @param [&out] newImageSize
+ @param [&inout] newImageBase
+*>
+extern fn Bool re_base_image_64(char* currentImageName, char* symbolPath, Bool fReBase, Bool fRebaseSysfileOk, Bool fGoingDown, uint checkImageSize, uint* oldImageSize, ulong* oldImageBase, uint* newImageSize, ulong* newImageBase, uint timeStamp)
+    @cname("ReBaseImage64") @link("imagehlp");
+
+<*
+ @param [&in] lpBaseAddress
+ @param [&out] lpBuffer
+ @param [out] lpNumberOfBytesRead
+*>
+extern fn Bool read_process_memory(Handle hProcess, void* lpBaseAddress, void* lpBuffer, uptr nSize, uptr* lpNumberOfBytesRead)
+    @cname("ReadProcessMemory") @link("kernel32");
+
+extern fn void register_wait_chain_com_callback(Pcogetcallstate callStateCallback, Pcogetactivationstate activationStateCallback)
+    @cname("RegisterWaitChainCOMCallback") @link("advapi32");
+
+extern fn void remove_invalid_module_list(Handle hProcess)
+    @cname("RemoveInvalidModuleList") @link("dbghelp");
+
+<*
+ @param [&in] handle
+*>
+extern fn uint remove_vectored_continue_handler(void* handle)
+    @cname("RemoveVectoredContinueHandler") @link("kernel32");
+
+<*
+ @param [&in] handle
+*>
+extern fn uint remove_vectored_exception_handler(void* handle)
+    @cname("RemoveVectoredExceptionHandler") @link("kernel32");
+
+<*
+ @param [&in] pSymbolData
+*>
+extern fn Bool report_symbol_load_summary(Handle hProcess, ushort* pLoadModule, DbghelpDataReportStruct* pSymbolData)
+    @cname("ReportSymbolLoadSummary") @link("dbghelp");
+
+<*
+ @param [&in] functionTable
+*>
+extern fn Boolean rtl_add_function_table(ImageRunTimeFunctionEntry* functionTable, uint entryCount, ulong baseAddress)
+    @cname("RtlAddFunctionTable") @link("kernel32");
+
+<*
+ @param [&out] dynamicTable
+ @param [&in] functionTable
+*>
+extern fn uint rtl_add_growable_function_table(void** dynamicTable, ImageRunTimeFunctionEntry* functionTable, uint entryCount, uint maximumEntryCount, uptr rangeBase, uptr rangeEnd)
+    @cname("RtlAddGrowableFunctionTable") @link("ntdll");
+
+<*
+ @param [&out] contextRecord
+*>
+extern fn void rtl_capture_context(Context* contextRecord)
+    @cname("RtlCaptureContext") @link("kernel32");
+
+<*
+ @param [&inout] contextRecord
+*>
+extern fn void rtl_capture_context_2(Context* contextRecord)
+    @cname("RtlCaptureContext2") @link("kernel32");
+
+<*
+ @param [&out] backTrace
+ @param [out] backTraceHash
+*>
+extern fn ushort rtl_capture_stack_back_trace(uint framesToSkip, uint framesToCapture, void** backTrace, uint* backTraceHash)
+    @cname("RtlCaptureStackBackTrace") @link("kernel32");
+
+<*
+ @param [&in] functionTable
+*>
+extern fn Boolean rtl_delete_function_table(ImageRunTimeFunctionEntry* functionTable)
+    @cname("RtlDeleteFunctionTable") @link("kernel32");
+
+<*
+ @param [&in] dynamicTable
+*>
+extern fn void rtl_delete_growable_function_table(void* dynamicTable)
+    @cname("RtlDeleteGrowableFunctionTable") @link("ntdll");
+
+<*
+ @param [&inout] dynamicTable
+*>
+extern fn void rtl_grow_function_table(void* dynamicTable, uint newEntryCount)
+    @cname("RtlGrowFunctionTable") @link("ntdll");
+
+<*
+ @param [in] context
+*>
+extern fn Boolean rtl_install_function_table_callback(ulong tableIdentifier, ulong baseAddress, uint length, PgetRunTimeFunctionCallback callback, void* context, ushort* outOfProcessCallbackDll)
+    @cname("RtlInstallFunctionTableCallback") @link("kernel32");
+
+<*
+ @param [&out] imageBase
+ @param [inout] historyTable
+*>
+extern fn ImageRunTimeFunctionEntry* rtl_lookup_function_entry(ulong controlPc, ulong* imageBase, UnwindHistoryTable* historyTable)
+    @cname("RtlLookupFunctionEntry") @link("kernel32");
+
+<*
+ @param [&in] pcValue
+ @param [&out] baseOfImage
+*>
+extern fn void* rtl_pc_to_file_header(void* pcValue, void** baseOfImage)
+    @cname("RtlPcToFileHeader") @link("kernel32");
+
+<*
+ @param [&in] exceptionRecord
+*>
+extern fn void rtl_raise_exception(ExceptionRecord* exceptionRecord)
+    @cname("RtlRaiseException") @link("kernel32");
+
+<*
+ @param [&in] contextRecord
+ @param [in] exceptionRecord
+*>
+extern fn void rtl_restore_context(Context* contextRecord, ExceptionRecord* exceptionRecord)
+    @cname("RtlRestoreContext") @link("kernel32");
+
+<*
+ @param [in] targetFrame
+ @param [in] targetIp
+ @param [in] exceptionRecord
+ @param [&in] returnValue
+*>
+extern fn void rtl_unwind(void* targetFrame, void* targetIp, ExceptionRecord* exceptionRecord, void* returnValue)
+    @cname("RtlUnwind") @link("kernel32");
+
+<*
+ @param [in] targetFrame
+ @param [in] targetIp
+ @param [in] exceptionRecord
+ @param [&in] returnValue
+ @param [&in] contextRecord
+ @param [in] historyTable
+*>
+extern fn void rtl_unwind_ex(void* targetFrame, void* targetIp, ExceptionRecord* exceptionRecord, void* returnValue, Context* contextRecord, UnwindHistoryTable* historyTable)
+    @cname("RtlUnwindEx") @link("kernel32");
+
+<*
+ @param [&in] functionEntry
+ @param [&inout] contextRecord
+ @param [&out] handlerData
+ @param [&out] establisherFrame
+ @param [inout] contextPointers
+*>
+extern fn ExceptionRoutine rtl_virtual_unwind(RtlVirtualUnwindHandlerType handlerType, ulong imageBase, ulong controlPc, ImageRunTimeFunctionEntry* functionEntry, Context* contextRecord, void** handlerData, ulong* establisherFrame, KnonvolatileContextPointers* contextPointers)
+    @cname("RtlVirtualUnwind") @link("kernel32");
+
+extern fn Bool search_tree_for_file(char* rootPath, char* inputPathName, char* outputPathBuffer)
+    @cname("SearchTreeForFile") @link("dbghelp");
+
+extern fn Bool search_tree_for_fileW(ushort* rootPath, ushort* inputPathName, ushort* outputPathBuffer)
+    @cname("SearchTreeForFileW") @link("dbghelp");
+
+extern fn void set_check_user_interrupt_shared(LpcallBackUserInterruptRoutine lpStartAddress)
+    @cname("SetCheckUserInterruptShared") @link("dbghelp");
+
+extern fn ThreadErrorMode set_error_mode(ThreadErrorMode uMode)
+    @cname("SetErrorMode") @link("kernel32");
+
+<*
+ @param [&inout] loadedImage
+ @param [&in] imageConfigInformation
+*>
+extern fn Bool set_image_config_information(LoadedImage* loadedImage, ImageLoadConfigDIRECTORY32* imageConfigInformation)
+    @cname("SetImageConfigInformation") @link("imagehlp");
+
+extern fn void set_sym_load_error(uint error)
+    @cname("SetSymLoadError") @link("dbghelp");
+
+<*
+ @param [&in] lpContext
+*>
+extern fn Bool set_thread_context(Handle hThread, Context* lpContext)
+    @cname("SetThreadContext") @link("kernel32");
+
+<*
+ @param [out] lpOldMode
+*>
+extern fn Bool set_thread_error_mode(ThreadErrorMode dwNewMode, ThreadErrorMode* lpOldMode)
+    @cname("SetThreadErrorMode") @link("kernel32");
+
+extern fn LptopLevelExceptionFilter set_unhandled_exception_filter(LptopLevelExceptionFilter lpTopLevelExceptionFilter)
+    @cname("SetUnhandledExceptionFilter") @link("kernel32");
+
+<*
+ @param [&inout] context
+*>
+extern fn Bool set_x_state_features_mask(Context* context, ulong featureMask)
+    @cname("SetXStateFeaturesMask") @link("kernel32");
+
+<*
+ @param [&inout] stackFrame
+ @param [&inout] contextRecord
+*>
+extern fn Bool stack_walk(uint machineType, Handle hProcess, Handle hThread, Stackframe* stackFrame, void* contextRecord, PReadProcessMemoryRoutine readMemoryRoutine, PFunctionTableAccessRoutine functionTableAccessRoutine, PgetModuleBaseRoutine getModuleBaseRoutine, PtranslateAddressRoutine translateAddress)
+    @cname("StackWalk") @link("dbghelp");
+
+<*
+ @param [&inout] stackFrame
+ @param [&inout] contextRecord
+*>
+extern fn Bool stack_walk_2(uint machineType, Handle hProcess, Handle hThread, StackframeEx* stackFrame, void* contextRecord, PReadProcessMemoryROUTINE64 readMemoryRoutine, PFunctionTableAccessROUTINE64 functionTableAccessRoutine, PgetModuleBaseROUTINE64 getModuleBaseRoutine, PtranslateAddressROUTINE64 translateAddress, PgetTargetAttributeVALUE64 getTargetAttributeValue, uint flags)
+    @cname("StackWalk2") @link("dbghelp");
+
+<*
+ @param [&inout] stackFrame
+ @param [&inout] contextRecord
+*>
+extern fn Bool stack_walk_64(uint machineType, Handle hProcess, Handle hThread, STACKFRAME64Type* stackFrame, void* contextRecord, PReadProcessMemoryROUTINE64 readMemoryRoutine, PFunctionTableAccessROUTINE64 functionTableAccessRoutine, PgetModuleBaseROUTINE64 getModuleBaseRoutine, PtranslateAddressROUTINE64 translateAddress)
+    @cname("StackWalk64") @link("dbghelp");
+
+<*
+ @param [&inout] stackFrame
+ @param [&inout] contextRecord
+*>
+extern fn Bool stack_walk_ex(uint machineType, Handle hProcess, Handle hThread, StackframeEx* stackFrame, void* contextRecord, PReadProcessMemoryROUTINE64 readMemoryRoutine, PFunctionTableAccessROUTINE64 functionTableAccessRoutine, PgetModuleBaseROUTINE64 getModuleBaseRoutine, PtranslateAddressROUTINE64 translateAddress, uint flags)
+    @cname("StackWalkEx") @link("dbghelp");
+
+<*
+ @param [in] buffer
+*>
+extern fn Bool sym_add_source_stream(Handle hProcess, ulong base, char* streamFile, char* buffer, uptr size)
+    @cname("SymAddSourceStream") @link("dbghelp");
+
+<*
+ @param [in] buffer
+*>
+extern fn Bool sym_add_source_streamA(Handle hProcess, ulong base, char* streamFile, char* buffer, uptr size)
+    @cname("SymAddSourceStreamA") @link("dbghelp");
+
+<*
+ @param [in] buffer
+*>
+extern fn Bool sym_add_source_streamW(Handle hProcess, ulong base, ushort* fileSpec, char* buffer, uptr size)
+    @cname("SymAddSourceStreamW") @link("dbghelp");
+
+extern fn Bool sym_add_symbol(Handle hProcess, ulong baseOfDll, char* name, ulong address, uint size, uint flags)
+    @cname("SymAddSymbol") @link("dbghelp");
+
+extern fn Bool sym_add_symbolW(Handle hProcess, ulong baseOfDll, ushort* name, ulong address, uint size, uint flags)
+    @cname("SymAddSymbolW") @link("dbghelp");
+
+extern fn uint sym_addr_include_inline_trace(Handle hProcess, ulong address)
+    @cname("SymAddrIncludeInlineTrace") @link("dbghelp");
+
+extern fn Bool sym_cleanup(Handle hProcess)
+    @cname("SymCleanup") @link("dbghelp");
+
+extern fn uint sym_compare_inline_trace(Handle hProcess, ulong address1, uint inlineContext1, ulong retAddress1, ulong address2, ulong retAddress2)
+    @cname("SymCompareInlineTrace") @link("dbghelp");
+
+extern fn Bool sym_delete_symbol(Handle hProcess, ulong baseOfDll, char* name, ulong address, uint flags)
+    @cname("SymDeleteSymbol") @link("dbghelp");
+
+extern fn Bool sym_delete_symbolW(Handle hProcess, ulong baseOfDll, ushort* name, ulong address, uint flags)
+    @cname("SymDeleteSymbolW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_lines(Handle hProcess, ulong base, char* obj, char* file, PsymEnumlinesCallback enumLinesCallback, void* userContext)
+    @cname("SymEnumLines") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_linesW(Handle hProcess, ulong base, ushort* obj, ushort* file, PsymEnumlinesCallbackW enumLinesCallback, void* userContext)
+    @cname("SymEnumLinesW") @link("dbghelp");
+
+<*
+ @param [&in] userContext
+*>
+extern fn Bool sym_enum_processes(PsymEnumprocessesCallback enumProcessesCallback, void* userContext)
+    @cname("SymEnumProcesses") @link("dbghelp");
+
+extern fn Bool sym_enum_source_file_tokens(Handle hProcess, ulong base, Penumsourcefiletokenscallback callback)
+    @cname("SymEnumSourceFileTokens") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_source_files(Handle hProcess, ulong modBase, char* mask, PsymEnumsourcefilesCallback cbSrcFiles, void* userContext)
+    @cname("SymEnumSourceFiles") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_source_filesW(Handle hProcess, ulong modBase, ushort* mask, PsymEnumsourcefilesCallbackW cbSrcFiles, void* userContext)
+    @cname("SymEnumSourceFilesW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_source_lines(Handle hProcess, ulong base, char* obj, char* file, uint line, uint flags, PsymEnumlinesCallback enumLinesCallback, void* userContext)
+    @cname("SymEnumSourceLines") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_source_linesW(Handle hProcess, ulong base, ushort* obj, ushort* file, uint line, uint flags, PsymEnumlinesCallbackW enumLinesCallback, void* userContext)
+    @cname("SymEnumSourceLinesW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_sym(Handle hProcess, ulong baseOfDll, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext)
+    @cname("SymEnumSym") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_symbols(Handle hProcess, ulong baseOfDll, char* mask, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext)
+    @cname("SymEnumSymbols") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_symbols_ex(Handle hProcess, ulong baseOfDll, char* mask, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext, uint options)
+    @cname("SymEnumSymbolsEx") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_symbols_exW(Handle hProcess, ulong baseOfDll, ushort* mask, PsymEnumeratesymbolsCallbackW enumSymbolsCallback, void* userContext, uint options)
+    @cname("SymEnumSymbolsExW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_symbols_for_addr(Handle hProcess, ulong address, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext)
+    @cname("SymEnumSymbolsForAddr") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_symbols_for_addrW(Handle hProcess, ulong address, PsymEnumeratesymbolsCallbackW enumSymbolsCallback, void* userContext)
+    @cname("SymEnumSymbolsForAddrW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_symbolsW(Handle hProcess, ulong baseOfDll, ushort* mask, PsymEnumeratesymbolsCallbackW enumSymbolsCallback, void* userContext)
+    @cname("SymEnumSymbolsW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_types(Handle hProcess, ulong baseOfDll, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext)
+    @cname("SymEnumTypes") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_types_by_name(Handle hProcess, ulong baseOfDll, char* mask, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext)
+    @cname("SymEnumTypesByName") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_types_by_nameW(Handle hProcess, ulong baseOfDll, ushort* mask, PsymEnumeratesymbolsCallbackW enumSymbolsCallback, void* userContext)
+    @cname("SymEnumTypesByNameW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enum_typesW(Handle hProcess, ulong baseOfDll, PsymEnumeratesymbolsCallbackW enumSymbolsCallback, void* userContext)
+    @cname("SymEnumTypesW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_modules(Handle hProcess, PsymEnummodulesCallback enumModulesCallback, void* userContext)
+    @cname("SymEnumerateModules") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_modules_64(Handle hProcess, PsymEnummodulesCALLBACK64 enumModulesCallback, void* userContext)
+    @cname("SymEnumerateModules64") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_modules_w_64(Handle hProcess, PsymEnummodulesCALLBACKW64 enumModulesCallback, void* userContext)
+    @cname("SymEnumerateModulesW64") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_symbols(Handle hProcess, uint baseOfDll, PsymEnumsymbolsCallback enumSymbolsCallback, void* userContext)
+    @cname("SymEnumerateSymbols") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_symbols_64(Handle hProcess, ulong baseOfDll, PsymEnumsymbolsCALLBACK64 enumSymbolsCallback, void* userContext)
+    @cname("SymEnumerateSymbols64") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_symbolsW(Handle hProcess, uint baseOfDll, PsymEnumsymbolsCallbackW enumSymbolsCallback, void* userContext)
+    @cname("SymEnumerateSymbolsW") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_enumerate_symbols_w_64(Handle hProcess, ulong baseOfDll, PsymEnumsymbolsCALLBACK64W enumSymbolsCallback, void* userContext)
+    @cname("SymEnumerateSymbolsW64") @link("dbghelp");
+
+<*
+ @param [in] callerData
+*>
+extern fn Handle sym_find_debug_info_file(Handle hProcess, char* fileName, char* debugFilePath, PfindDebugFileCallback callback, void* callerData)
+    @cname("SymFindDebugInfoFile") @link("dbghelp");
+
+<*
+ @param [in] callerData
+*>
+extern fn Handle sym_find_debug_info_fileW(Handle hProcess, ushort* fileName, ushort* debugFilePath, PfindDebugFileCallbackW callback, void* callerData)
+    @cname("SymFindDebugInfoFileW") @link("dbghelp");
+
+<*
+ @param [&in] callerData
+*>
+extern fn Handle sym_find_executable_image(Handle hProcess, char* fileName, char* imageFilePath, PfindExeFileCallback callback, void* callerData)
+    @cname("SymFindExecutableImage") @link("dbghelp");
+
+<*
+ @param [&in] callerData
+*>
+extern fn Handle sym_find_executable_imageW(Handle hProcess, ushort* fileName, ushort* imageFilePath, PfindExeFileCallbackW callback, void* callerData)
+    @cname("SymFindExecutableImageW") @link("dbghelp");
+
+<*
+ @param [in] id
+ @param [in] context
+*>
+extern fn Bool sym_find_file_in_path(Handle hprocess, char* searchPathA, char* fileName, void* id, uint two, uint three, SymFindIdOption flags, char* foundFile, Pfindfileinpathcallback callback, void* context)
+    @cname("SymFindFileInPath") @link("dbghelp");
+
+<*
+ @param [in] id
+ @param [in] context
+*>
+extern fn Bool sym_find_file_in_pathW(Handle hprocess, ushort* searchPathA, ushort* fileName, void* id, uint two, uint three, SymFindIdOption flags, ushort* foundFile, Pfindfileinpathcallbackw callback, void* context)
+    @cname("SymFindFileInPathW") @link("dbghelp");
+
+<*
+ @param [out] displacement
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_addr(Handle hProcess, ulong address, ulong* displacement, SymbolInfo* symbol)
+    @cname("SymFromAddr") @link("dbghelp");
+
+<*
+ @param [out] displacement
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_addrW(Handle hProcess, ulong address, ulong* displacement, SymbolInfoW* symbol)
+    @cname("SymFromAddrW") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_index(Handle hProcess, ulong baseOfDll, uint index, SymbolInfo* symbol)
+    @cname("SymFromIndex") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_indexW(Handle hProcess, ulong baseOfDll, uint index, SymbolInfoW* symbol)
+    @cname("SymFromIndexW") @link("dbghelp");
+
+<*
+ @param [out] displacement
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_inline_context(Handle hProcess, ulong address, uint inlineContext, ulong* displacement, SymbolInfo* symbol)
+    @cname("SymFromInlineContext") @link("dbghelp");
+
+<*
+ @param [out] displacement
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_inline_contextW(Handle hProcess, ulong address, uint inlineContext, ulong* displacement, SymbolInfoW* symbol)
+    @cname("SymFromInlineContextW") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_name(Handle hProcess, char* name, SymbolInfo* symbol)
+    @cname("SymFromName") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_nameW(Handle hProcess, ushort* name, SymbolInfoW* symbol)
+    @cname("SymFromNameW") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_token(Handle hProcess, ulong base, uint token, SymbolInfo* symbol)
+    @cname("SymFromToken") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_from_tokenW(Handle hProcess, ulong base, uint token, SymbolInfoW* symbol)
+    @cname("SymFromTokenW") @link("dbghelp");
+
+extern fn void* sym_function_table_access(Handle hProcess, uint addrBase)
+    @cname("SymFunctionTableAccess") @link("dbghelp");
+
+extern fn void* sym_function_table_access_64(Handle hProcess, ulong addrBase)
+    @cname("SymFunctionTableAccess64") @link("dbghelp");
+
+extern fn void* sym_function_table_access_64_access_routines(Handle hProcess, ulong addrBase, PReadProcessMemoryROUTINE64 readMemoryRoutine, PgetModuleBaseROUTINE64 getModuleBaseRoutine)
+    @cname("SymFunctionTableAccess64AccessRoutines") @link("dbghelp");
+
+extern fn Bool sym_get_extended_option(ImagehlpExtendedOptions option)
+    @cname("SymGetExtendedOption") @link("dbghelp");
+
+<*
+ @param [&out] buffer
+*>
+extern fn uint sym_get_file_line_offsets_64(Handle hProcess, char* moduleName, char* fileName, ulong* buffer, uint bufferLines)
+    @cname("SymGetFileLineOffsets64") @link("dbghelp");
+
+extern fn char* sym_get_home_directory(uint type, char* dir, uptr size)
+    @cname("SymGetHomeDirectory") @link("dbghelp");
+
+extern fn ushort* sym_get_home_directoryW(uint type, ushort* dir, uptr size)
+    @cname("SymGetHomeDirectoryW") @link("dbghelp");
+
+<*
+ @param [&out] pdwDisplacement
+ @param [&out] line
+*>
+extern fn Bool sym_get_line_from_addr(Handle hProcess, uint dwAddr, uint* pdwDisplacement, ImagehlpLine* line)
+    @cname("SymGetLineFromAddr") @link("dbghelp");
+
+<*
+ @param [&out] pdwDisplacement
+ @param [&out] line64
+*>
+extern fn Bool sym_get_line_from_addr_64(Handle hProcess, ulong qwAddr, uint* pdwDisplacement, ImagehlpLINE64* line64)
+    @cname("SymGetLineFromAddr64") @link("dbghelp");
+
+<*
+ @param [&out] pdwDisplacement
+ @param [&out] line
+*>
+extern fn Bool sym_get_line_from_addr_w_64(Handle hProcess, ulong dwAddr, uint* pdwDisplacement, ImagehlpLINEW64* line)
+    @cname("SymGetLineFromAddrW64") @link("dbghelp");
+
+<*
+ @param [&out] pdwDisplacement
+ @param [&out] line64
+*>
+extern fn Bool sym_get_line_from_inline_context(Handle hProcess, ulong qwAddr, uint inlineContext, ulong qwModuleBaseAddress, uint* pdwDisplacement, ImagehlpLINE64* line64)
+    @cname("SymGetLineFromInlineContext") @link("dbghelp");
+
+<*
+ @param [&out] pdwDisplacement
+ @param [&out] line
+*>
+extern fn Bool sym_get_line_from_inline_contextW(Handle hProcess, ulong dwAddr, uint inlineContext, ulong qwModuleBaseAddress, uint* pdwDisplacement, ImagehlpLINEW64* line)
+    @cname("SymGetLineFromInlineContextW") @link("dbghelp");
+
+<*
+ @param [&out] plDisplacement
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_from_name(Handle hProcess, char* moduleName, char* fileName, uint dwLineNumber, int* plDisplacement, ImagehlpLine* line)
+    @cname("SymGetLineFromName") @link("dbghelp");
+
+<*
+ @param [&out] plDisplacement
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_from_name_64(Handle hProcess, char* moduleName, char* fileName, uint dwLineNumber, int* plDisplacement, ImagehlpLINE64* line)
+    @cname("SymGetLineFromName64") @link("dbghelp");
+
+<*
+ @param [&out] plDisplacement
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_from_name_w_64(Handle hProcess, ushort* moduleName, ushort* fileName, uint dwLineNumber, int* plDisplacement, ImagehlpLINEW64* line)
+    @cname("SymGetLineFromNameW64") @link("dbghelp");
+
+<*
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_next(Handle hProcess, ImagehlpLine* line)
+    @cname("SymGetLineNext") @link("dbghelp");
+
+<*
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_next_64(Handle hProcess, ImagehlpLINE64* line)
+    @cname("SymGetLineNext64") @link("dbghelp");
+
+<*
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_next_w_64(Handle hProcess, ImagehlpLINEW64* line)
+    @cname("SymGetLineNextW64") @link("dbghelp");
+
+<*
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_prev(Handle hProcess, ImagehlpLine* line)
+    @cname("SymGetLinePrev") @link("dbghelp");
+
+<*
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_prev_64(Handle hProcess, ImagehlpLINE64* line)
+    @cname("SymGetLinePrev64") @link("dbghelp");
+
+<*
+ @param [&inout] line
+*>
+extern fn Bool sym_get_line_prev_w_64(Handle hProcess, ImagehlpLINEW64* line)
+    @cname("SymGetLinePrevW64") @link("dbghelp");
+
+extern fn uint sym_get_module_base(Handle hProcess, uint dwAddr)
+    @cname("SymGetModuleBase") @link("dbghelp");
+
+extern fn ulong sym_get_module_base_64(Handle hProcess, ulong qwAddr)
+    @cname("SymGetModuleBase64") @link("dbghelp");
+
+<*
+ @param [&out] moduleInfo
+*>
+extern fn Bool sym_get_module_info(Handle hProcess, uint dwAddr, ImagehlpModule* moduleInfo)
+    @cname("SymGetModuleInfo") @link("dbghelp");
+
+<*
+ @param [&out] moduleInfo
+*>
+extern fn Bool sym_get_module_info_64(Handle hProcess, ulong qwAddr, ImagehlpMODULE64* moduleInfo)
+    @cname("SymGetModuleInfo64") @link("dbghelp");
+
+<*
+ @param [&out] moduleInfo
+*>
+extern fn Bool sym_get_module_infoW(Handle hProcess, uint dwAddr, ImagehlpModulew* moduleInfo)
+    @cname("SymGetModuleInfoW") @link("dbghelp");
+
+<*
+ @param [&out] moduleInfo
+*>
+extern fn Bool sym_get_module_info_w_64(Handle hProcess, ulong qwAddr, ImagehlpMODULEW64* moduleInfo)
+    @cname("SymGetModuleInfoW64") @link("dbghelp");
+
+<*
+ @param [&out] omapTo
+ @param [&out] cOmapTo
+ @param [&out] omapFrom
+ @param [&out] cOmapFrom
+*>
+extern fn Bool sym_get_omaps(Handle hProcess, ulong baseOfDll, Omap** omapTo, ulong* cOmapTo, Omap** omapFrom, ulong* cOmapFrom)
+    @cname("SymGetOmaps") @link("dbghelp");
+
+extern fn uint sym_get_options()
+    @cname("SymGetOptions") @link("dbghelp");
+
+<*
+ @param [&out] pHwnd
+*>
+extern fn Bool sym_get_parent_window(HWnd* pHwnd)
+    @cname("SymGetParentWindow") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_scope(Handle hProcess, ulong baseOfDll, uint index, SymbolInfo* symbol)
+    @cname("SymGetScope") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_scopeW(Handle hProcess, ulong baseOfDll, uint index, SymbolInfoW* symbol)
+    @cname("SymGetScopeW") @link("dbghelp");
+
+extern fn Bool sym_get_search_path(Handle hProcess, char* searchPathA, uint searchPathLength)
+    @cname("SymGetSearchPath") @link("dbghelp");
+
+extern fn Bool sym_get_search_pathW(Handle hProcess, ushort* searchPathA, uint searchPathLength)
+    @cname("SymGetSearchPathW") @link("dbghelp");
+
+extern fn Bool sym_get_source_file(Handle hProcess, ulong base, char* params, char* fileSpec, char* filePath, uint size)
+    @cname("SymGetSourceFile") @link("dbghelp");
+
+<*
+ @param [&out] pCheckSumType
+ @param [&out] pChecksum
+ @param [&out] pActualBytesWritten
+*>
+extern fn Bool sym_get_source_file_checksum(Handle hProcess, ulong base, char* fileSpec, uint* pCheckSumType, char* pChecksum, uint checksumSize, uint* pActualBytesWritten)
+    @cname("SymGetSourceFileChecksum") @link("dbghelp");
+
+<*
+ @param [&out] pCheckSumType
+ @param [&out] pChecksum
+ @param [&out] pActualBytesWritten
+*>
+extern fn Bool sym_get_source_file_checksumW(Handle hProcess, ulong base, ushort* fileSpec, uint* pCheckSumType, char* pChecksum, uint checksumSize, uint* pActualBytesWritten)
+    @cname("SymGetSourceFileChecksumW") @link("dbghelp");
+
+<*
+ @param [&in] token
+*>
+extern fn Bool sym_get_source_file_from_token(Handle hProcess, void* token, char* params, char* filePath, uint size)
+    @cname("SymGetSourceFileFromToken") @link("dbghelp");
+
+<*
+ @param [&in] token
+*>
+extern fn Bool sym_get_source_file_from_token_by_token_name(Handle hProcess, void* token, char* tokenName, char* params, char* filePath, uint size)
+    @cname("SymGetSourceFileFromTokenByTokenName") @link("dbghelp");
+
+<*
+ @param [&in] token
+*>
+extern fn Bool sym_get_source_file_from_token_by_token_nameW(Handle hProcess, void* token, ushort* tokenName, ushort* params, ushort* filePath, uint size)
+    @cname("SymGetSourceFileFromTokenByTokenNameW") @link("dbghelp");
+
+<*
+ @param [&in] token
+*>
+extern fn Bool sym_get_source_file_from_tokenW(Handle hProcess, void* token, ushort* params, ushort* filePath, uint size)
+    @cname("SymGetSourceFileFromTokenW") @link("dbghelp");
+
+<*
+ @param [&out] token
+ @param [&out] size
+*>
+extern fn Bool sym_get_source_file_token(Handle hProcess, ulong base, char* fileSpec, void** token, uint* size)
+    @cname("SymGetSourceFileToken") @link("dbghelp");
+
+<*
+ @param [&out] token
+ @param [&out] size
+*>
+extern fn Bool sym_get_source_file_token_by_token_name(Handle hProcess, ulong base, char* fileSpec, char* tokenName, char* tokenParameters, void** token, uint* size)
+    @cname("SymGetSourceFileTokenByTokenName") @link("dbghelp");
+
+<*
+ @param [&out] token
+ @param [&out] size
+*>
+extern fn Bool sym_get_source_file_token_by_token_nameW(Handle hProcess, ulong base, ushort* fileSpec, ushort* tokenName, ushort* tokenParameters, void** token, uint* size)
+    @cname("SymGetSourceFileTokenByTokenNameW") @link("dbghelp");
+
+<*
+ @param [&out] token
+ @param [&out] size
+*>
+extern fn Bool sym_get_source_file_tokenW(Handle hProcess, ulong base, ushort* fileSpec, void** token, uint* size)
+    @cname("SymGetSourceFileTokenW") @link("dbghelp");
+
+extern fn Bool sym_get_source_fileW(Handle hProcess, ulong base, ushort* params, ushort* fileSpec, ushort* filePath, uint size)
+    @cname("SymGetSourceFileW") @link("dbghelp");
+
+<*
+ @param [&in] token
+*>
+extern fn Bool sym_get_source_var_from_token(Handle hProcess, void* token, char* params, char* varName, char* value, uint size)
+    @cname("SymGetSourceVarFromToken") @link("dbghelp");
+
+<*
+ @param [&in] token
+*>
+extern fn Bool sym_get_source_var_from_tokenW(Handle hProcess, void* token, ushort* params, ushort* varName, ushort* value, uint size)
+    @cname("SymGetSourceVarFromTokenW") @link("dbghelp");
+
+<*
+ @param [out] pdwDisplacement
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_from_addr(Handle hProcess, uint dwAddr, uint* pdwDisplacement, ImagehlpSymbol* symbol)
+    @cname("SymGetSymFromAddr") @link("dbghelp");
+
+<*
+ @param [out] pdwDisplacement
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_from_addr_64(Handle hProcess, ulong qwAddr, ulong* pdwDisplacement, ImagehlpSYMBOL64* symbol)
+    @cname("SymGetSymFromAddr64") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_from_name(Handle hProcess, char* name, ImagehlpSymbol* symbol)
+    @cname("SymGetSymFromName") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_from_name_64(Handle hProcess, char* name, ImagehlpSYMBOL64* symbol)
+    @cname("SymGetSymFromName64") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_next(Handle hProcess, ImagehlpSymbol* symbol)
+    @cname("SymGetSymNext") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_next_64(Handle hProcess, ImagehlpSYMBOL64* symbol)
+    @cname("SymGetSymNext64") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_prev(Handle hProcess, ImagehlpSymbol* symbol)
+    @cname("SymGetSymPrev") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_sym_prev_64(Handle hProcess, ImagehlpSYMBOL64* symbol)
+    @cname("SymGetSymPrev64") @link("dbghelp");
+
+extern fn Bool sym_get_symbol_file(Handle hProcess, char* symPath, char* imageFile, uint type, char* symbolFile, uptr cSymbolFile, char* dbgFile, uptr cDbgFile)
+    @cname("SymGetSymbolFile") @link("dbghelp");
+
+extern fn Bool sym_get_symbol_fileW(Handle hProcess, ushort* symPath, ushort* imageFile, uint type, ushort* symbolFile, uptr cSymbolFile, ushort* dbgFile, uptr cDbgFile)
+    @cname("SymGetSymbolFileW") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_type_from_name(Handle hProcess, ulong baseOfDll, char* name, SymbolInfo* symbol)
+    @cname("SymGetTypeFromName") @link("dbghelp");
+
+<*
+ @param [&inout] symbol
+*>
+extern fn Bool sym_get_type_from_nameW(Handle hProcess, ulong baseOfDll, ushort* name, SymbolInfoW* symbol)
+    @cname("SymGetTypeFromNameW") @link("dbghelp");
+
+<*
+ @param [&out] pInfo
+*>
+extern fn Bool sym_get_type_info(Handle hProcess, ulong modBase, uint typeId, ImagehlpSymbolTypeInfo getType, void* pInfo)
+    @cname("SymGetTypeInfo") @link("dbghelp");
+
+<*
+ @param [&inout] params
+*>
+extern fn Bool sym_get_type_info_ex(Handle hProcess, ulong modBase, ImagehlpGetTypeInfoParams* params)
+    @cname("SymGetTypeInfoEx") @link("dbghelp");
+
+<*
+ @param [out] buffer
+ @param [&inout] size
+*>
+extern fn Bool sym_get_unwind_info(Handle hProcess, ulong address, void* buffer, uint* size)
+    @cname("SymGetUnwindInfo") @link("dbghelp");
+
+extern fn Bool sym_initialize(Handle hProcess, char* userSearchPath, Bool fInvadeProcess)
+    @cname("SymInitialize") @link("dbghelp");
+
+extern fn Bool sym_initializeW(Handle hProcess, ushort* userSearchPath, Bool fInvadeProcess)
+    @cname("SymInitializeW") @link("dbghelp");
+
+extern fn uint sym_load_module(Handle hProcess, Handle hFile, char* imageName, char* moduleName, uint baseOfDll, uint sizeOfDll)
+    @cname("SymLoadModule") @link("dbghelp");
+
+extern fn ulong sym_load_module_64(Handle hProcess, Handle hFile, char* imageName, char* moduleName, ulong baseOfDll, uint sizeOfDll)
+    @cname("SymLoadModule64") @link("dbghelp");
+
+<*
+ @param [in] data
+*>
+extern fn ulong sym_load_module_ex(Handle hProcess, Handle hFile, char* imageName, char* moduleName, ulong baseOfDll, uint dllSize, ModloadData* data, SymLoadFlags flags)
+    @cname("SymLoadModuleEx") @link("dbghelp");
+
+<*
+ @param [in] data
+*>
+extern fn ulong sym_load_module_exW(Handle hProcess, Handle hFile, ushort* imageName, ushort* moduleName, ulong baseOfDll, uint dllSize, ModloadData* data, SymLoadFlags flags)
+    @cname("SymLoadModuleExW") @link("dbghelp");
+
+<*
+ @param [out] fileNameStop
+ @param [out] matchStop
+*>
+extern fn Bool sym_match_file_name(char* fileName, char* match, char** fileNameStop, char** matchStop)
+    @cname("SymMatchFileName") @link("dbghelp");
+
+<*
+ @param [out] fileNameStop
+ @param [out] matchStop
+*>
+extern fn Bool sym_match_file_nameW(ushort* fileName, ushort* match, ushort** fileNameStop, ushort** matchStop)
+    @cname("SymMatchFileNameW") @link("dbghelp");
+
+extern fn Bool sym_match_string(char* string, char* expression, Bool fCase)
+    @cname("SymMatchString") @link("dbghelp");
+
+extern fn Bool sym_match_stringA(char* string, char* expression, Bool fCase)
+    @cname("SymMatchStringA") @link("dbghelp");
+
+extern fn Bool sym_match_stringW(ushort* string, ushort* expression, Bool fCase)
+    @cname("SymMatchStringW") @link("dbghelp");
+
+<*
+ @param [&inout] si
+*>
+extern fn Bool sym_next(Handle hProcess, SymbolInfo* si)
+    @cname("SymNext") @link("dbghelp");
+
+<*
+ @param [&inout] siw
+*>
+extern fn Bool sym_nextW(Handle hProcess, SymbolInfoW* siw)
+    @cname("SymNextW") @link("dbghelp");
+
+<*
+ @param [&inout] si
+*>
+extern fn Bool sym_prev(Handle hProcess, SymbolInfo* si)
+    @cname("SymPrev") @link("dbghelp");
+
+<*
+ @param [&inout] siw
+*>
+extern fn Bool sym_prevW(Handle hProcess, SymbolInfoW* siw)
+    @cname("SymPrevW") @link("dbghelp");
+
+<*
+ @param [&out] curContext
+ @param [&out] curFrameIndex
+*>
+extern fn Bool sym_query_inline_trace(Handle hProcess, ulong startAddress, uint startContext, ulong startRetAddress, ulong curAddress, uint* curContext, uint* curFrameIndex)
+    @cname("SymQueryInlineTrace") @link("dbghelp");
+
+extern fn Bool sym_refresh_module_list(Handle hProcess)
+    @cname("SymRefreshModuleList") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_register_callback(Handle hProcess, PsymbolRegisteredCallback callbackFunction, void* userContext)
+    @cname("SymRegisterCallback") @link("dbghelp");
+
+extern fn Bool sym_register_callback_64(Handle hProcess, PsymbolRegisteredCALLBACK64 callbackFunction, ulong userContext)
+    @cname("SymRegisterCallback64") @link("dbghelp");
+
+extern fn Bool sym_register_callback_w_64(Handle hProcess, PsymbolRegisteredCALLBACK64 callbackFunction, ulong userContext)
+    @cname("SymRegisterCallbackW64") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_register_function_entry_callback(Handle hProcess, PsymbolFuncentryCallback callbackFunction, void* userContext)
+    @cname("SymRegisterFunctionEntryCallback") @link("dbghelp");
+
+extern fn Bool sym_register_function_entry_callback_64(Handle hProcess, PsymbolFuncentryCALLBACK64 callbackFunction, ulong userContext)
+    @cname("SymRegisterFunctionEntryCallback64") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_search(Handle hProcess, ulong baseOfDll, uint index, uint symTag, char* mask, ulong address, PsymEnumeratesymbolsCallback enumSymbolsCallback, void* userContext, uint options)
+    @cname("SymSearch") @link("dbghelp");
+
+<*
+ @param [in] userContext
+*>
+extern fn Bool sym_searchW(Handle hProcess, ulong baseOfDll, uint index, uint symTag, ushort* mask, ulong address, PsymEnumeratesymbolsCallbackW enumSymbolsCallback, void* userContext, uint options)
+    @cname("SymSearchW") @link("dbghelp");
+
+<*
+ @param [&in] stackFrame
+ @param [in] context
+*>
+extern fn Bool sym_set_context(Handle hProcess, ImagehlpStackFrame* stackFrame, void* context)
+    @cname("SymSetContext") @link("dbghelp");
+
+extern fn Bool sym_set_extended_option(ImagehlpExtendedOptions option, Bool value)
+    @cname("SymSetExtendedOption") @link("dbghelp");
+
+extern fn char* sym_set_home_directory(Handle hProcess, char* dir)
+    @cname("SymSetHomeDirectory") @link("dbghelp");
+
+extern fn ushort* sym_set_home_directoryW(Handle hProcess, ushort* dir)
+    @cname("SymSetHomeDirectoryW") @link("dbghelp");
+
+extern fn uint sym_set_options(uint symOptions)
+    @cname("SymSetOptions") @link("dbghelp");
+
+extern fn Bool sym_set_parent_window(HWnd hwnd)
+    @cname("SymSetParentWindow") @link("dbghelp");
+
+extern fn Bool sym_set_scope_from_addr(Handle hProcess, ulong address)
+    @cname("SymSetScopeFromAddr") @link("dbghelp");
+
+extern fn Bool sym_set_scope_from_index(Handle hProcess, ulong baseOfDll, uint index)
+    @cname("SymSetScopeFromIndex") @link("dbghelp");
+
+extern fn Bool sym_set_scope_from_inline_context(Handle hProcess, ulong address, uint inlineContext)
+    @cname("SymSetScopeFromInlineContext") @link("dbghelp");
+
+extern fn Bool sym_set_search_path(Handle hProcess, char* searchPathA)
+    @cname("SymSetSearchPath") @link("dbghelp");
+
+extern fn Bool sym_set_search_pathW(Handle hProcess, ushort* searchPathA)
+    @cname("SymSetSearchPathW") @link("dbghelp");
+
+extern fn char* sym_srv_delta_name(Handle hProcess, char* symPath, char* type, char* file1, char* file2)
+    @cname("SymSrvDeltaName") @link("dbghelp");
+
+extern fn ushort* sym_srv_delta_nameW(Handle hProcess, ushort* symPath, ushort* type, ushort* file1, ushort* file2)
+    @cname("SymSrvDeltaNameW") @link("dbghelp");
+
+<*
+ @param [&out] info
+*>
+extern fn Bool sym_srv_get_file_index_info(char* file, SymsrvIndexInfo* info, uint flags)
+    @cname("SymSrvGetFileIndexInfo") @link("dbghelp");
+
+<*
+ @param [&out] info
+*>
+extern fn Bool sym_srv_get_file_index_infoW(ushort* file, SymsrvIndexInfoW* info, uint flags)
+    @cname("SymSrvGetFileIndexInfoW") @link("dbghelp");
+
+extern fn Bool sym_srv_get_file_index_string(Handle hProcess, char* srvPath, char* file, char* index, uptr size, uint flags)
+    @cname("SymSrvGetFileIndexString") @link("dbghelp");
+
+extern fn Bool sym_srv_get_file_index_stringW(Handle hProcess, ushort* srvPath, ushort* file, ushort* index, uptr size, uint flags)
+    @cname("SymSrvGetFileIndexStringW") @link("dbghelp");
+
+<*
+ @param [&out] id
+ @param [&out] val1
+ @param [out] val2
+*>
+extern fn Bool sym_srv_get_file_indexes(char* file, Guid* id, uint* val1, uint* val2, uint flags)
+    @cname("SymSrvGetFileIndexes") @link("dbghelp");
+
+<*
+ @param [&out] id
+ @param [&out] val1
+ @param [out] val2
+*>
+extern fn Bool sym_srv_get_file_indexesW(ushort* file, Guid* id, uint* val1, uint* val2, uint flags)
+    @cname("SymSrvGetFileIndexesW") @link("dbghelp");
+
+extern fn char* sym_srv_get_supplement(Handle hProcess, char* symPath, char* node, char* file)
+    @cname("SymSrvGetSupplement") @link("dbghelp");
+
+extern fn ushort* sym_srv_get_supplementW(Handle hProcess, ushort* symPath, ushort* node, ushort* file)
+    @cname("SymSrvGetSupplementW") @link("dbghelp");
+
+extern fn Bool sym_srv_is_store(Handle hProcess, char* path)
+    @cname("SymSrvIsStore") @link("dbghelp");
+
+extern fn Bool sym_srv_is_storeW(Handle hProcess, ushort* path)
+    @cname("SymSrvIsStoreW") @link("dbghelp");
+
+extern fn char* sym_srv_store_file(Handle hProcess, char* srvPath, char* file, SymSrvStoreFileFlags flags)
+    @cname("SymSrvStoreFile") @link("dbghelp");
+
+extern fn ushort* sym_srv_store_fileW(Handle hProcess, ushort* srvPath, ushort* file, SymSrvStoreFileFlags flags)
+    @cname("SymSrvStoreFileW") @link("dbghelp");
+
+extern fn char* sym_srv_store_supplement(Handle hProcess, char* srvPath, char* node, char* file, uint flags)
+    @cname("SymSrvStoreSupplement") @link("dbghelp");
+
+extern fn ushort* sym_srv_store_supplementW(Handle hProcess, ushort* symPath, ushort* node, ushort* file, uint flags)
+    @cname("SymSrvStoreSupplementW") @link("dbghelp");
+
+<*
+ @param [&in] sym
+*>
+extern fn Bool sym_un_d_name(ImagehlpSymbol* sym, char* unDecName, uint unDecNameLength)
+    @cname("SymUnDName") @link("dbghelp");
+
+<*
+ @param [&in] sym
+*>
+extern fn Bool sym_un_d_name_64(ImagehlpSYMBOL64* sym, char* unDecName, uint unDecNameLength)
+    @cname("SymUnDName64") @link("dbghelp");
+
+extern fn Bool sym_unload_module(Handle hProcess, uint baseOfDll)
+    @cname("SymUnloadModule") @link("dbghelp");
+
+extern fn Bool sym_unload_module_64(Handle hProcess, ulong baseOfDll)
+    @cname("SymUnloadModule64") @link("dbghelp");
+
+extern fn void terminate_process_on_memory_exhaustion(uptr failedAllocationSize)
+    @cname("TerminateProcessOnMemoryExhaustion");
+
+<*
+ @param [in] pSystemTime
+*>
+extern fn Bool touch_file_times(Handle fileHandle, Systemtime* pSystemTime)
+    @cname("TouchFileTimes") @link("imagehlp");
+
+extern fn uint un_decorate_symbol_name(char* name, char* outputString, uint maxStringLength, uint flags)
+    @cname("UnDecorateSymbolName") @link("dbghelp");
+
+extern fn uint un_decorate_symbol_nameW(ushort* name, ushort* outputString, uint maxStringLength, uint flags)
+    @cname("UnDecorateSymbolNameW") @link("dbghelp");
+
+<*
+ @param [&inout] loadedImage
+*>
+extern fn Bool un_map_and_load(LoadedImage* loadedImage)
+    @cname("UnMapAndLoad") @link("imagehlp");
+
+<*
+ @param [&in] exceptionInfo
+*>
+extern fn int unhandled_exception_filter(ExceptionPointers* exceptionInfo)
+    @cname("UnhandledExceptionFilter") @link("kernel32");
+
+<*
+ @param [&in] ntHeaders
+*>
+extern fn Bool update_debug_info_file(char* imageFileName, char* symbolPath, char* debugFilePath, ImageNtHEADERS32* ntHeaders)
+    @cname("UpdateDebugInfoFile") @link("imagehlp");
+
+<*
+ @param [&in] ntHeaders
+*>
+extern fn Bool update_debug_info_file_ex(char* imageFileName, char* symbolPath, char* debugFilePath, ImageNtHEADERS32* ntHeaders, uint oldCheckSum)
+    @cname("UpdateDebugInfoFileEx") @link("imagehlp");
+
+<*
+ @param [&out] lpDebugEvent
+*>
+extern fn Bool wait_for_debug_event(DebugEvent* lpDebugEvent, uint dwMilliseconds)
+    @cname("WaitForDebugEvent") @link("kernel32");
+
+<*
+ @param [&out] lpDebugEvent
+*>
+extern fn Bool wait_for_debug_event_ex(DebugEvent* lpDebugEvent, uint dwMilliseconds)
+    @cname("WaitForDebugEventEx") @link("kernel32");
+
+<*
+ @param [&inout] lpContext
+*>
+extern fn Bool wow_64_get_thread_context(Handle hThread, WOW64Context* lpContext)
+    @cname("Wow64GetThreadContext") @link("kernel32");
+
+<*
+ @param [&out] lpSelectorEntry
+*>
+extern fn Bool wow_64_get_thread_selector_entry(Handle hThread, uint dwSelector, WOW64LdtEntry* lpSelectorEntry)
+    @cname("Wow64GetThreadSelectorEntry") @link("kernel32");
+
+<*
+ @param [&in] lpContext
+*>
+extern fn Bool wow_64_set_thread_context(Handle hThread, WOW64Context* lpContext)
+    @cname("Wow64SetThreadContext") @link("kernel32");
+
+<*
+ @param [&in] lpBaseAddress
+ @param [&in] lpBuffer
+ @param [out] lpNumberOfBytesWritten
+*>
+extern fn Bool write_process_memory(Handle hProcess, void* lpBaseAddress, void* lpBuffer, uptr nSize, uptr* lpNumberOfBytesWritten)
+    @cname("WriteProcessMemory") @link("kernel32");
+
+macro void fatal_app_exit(uint uAction, char* lpMessageText)
+@if(!$feature(WIN32_UNICODE))
+{
+    fatal_app_exitA(uAction, lpMessageText);
+}
+
+macro void fatal_app_exit(uint uAction, ushort* lpMessageText)
+@if($feature(WIN32_UNICODE))
+{
+    fatal_app_exitW(uAction, lpMessageText);
+}
+
+<*
+ @param [in] lpSource
+ @param [in] arguments
+*>
+macro uint format_message(FormatMessageOptions dwFlags, void* lpSource, uint dwMessageId, uint dwLanguageId, char* lpBuffer, uint nSize, ichar** arguments)
+@if(!$feature(WIN32_UNICODE))
+{
+    return format_messageA(dwFlags, lpSource, dwMessageId, dwLanguageId, lpBuffer, nSize, arguments);
+}
+
+<*
+ @param [in] lpSource
+ @param [in] arguments
+*>
+macro uint format_message(FormatMessageOptions dwFlags, void* lpSource, uint dwMessageId, uint dwLanguageId, ushort* lpBuffer, uint nSize, ichar** arguments)
+@if($feature(WIN32_UNICODE))
+{
+    return format_messageW(dwFlags, lpSource, dwMessageId, dwLanguageId, lpBuffer, nSize, arguments);
+}
+
+<*
+ @param [&out] headerSum
+ @param [&out] checkSum
+*>
+macro uint map_file_and_check_sum(char* filename, uint* headerSum, uint* checkSum)
+@if(!$feature(WIN32_UNICODE))
+{
+    return map_file_and_check_sumA(filename, headerSum, checkSum);
+}
+
+<*
+ @param [&out] headerSum
+ @param [&out] checkSum
+*>
+macro uint map_file_and_check_sum(ushort* filename, uint* headerSum, uint* checkSum)
+@if($feature(WIN32_UNICODE))
+{
+    return map_file_and_check_sumW(filename, headerSum, checkSum);
+}
+
+macro void output_debug_string(char* lpOutputString)
+@if(!$feature(WIN32_UNICODE))
+{
+    output_debug_stringA(lpOutputString);
+}
+
+macro void output_debug_string(ushort* lpOutputString)
+@if($feature(WIN32_UNICODE))
+{
+    output_debug_stringW(lpOutputString);
+}
+

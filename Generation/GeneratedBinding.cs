@@ -9,6 +9,7 @@ public sealed class GeneratedBinding
     public List<GeneratedType> Types { get; } = [];
     public List<GeneratedConstant> Constants { get; } = [];
     public List<GeneratedFunction> Functions { get; } = [];
+    public List<GeneratedFunctionMacro> FunctionMacros { get; } = [];
     public List<string> Warnings { get; } = [];
 }
 
@@ -58,6 +59,14 @@ public sealed class GeneratedFunction
     public string? LinkLibrary { get; init; }
     public required bool Emitted { get; init; }
     public List<GeneratedParameter> Parameters { get; } = [];
+}
+
+public sealed class GeneratedFunctionMacro
+{
+    public required string C3Name { get; init; }
+    public required string Namespace { get; init; }
+    public required GeneratedFunction AnsiFunction { get; init; }
+    public required GeneratedFunction UnicodeFunction { get; init; }
 }
 
 public sealed class GeneratedParameter

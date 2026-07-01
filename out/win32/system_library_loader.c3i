@@ -1,0 +1,364 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.System.LibraryLoader
+
+// Win32 original: ENUMRESLANGPROCA
+alias Enumreslangproca = fn Bool(HModule hModule, char* lpType, char* lpName, ushort wLanguage, iptr lParam);
+
+// Win32 original: ENUMRESLANGPROCW
+alias Enumreslangprocw = fn Bool(HModule hModule, ushort* lpType, ushort* lpName, ushort wLanguage, iptr lParam);
+
+// Win32 original: ENUMRESNAMEPROCA
+alias Enumresnameproca = fn Bool(HModule hModule, char* lpType, char* lpName, iptr lParam);
+
+// Win32 original: ENUMRESNAMEPROCW
+alias Enumresnameprocw = fn Bool(HModule hModule, ushort* lpType, ushort* lpName, iptr lParam);
+
+// Win32 original: ENUMRESTYPEPROCA
+alias Enumrestypeproca = fn Bool(HModule hModule, char* lpType, iptr lParam);
+
+// Win32 original: ENUMRESTYPEPROCW
+alias Enumrestypeprocw = fn Bool(HModule hModule, ushort* lpType, iptr lParam);
+
+// Win32 original: LOAD_LIBRARY_FLAGS
+constdef LoadLibraryFlags : uint
+{
+    DONT_RESOLVE_DLL_REFERENCES = 1,
+    LOAD_LIBRARY_AS_DATAFILE = 2,
+    LOAD_WITH_ALTERED_SEARCH_PATH = 8,
+    LOAD_IGNORE_CODE_AUTHZ_LEVEL = 16,
+    LOAD_LIBRARY_AS_IMAGE_RESOURCE = 32,
+    LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = 64,
+    LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = 128,
+    LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR = 256,
+    LOAD_LIBRARY_SEARCH_APPLICATION_DIR = 512,
+    LOAD_LIBRARY_SEARCH_USER_DIRS = 1024,
+    LOAD_LIBRARY_SEARCH_SYSTEM32 = 2048,
+    LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 4096,
+    LOAD_LIBRARY_SAFE_CURRENT_DIRS = 8192,
+    LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = 16384
+}
+
+extern fn void* add_dll_directory(ushort* newDirectory)
+    @cname("AddDllDirectory") @link("kernel32");
+
+extern fn Handle begin_update_resourceA(char* pFileName, Bool bDeleteExistingResources)
+    @cname("BeginUpdateResourceA") @link("kernel32");
+
+extern fn Handle begin_update_resourceW(ushort* pFileName, Bool bDeleteExistingResources)
+    @cname("BeginUpdateResourceW") @link("kernel32");
+
+extern fn Bool disable_thread_library_calls(HModule hLibModule)
+    @cname("DisableThreadLibraryCalls") @link("kernel32");
+
+extern fn Bool end_update_resourceA(Handle hUpdate, Bool fDiscard)
+    @cname("EndUpdateResourceA") @link("kernel32");
+
+extern fn Bool end_update_resourceW(Handle hUpdate, Bool fDiscard)
+    @cname("EndUpdateResourceW") @link("kernel32");
+
+extern fn Bool enum_resource_languagesA(HModule hModule, char* lpType, char* lpName, Enumreslangproca lpEnumFunc, iptr lParam)
+    @cname("EnumResourceLanguagesA") @link("kernel32");
+
+extern fn Bool enum_resource_languages_exA(HModule hModule, char* lpType, char* lpName, Enumreslangproca lpEnumFunc, iptr lParam, uint dwFlags, ushort langId)
+    @cname("EnumResourceLanguagesExA") @link("kernel32");
+
+extern fn Bool enum_resource_languages_exW(HModule hModule, ushort* lpType, ushort* lpName, Enumreslangprocw lpEnumFunc, iptr lParam, uint dwFlags, ushort langId)
+    @cname("EnumResourceLanguagesExW") @link("kernel32");
+
+extern fn Bool enum_resource_languagesW(HModule hModule, ushort* lpType, ushort* lpName, Enumreslangprocw lpEnumFunc, iptr lParam)
+    @cname("EnumResourceLanguagesW") @link("kernel32");
+
+extern fn Bool enum_resource_namesA(HModule hModule, char* lpType, Enumresnameproca lpEnumFunc, iptr lParam)
+    @cname("EnumResourceNamesA") @link("kernel32");
+
+extern fn Bool enum_resource_names_exA(HModule hModule, char* lpType, Enumresnameproca lpEnumFunc, iptr lParam, uint dwFlags, ushort langId)
+    @cname("EnumResourceNamesExA") @link("kernel32");
+
+extern fn Bool enum_resource_names_exW(HModule hModule, ushort* lpType, Enumresnameprocw lpEnumFunc, iptr lParam, uint dwFlags, ushort langId)
+    @cname("EnumResourceNamesExW") @link("kernel32");
+
+extern fn Bool enum_resource_namesW(HModule hModule, ushort* lpType, Enumresnameprocw lpEnumFunc, iptr lParam)
+    @cname("EnumResourceNamesW") @link("kernel32");
+
+extern fn Bool enum_resource_typesA(HModule hModule, Enumrestypeproca lpEnumFunc, iptr lParam)
+    @cname("EnumResourceTypesA") @link("kernel32");
+
+extern fn Bool enum_resource_types_exA(HModule hModule, Enumrestypeproca lpEnumFunc, iptr lParam, uint dwFlags, ushort langId)
+    @cname("EnumResourceTypesExA") @link("kernel32");
+
+extern fn Bool enum_resource_types_exW(HModule hModule, Enumrestypeprocw lpEnumFunc, iptr lParam, uint dwFlags, ushort langId)
+    @cname("EnumResourceTypesExW") @link("kernel32");
+
+extern fn Bool enum_resource_typesW(HModule hModule, Enumrestypeprocw lpEnumFunc, iptr lParam)
+    @cname("EnumResourceTypesW") @link("kernel32");
+
+extern fn HRsrc find_resourceA(HModule hModule, char* lpName, char* lpType)
+    @cname("FindResourceA") @link("kernel32");
+
+extern fn HRsrc find_resource_exA(HModule hModule, char* lpType, char* lpName, ushort wLanguage)
+    @cname("FindResourceExA") @link("kernel32");
+
+extern fn HRsrc find_resource_exW(HModule hModule, ushort* lpType, ushort* lpName, ushort wLanguage)
+    @cname("FindResourceExW") @link("kernel32");
+
+extern fn HRsrc find_resourceW(HModule hModule, ushort* lpName, ushort* lpType)
+    @cname("FindResourceW") @link("kernel32");
+
+extern fn void free_library_and_exit_thread(HModule hLibModule, uint dwExitCode)
+    @cname("FreeLibraryAndExitThread") @link("kernel32");
+
+extern fn Bool free_resource(HGlobal hResData)
+    @cname("FreeResource") @link("kernel32");
+
+extern fn uint get_dll_directoryA(uint nBufferLength, char* lpBuffer)
+    @cname("GetDllDirectoryA") @link("kernel32");
+
+extern fn uint get_dll_directoryW(uint nBufferLength, ushort* lpBuffer)
+    @cname("GetDllDirectoryW") @link("kernel32");
+
+extern fn uint get_module_file_nameA(HModule hModule, char* lpFilename, uint nSize)
+    @cname("GetModuleFileNameA") @link("kernel32");
+
+extern fn uint get_module_file_nameW(HModule hModule, ushort* lpFilename, uint nSize)
+    @cname("GetModuleFileNameW") @link("kernel32");
+
+extern fn HModule get_module_handleA(char* lpModuleName)
+    @cname("GetModuleHandleA") @link("kernel32");
+
+<*
+ @param [&out] phModule
+*>
+extern fn Bool get_module_handle_exA(uint dwFlags, char* lpModuleName, HModule* phModule)
+    @cname("GetModuleHandleExA") @link("kernel32");
+
+<*
+ @param [&out] phModule
+*>
+extern fn Bool get_module_handle_exW(uint dwFlags, ushort* lpModuleName, HModule* phModule)
+    @cname("GetModuleHandleExW") @link("kernel32");
+
+extern fn HModule get_module_handleW(ushort* lpModuleName)
+    @cname("GetModuleHandleW") @link("kernel32");
+
+extern fn FarProc get_proc_address(HModule hModule, char* lpProcName)
+    @cname("GetProcAddress") @link("kernel32");
+
+extern fn HModule load_libraryA(char* lpLibFileName)
+    @cname("LoadLibraryA") @link("kernel32");
+
+extern fn HModule load_library_exA(char* lpLibFileName, Handle hFile, LoadLibraryFlags dwFlags)
+    @cname("LoadLibraryExA") @link("kernel32");
+
+extern fn HModule load_library_exW(ushort* lpLibFileName, Handle hFile, LoadLibraryFlags dwFlags)
+    @cname("LoadLibraryExW") @link("kernel32");
+
+extern fn HModule load_libraryW(ushort* lpLibFileName)
+    @cname("LoadLibraryW") @link("kernel32");
+
+<*
+ @param [&in] lpParameterBlock
+*>
+extern fn uint load_module(char* lpModuleName, void* lpParameterBlock)
+    @cname("LoadModule") @link("kernel32");
+
+extern fn HModule load_packaged_library(ushort* lpwLibFileName, uint reserved)
+    @cname("LoadPackagedLibrary") @link("kernel32");
+
+extern fn HGlobal load_resource(HModule hModule, HRsrc hResInfo)
+    @cname("LoadResource") @link("kernel32");
+
+extern fn void* lock_resource(HGlobal hResData)
+    @cname("LockResource") @link("kernel32");
+
+extern fn Bool query_optional_delay_loaded_api(HModule hParentModule, char* lpDllName, char* lpProcName, uint reserved)
+    @cname("QueryOptionalDelayLoadedAPI");
+
+<*
+ @param [&in] cookie
+*>
+extern fn Bool remove_dll_directory(void* cookie)
+    @cname("RemoveDllDirectory") @link("kernel32");
+
+extern fn Bool set_default_dll_directories(LoadLibraryFlags directoryFlags)
+    @cname("SetDefaultDllDirectories") @link("kernel32");
+
+extern fn Bool set_dll_directoryA(char* lpPathName)
+    @cname("SetDllDirectoryA") @link("kernel32");
+
+extern fn Bool set_dll_directoryW(ushort* lpPathName)
+    @cname("SetDllDirectoryW") @link("kernel32");
+
+extern fn uint sizeof_resource(HModule hModule, HRsrc hResInfo)
+    @cname("SizeofResource") @link("kernel32");
+
+<*
+ @param [in] lpData
+*>
+extern fn Bool update_resourceA(Handle hUpdate, char* lpType, char* lpName, ushort wLanguage, void* lpData, uint cb)
+    @cname("UpdateResourceA") @link("kernel32");
+
+<*
+ @param [in] lpData
+*>
+extern fn Bool update_resourceW(Handle hUpdate, ushort* lpType, ushort* lpName, ushort wLanguage, void* lpData, uint cb)
+    @cname("UpdateResourceW") @link("kernel32");
+
+macro Handle begin_update_resource(char* pFileName, Bool bDeleteExistingResources)
+@if(!$feature(WIN32_UNICODE))
+{
+    return begin_update_resourceA(pFileName, bDeleteExistingResources);
+}
+
+macro Handle begin_update_resource(ushort* pFileName, Bool bDeleteExistingResources)
+@if($feature(WIN32_UNICODE))
+{
+    return begin_update_resourceW(pFileName, bDeleteExistingResources);
+}
+
+macro Bool end_update_resource(Handle hUpdate, Bool fDiscard)
+@if(!$feature(WIN32_UNICODE))
+{
+    return end_update_resourceA(hUpdate, fDiscard);
+}
+
+macro Bool end_update_resource(Handle hUpdate, Bool fDiscard)
+@if($feature(WIN32_UNICODE))
+{
+    return end_update_resourceW(hUpdate, fDiscard);
+}
+
+macro HRsrc find_resource(HModule hModule, char* lpName, char* lpType)
+@if(!$feature(WIN32_UNICODE))
+{
+    return find_resourceA(hModule, lpName, lpType);
+}
+
+macro HRsrc find_resource(HModule hModule, ushort* lpName, ushort* lpType)
+@if($feature(WIN32_UNICODE))
+{
+    return find_resourceW(hModule, lpName, lpType);
+}
+
+macro HRsrc find_resource_ex(HModule hModule, char* lpType, char* lpName, ushort wLanguage)
+@if(!$feature(WIN32_UNICODE))
+{
+    return find_resource_exA(hModule, lpType, lpName, wLanguage);
+}
+
+macro HRsrc find_resource_ex(HModule hModule, ushort* lpType, ushort* lpName, ushort wLanguage)
+@if($feature(WIN32_UNICODE))
+{
+    return find_resource_exW(hModule, lpType, lpName, wLanguage);
+}
+
+macro uint get_dll_directory(uint nBufferLength, char* lpBuffer)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_dll_directoryA(nBufferLength, lpBuffer);
+}
+
+macro uint get_dll_directory(uint nBufferLength, ushort* lpBuffer)
+@if($feature(WIN32_UNICODE))
+{
+    return get_dll_directoryW(nBufferLength, lpBuffer);
+}
+
+macro uint get_module_file_name(HModule hModule, char* lpFilename, uint nSize)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_module_file_nameA(hModule, lpFilename, nSize);
+}
+
+macro uint get_module_file_name(HModule hModule, ushort* lpFilename, uint nSize)
+@if($feature(WIN32_UNICODE))
+{
+    return get_module_file_nameW(hModule, lpFilename, nSize);
+}
+
+macro HModule get_module_handle(char* lpModuleName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_module_handleA(lpModuleName);
+}
+
+macro HModule get_module_handle(ushort* lpModuleName)
+@if($feature(WIN32_UNICODE))
+{
+    return get_module_handleW(lpModuleName);
+}
+
+<*
+ @param [&out] phModule
+*>
+macro Bool get_module_handle_ex(uint dwFlags, char* lpModuleName, HModule* phModule)
+@if(!$feature(WIN32_UNICODE))
+{
+    return get_module_handle_exA(dwFlags, lpModuleName, phModule);
+}
+
+<*
+ @param [&out] phModule
+*>
+macro Bool get_module_handle_ex(uint dwFlags, ushort* lpModuleName, HModule* phModule)
+@if($feature(WIN32_UNICODE))
+{
+    return get_module_handle_exW(dwFlags, lpModuleName, phModule);
+}
+
+macro HModule load_library(char* lpLibFileName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_libraryA(lpLibFileName);
+}
+
+macro HModule load_library(ushort* lpLibFileName)
+@if($feature(WIN32_UNICODE))
+{
+    return load_libraryW(lpLibFileName);
+}
+
+macro HModule load_library_ex(char* lpLibFileName, Handle hFile, LoadLibraryFlags dwFlags)
+@if(!$feature(WIN32_UNICODE))
+{
+    return load_library_exA(lpLibFileName, hFile, dwFlags);
+}
+
+macro HModule load_library_ex(ushort* lpLibFileName, Handle hFile, LoadLibraryFlags dwFlags)
+@if($feature(WIN32_UNICODE))
+{
+    return load_library_exW(lpLibFileName, hFile, dwFlags);
+}
+
+macro Bool set_dll_directory(char* lpPathName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return set_dll_directoryA(lpPathName);
+}
+
+macro Bool set_dll_directory(ushort* lpPathName)
+@if($feature(WIN32_UNICODE))
+{
+    return set_dll_directoryW(lpPathName);
+}
+
+<*
+ @param [in] lpData
+*>
+macro Bool update_resource(Handle hUpdate, char* lpType, char* lpName, ushort wLanguage, void* lpData, uint cb)
+@if(!$feature(WIN32_UNICODE))
+{
+    return update_resourceA(hUpdate, lpType, lpName, wLanguage, lpData, cb);
+}
+
+<*
+ @param [in] lpData
+*>
+macro Bool update_resource(Handle hUpdate, ushort* lpType, ushort* lpName, ushort wLanguage, void* lpData, uint cb)
+@if($feature(WIN32_UNICODE))
+{
+    return update_resourceW(hUpdate, lpType, lpName, wLanguage, lpData, cb);
+}
+

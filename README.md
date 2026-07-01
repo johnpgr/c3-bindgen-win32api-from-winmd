@@ -18,13 +18,13 @@
 
 In C3, naming rules are enforced directly by the lexer and parser. Unlike Odin or Zig, which can import C headers and preserve their exact casing (e.g. `HWND` or `RegisterClassExW`), C3 requires:
 * **Types** to start with an uppercase letter and contain at least one lowercase character (e.g., `HWND -> HWnd`, `HINSTANCE -> HInstance`, `WNDCLASSEXW -> WndClassExW`).
-* **Functions, variables, and parameters** to start with a lowercase letter (e.g., `RegisterClassExW -> registerClassExW`, `GetModuleHandleW -> getModuleHandleW`).
+* **Functions, variables, and parameters** to start with a lowercase letter. This generator emits functions in C3-style `snake_case` while preserving final Win32 `A`/`W` suffixes (e.g., `RegisterClassExW -> register_class_exW`, `GetModuleHandleW -> get_module_handleW`).
 
 To resolve this naming mismatch without losing the correct ABI alignment, `c3-bindgen-win32api-from-winmn` acts as a name projector. It maps Win32 structures to valid C3 identifiers while preserving the original linker symbols using C3's `@cname` attribute:
 
 ```c3
 // Win32 original: RegisterClassExW
-extern fn Atom registerClassExW(WndClassExW* lpwcx)
+extern fn Atom register_class_exW(WndClassExW* lpwcx)
     @cname("RegisterClassExW");
 ```
 
@@ -34,7 +34,7 @@ It also maps Win32 parameter direction metadata (`[In]`, `[Out]`) to C3 pointer 
 <*
  @param [out] lpRect
 *>
-extern fn Bool getWindowRect(HWnd hWnd, Rect* lpRect)
+extern fn Bool get_window_rect(HWnd hWnd, Rect* lpRect)
     @cname("GetWindowRect");
 ```
 
@@ -58,13 +58,13 @@ dotnet run -- --self-test
 ### 2. Generate C3 Bindings
 Generate bindings by specifying the path to the `.winmd` file, your JSON subset specification, and the output path:
 ```powershell
-dotnet run -- --winmd data/Windows.Win32.winmd --subset data/win32.json --out out/win32.c3i --db out/bindgen-runs.sqlite
+dotnet run -- --winmd data/Windows.Win32.winmd --subset data/win32.json --out out/win32 --db out/bindgen-runs.sqlite
 ```
 
 #### CLI Parameters:
 * `--winmd <path>`: (Required) Path to Microsoft's `Windows.Win32.winmd` file.
 * `--subset <path>`: Path to a JSON subset definition (defaults to `data/window-subset.json`).
-* `--out <path>`: Path to the generated C3 interface output file (defaults to `out/win32.c3i`).
+* `--out <path>`: Path to the generated C3 interface output directory (defaults to `out/win32`).
 * `--db <path>`: Optional path to write a SQLite runs metadata database logging generation runs.
 * `--dump-json <path>`: Optional path to write the raw, un-subsetted api metadata as JSON.
 * `--self-test`: Runs the project's internal unit tests.
@@ -138,15 +138,16 @@ You only need to list the main functions or structs you use. The generator's `De
 
 ## Compiling & Using the Bindings in C3
 
-The generated `.c3i` file acts as a C3 interface file. You import it using C3's module name defined in your subset JSON:
+The generated `.c3i` files act as C3 interface files. Each file declares the same C3 module and is split by Win32 namespace. You import the module name defined in your subset JSON:
 
 ```c3
 import win32;
 ```
 
-Compile your C3 files alongside the generated interface file using the C3 compiler:
+Compile your C3 files alongside every generated interface file using the C3 compiler:
 ```powershell
-c3c compile -o my_app out/win32.c3i my_app.c3
+$bindings = Get-ChildItem out/win32 -Filter *.c3i | ForEach-Object FullName
+c3c compile -o my_app @bindings my_app.c3
 ```
 
 ---
@@ -164,6 +165,6 @@ cd examples
 
 The example demonstrates:
 1. Allocating and initializing the `WndClassExW` struct in C3.
-2. Registering the window class with `win32::registerClassExW`.
+2. Registering the window class with `win32::register_class_exW`.
 3. Creating a GUI window with OpenGL double-buffering context setup.
-4. Processing the standard Win32 message loop using `win32::peekMessageW`.
+4. Processing the standard Win32 message loop using `win32::peek_messageW`.

@@ -6,32 +6,32 @@ const uint GL_COLOR_BUFFER_BIT = 0x00004000;
 
 bool running = true;
 Hdc deviceContext;
-HGlRc glContext;
+Hglrc glContext;
 
 fn LResult windowProc(HWnd hWnd, uint message, WParam wParam, LParam lParam) {
     if (message == win32::WM_CLOSE) {
-        win32::destroyWindow(hWnd);
+        win32::destroy_window(hWnd);
         return 0;
     }
 
     if (message == win32::WM_DESTROY) {
         running = false;
-        win32::postQuitMessage(0);
+        win32::post_quit_message(0);
         return 0;
     }
 
-    return win32::defWindowProcW(hWnd, message, wParam, lParam);
+    return win32::def_window_procW(hWnd, message, wParam, lParam);
 }
 
 fn bool setupOpenGl(HWnd window) {
-    deviceContext = win32::getDC(window);
+    deviceContext = win32::get_dc(window);
     if (deviceContext == null) return false;
 
     PixelFormatDescriptor format;
     format.nSize = (ushort)@sizeof(format);
     format.nVersion = 1;
-    format.dwFlags = win32::PfdFlags.PFD_DRAW_TO_WINDOW | win32::PfdFlags.PFD_SUPPORT_OPENGL | win32::PfdFlags.PFD_DOUBLEBUFFER;
-    format.iPixelType = win32::PfdPixelType.PFD_TYPE_RGBA;
+    format.dwFlags = win32::PFdFlags.PFD_DRAW_TO_WINDOW | win32::PFdFlags.PFD_SUPPORT_OPENGL | win32::PFdFlags.PFD_DOUBLEBUFFER;
+    format.iPixelType = win32::PFdPixelType.PFD_TYPE_RGBA;
     format.cColorBits = (char)32;
     format.cRedBits = 0;
     format.cRedShift = 0;
@@ -49,39 +49,39 @@ fn bool setupOpenGl(HWnd window) {
     format.cDepthBits = (char)24;
     format.cStencilBits = (char)8;
     format.cAuxBuffers = 0;
-    format.iLayerType = (char)win32::PfdLayerType.PFD_MAIN_PLANE;
+    format.iLayerType = 0;
     format.bReserved = 0;
     format.dwLayerMask = 0;
     format.dwVisibleMask = 0;
     format.dwDamageMask = 0;
 
-    int pixelFormat = win32::choosePixelFormat(deviceContext, &format);
+    int pixelFormat = win32::choose_pixel_format(deviceContext, &format);
     if (pixelFormat == 0) return false;
-    if (win32::setPixelFormat(deviceContext, pixelFormat, &format) == 0) return false;
+    if (win32::set_pixel_format(deviceContext, pixelFormat, &format) == 0) return false;
 
-    glContext = win32::wglCreateContext(deviceContext);
+    glContext = win32::wgl_create_context(deviceContext);
     if (glContext == null) return false;
-    if (win32::wglMakeCurrent(deviceContext, glContext) == 0) return false;
+    if (win32::wgl_make_current(deviceContext, glContext) == 0) return false;
 
     return true;
 }
 
 fn void render() {
-    win32::glViewport(0, 0, 960, 540);
-    win32::glClearColor(0.08f, 0.12f, 0.18f, 1.0f);
-    win32::glClear(GL_COLOR_BUFFER_BIT);
-    win32::swapBuffers(deviceContext);
+    win32::gl_viewport(0, 0, 960, 540);
+    win32::gl_clear_color(0.08f, 0.12f, 0.18f, 1.0f);
+    win32::gl_clear(GL_COLOR_BUFFER_BIT);
+    win32::swap_buffers(deviceContext);
 }
 
 fn void shutdownOpenGl(HWnd window) {
     if (glContext != null) {
-        win32::wglMakeCurrent(null, null);
-        win32::wglDeleteContext(glContext);
+        win32::wgl_make_current(null, null);
+        win32::wgl_delete_context(glContext);
         glContext = null;
     }
 
     if (deviceContext != null) {
-        win32::releaseDC(window, deviceContext);
+        win32::release_dc(window, deviceContext);
         deviceContext = null;
     }
 }
@@ -89,7 +89,7 @@ fn void shutdownOpenGl(HWnd window) {
 fn void main() {
     WString className = @wstring("C3GdiOpenGlExample");
     WString title = @wstring("C3 generated Win32 + OpenGL");
-    HInstance instance = (HInstance)win32::getModuleHandleW(null);
+    HInstance instance = (HInstance)win32::get_module_handleW(null);
 
     WndClassExW windowClass;
     windowClass.cbSize = (uint)@sizeof(windowClass);
@@ -105,9 +105,9 @@ fn void main() {
     windowClass.lpszClassName = &className[0];
     windowClass.hIconSm = null;
 
-    win32::registerClassExW(&windowClass);
+    win32::register_class_exW(&windowClass);
 
-    HWnd window = win32::createWindowExW(
+    HWnd window = win32::create_window_exW(
         (win32::WindowExStyle)0,
         &className[0],
         &title[0],
@@ -128,14 +128,14 @@ fn void main() {
 
     Msg message;
     while (running) {
-        while (win32::peekMessageW(&message, null, 0, 0, win32::PeekMessageRemoveType.PM_REMOVE) != 0) {
+        while (win32::peek_messageW(&message, null, 0, 0, win32::PeekMessageRemoveType.PM_REMOVE) != 0) {
             if (message.message == win32::WM_QUIT) {
                 running = false;
                 break;
             }
 
-            win32::translateMessage(&message);
-            win32::dispatchMessageW(&message);
+            win32::translate_message(&message);
+            win32::dispatch_messageW(&message);
         }
 
         if (running) render();

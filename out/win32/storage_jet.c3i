@@ -1,0 +1,15 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.Storage.Jet
+
+// Win32 original: JET_ENUMCOLUMNVALUE
+struct JetEnumcolumnvalue
+{
+    uint itagSequence;
+    int err;
+    uint cbData;
+    void* pvData;
+}
+

@@ -1,0 +1,61 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.System.Memory.NonVolatile
+
+// Win32 original: NV_MEMORY_RANGE
+struct NvMemoryRange
+{
+    void* baseAddress;
+    uptr length;
+}
+
+<*
+ @param [&in] nvToken
+*>
+extern fn uint rtl_drain_non_volatile_flush(void* nvToken)
+    @cname("RtlDrainNonVolatileFlush") @link("ntdll");
+
+<*
+ @param [&in] nvToken
+ @param [&out] nvDestination
+*>
+extern fn uint rtl_fill_non_volatile_memory(void* nvToken, void* nvDestination, uptr size, char value, uint flags)
+    @cname("RtlFillNonVolatileMemory") @link("ntdll");
+
+<*
+ @param [&in] nvToken
+ @param [&in] nvBuffer
+*>
+extern fn uint rtl_flush_non_volatile_memory(void* nvToken, void* nvBuffer, uptr size, uint flags)
+    @cname("RtlFlushNonVolatileMemory") @link("ntdll");
+
+<*
+ @param [&in] nvToken
+ @param [&in] nvRanges
+*>
+extern fn uint rtl_flush_non_volatile_memory_ranges(void* nvToken, NvMemoryRange* nvRanges, uptr numRanges, uint flags)
+    @cname("RtlFlushNonVolatileMemoryRanges") @link("ntdll");
+
+<*
+ @param [&in] nvToken
+*>
+extern fn uint rtl_free_non_volatile_token(void* nvToken)
+    @cname("RtlFreeNonVolatileToken") @link("ntdll");
+
+<*
+ @param [&in] nvBuffer
+ @param [&out] nvToken
+*>
+extern fn uint rtl_get_non_volatile_token(void* nvBuffer, uptr size, void** nvToken)
+    @cname("RtlGetNonVolatileToken") @link("ntdll");
+
+<*
+ @param [&in] nvToken
+ @param [&out] nvDestination
+ @param [&in] source
+*>
+extern fn uint rtl_write_non_volatile_memory(void* nvToken, void* nvDestination, void* source, uptr size, uint flags)
+    @cname("RtlWriteNonVolatileMemory") @link("ntdll");
+

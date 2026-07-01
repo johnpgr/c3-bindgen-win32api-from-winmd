@@ -1,0 +1,46 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.System.Diagnostics.Debug.Extensions
+
+// Win32 original: IDataModelManager
+alias IDataModelManager = void*;
+
+// Win32 original: IDebugHost
+alias IDebugHost = void*;
+
+<*
+ @param [&out] manager
+*>
+extern fn Hresult create_data_model_manager(IDebugHost debugHost, IDataModelManager* manager)
+    @cname("CreateDataModelManager") @link("dbgmodel");
+
+<*
+ @param [&in] interfaceId
+ @param [&out] interface_
+*>
+extern fn Hresult debug_connect(char* remoteOptions, Guid* interfaceId, void** interface_)
+    @cname("DebugConnect") @link("dbgeng");
+
+<*
+ @param [&in] interfaceId
+ @param [&out] interface_
+*>
+extern fn Hresult debug_connect_wide(ushort* remoteOptions, Guid* interfaceId, void** interface_)
+    @cname("DebugConnectWide") @link("dbgeng");
+
+<*
+ @param [&in] interfaceId
+ @param [&out] interface_
+*>
+extern fn Hresult debug_create(Guid* interfaceId, void** interface_)
+    @cname("DebugCreate") @link("dbgeng");
+
+<*
+ @param [&in] interfaceId
+ @param [&out] interface_
+*>
+extern fn Hresult debug_create_ex(Guid* interfaceId, uint dbgEngOptions, void** interface_)
+    @cname("DebugCreateEx") @link("dbgeng");
+

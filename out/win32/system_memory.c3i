@@ -1,0 +1,1044 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.System.Memory
+
+// Win32 original: AtlThunkData_t
+alias AtlThunkDataT = iptr;
+
+// Win32 original: CFG_CALL_TARGET_INFO
+struct CfgCallTargetInfo
+{
+    uptr offset;
+    uptr flags;
+}
+
+// Win32 original: FILE_MAP
+constdef FileMap : uint
+{
+    FILE_MAP_WRITE = 2,
+    FILE_MAP_READ = 4,
+    FILE_MAP_ALL_ACCESS = 983071,
+    FILE_MAP_EXECUTE = 32,
+    FILE_MAP_COPY = 1,
+    FILE_MAP_RESERVE = 2147483648,
+    FILE_MAP_TARGETS_INVALID = 1073741824,
+    FILE_MAP_LARGE_PAGES = 536870912
+}
+
+// Win32 original: GLOBAL_ALLOC_FLAGS
+constdef GlobalAllocFlags : uint
+{
+    GHND = 66,
+    GMEM_FIXED = 0,
+    GMEM_MOVEABLE = 2,
+    GMEM_ZEROINIT = 64,
+    GPTR = 64
+}
+
+// Win32 original: HEAP_FLAGS
+constdef HeapFlags : uint
+{
+    HEAP_NONE = 0,
+    HEAP_NO_SERIALIZE = 1,
+    HEAP_GROWABLE = 2,
+    HEAP_GENERATE_EXCEPTIONS = 4,
+    HEAP_ZERO_MEMORY = 8,
+    HEAP_REALLOC_IN_PLACE_ONLY = 16,
+    HEAP_TAIL_CHECKING_ENABLED = 32,
+    HEAP_FREE_CHECKING_ENABLED = 64,
+    HEAP_DISABLE_COALESCE_ON_FREE = 128,
+    HEAP_CREATE_ALIGN_16 = 65536,
+    HEAP_CREATE_ENABLE_TRACING = 131072,
+    HEAP_CREATE_ENABLE_EXECUTE = 262144,
+    HEAP_MAXIMUM_TAG = 4095,
+    HEAP_PSEUDO_TAG_FLAG = 32768,
+    HEAP_TAG_SHIFT = 18,
+    HEAP_CREATE_SEGMENT_HEAP = 256,
+    HEAP_CREATE_HARDENED = 512
+}
+
+// Win32 original: HEAP_INFORMATION_CLASS
+constdef HeapInformationClass : int
+{
+    HEAPCOMPATIBILITYINFORMATION = 0,
+    HEAPENABLETERMINATIONONCORRUPTION = 1,
+    HEAPOPTIMIZERESOURCES = 3,
+    HEAPTAG = 7
+}
+
+// Win32 original: HEAP_SUMMARY
+struct HeapSummary
+{
+    uint cb;
+    uptr cbAllocated;
+    uptr cbCommitted;
+    uptr cbReserved;
+    uptr cbMaxReserve;
+}
+
+// Win32 original: LOCAL_ALLOC_FLAGS
+constdef LocalAllocFlags : uint
+{
+    LHND = 66,
+    LMEM_FIXED = 0,
+    LMEM_MOVEABLE = 2,
+    LMEM_ZEROINIT = 64,
+    LPTR = 64,
+    NONZEROLHND = 2,
+    NONZEROLPTR = 0
+}
+
+// Win32 original: MEMORY_BASIC_INFORMATION
+struct MemoryBasicInformation
+{
+    void* baseAddress;
+    void* allocationBase;
+    PageProtectionFlags allocationProtect;
+    uptr regionSize;
+    VirtualAllocationType state;
+    PageProtectionFlags protect;
+    PageType type;
+}
+
+// Win32 original: MEMORY_BASIC_INFORMATION32
+struct MemoryBasicINFORMATION32
+{
+    uint baseAddress;
+    uint allocationBase;
+    PageProtectionFlags allocationProtect;
+    uint regionSize;
+    VirtualAllocationType state;
+    PageProtectionFlags protect;
+    PageType type;
+}
+
+// Win32 original: MEMORY_BASIC_INFORMATION64
+struct MemoryBasicINFORMATION64
+{
+    ulong baseAddress;
+    ulong allocationBase;
+    PageProtectionFlags allocationProtect;
+    uint __alignment1;
+    ulong regionSize;
+    VirtualAllocationType state;
+    PageProtectionFlags protect;
+    PageType type;
+    uint __alignment2;
+}
+
+// Win32 original: MEMORY_MAPPED_VIEW_ADDRESS
+alias MemoryMappedViewAddress = void*;
+
+// Win32 original: MEMORY_PARTITION_DEDICATED_MEMORY_ATTRIBUTE
+struct MemoryPartitionDedicatedMemoryAttribute
+{
+    MemDedicatedAttributeType type;
+    uint reserved;
+    ulong value;
+}
+
+// Win32 original: MEMORY_PARTITION_DEDICATED_MEMORY_INFORMATION
+struct MemoryPartitionDedicatedMemoryInformation
+{
+    uint nextEntryOffset;
+    uint sizeOfInformation;
+    uint flags;
+    uint attributesOffset;
+    uint attributeCount;
+    uint reserved;
+    ulong typeId;
+}
+
+// Win32 original: MEMORY_RESOURCE_NOTIFICATION_TYPE
+constdef MemoryResourceNotificationType : int
+{
+    LOWMEMORYRESOURCENOTIFICATION = 0,
+    HIGHMEMORYRESOURCENOTIFICATION = 1
+}
+
+// Win32 original: MEM_ADDRESS_REQUIREMENTS
+struct MemAddressRequirements
+{
+    void* lowestStartingAddress;
+    void* highestEndingAddress;
+    uptr alignment;
+}
+
+// Win32 original: MEM_DEDICATED_ATTRIBUTE_TYPE
+constdef MemDedicatedAttributeType : int
+{
+    MEMDEDICATEDATTRIBUTEREADBANDWIDTH = 0,
+    MEMDEDICATEDATTRIBUTEREADLATENCY = 1,
+    MEMDEDICATEDATTRIBUTEWRITEBANDWIDTH = 2,
+    MEMDEDICATEDATTRIBUTEWRITELATENCY = 3,
+    MEMDEDICATEDATTRIBUTEMAX = 4
+}
+
+// Win32 original: MEM_EXTENDED_PARAMETER
+struct MemExtendedParameter
+{
+    char unused;
+}
+
+// Win32 original: MEM_EXTENDED_PARAMETER_TYPE
+constdef MemExtendedParameterType : int
+{
+    MEMEXTENDEDPARAMETERINVALIDTYPE = 0,
+    MEMEXTENDEDPARAMETERADDRESSREQUIREMENTS = 1,
+    MEMEXTENDEDPARAMETERNUMANODE = 2,
+    MEMEXTENDEDPARAMETERPARTITIONHANDLE = 3,
+    MEMEXTENDEDPARAMETERUSERPHYSICALHANDLE = 4,
+    MEMEXTENDEDPARAMETERATTRIBUTEFLAGS = 5,
+    MEMEXTENDEDPARAMETERIMAGEMACHINE = 6,
+    MEMEXTENDEDPARAMETERMAX = 7
+}
+
+// Win32 original: MEM_SECTION_EXTENDED_PARAMETER_TYPE
+constdef MemSectionExtendedParameterType : int
+{
+    MEMSECTIONEXTENDEDPARAMETERINVALIDTYPE = 0,
+    MEMSECTIONEXTENDEDPARAMETERUSERPHYSICALFLAGS = 1,
+    MEMSECTIONEXTENDEDPARAMETERNUMANODE = 2,
+    MEMSECTIONEXTENDEDPARAMETERSIGNINGLEVEL = 3,
+    MEMSECTIONEXTENDEDPARAMETERMAX = 4
+}
+
+// Win32 original: OFFER_PRIORITY
+constdef OfferPriority : int
+{
+    VMOFFERPRIORITYVERYLOW = 1,
+    VMOFFERPRIORITYLOW = 2,
+    VMOFFERPRIORITYBELOWNORMAL = 3,
+    VMOFFERPRIORITYNORMAL = 4
+}
+
+// Win32 original: PAGE_PROTECTION_FLAGS
+constdef PageProtectionFlags : uint
+{
+    PAGE_NOACCESS = 1,
+    PAGE_READONLY = 2,
+    PAGE_READWRITE = 4,
+    PAGE_WRITECOPY = 8,
+    PAGE_EXECUTE = 16,
+    PAGE_EXECUTE_READ = 32,
+    PAGE_EXECUTE_READWRITE = 64,
+    PAGE_EXECUTE_WRITECOPY = 128,
+    PAGE_GUARD = 256,
+    PAGE_NOCACHE = 512,
+    PAGE_WRITECOMBINE = 1024,
+    PAGE_GRAPHICS_NOACCESS = 2048,
+    PAGE_GRAPHICS_READONLY = 4096,
+    PAGE_GRAPHICS_READWRITE = 8192,
+    PAGE_GRAPHICS_EXECUTE = 16384,
+    PAGE_GRAPHICS_EXECUTE_READ = 32768,
+    PAGE_GRAPHICS_EXECUTE_READWRITE = 65536,
+    PAGE_GRAPHICS_COHERENT = 131072,
+    PAGE_GRAPHICS_NOCACHE = 262144,
+    PAGE_ENCLAVE_THREAD_CONTROL = 2147483648,
+    PAGE_REVERT_TO_FILE_MAP = 2147483648,
+    PAGE_TARGETS_NO_UPDATE = 1073741824,
+    PAGE_TARGETS_INVALID = 1073741824,
+    PAGE_ENCLAVE_UNVALIDATED = 536870912,
+    PAGE_ENCLAVE_MASK = 268435456,
+    PAGE_ENCLAVE_DECOMMIT = 268435456,
+    PAGE_ENCLAVE_SS_FIRST = 268435457,
+    PAGE_ENCLAVE_SS_REST = 268435458,
+    SEC_PARTITION_OWNER_HANDLE = 262144,
+    SEC_64K_PAGES = 524288,
+    SEC_FILE = 8388608,
+    SEC_IMAGE = 16777216,
+    SEC_PROTECTED_IMAGE = 33554432,
+    SEC_RESERVE = 67108864,
+    SEC_COMMIT = 134217728,
+    SEC_NOCACHE = 268435456,
+    SEC_WRITECOMBINE = 1073741824,
+    SEC_LARGE_PAGES = 2147483648,
+    SEC_IMAGE_NO_EXECUTE = 285212672
+}
+
+// Win32 original: PAGE_TYPE
+constdef PageType : uint
+{
+    MEM_PRIVATE = 131072,
+    MEM_MAPPED = 262144,
+    MEM_IMAGE = 16777216
+}
+
+// Win32 original: PBAD_MEMORY_CALLBACK_ROUTINE
+alias PbadMemoryCallbackRoutine = fn void();
+
+// Win32 original: PROCESS_HEAP_ENTRY
+struct ProcessHeapEntry
+{
+    void* lpData;
+    uint cbData;
+    char cbOverhead;
+    char iRegionIndex;
+    ushort wFlags;
+}
+
+// Win32 original: PSECURE_MEMORY_CACHE_CALLBACK
+alias PsecureMemoryCacheCallback = fn Boolean(void* addr, uptr range);
+
+// Win32 original: SECTION_FLAGS
+constdef SectionFlags : uint
+{
+    SECTION_ALL_ACCESS = 983071,
+    SECTION_QUERY = 1,
+    SECTION_MAP_WRITE = 2,
+    SECTION_MAP_READ = 4,
+    SECTION_MAP_EXECUTE = 8,
+    SECTION_EXTEND_SIZE = 16,
+    SECTION_MAP_EXECUTE_EXPLICIT = 32
+}
+
+// Win32 original: SETPROCESSWORKINGSETSIZEEX_FLAGS
+constdef SetprocessworkingsetsizeexFlags : uint
+{
+    QUOTA_LIMITS_HARDWS_MIN_ENABLE = 1,
+    QUOTA_LIMITS_HARDWS_MIN_DISABLE = 2,
+    QUOTA_LIMITS_HARDWS_MAX_ENABLE = 4,
+    QUOTA_LIMITS_HARDWS_MAX_DISABLE = 8
+}
+
+// Win32 original: UNMAP_VIEW_OF_FILE_FLAGS
+constdef UnmapViewOfFileFlags : uint
+{
+    MEM_UNMAP_NONE = 0,
+    MEM_UNMAP_WITH_TRANSIENT_BOOST = 1,
+    MEM_PRESERVE_PLACEHOLDER = 2
+}
+
+// Win32 original: VIRTUAL_ALLOCATION_TYPE
+constdef VirtualAllocationType : uint
+{
+    MEM_COMMIT = 4096,
+    MEM_RESERVE = 8192,
+    MEM_RESET = 524288,
+    MEM_RESET_UNDO = 16777216,
+    MEM_REPLACE_PLACEHOLDER = 16384,
+    MEM_LARGE_PAGES = 536870912,
+    MEM_RESERVE_PLACEHOLDER = 262144,
+    MEM_FREE = 65536
+}
+
+// Win32 original: VIRTUAL_FREE_TYPE
+constdef VirtualFreeType : uint
+{
+    MEM_DECOMMIT = 16384,
+    MEM_RELEASE = 32768
+}
+
+// Win32 original: WIN32_MEMORY_INFORMATION_CLASS
+constdef WIN32MemoryInformationClass : int
+{
+    MEMORYREGIONINFO = 0
+}
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_ENTRY
+struct WIN32MemoryNumaPerformanceEntry
+{
+    uint initiatorNodeNumber;
+    uint targetNodeNumber;
+    char dataType;
+    FlagsEStruct flags;
+    ulong minTransferSizeInBytes;
+    ulong entryValue;
+}
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_INFORMATION_OUTPUT
+struct WIN32MemoryNumaPerformanceInformationOutput
+{
+    uint entryCount;
+    WIN32MemoryNumaPerformanceEntry[1] performanceEntries;
+}
+
+// Win32 original: WIN32_MEMORY_PARTITION_INFORMATION
+struct WIN32MemoryPartitionInformation
+{
+    uint flags;
+    uint numaNode;
+    uint channel;
+    uint numberOfNumaNodes;
+    ulong residentAvailablePages;
+    ulong committedPages;
+    ulong commitLimit;
+    ulong peakCommitment;
+    ulong totalNumberOfPages;
+    ulong availablePages;
+    ulong zeroPages;
+    ulong freePages;
+    ulong standbyPages;
+    ulong[16] reserved;
+    ulong maximumCommitLimit;
+    ulong reserved2;
+    uint partitionId;
+}
+
+// Win32 original: WIN32_MEMORY_PARTITION_INFORMATION_CLASS
+constdef WIN32MemoryPartitionInformationClass : int
+{
+    MEMORYPARTITIONINFO = 0,
+    MEMORYPARTITIONDEDICATEDMEMORYINFO = 1
+}
+
+// Win32 original: WIN32_MEMORY_RANGE_ENTRY
+struct WIN32MemoryRangeEntry
+{
+    void* virtualAddress;
+    uptr numberOfBytes;
+}
+
+// Win32 original: WIN32_MEMORY_REGION_INFORMATION
+struct WIN32MemoryRegionInformation
+{
+    void* allocationBase;
+    uint allocationProtect;
+    uptr regionSize;
+    uptr commitSize;
+}
+
+// Win32 original: FILE_CACHE_MAX_HARD_DISABLE
+const uint FILE_CACHE_MAX_HARD_DISABLE = 2;
+
+// Win32 original: FILE_CACHE_MAX_HARD_ENABLE
+const uint FILE_CACHE_MAX_HARD_ENABLE = 1;
+
+// Win32 original: FILE_CACHE_MIN_HARD_DISABLE
+const uint FILE_CACHE_MIN_HARD_DISABLE = 8;
+
+// Win32 original: FILE_CACHE_MIN_HARD_ENABLE
+const uint FILE_CACHE_MIN_HARD_ENABLE = 4;
+
+// Win32 original: MEHC_PATROL_SCRUBBER_PRESENT
+const uint MEHC_PATROL_SCRUBBER_PRESENT = 1;
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_ALL_TARGET_NODE
+const uint WIN32_MEMORY_NUMA_PERFORMANCE_ALL_TARGET_NODE = 4294967295;
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_READ_BANDWIDTH
+const uint WIN32_MEMORY_NUMA_PERFORMANCE_READ_BANDWIDTH = 2;
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_READ_LATENCY
+const uint WIN32_MEMORY_NUMA_PERFORMANCE_READ_LATENCY = 1;
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_WRITE_BANDWIDTH
+const uint WIN32_MEMORY_NUMA_PERFORMANCE_WRITE_BANDWIDTH = 8;
+
+// Win32 original: WIN32_MEMORY_NUMA_PERFORMANCE_WRITE_LATENCY
+const uint WIN32_MEMORY_NUMA_PERFORMANCE_WRITE_LATENCY = 4;
+
+extern fn Bool add_secure_memory_cache_callback(PsecureMemoryCacheCallback pfnCallBack)
+    @cname("AddSecureMemoryCacheCallback") @link("kernel32");
+
+<*
+ @param [&inout] numberOfPages
+ @param [&out] pageArray
+*>
+extern fn Bool allocate_user_physical_pages(Handle hProcess, uptr* numberOfPages, uptr* pageArray)
+    @cname("AllocateUserPhysicalPages") @link("kernel32");
+
+<*
+ @param [&inout] numberOfPages
+ @param [&out] pageArray
+ @param [inout] extendedParameters
+*>
+extern fn Bool allocate_user_physical_pages_2(Handle objectHandle, uptr* numberOfPages, uptr* pageArray, MemExtendedParameter* extendedParameters, uint extendedParameterCount)
+    @cname("AllocateUserPhysicalPages2");
+
+<*
+ @param [&inout] numberOfPages
+ @param [&out] pageArray
+*>
+extern fn Bool allocate_user_physical_pages_numa(Handle hProcess, uptr* numberOfPages, uptr* pageArray, uint nndPreferred)
+    @cname("AllocateUserPhysicalPagesNuma") @link("kernel32");
+
+<*
+ @param [in] securityAttributes
+ @param [inout] extendedParameters
+*>
+extern fn Handle create_file_mapping_2(Handle file, SecurityAttributes* securityAttributes, uint desiredAccess, PageProtectionFlags pageProtection, uint allocationAttributes, ulong maximumSize, ushort* name, MemExtendedParameter* extendedParameters, uint parameterCount)
+    @cname("CreateFileMapping2");
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+extern fn Handle create_file_mappingA(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, char* lpName)
+    @cname("CreateFileMappingA") @link("kernel32");
+
+<*
+ @param [in] securityAttributes
+*>
+extern fn Handle create_file_mapping_from_app(Handle hFile, SecurityAttributes* securityAttributes, PageProtectionFlags pageProtection, ulong maximumSize, ushort* name)
+    @cname("CreateFileMappingFromApp") @link("kernel32");
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+extern fn Handle create_file_mapping_numaA(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, char* lpName, uint nndPreferred)
+    @cname("CreateFileMappingNumaA") @link("kernel32");
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+extern fn Handle create_file_mapping_numaW(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, ushort* lpName, uint nndPreferred)
+    @cname("CreateFileMappingNumaW") @link("kernel32");
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+extern fn Handle create_file_mappingW(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, ushort* lpName)
+    @cname("CreateFileMappingW") @link("kernel32");
+
+extern fn Handle create_memory_resource_notification(MemoryResourceNotificationType notificationType)
+    @cname("CreateMemoryResourceNotification") @link("kernel32");
+
+<*
+ @param [&inout] virtualAddress
+*>
+extern fn uint discard_virtual_memory(void* virtualAddress, uptr size)
+    @cname("DiscardVirtualMemory") @link("kernel32");
+
+<*
+ @param [&in] lpBaseAddress
+*>
+extern fn Bool flush_view_of_file(void* lpBaseAddress, uptr dwNumberOfBytesToFlush)
+    @cname("FlushViewOfFile") @link("kernel32");
+
+<*
+ @param [&inout] numberOfPages
+ @param [&in] pageArray
+*>
+extern fn Bool free_user_physical_pages(Handle hProcess, uptr* numberOfPages, uptr* pageArray)
+    @cname("FreeUserPhysicalPages") @link("kernel32");
+
+extern fn uptr get_large_page_minimum()
+    @cname("GetLargePageMinimum") @link("kernel32");
+
+<*
+ @param [&out] capabilities
+*>
+extern fn Bool get_memory_error_handling_capabilities(uint* capabilities)
+    @cname("GetMemoryErrorHandlingCapabilities") @link("kernel32");
+
+<*
+ @param [&out] initiatorNodeNumber
+*>
+extern fn Bool get_memory_numa_closest_initiator_node(uint targetNodeNumber, uint* initiatorNodeNumber)
+    @cname("GetMemoryNumaClosestInitiatorNode");
+
+<*
+ @param [&out] perfInfo
+*>
+extern fn Bool get_memory_numa_performance_information(uint nodeNumber, char dataType, WIN32MemoryNumaPerformanceInformationOutput** perfInfo)
+    @cname("GetMemoryNumaPerformanceInformation");
+
+extern fn Handle get_process_heap()
+    @cname("GetProcessHeap") @link("kernel32");
+
+<*
+ @param [&out] processHeaps
+*>
+extern fn uint get_process_heaps(uint numberOfHeaps, Handle* processHeaps)
+    @cname("GetProcessHeaps") @link("kernel32");
+
+<*
+ @param [&out] lpMinimumWorkingSetSize
+ @param [&out] lpMaximumWorkingSetSize
+ @param [&out] flags
+*>
+extern fn Bool get_process_working_set_size_ex(Handle hProcess, uptr* lpMinimumWorkingSetSize, uptr* lpMaximumWorkingSetSize, uint* flags)
+    @cname("GetProcessWorkingSetSizeEx") @link("kernel32");
+
+<*
+ @param [&out] lpMinimumFileCacheSize
+ @param [&out] lpMaximumFileCacheSize
+ @param [&out] lpFlags
+*>
+extern fn Bool get_system_file_cache_size(uptr* lpMinimumFileCacheSize, uptr* lpMaximumFileCacheSize, uint* lpFlags)
+    @cname("GetSystemFileCacheSize") @link("kernel32");
+
+<*
+ @param [&in] lpBaseAddress
+ @param [out] lpAddresses
+ @param [inout] lpdwCount
+ @param [out] lpdwGranularity
+*>
+extern fn uint get_write_watch(uint dwFlags, void* lpBaseAddress, uptr dwRegionSize, void** lpAddresses, uptr* lpdwCount, uint* lpdwGranularity)
+    @cname("GetWriteWatch") @link("kernel32");
+
+extern fn HGlobal global_alloc(GlobalAllocFlags uFlags, uptr dwBytes)
+    @cname("GlobalAlloc") @link("kernel32");
+
+extern fn uint global_flags(HGlobal hMem)
+    @cname("GlobalFlags") @link("kernel32");
+
+<*
+ @param [&in] pMem
+*>
+extern fn HGlobal global_handle(void* pMem)
+    @cname("GlobalHandle") @link("kernel32");
+
+extern fn void* global_lock(HGlobal hMem)
+    @cname("GlobalLock") @link("kernel32");
+
+extern fn HGlobal global_re_alloc(HGlobal hMem, uptr dwBytes, uint uFlags)
+    @cname("GlobalReAlloc") @link("kernel32");
+
+extern fn uptr global_size(HGlobal hMem)
+    @cname("GlobalSize") @link("kernel32");
+
+extern fn Bool global_unlock(HGlobal hMem)
+    @cname("GlobalUnlock") @link("kernel32");
+
+extern fn void* heap_alloc(Handle hHeap, HeapFlags dwFlags, uptr dwBytes)
+    @cname("HeapAlloc") @link("kernel32");
+
+extern fn uptr heap_compact(Handle hHeap, HeapFlags dwFlags)
+    @cname("HeapCompact") @link("kernel32");
+
+extern fn Handle heap_create(HeapFlags flOptions, uptr dwInitialSize, uptr dwMaximumSize)
+    @cname("HeapCreate") @link("kernel32");
+
+extern fn Bool heap_destroy(Handle hHeap)
+    @cname("HeapDestroy") @link("kernel32");
+
+<*
+ @param [in] lpMem
+*>
+extern fn Bool heap_free(Handle hHeap, HeapFlags dwFlags, void* lpMem)
+    @cname("HeapFree") @link("kernel32");
+
+extern fn Bool heap_lock(Handle hHeap)
+    @cname("HeapLock") @link("kernel32");
+
+<*
+ @param [out] heapInformation
+ @param [out] returnLength
+*>
+extern fn Bool heap_query_information(Handle heapHandle, HeapInformationClass heapInformationClass, void* heapInformation, uptr heapInformationLength, uptr* returnLength)
+    @cname("HeapQueryInformation") @link("kernel32");
+
+<*
+ @param [in] lpMem
+*>
+extern fn void* heap_re_alloc(Handle hHeap, HeapFlags dwFlags, void* lpMem, uptr dwBytes)
+    @cname("HeapReAlloc") @link("kernel32");
+
+<*
+ @param [in] heapInformation
+*>
+extern fn Bool heap_set_information(Handle heapHandle, HeapInformationClass heapInformationClass, void* heapInformation, uptr heapInformationLength)
+    @cname("HeapSetInformation") @link("kernel32");
+
+<*
+ @param [&in] lpMem
+*>
+extern fn uptr heap_size(Handle hHeap, HeapFlags dwFlags, void* lpMem)
+    @cname("HeapSize") @link("kernel32");
+
+<*
+ @param [&out] lpSummary
+*>
+extern fn Bool heap_summary(Handle hHeap, uint dwFlags, HeapSummary* lpSummary)
+    @cname("HeapSummary") @link("kernel32");
+
+extern fn Bool heap_unlock(Handle hHeap)
+    @cname("HeapUnlock") @link("kernel32");
+
+<*
+ @param [in] lpMem
+*>
+extern fn Bool heap_validate(Handle hHeap, HeapFlags dwFlags, void* lpMem)
+    @cname("HeapValidate") @link("kernel32");
+
+<*
+ @param [&inout] lpEntry
+*>
+extern fn Bool heap_walk(Handle hHeap, ProcessHeapEntry* lpEntry)
+    @cname("HeapWalk") @link("kernel32");
+
+extern fn Bool is_bad_code_ptr(FarProc lpfn)
+    @cname("IsBadCodePtr") @link("kernel32");
+
+<*
+ @param [in] lp
+*>
+extern fn Bool is_bad_read_ptr(void* lp, uptr ucb)
+    @cname("IsBadReadPtr") @link("kernel32");
+
+extern fn Bool is_bad_string_ptrA(char* lpsz, uptr ucchMax)
+    @cname("IsBadStringPtrA") @link("kernel32");
+
+extern fn Bool is_bad_string_ptrW(ushort* lpsz, uptr ucchMax)
+    @cname("IsBadStringPtrW") @link("kernel32");
+
+<*
+ @param [in] lp
+*>
+extern fn Bool is_bad_write_ptr(void* lp, uptr ucb)
+    @cname("IsBadWritePtr") @link("kernel32");
+
+extern fn HLocal local_alloc(LocalAllocFlags uFlags, uptr uBytes)
+    @cname("LocalAlloc") @link("kernel32");
+
+extern fn uint local_flags(HLocal hMem)
+    @cname("LocalFlags") @link("kernel32");
+
+<*
+ @param [&in] pMem
+*>
+extern fn HLocal local_handle(void* pMem)
+    @cname("LocalHandle") @link("kernel32");
+
+extern fn void* local_lock(HLocal hMem)
+    @cname("LocalLock") @link("kernel32");
+
+extern fn HLocal local_re_alloc(HLocal hMem, uptr uBytes, uint uFlags)
+    @cname("LocalReAlloc") @link("kernel32");
+
+extern fn uptr local_size(HLocal hMem)
+    @cname("LocalSize") @link("kernel32");
+
+extern fn Bool local_unlock(HLocal hMem)
+    @cname("LocalUnlock") @link("kernel32");
+
+<*
+ @param [&in] virtualAddress
+ @param [in] pageArray
+*>
+extern fn Bool map_user_physical_pages(void* virtualAddress, uptr numberOfPages, uptr* pageArray)
+    @cname("MapUserPhysicalPages") @link("kernel32");
+
+<*
+ @param [&in] virtualAddresses
+ @param [in] pageArray
+*>
+extern fn Bool map_user_physical_pages_scatter(void** virtualAddresses, uptr numberOfPages, uptr* pageArray)
+    @cname("MapUserPhysicalPagesScatter") @link("kernel32");
+
+extern fn MemoryMappedViewAddress map_view_of_file(Handle hFileMappingObject, FileMap dwDesiredAccess, uint dwFileOffsetHigh, uint dwFileOffsetLow, uptr dwNumberOfBytesToMap)
+    @cname("MapViewOfFile") @link("kernel32");
+
+<*
+ @param [in] baseAddress
+ @param [inout] extendedParameters
+*>
+extern fn MemoryMappedViewAddress map_view_of_file_3(Handle fileMapping, Handle process, void* baseAddress, ulong offset, uptr viewSize, VirtualAllocationType allocationType, uint pageProtection, MemExtendedParameter* extendedParameters, uint parameterCount)
+    @cname("MapViewOfFile3");
+
+<*
+ @param [in] baseAddress
+ @param [inout] extendedParameters
+*>
+extern fn MemoryMappedViewAddress map_view_of_file_3_from_app(Handle fileMapping, Handle process, void* baseAddress, ulong offset, uptr viewSize, VirtualAllocationType allocationType, uint pageProtection, MemExtendedParameter* extendedParameters, uint parameterCount)
+    @cname("MapViewOfFile3FromApp");
+
+<*
+ @param [in] lpBaseAddress
+*>
+extern fn MemoryMappedViewAddress map_view_of_file_ex(Handle hFileMappingObject, FileMap dwDesiredAccess, uint dwFileOffsetHigh, uint dwFileOffsetLow, uptr dwNumberOfBytesToMap, void* lpBaseAddress)
+    @cname("MapViewOfFileEx") @link("kernel32");
+
+<*
+ @param [in] lpBaseAddress
+*>
+extern fn MemoryMappedViewAddress map_view_of_file_ex_numa(Handle hFileMappingObject, FileMap dwDesiredAccess, uint dwFileOffsetHigh, uint dwFileOffsetLow, uptr dwNumberOfBytesToMap, void* lpBaseAddress, uint nndPreferred)
+    @cname("MapViewOfFileExNuma") @link("kernel32");
+
+extern fn MemoryMappedViewAddress map_view_of_file_from_app(Handle hFileMappingObject, FileMap desiredAccess, ulong fileOffset, uptr numberOfBytesToMap)
+    @cname("MapViewOfFileFromApp") @link("kernel32");
+
+<*
+ @param [in] baseAddress
+*>
+extern fn MemoryMappedViewAddress map_view_of_file_numa_2(Handle fileMappingHandle, Handle processHandle, ulong offset, void* baseAddress, uptr viewSize, uint allocationType, uint pageProtection, uint preferredNode)
+    @cname("MapViewOfFileNuma2");
+
+<*
+ @param [&inout] virtualAddress
+*>
+extern fn uint offer_virtual_memory(void* virtualAddress, uptr size, OfferPriority priority)
+    @cname("OfferVirtualMemory") @link("kernel32");
+
+extern fn Handle open_dedicated_memory_partition(Handle partition, ulong dedicatedMemoryTypeId, uint desiredAccess, Bool inheritHandle)
+    @cname("OpenDedicatedMemoryPartition");
+
+extern fn Handle open_file_mappingA(uint dwDesiredAccess, Bool bInheritHandle, char* lpName)
+    @cname("OpenFileMappingA") @link("kernel32");
+
+extern fn Handle open_file_mapping_from_app(uint desiredAccess, Bool inheritHandle, ushort* name)
+    @cname("OpenFileMappingFromApp");
+
+extern fn Handle open_file_mappingW(uint dwDesiredAccess, Bool bInheritHandle, ushort* lpName)
+    @cname("OpenFileMappingW") @link("kernel32");
+
+<*
+ @param [&in] virtualAddresses
+*>
+extern fn Bool prefetch_virtual_memory(Handle hProcess, uptr numberOfEntries, WIN32MemoryRangeEntry* virtualAddresses, uint flags)
+    @cname("PrefetchVirtualMemory") @link("kernel32");
+
+<*
+ @param [&out] resourceState
+*>
+extern fn Bool query_memory_resource_notification(Handle resourceNotificationHandle, Bool* resourceState)
+    @cname("QueryMemoryResourceNotification") @link("kernel32");
+
+<*
+ @param [&inout] partitionInformation
+*>
+extern fn Bool query_partition_information(Handle partition, WIN32MemoryPartitionInformationClass partitionInformationClass, void* partitionInformation, uint partitionInformationLength)
+    @cname("QueryPartitionInformation");
+
+<*
+ @param [&in] virtualAddress
+ @param [&out] memoryInformation
+ @param [out] returnSize
+*>
+extern fn Bool query_virtual_memory_information(Handle process, void* virtualAddress, WIN32MemoryInformationClass memoryInformationClass, void* memoryInformation, uptr memoryInformationSize, uptr* returnSize)
+    @cname("QueryVirtualMemoryInformation");
+
+<*
+ @param [&in] virtualAddress
+*>
+extern fn uint reclaim_virtual_memory(void* virtualAddress, uptr size)
+    @cname("ReclaimVirtualMemory") @link("kernel32");
+
+extern fn void* register_bad_memory_notification(PbadMemoryCallbackRoutine callback)
+    @cname("RegisterBadMemoryNotification") @link("kernel32");
+
+extern fn Bool remove_secure_memory_cache_callback(PsecureMemoryCacheCallback pfnCallBack)
+    @cname("RemoveSecureMemoryCacheCallback") @link("kernel32");
+
+<*
+ @param [&in] lpBaseAddress
+*>
+extern fn uint reset_write_watch(void* lpBaseAddress, uptr dwRegionSize)
+    @cname("ResetWriteWatch") @link("kernel32");
+
+<*
+ @param [&in] source1
+ @param [&in] source2
+*>
+extern fn uptr rtl_compare_memory(void* source1, void* source2, uptr length)
+    @cname("RtlCompareMemory") @link("kernel32");
+
+<*
+ @param [&in] buffer
+*>
+extern fn uint rtl_crc_32(void* buffer, uptr size, uint initialCrc)
+    @cname("RtlCrc32") @link("ntdll");
+
+<*
+ @param [&in] buffer
+*>
+extern fn ulong rtl_crc_64(void* buffer, uptr size, ulong initialCrc)
+    @cname("RtlCrc64") @link("ntdll");
+
+<*
+ @param [&in] buffer
+*>
+extern fn Boolean rtl_is_zero_memory(void* buffer, uptr length)
+    @cname("RtlIsZeroMemory") @link("ntdll");
+
+<*
+ @param [&in] virtualAddress
+ @param [&inout] offsetInformation
+*>
+extern fn Bool set_process_valid_call_targets(Handle hProcess, void* virtualAddress, uptr regionSize, uint numberOfOffsets, CfgCallTargetInfo* offsetInformation)
+    @cname("SetProcessValidCallTargets");
+
+<*
+ @param [&in] virtualAddress
+ @param [&inout] offsetInformation
+*>
+extern fn Bool set_process_valid_call_targets_for_mapped_view(Handle process, void* virtualAddress, uptr regionSize, uint numberOfOffsets, CfgCallTargetInfo* offsetInformation, Handle section, ulong expectedFileOffset)
+    @cname("SetProcessValidCallTargetsForMappedView");
+
+extern fn Bool set_process_working_set_size_ex(Handle hProcess, uptr dwMinimumWorkingSetSize, uptr dwMaximumWorkingSetSize, SetprocessworkingsetsizeexFlags flags)
+    @cname("SetProcessWorkingSetSizeEx") @link("kernel32");
+
+extern fn Bool set_system_file_cache_size(uptr minimumFileCacheSize, uptr maximumFileCacheSize, uint flags)
+    @cname("SetSystemFileCacheSize") @link("kernel32");
+
+extern fn Bool unmap_view_of_file(MemoryMappedViewAddress lpBaseAddress)
+    @cname("UnmapViewOfFile") @link("kernel32");
+
+extern fn Bool unmap_view_of_file_2(Handle process, MemoryMappedViewAddress baseAddress, UnmapViewOfFileFlags unmapFlags)
+    @cname("UnmapViewOfFile2");
+
+extern fn Bool unmap_view_of_file_ex(MemoryMappedViewAddress baseAddress, UnmapViewOfFileFlags unmapFlags)
+    @cname("UnmapViewOfFileEx") @link("kernel32");
+
+<*
+ @param [&in] registrationHandle
+*>
+extern fn Bool unregister_bad_memory_notification(void* registrationHandle)
+    @cname("UnregisterBadMemoryNotification") @link("kernel32");
+
+<*
+ @param [in] lpAddress
+*>
+extern fn void* virtual_alloc(void* lpAddress, uptr dwSize, VirtualAllocationType flAllocationType, PageProtectionFlags flProtect)
+    @cname("VirtualAlloc") @link("kernel32");
+
+<*
+ @param [in] baseAddress
+ @param [inout] extendedParameters
+*>
+extern fn void* virtual_alloc_2(Handle process, void* baseAddress, uptr size, VirtualAllocationType allocationType, uint pageProtection, MemExtendedParameter* extendedParameters, uint parameterCount)
+    @cname("VirtualAlloc2");
+
+<*
+ @param [in] baseAddress
+ @param [inout] extendedParameters
+*>
+extern fn void* virtual_alloc_2_from_app(Handle process, void* baseAddress, uptr size, VirtualAllocationType allocationType, uint pageProtection, MemExtendedParameter* extendedParameters, uint parameterCount)
+    @cname("VirtualAlloc2FromApp");
+
+<*
+ @param [in] lpAddress
+*>
+extern fn void* virtual_alloc_ex(Handle hProcess, void* lpAddress, uptr dwSize, VirtualAllocationType flAllocationType, PageProtectionFlags flProtect)
+    @cname("VirtualAllocEx") @link("kernel32");
+
+<*
+ @param [in] lpAddress
+*>
+extern fn void* virtual_alloc_ex_numa(Handle hProcess, void* lpAddress, uptr dwSize, VirtualAllocationType flAllocationType, uint flProtect, uint nndPreferred)
+    @cname("VirtualAllocExNuma") @link("kernel32");
+
+<*
+ @param [in] baseAddress
+*>
+extern fn void* virtual_alloc_from_app(void* baseAddress, uptr size, VirtualAllocationType allocationType, uint protection)
+    @cname("VirtualAllocFromApp");
+
+<*
+ @param [&inout] lpAddress
+*>
+extern fn Bool virtual_free(void* lpAddress, uptr dwSize, VirtualFreeType dwFreeType)
+    @cname("VirtualFree") @link("kernel32");
+
+<*
+ @param [&inout] lpAddress
+*>
+extern fn Bool virtual_free_ex(Handle hProcess, void* lpAddress, uptr dwSize, VirtualFreeType dwFreeType)
+    @cname("VirtualFreeEx") @link("kernel32");
+
+<*
+ @param [&in] lpAddress
+*>
+extern fn Bool virtual_lock(void* lpAddress, uptr dwSize)
+    @cname("VirtualLock") @link("kernel32");
+
+<*
+ @param [&in] lpAddress
+ @param [&out] lpflOldProtect
+*>
+extern fn Bool virtual_protect(void* lpAddress, uptr dwSize, PageProtectionFlags flNewProtect, PageProtectionFlags* lpflOldProtect)
+    @cname("VirtualProtect") @link("kernel32");
+
+<*
+ @param [&in] lpAddress
+ @param [&out] lpflOldProtect
+*>
+extern fn Bool virtual_protect_ex(Handle hProcess, void* lpAddress, uptr dwSize, PageProtectionFlags flNewProtect, PageProtectionFlags* lpflOldProtect)
+    @cname("VirtualProtectEx") @link("kernel32");
+
+<*
+ @param [&in] address
+ @param [&out] oldProtection
+*>
+extern fn Bool virtual_protect_from_app(void* address, uptr size, uint newProtection, uint* oldProtection)
+    @cname("VirtualProtectFromApp");
+
+<*
+ @param [in] lpAddress
+ @param [&out] lpBuffer
+*>
+extern fn uptr virtual_query(void* lpAddress, MemoryBasicInformation* lpBuffer, uptr dwLength)
+    @cname("VirtualQuery") @link("kernel32");
+
+<*
+ @param [in] lpAddress
+ @param [&out] lpBuffer
+*>
+extern fn uptr virtual_query_ex(Handle hProcess, void* lpAddress, MemoryBasicInformation* lpBuffer, uptr dwLength)
+    @cname("VirtualQueryEx") @link("kernel32");
+
+<*
+ @param [&in] lpAddress
+*>
+extern fn Bool virtual_unlock(void* lpAddress, uptr dwSize)
+    @cname("VirtualUnlock") @link("kernel32");
+
+<*
+ @param [&in] address
+*>
+extern fn Bool virtual_unlock_ex(Handle process, void* address, uptr size)
+    @cname("VirtualUnlockEx");
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+macro Handle create_file_mapping(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, char* lpName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_file_mappingA(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName);
+}
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+macro Handle create_file_mapping(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, ushort* lpName)
+@if($feature(WIN32_UNICODE))
+{
+    return create_file_mappingW(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName);
+}
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+macro Handle create_file_mapping_numa(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, char* lpName, uint nndPreferred)
+@if(!$feature(WIN32_UNICODE))
+{
+    return create_file_mapping_numaA(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName, nndPreferred);
+}
+
+<*
+ @param [in] lpFileMappingAttributes
+*>
+macro Handle create_file_mapping_numa(Handle hFile, SecurityAttributes* lpFileMappingAttributes, PageProtectionFlags flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow, ushort* lpName, uint nndPreferred)
+@if($feature(WIN32_UNICODE))
+{
+    return create_file_mapping_numaW(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName, nndPreferred);
+}
+
+macro Bool is_bad_string_ptr(char* lpsz, uptr ucchMax)
+@if(!$feature(WIN32_UNICODE))
+{
+    return is_bad_string_ptrA(lpsz, ucchMax);
+}
+
+macro Bool is_bad_string_ptr(ushort* lpsz, uptr ucchMax)
+@if($feature(WIN32_UNICODE))
+{
+    return is_bad_string_ptrW(lpsz, ucchMax);
+}
+
+macro Handle open_file_mapping(uint dwDesiredAccess, Bool bInheritHandle, char* lpName)
+@if(!$feature(WIN32_UNICODE))
+{
+    return open_file_mappingA(dwDesiredAccess, bInheritHandle, lpName);
+}
+
+macro Handle open_file_mapping(uint dwDesiredAccess, Bool bInheritHandle, ushort* lpName)
+@if($feature(WIN32_UNICODE))
+{
+    return open_file_mappingW(dwDesiredAccess, bInheritHandle, lpName);
+}
+

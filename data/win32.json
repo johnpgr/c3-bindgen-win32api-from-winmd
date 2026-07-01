@@ -152,8 +152,8 @@
   "Windows.Win32.System.Diagnostics.Debug": {
     "functions": {
       "include": [
-        "*"
-      ]
+          "*"
+       ]
     }
   }
 }

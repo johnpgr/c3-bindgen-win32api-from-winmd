@@ -12,6 +12,7 @@ internal static class SelfTests
         TestNameProjection();
         TestTypeMapping();
         TestResolverAndEmitter();
+        TestMultiFileEmitter();
         TestBroadSeeding();
         TestDatabaseWriter();
         Console.Error.WriteLine("self-tests passed");
@@ -36,9 +37,15 @@ internal static class SelfTests
         Equal("UpdateLayeredWindowInfo", names.TypeName("UPDATELAYEREDWINDOWINFO"));
         Equal("WglSwap", names.TypeName("WGLSWAP"));
         Equal("XFormObj", names.TypeName("XFORMOBJ"));
-        Equal("registerClassExW", names.FunctionName("RegisterClassExW"));
-        Equal("brushobj_hGetColorTransform", names.FunctionName("BRUSHOBJ_hGetColorTransform"));
-        Equal("clipobj_bEnum", names.FunctionName("CLIPOBJ_bEnum"));
+        Equal("get_window_rect", names.FunctionName("GetWindowRect"));
+        Equal("create_window_exA", names.FunctionName("CreateWindowExA"));
+        Equal("create_window_exW", names.FunctionName("CreateWindowExW"));
+        Equal("register_class_exW", names.FunctionName("RegisterClassExW"));
+        Equal("get_dc", names.FunctionName("GetDC"));
+        Equal("get_dc_ex", names.FunctionName("GetDCEx"));
+        Equal("set_window_long_ptrW", names.FunctionName("SetWindowLongPtrW"));
+        Equal("brushobj_hget_color_transform", names.FunctionName("BRUSHOBJ_hGetColorTransform"));
+        Equal("clipobj_benum", names.FunctionName("CLIPOBJ_bEnum"));
         Equal("lpWndClass", names.ParameterName("lpWndClass"));
         Equal("fn_", names.ParameterName("fn"));
         Equal("WS_VISIBLE", names.ConstantName("WS_VISIBLE"));
@@ -98,6 +105,13 @@ internal static class SelfTests
             Kind = ApiTypeKind.Struct
         };
         api.Types["WNDCLASSA"].Fields.Add(new ApiField { OriginalName = "style", Type = "u32" });
+        api.Types["WNDCLASSW"] = new ApiType
+        {
+            Namespace = "Windows.Win32.UI.WindowsAndMessaging",
+            OriginalName = "WNDCLASSW",
+            Kind = ApiTypeKind.Struct
+        };
+        api.Types["WNDCLASSW"].Fields.Add(new ApiField { OriginalName = "style", Type = "u32" });
 
         var fn = new ApiFunction
         {
@@ -144,6 +158,31 @@ internal static class SelfTests
         });
         api.Functions["RegisterClassA"] = fnRegisterClass;
 
+        var fnRegisterClassW = new ApiFunction
+        {
+            Namespace = "Windows.Win32.UI.WindowsAndMessaging",
+            OriginalName = "RegisterClassW",
+            ReturnType = "u16",
+            ImportModule = "USER32.dll"
+        };
+        fnRegisterClassW.Parameters.Add(new ApiParameter
+        {
+            OriginalName = "lpWndClass",
+            Type = "Windows.Win32.UI.WindowsAndMessaging.WNDCLASSW*",
+            Direction = ParamDirection.None,
+            Const = true,
+            NonNull = true
+        });
+        fnRegisterClassW.Parameters.Add(new ApiParameter
+        {
+            OriginalName = "hInstance",
+            Type = "Windows.Win32.Foundation.HWND*",
+            Direction = ParamDirection.In,
+            Optional = true,
+            NonNull = false
+        });
+        api.Functions["RegisterClassW"] = fnRegisterClassW;
+
         api.Constants["WS_VISIBLE"] = new ApiConstant
         {
             Namespace = "Windows.Win32.UI.WindowsAndMessaging",
@@ -155,7 +194,7 @@ internal static class SelfTests
         var spec = new SubsetSpec { Module = "win32" };
         spec.Namespaces["Windows.Win32.UI.WindowsAndMessaging"] = new NamespaceSpec
         {
-            Functions = Filter(["GetWindowRect", "RegisterClassA"]),
+            Functions = Filter(["GetWindowRect", "RegisterClassA", "RegisterClassW"]),
             Constants = Filter(["WS_VISIBLE"])
         };
 
@@ -177,8 +216,111 @@ internal static class SelfTests
         Contains(output, "@param [out] lpRect");
         Contains(output, "@param [&in] lpWndClass");
         Contains(output, "@param [in] hInstance");
-        Contains(output, "extern fn Bool getWindowRect(HWnd hWnd, Rect* lpRect)");
+        Contains(output, "extern fn Bool get_window_rect(HWnd hWnd, Rect* lpRect)");
         Contains(output, "@cname(\"GetWindowRect\") @link(\"user32\");");
+        Contains(output, "macro ushort register_class(WndClassA* lpWndClass, HWnd* hInstance)\r\n@if(!$feature(WIN32_UNICODE))");
+        Contains(output, "    return register_classA(lpWndClass, hInstance);");
+        Contains(output, "macro ushort register_class(WndClassW* lpWndClass, HWnd* hInstance)\r\n@if($feature(WIN32_UNICODE))");
+        Contains(output, "    return register_classW(lpWndClass, hInstance);");
+    }
+
+    private static void TestMultiFileEmitter()
+    {
+        var api = CreateWindowRectApi();
+        api.Types["_Bits_e__Struct"] = new ApiType
+        {
+            Namespace = "",
+            OriginalName = "_Bits_e__Struct",
+            Kind = ApiTypeKind.Struct
+        };
+        api.Types["_Bits_e__Struct"].Fields.Add(new ApiField { OriginalName = "_bitfield", Type = "u32" });
+        api.Types["WNDCLASSA"] = new ApiType
+        {
+            Namespace = "Windows.Win32.UI.WindowsAndMessaging",
+            OriginalName = "WNDCLASSA",
+            Kind = ApiTypeKind.Struct
+        };
+        api.Types["WNDCLASSA"].Fields.Add(new ApiField { OriginalName = "style", Type = "u32" });
+        api.Types["WNDCLASSW"] = new ApiType
+        {
+            Namespace = "Windows.Win32.UI.WindowsAndMessaging",
+            OriginalName = "WNDCLASSW",
+            Kind = ApiTypeKind.Struct
+        };
+        api.Types["WNDCLASSW"].Fields.Add(new ApiField { OriginalName = "style", Type = "u32" });
+
+        var fnRegisterClass = new ApiFunction
+        {
+            Namespace = "Windows.Win32.UI.WindowsAndMessaging",
+            OriginalName = "RegisterClassA",
+            ReturnType = "u16",
+            ImportModule = "USER32.dll"
+        };
+        fnRegisterClass.Parameters.Add(new ApiParameter
+        {
+            OriginalName = "lpWndClass",
+            Type = "Windows.Win32.UI.WindowsAndMessaging.WNDCLASSA*"
+        });
+        api.Functions["RegisterClassA"] = fnRegisterClass;
+
+        var fnRegisterClassW = new ApiFunction
+        {
+            Namespace = "Windows.Win32.UI.WindowsAndMessaging",
+            OriginalName = "RegisterClassW",
+            ReturnType = "u16",
+            ImportModule = "USER32.dll"
+        };
+        fnRegisterClassW.Parameters.Add(new ApiParameter
+        {
+            OriginalName = "lpWndClass",
+            Type = "Windows.Win32.UI.WindowsAndMessaging.WNDCLASSW*"
+        });
+        api.Functions["RegisterClassW"] = fnRegisterClassW;
+
+        var spec = new SubsetSpec { Module = "win32" };
+        spec.Namespaces["Windows.Win32.UI.WindowsAndMessaging"] = new NamespaceSpec
+        {
+            Functions = Filter(["GetWindowRect", "RegisterClassA", "RegisterClassW"]),
+            Constants = Filter(["WS_VISIBLE"])
+        };
+        spec.Namespaces[""] = new NamespaceSpec
+        {
+            Types = Filter(["_Bits_e__Struct"])
+        };
+
+        var resolved = new SubsetResolver().Resolve(api, spec);
+        var names = new C3NameProjector();
+        var types = new C3TypeMapper(names);
+        var binding = new GeneratedBindingBuilder(names, types).Build(api, resolved, "win32");
+        binding.Warnings.Add("sample warning");
+
+        var files = new C3Emitter().EmitFiles(binding);
+
+        True(files.ContainsKey("_shared.c3i"), "shared file was not emitted");
+        True(files.ContainsKey("foundation.c3i"), "foundation namespace file was not emitted");
+        True(files.ContainsKey("ui_windows_and_messaging.c3i"), "ui namespace file was not emitted");
+        True(!files.ContainsKey("global.c3i"), "empty namespace file should not be emitted");
+
+        Contains(files["_shared.c3i"], "module win32;");
+        Contains(files["_shared.c3i"], "struct Guid");
+        Contains(files["_shared.c3i"], "struct BitsEStruct");
+        Contains(files["_shared.c3i"], "// warning: sample warning");
+
+        Contains(files["foundation.c3i"], "module win32;");
+        Contains(files["foundation.c3i"], "alias Bool = int;");
+        Contains(files["foundation.c3i"], "struct Rect");
+        DoesNotContain(files["foundation.c3i"], "@cname(\"GetWindowRect\")");
+
+        Contains(files["ui_windows_and_messaging.c3i"], "module win32;");
+        Contains(files["ui_windows_and_messaging.c3i"], "// Win32 namespace: Windows.Win32.UI.WindowsAndMessaging");
+        Contains(files["ui_windows_and_messaging.c3i"], "struct WndClassA");
+        Contains(files["ui_windows_and_messaging.c3i"], "struct WndClassW");
+        Contains(files["ui_windows_and_messaging.c3i"], "const uint WS_VISIBLE = 268435456;");
+        Contains(files["ui_windows_and_messaging.c3i"], "extern fn Bool get_window_rect(HWnd hWnd, Rect* lpRect)");
+        Contains(files["ui_windows_and_messaging.c3i"], "extern fn ushort register_classA(WndClassA* lpWndClass)");
+        Contains(files["ui_windows_and_messaging.c3i"], "macro ushort register_class(WndClassA* lpWndClass)\r\n@if(!$feature(WIN32_UNICODE))");
+        Contains(files["ui_windows_and_messaging.c3i"], "macro ushort register_class(WndClassW* lpWndClass)\r\n@if($feature(WIN32_UNICODE))");
+        DoesNotContain(files["ui_windows_and_messaging.c3i"], "alias Bool = int;");
     }
 
     private static void TestBroadSeeding()
@@ -316,7 +458,7 @@ internal static class SelfTests
             {
                 WinmdPath = @"C:\Windows.Win32.winmd",
                 SubsetPath = @"C:\subset.json",
-                OutputPath = @"C:\out\win32.c3i",
+                OutputPath = @"C:\out\win32",
                 SubsetJson = "{\"module\":\"win32\"}",
                 GeneratorVersion = "self-test"
             };
@@ -334,7 +476,7 @@ internal static class SelfTests
             connection.Open();
 
             Equal(2, ScalarInt(connection, "SELECT COUNT(*) FROM runs;"));
-            Equal(2, ScalarInt(connection, "SELECT COUNT(*) FROM functions WHERE original_name = 'GetWindowRect' AND c3_name = 'getWindowRect';"));
+            Equal(2, ScalarInt(connection, "SELECT COUNT(*) FROM functions WHERE original_name = 'GetWindowRect' AND c3_name = 'get_window_rect';"));
             Equal(2, ScalarInt(connection, "SELECT COUNT(*) FROM function_parameters WHERE function_original_name = 'GetWindowRect' AND original_name = 'lpRect' AND c3_type = 'Rect*' AND direction = 'Out';"));
             Equal(2, ScalarInt(connection, "SELECT COUNT(*) FROM types WHERE original_name = 'RECT' AND c3_name = 'Rect' AND c3_decl_kind = 'struct' AND emitted = 1;"));
             Equal(2, ScalarInt(connection, "SELECT COUNT(*) FROM type_fields WHERE type_original_name = 'RECT' AND original_name = 'left' AND c3_type = 'int' AND emitted = 1;"));
@@ -431,6 +573,12 @@ internal static class SelfTests
     {
         if (!haystack.Contains(needle, StringComparison.Ordinal))
             throw new InvalidOperationException($"missing expected output: {needle}\n\noutput was:\n{haystack}");
+    }
+
+    private static void DoesNotContain(string haystack, string needle)
+    {
+        if (haystack.Contains(needle, StringComparison.Ordinal))
+            throw new InvalidOperationException($"unexpected output: {needle}\n\noutput was:\n{haystack}");
     }
 
     private static int ScalarInt(SqliteConnection connection, string sql)

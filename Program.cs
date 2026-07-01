@@ -15,7 +15,7 @@ if (options.RunSelfTests)
 if (options.ShowHelp)
 {
     Console.Error.WriteLine("""
-        usage: c3-bindgen-win32api-from-winmn --winmd <Windows.Win32.winmd> [--subset data/window-subset.json] [--out out/win32.c3i] [--dump-json raw.json] [--db out/bindgen-runs.sqlite]
+        usage: c3-bindgen-win32api-from-winmn --winmd <Windows.Win32.winmd> [--subset data/window-subset.json] [--out out/win32] [--dump-json raw.json] [--db out/bindgen-runs.sqlite]
                c3-bindgen-win32api-from-winmn --self-test
 
         Legacy usage is also supported:
@@ -46,7 +46,7 @@ if (options.LegacyMode && options.SubsetPath is null && options.OutPath is null)
 }
 
 var subsetPath = options.SubsetPath ?? Path.Combine("data", "window-subset.json");
-var outPath = options.OutPath ?? Path.Combine("out", "win32.c3i");
+var outPath = options.OutPath ?? Path.Combine("out", "win32");
 var subsetJson = File.ReadAllText(subsetPath);
 var spec = SubsetSpec.Load(subsetPath);
 var resolved = new SubsetResolver().Resolve(api, spec);
@@ -54,10 +54,20 @@ var resolved = new SubsetResolver().Resolve(api, spec);
 var names = new C3NameProjector(spec.TypeNameOverrides);
 var types = new C3TypeMapper(names);
 var binding = new GeneratedBindingBuilder(names, types).Build(api, resolved, spec.Module);
-var c3 = new C3Emitter().Emit(binding);
+var c3Files = new C3Emitter().EmitFiles(binding);
 
-Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath)) ?? ".");
-File.WriteAllText(outPath, c3);
+if (File.Exists(outPath))
+{
+    Console.Error.WriteLine($"error: --out must be a directory, but '{outPath}' is an existing file");
+    return 1;
+}
+
+Directory.CreateDirectory(outPath);
+foreach (var existingFile in Directory.EnumerateFiles(outPath, "*.c3i"))
+    File.Delete(existingFile);
+
+foreach (var (fileName, c3) in c3Files)
+    File.WriteAllText(Path.Combine(outPath, fileName), c3);
 
 if (options.DbPath is not null)
 {
@@ -76,7 +86,7 @@ if (options.DbPath is not null)
     Console.Error.WriteLine($"wrote bindgen database {options.DbPath} run {runId}");
 }
 
-Console.Error.WriteLine($"wrote {outPath}");
+Console.Error.WriteLine($"wrote {c3Files.Count} files to {outPath}");
 Console.Error.WriteLine($"resolved {resolved.Types.Count} types, {resolved.Functions.Count} functions, {resolved.Constants.Count} constants");
 return 0;
 

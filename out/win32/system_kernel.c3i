@@ -1,0 +1,39 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.System.Kernel
+
+// Win32 original: EXCEPTION_DISPOSITION
+constdef ExceptionDisposition : int
+{
+    EXCEPTIONCONTINUEEXECUTION = 0,
+    EXCEPTIONCONTINUESEARCH = 1,
+    EXCEPTIONNESTEDEXCEPTION = 2,
+    EXCEPTIONCOLLIDEDUNWIND = 3
+}
+
+// Win32 original: EXCEPTION_ROUTINE
+alias ExceptionRoutine = fn ExceptionDisposition(ExceptionRecord* exceptionRecord, void* establisherFrame, Context* contextRecord, void* dispatcherContext);
+
+// Win32 original: FLOATING_SAVE_AREA
+struct FloatingSaveArea
+{
+    uint controlWord;
+    uint statusWord;
+    uint tagWord;
+    uint errorOffset;
+    uint errorSelector;
+    uint dataOffset;
+    uint dataSelector;
+    char[80] registerArea;
+    uint spare0;
+}
+
+// Win32 original: LIST_ENTRY
+struct ListEntry
+{
+    ListEntry* flink;
+    ListEntry* blink;
+}
+

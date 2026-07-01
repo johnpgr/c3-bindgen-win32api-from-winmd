@@ -1,0 +1,24 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.UI.Shell
+
+// Win32 original: HELPINFO
+struct HelpInfo
+{
+    uint cbSize;
+    HelpInfoType iContextType;
+    int iCtrlId;
+    Handle hItemHandle;
+    uptr dwContextId;
+    Point mousePos;
+}
+
+// Win32 original: HELP_INFO_TYPE
+constdef HelpInfoType : int
+{
+    HELPINFO_WINDOW = 1,
+    HELPINFO_MENUITEM = 2
+}
+

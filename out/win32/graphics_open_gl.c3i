@@ -1,0 +1,2035 @@
+module win32;
+
+// Generated from Windows.Win32.winmd. Original Win32 names are preserved with @cname/comments.
+
+// Win32 namespace: Windows.Win32.Graphics.OpenGL
+
+// Win32 original: GLUnurbs
+alias GLUnurbs = iptr;
+
+// Win32 original: GLUquadric
+alias GLUquadric = iptr;
+
+// Win32 original: GLUtesselator
+alias GLUtesselator = iptr;
+
+// Win32 original: GLYPHMETRICSFLOAT
+struct GlyphMetricsFloat
+{
+    float gmfBlackBoxX;
+    float gmfBlackBoxY;
+    PointFloat gmfptGlyphOrigin;
+    float gmfCellIncX;
+    float gmfCellIncY;
+}
+
+// Win32 original: HGLRC
+alias Hglrc = void*;
+
+// Win32 original: LAYERPLANEDESCRIPTOR
+struct LayerPlaneDescriptor
+{
+    ushort nSize;
+    ushort nVersion;
+    uint dwFlags;
+    char iPixelType;
+    char cColorBits;
+    char cRedBits;
+    char cRedShift;
+    char cGreenBits;
+    char cGreenShift;
+    char cBlueBits;
+    char cBlueShift;
+    char cAlphaBits;
+    char cAlphaShift;
+    char cAccumBits;
+    char cAccumRedBits;
+    char cAccumGreenBits;
+    char cAccumBlueBits;
+    char cAccumAlphaBits;
+    char cDepthBits;
+    char cStencilBits;
+    char cAuxBuffers;
+    char iLayerPlane;
+    char bReserved;
+    ColorRef crTransparent;
+}
+
+// Win32 original: PFD_FLAGS
+constdef PFdFlags : uint
+{
+    PFD_DOUBLEBUFFER = 1,
+    PFD_STEREO = 2,
+    PFD_DRAW_TO_WINDOW = 4,
+    PFD_DRAW_TO_BITMAP = 8,
+    PFD_SUPPORT_GDI = 16,
+    PFD_SUPPORT_OPENGL = 32,
+    PFD_GENERIC_FORMAT = 64,
+    PFD_NEED_PALETTE = 128,
+    PFD_NEED_SYSTEM_PALETTE = 256,
+    PFD_SWAP_EXCHANGE = 512,
+    PFD_SWAP_COPY = 1024,
+    PFD_SWAP_LAYER_BUFFERS = 2048,
+    PFD_GENERIC_ACCELERATED = 4096,
+    PFD_SUPPORT_DIRECTDRAW = 8192,
+    PFD_DIRECT3D_ACCELERATED = 16384,
+    PFD_SUPPORT_COMPOSITION = 32768,
+    PFD_DEPTH_DONTCARE = 536870912,
+    PFD_DOUBLEBUFFER_DONTCARE = 1073741824,
+    PFD_STEREO_DONTCARE = 2147483648
+}
+
+// Win32 original: PFD_PIXEL_TYPE
+constdef PFdPixelType : char
+{
+    PFD_TYPE_RGBA = 0,
+    PFD_TYPE_COLORINDEX = 1
+}
+
+// Win32 original: PIXELFORMATDESCRIPTOR
+struct PixelFormatDescriptor
+{
+    ushort nSize;
+    ushort nVersion;
+    PFdFlags dwFlags;
+    PFdPixelType iPixelType;
+    char cColorBits;
+    char cRedBits;
+    char cRedShift;
+    char cGreenBits;
+    char cGreenShift;
+    char cBlueBits;
+    char cBlueShift;
+    char cAlphaBits;
+    char cAlphaShift;
+    char cAccumBits;
+    char cAccumRedBits;
+    char cAccumGreenBits;
+    char cAccumBlueBits;
+    char cAccumAlphaBits;
+    char cDepthBits;
+    char cStencilBits;
+    char cAuxBuffers;
+    char iLayerType;
+    char bReserved;
+    uint dwLayerMask;
+    uint dwVisibleMask;
+    uint dwDamageMask;
+}
+
+// Win32 original: POINTFLOAT
+struct PointFloat
+{
+    float x;
+    float y;
+}
+
+<*
+ @param [&in] ppfd
+*>
+extern fn int choose_pixel_format(Hdc hdc, PixelFormatDescriptor* ppfd)
+    @cname("ChoosePixelFormat") @link("gdi32");
+
+<*
+ @param [out] ppfd
+*>
+extern fn int describe_pixel_format(Hdc hdc, int iPixelFormat, uint nBytes, PixelFormatDescriptor* ppfd)
+    @cname("DescribePixelFormat") @link("gdi32");
+
+<*
+ @param [out] ppfd
+*>
+extern fn uint get_enh_meta_file_pixel_format(HEnhMetafile hemf, uint cbBuffer, PixelFormatDescriptor* ppfd)
+    @cname("GetEnhMetaFilePixelFormat") @link("gdi32");
+
+extern fn int get_pixel_format(Hdc hdc)
+    @cname("GetPixelFormat") @link("gdi32");
+
+<*
+ @param [&in] ppfd
+*>
+extern fn Bool set_pixel_format(Hdc hdc, int format, PixelFormatDescriptor* ppfd)
+    @cname("SetPixelFormat") @link("gdi32");
+
+extern fn Bool swap_buffers(Hdc param0)
+    @cname("SwapBuffers") @link("gdi32");
+
+extern fn void gl_accum(uint op, float value)
+    @cname("glAccum") @link("opengl32");
+
+extern fn void gl_alpha_func(uint func, float ref)
+    @cname("glAlphaFunc") @link("opengl32");
+
+<*
+ @param [&in] textures
+ @param [&inout] residences
+*>
+extern fn char gl_are_textures_resident(int n, uint* textures, char* residences)
+    @cname("glAreTexturesResident") @link("opengl32");
+
+extern fn void gl_array_element(int i)
+    @cname("glArrayElement") @link("opengl32");
+
+extern fn void gl_begin(uint mode)
+    @cname("glBegin") @link("opengl32");
+
+extern fn void gl_bind_texture(uint target, uint texture)
+    @cname("glBindTexture") @link("opengl32");
+
+<*
+ @param [&in] bitmap
+*>
+extern fn void gl_bitmap(int width, int height, float xorig, float yorig, float xmove, float ymove, char* bitmap)
+    @cname("glBitmap") @link("opengl32");
+
+extern fn void gl_blend_func(uint sfactor, uint dfactor)
+    @cname("glBlendFunc") @link("opengl32");
+
+extern fn void gl_call_list(uint list)
+    @cname("glCallList") @link("opengl32");
+
+<*
+ @param [&in] lists
+*>
+extern fn void gl_call_lists(int n, uint type, void* lists)
+    @cname("glCallLists") @link("opengl32");
+
+extern fn void gl_clear(uint mask)
+    @cname("glClear") @link("opengl32");
+
+extern fn void gl_clear_accum(float red, float green, float blue, float alpha)
+    @cname("glClearAccum") @link("opengl32");
+
+extern fn void gl_clear_color(float red, float green, float blue, float alpha)
+    @cname("glClearColor") @link("opengl32");
+
+extern fn void gl_clear_depth(double depth)
+    @cname("glClearDepth") @link("opengl32");
+
+extern fn void gl_clear_index(float c)
+    @cname("glClearIndex") @link("opengl32");
+
+extern fn void gl_clear_stencil(int s)
+    @cname("glClearStencil") @link("opengl32");
+
+<*
+ @param [&in] equation
+*>
+extern fn void gl_clip_plane(uint plane, double* equation)
+    @cname("glClipPlane") @link("opengl32");
+
+extern fn void gl_color_3_b(ichar red, ichar green, ichar blue)
+    @cname("glColor3b") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_bv(ichar* v)
+    @cname("glColor3bv") @link("opengl32");
+
+extern fn void gl_color_3_d(double red, double green, double blue)
+    @cname("glColor3d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_dv(double* v)
+    @cname("glColor3dv") @link("opengl32");
+
+extern fn void gl_color_3_f(float red, float green, float blue)
+    @cname("glColor3f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_fv(float* v)
+    @cname("glColor3fv") @link("opengl32");
+
+extern fn void gl_color_3_i(int red, int green, int blue)
+    @cname("glColor3i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_iv(int* v)
+    @cname("glColor3iv") @link("opengl32");
+
+extern fn void gl_color_3_s(short red, short green, short blue)
+    @cname("glColor3s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_sv(short* v)
+    @cname("glColor3sv") @link("opengl32");
+
+extern fn void gl_color_3_ub(char red, char green, char blue)
+    @cname("glColor3ub") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_ubv(char* v)
+    @cname("glColor3ubv") @link("opengl32");
+
+extern fn void gl_color_3_ui(uint red, uint green, uint blue)
+    @cname("glColor3ui") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_uiv(uint* v)
+    @cname("glColor3uiv") @link("opengl32");
+
+extern fn void gl_color_3_us(ushort red, ushort green, ushort blue)
+    @cname("glColor3us") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_3_usv(ushort* v)
+    @cname("glColor3usv") @link("opengl32");
+
+extern fn void gl_color_4_b(ichar red, ichar green, ichar blue, ichar alpha)
+    @cname("glColor4b") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_bv(ichar* v)
+    @cname("glColor4bv") @link("opengl32");
+
+extern fn void gl_color_4_d(double red, double green, double blue, double alpha)
+    @cname("glColor4d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_dv(double* v)
+    @cname("glColor4dv") @link("opengl32");
+
+extern fn void gl_color_4_f(float red, float green, float blue, float alpha)
+    @cname("glColor4f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_fv(float* v)
+    @cname("glColor4fv") @link("opengl32");
+
+extern fn void gl_color_4_i(int red, int green, int blue, int alpha)
+    @cname("glColor4i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_iv(int* v)
+    @cname("glColor4iv") @link("opengl32");
+
+extern fn void gl_color_4_s(short red, short green, short blue, short alpha)
+    @cname("glColor4s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_sv(short* v)
+    @cname("glColor4sv") @link("opengl32");
+
+extern fn void gl_color_4_ub(char red, char green, char blue, char alpha)
+    @cname("glColor4ub") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_ubv(char* v)
+    @cname("glColor4ubv") @link("opengl32");
+
+extern fn void gl_color_4_ui(uint red, uint green, uint blue, uint alpha)
+    @cname("glColor4ui") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_uiv(uint* v)
+    @cname("glColor4uiv") @link("opengl32");
+
+extern fn void gl_color_4_us(ushort red, ushort green, ushort blue, ushort alpha)
+    @cname("glColor4us") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_color_4_usv(ushort* v)
+    @cname("glColor4usv") @link("opengl32");
+
+extern fn void gl_color_mask(char red, char green, char blue, char alpha)
+    @cname("glColorMask") @link("opengl32");
+
+extern fn void gl_color_material(uint face, uint mode)
+    @cname("glColorMaterial") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_color_pointer(int size, uint type, int stride, void* pointer)
+    @cname("glColorPointer") @link("opengl32");
+
+extern fn void gl_copy_pixels(int x, int y, int width, int height, uint type)
+    @cname("glCopyPixels") @link("opengl32");
+
+extern fn void gl_copy_tex_image_1_d(uint target, int level, uint internalFormat, int x, int y, int width, int border)
+    @cname("glCopyTexImage1D") @link("opengl32");
+
+extern fn void gl_copy_tex_image_2_d(uint target, int level, uint internalFormat, int x, int y, int width, int height, int border)
+    @cname("glCopyTexImage2D") @link("opengl32");
+
+extern fn void gl_copy_tex_sub_image_1_d(uint target, int level, int xoffset, int x, int y, int width)
+    @cname("glCopyTexSubImage1D") @link("opengl32");
+
+extern fn void gl_copy_tex_sub_image_2_d(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height)
+    @cname("glCopyTexSubImage2D") @link("opengl32");
+
+extern fn void gl_cull_face(uint mode)
+    @cname("glCullFace") @link("opengl32");
+
+extern fn void gl_delete_lists(uint list, int range)
+    @cname("glDeleteLists") @link("opengl32");
+
+<*
+ @param [&in] textures
+*>
+extern fn void gl_delete_textures(int n, uint* textures)
+    @cname("glDeleteTextures") @link("opengl32");
+
+extern fn void gl_depth_func(uint func)
+    @cname("glDepthFunc") @link("opengl32");
+
+extern fn void gl_depth_mask(char flag)
+    @cname("glDepthMask") @link("opengl32");
+
+extern fn void gl_depth_range(double zNear, double zFar)
+    @cname("glDepthRange") @link("opengl32");
+
+extern fn void gl_disable(uint cap)
+    @cname("glDisable") @link("opengl32");
+
+extern fn void gl_disable_client_state(uint array)
+    @cname("glDisableClientState") @link("opengl32");
+
+extern fn void gl_draw_arrays(uint mode, int first, int count)
+    @cname("glDrawArrays") @link("opengl32");
+
+extern fn void gl_draw_buffer(uint mode)
+    @cname("glDrawBuffer") @link("opengl32");
+
+<*
+ @param [&in] indices
+*>
+extern fn void gl_draw_elements(uint mode, int count, uint type, void* indices)
+    @cname("glDrawElements") @link("opengl32");
+
+<*
+ @param [&in] pixels
+*>
+extern fn void gl_draw_pixels(int width, int height, uint format, uint type, void* pixels)
+    @cname("glDrawPixels") @link("opengl32");
+
+extern fn void gl_edge_flag(char flag)
+    @cname("glEdgeFlag") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_edge_flag_pointer(int stride, void* pointer)
+    @cname("glEdgeFlagPointer") @link("opengl32");
+
+<*
+ @param [&in] flag
+*>
+extern fn void gl_edge_flagv(char* flag)
+    @cname("glEdgeFlagv") @link("opengl32");
+
+extern fn void gl_enable(uint cap)
+    @cname("glEnable") @link("opengl32");
+
+extern fn void gl_enable_client_state(uint array)
+    @cname("glEnableClientState") @link("opengl32");
+
+extern fn void gl_end()
+    @cname("glEnd") @link("opengl32");
+
+extern fn void gl_end_list()
+    @cname("glEndList") @link("opengl32");
+
+extern fn void gl_eval_coord_1_d(double u)
+    @cname("glEvalCoord1d") @link("opengl32");
+
+<*
+ @param [&in] u
+*>
+extern fn void gl_eval_coord_1_dv(double* u)
+    @cname("glEvalCoord1dv") @link("opengl32");
+
+extern fn void gl_eval_coord_1_f(float u)
+    @cname("glEvalCoord1f") @link("opengl32");
+
+<*
+ @param [&in] u
+*>
+extern fn void gl_eval_coord_1_fv(float* u)
+    @cname("glEvalCoord1fv") @link("opengl32");
+
+extern fn void gl_eval_coord_2_d(double u, double v)
+    @cname("glEvalCoord2d") @link("opengl32");
+
+<*
+ @param [&in] u
+*>
+extern fn void gl_eval_coord_2_dv(double* u)
+    @cname("glEvalCoord2dv") @link("opengl32");
+
+extern fn void gl_eval_coord_2_f(float u, float v)
+    @cname("glEvalCoord2f") @link("opengl32");
+
+<*
+ @param [&in] u
+*>
+extern fn void gl_eval_coord_2_fv(float* u)
+    @cname("glEvalCoord2fv") @link("opengl32");
+
+extern fn void gl_eval_mesh_1(uint mode, int i1, int i2)
+    @cname("glEvalMesh1") @link("opengl32");
+
+extern fn void gl_eval_mesh_2(uint mode, int i1, int i2, int j1, int j2)
+    @cname("glEvalMesh2") @link("opengl32");
+
+extern fn void gl_eval_point_1(int i)
+    @cname("glEvalPoint1") @link("opengl32");
+
+extern fn void gl_eval_point_2(int i, int j)
+    @cname("glEvalPoint2") @link("opengl32");
+
+<*
+ @param [&inout] buffer
+*>
+extern fn void gl_feedback_buffer(int size, uint type, float* buffer)
+    @cname("glFeedbackBuffer") @link("opengl32");
+
+extern fn void gl_finish()
+    @cname("glFinish") @link("opengl32");
+
+extern fn void gl_flush()
+    @cname("glFlush") @link("opengl32");
+
+extern fn void gl_fogf(uint pname, float param1)
+    @cname("glFogf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_fogfv(uint pname, float* params)
+    @cname("glFogfv") @link("opengl32");
+
+extern fn void gl_fogi(uint pname, int param1)
+    @cname("glFogi") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_fogiv(uint pname, int* params)
+    @cname("glFogiv") @link("opengl32");
+
+extern fn void gl_front_face(uint mode)
+    @cname("glFrontFace") @link("opengl32");
+
+extern fn void gl_frustum(double left, double right, double bottom, double top, double zNear, double zFar)
+    @cname("glFrustum") @link("opengl32");
+
+extern fn uint gl_gen_lists(int range)
+    @cname("glGenLists") @link("opengl32");
+
+<*
+ @param [&inout] textures
+*>
+extern fn void gl_gen_textures(int n, uint* textures)
+    @cname("glGenTextures") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_booleanv(uint pname, char* params)
+    @cname("glGetBooleanv") @link("opengl32");
+
+<*
+ @param [&inout] equation
+*>
+extern fn void gl_get_clip_plane(uint plane, double* equation)
+    @cname("glGetClipPlane") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_doublev(uint pname, double* params)
+    @cname("glGetDoublev") @link("opengl32");
+
+extern fn uint gl_get_error()
+    @cname("glGetError") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_floatv(uint pname, float* params)
+    @cname("glGetFloatv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_integerv(uint pname, int* params)
+    @cname("glGetIntegerv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_lightfv(uint light, uint pname, float* params)
+    @cname("glGetLightfv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_lightiv(uint light, uint pname, int* params)
+    @cname("glGetLightiv") @link("opengl32");
+
+<*
+ @param [&inout] v
+*>
+extern fn void gl_get_mapdv(uint target, uint query, double* v)
+    @cname("glGetMapdv") @link("opengl32");
+
+<*
+ @param [&inout] v
+*>
+extern fn void gl_get_mapfv(uint target, uint query, float* v)
+    @cname("glGetMapfv") @link("opengl32");
+
+<*
+ @param [&inout] v
+*>
+extern fn void gl_get_mapiv(uint target, uint query, int* v)
+    @cname("glGetMapiv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_materialfv(uint face, uint pname, float* params)
+    @cname("glGetMaterialfv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_materialiv(uint face, uint pname, int* params)
+    @cname("glGetMaterialiv") @link("opengl32");
+
+<*
+ @param [&inout] values
+*>
+extern fn void gl_get_pixel_mapfv(uint map, float* values)
+    @cname("glGetPixelMapfv") @link("opengl32");
+
+<*
+ @param [&inout] values
+*>
+extern fn void gl_get_pixel_mapuiv(uint map, uint* values)
+    @cname("glGetPixelMapuiv") @link("opengl32");
+
+<*
+ @param [&inout] values
+*>
+extern fn void gl_get_pixel_mapusv(uint map, ushort* values)
+    @cname("glGetPixelMapusv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_pointerv(uint pname, void** params)
+    @cname("glGetPointerv") @link("opengl32");
+
+<*
+ @param [&inout] mask
+*>
+extern fn void gl_get_polygon_stipple(char* mask)
+    @cname("glGetPolygonStipple") @link("opengl32");
+
+extern fn char* gl_get_string(uint name)
+    @cname("glGetString") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_envfv(uint target, uint pname, float* params)
+    @cname("glGetTexEnvfv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_enviv(uint target, uint pname, int* params)
+    @cname("glGetTexEnviv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_gendv(uint coord, uint pname, double* params)
+    @cname("glGetTexGendv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_genfv(uint coord, uint pname, float* params)
+    @cname("glGetTexGenfv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_geniv(uint coord, uint pname, int* params)
+    @cname("glGetTexGeniv") @link("opengl32");
+
+<*
+ @param [&inout] pixels
+*>
+extern fn void gl_get_tex_image(uint target, int level, uint format, uint type, void* pixels)
+    @cname("glGetTexImage") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_level_parameterfv(uint target, int level, uint pname, float* params)
+    @cname("glGetTexLevelParameterfv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_level_parameteriv(uint target, int level, uint pname, int* params)
+    @cname("glGetTexLevelParameteriv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_parameterfv(uint target, uint pname, float* params)
+    @cname("glGetTexParameterfv") @link("opengl32");
+
+<*
+ @param [&inout] params
+*>
+extern fn void gl_get_tex_parameteriv(uint target, uint pname, int* params)
+    @cname("glGetTexParameteriv") @link("opengl32");
+
+extern fn void gl_hint(uint target, uint mode)
+    @cname("glHint") @link("opengl32");
+
+extern fn void gl_index_mask(uint mask)
+    @cname("glIndexMask") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_index_pointer(uint type, int stride, void* pointer)
+    @cname("glIndexPointer") @link("opengl32");
+
+extern fn void gl_indexd(double c)
+    @cname("glIndexd") @link("opengl32");
+
+<*
+ @param [&in] c
+*>
+extern fn void gl_indexdv(double* c)
+    @cname("glIndexdv") @link("opengl32");
+
+extern fn void gl_indexf(float c)
+    @cname("glIndexf") @link("opengl32");
+
+<*
+ @param [&in] c
+*>
+extern fn void gl_indexfv(float* c)
+    @cname("glIndexfv") @link("opengl32");
+
+extern fn void gl_indexi(int c)
+    @cname("glIndexi") @link("opengl32");
+
+<*
+ @param [&in] c
+*>
+extern fn void gl_indexiv(int* c)
+    @cname("glIndexiv") @link("opengl32");
+
+extern fn void gl_indexs(short c)
+    @cname("glIndexs") @link("opengl32");
+
+<*
+ @param [&in] c
+*>
+extern fn void gl_indexsv(short* c)
+    @cname("glIndexsv") @link("opengl32");
+
+extern fn void gl_indexub(char c)
+    @cname("glIndexub") @link("opengl32");
+
+<*
+ @param [&in] c
+*>
+extern fn void gl_indexubv(char* c)
+    @cname("glIndexubv") @link("opengl32");
+
+extern fn void gl_init_names()
+    @cname("glInitNames") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_interleaved_arrays(uint format, int stride, void* pointer)
+    @cname("glInterleavedArrays") @link("opengl32");
+
+extern fn char gl_is_enabled(uint cap)
+    @cname("glIsEnabled") @link("opengl32");
+
+extern fn char gl_is_list(uint list)
+    @cname("glIsList") @link("opengl32");
+
+extern fn char gl_is_texture(uint texture)
+    @cname("glIsTexture") @link("opengl32");
+
+extern fn void gl_light_modelf(uint pname, float param1)
+    @cname("glLightModelf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_light_modelfv(uint pname, float* params)
+    @cname("glLightModelfv") @link("opengl32");
+
+extern fn void gl_light_modeli(uint pname, int param1)
+    @cname("glLightModeli") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_light_modeliv(uint pname, int* params)
+    @cname("glLightModeliv") @link("opengl32");
+
+extern fn void gl_lightf(uint light, uint pname, float param2)
+    @cname("glLightf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_lightfv(uint light, uint pname, float* params)
+    @cname("glLightfv") @link("opengl32");
+
+extern fn void gl_lighti(uint light, uint pname, int param2)
+    @cname("glLighti") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_lightiv(uint light, uint pname, int* params)
+    @cname("glLightiv") @link("opengl32");
+
+extern fn void gl_line_stipple(int factor, ushort pattern)
+    @cname("glLineStipple") @link("opengl32");
+
+extern fn void gl_line_width(float width)
+    @cname("glLineWidth") @link("opengl32");
+
+extern fn void gl_list_base(uint base)
+    @cname("glListBase") @link("opengl32");
+
+extern fn void gl_load_identity()
+    @cname("glLoadIdentity") @link("opengl32");
+
+<*
+ @param [&in] m
+*>
+extern fn void gl_load_matrixd(double* m)
+    @cname("glLoadMatrixd") @link("opengl32");
+
+<*
+ @param [&in] m
+*>
+extern fn void gl_load_matrixf(float* m)
+    @cname("glLoadMatrixf") @link("opengl32");
+
+extern fn void gl_load_name(uint name)
+    @cname("glLoadName") @link("opengl32");
+
+extern fn void gl_logic_op(uint opcode)
+    @cname("glLogicOp") @link("opengl32");
+
+<*
+ @param [&in] points
+*>
+extern fn void gl_map_1_d(uint target, double u1, double u2, int stride, int order, double* points)
+    @cname("glMap1d") @link("opengl32");
+
+<*
+ @param [&in] points
+*>
+extern fn void gl_map_1_f(uint target, float u1, float u2, int stride, int order, float* points)
+    @cname("glMap1f") @link("opengl32");
+
+<*
+ @param [&in] points
+*>
+extern fn void gl_map_2_d(uint target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double* points)
+    @cname("glMap2d") @link("opengl32");
+
+<*
+ @param [&in] points
+*>
+extern fn void gl_map_2_f(uint target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float* points)
+    @cname("glMap2f") @link("opengl32");
+
+extern fn void gl_map_grid_1_d(int un, double u1, double u2)
+    @cname("glMapGrid1d") @link("opengl32");
+
+extern fn void gl_map_grid_1_f(int un, float u1, float u2)
+    @cname("glMapGrid1f") @link("opengl32");
+
+extern fn void gl_map_grid_2_d(int un, double u1, double u2, int vn, double v1, double v2)
+    @cname("glMapGrid2d") @link("opengl32");
+
+extern fn void gl_map_grid_2_f(int un, float u1, float u2, int vn, float v1, float v2)
+    @cname("glMapGrid2f") @link("opengl32");
+
+extern fn void gl_materialf(uint face, uint pname, float param2)
+    @cname("glMaterialf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_materialfv(uint face, uint pname, float* params)
+    @cname("glMaterialfv") @link("opengl32");
+
+extern fn void gl_materiali(uint face, uint pname, int param2)
+    @cname("glMateriali") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_materialiv(uint face, uint pname, int* params)
+    @cname("glMaterialiv") @link("opengl32");
+
+extern fn void gl_matrix_mode(uint mode)
+    @cname("glMatrixMode") @link("opengl32");
+
+<*
+ @param [&in] m
+*>
+extern fn void gl_mult_matrixd(double* m)
+    @cname("glMultMatrixd") @link("opengl32");
+
+<*
+ @param [&in] m
+*>
+extern fn void gl_mult_matrixf(float* m)
+    @cname("glMultMatrixf") @link("opengl32");
+
+extern fn void gl_new_list(uint list, uint mode)
+    @cname("glNewList") @link("opengl32");
+
+extern fn void gl_normal_3_b(ichar nx, ichar ny, ichar nz)
+    @cname("glNormal3b") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_normal_3_bv(ichar* v)
+    @cname("glNormal3bv") @link("opengl32");
+
+extern fn void gl_normal_3_d(double nx, double ny, double nz)
+    @cname("glNormal3d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_normal_3_dv(double* v)
+    @cname("glNormal3dv") @link("opengl32");
+
+extern fn void gl_normal_3_f(float nx, float ny, float nz)
+    @cname("glNormal3f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_normal_3_fv(float* v)
+    @cname("glNormal3fv") @link("opengl32");
+
+extern fn void gl_normal_3_i(int nx, int ny, int nz)
+    @cname("glNormal3i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_normal_3_iv(int* v)
+    @cname("glNormal3iv") @link("opengl32");
+
+extern fn void gl_normal_3_s(short nx, short ny, short nz)
+    @cname("glNormal3s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_normal_3_sv(short* v)
+    @cname("glNormal3sv") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_normal_pointer(uint type, int stride, void* pointer)
+    @cname("glNormalPointer") @link("opengl32");
+
+extern fn void gl_ortho(double left, double right, double bottom, double top, double zNear, double zFar)
+    @cname("glOrtho") @link("opengl32");
+
+extern fn void gl_pass_through(float token)
+    @cname("glPassThrough") @link("opengl32");
+
+<*
+ @param [&in] values
+*>
+extern fn void gl_pixel_mapfv(uint map, int mapsize, float* values)
+    @cname("glPixelMapfv") @link("opengl32");
+
+<*
+ @param [&in] values
+*>
+extern fn void gl_pixel_mapuiv(uint map, int mapsize, uint* values)
+    @cname("glPixelMapuiv") @link("opengl32");
+
+<*
+ @param [&in] values
+*>
+extern fn void gl_pixel_mapusv(uint map, int mapsize, ushort* values)
+    @cname("glPixelMapusv") @link("opengl32");
+
+extern fn void gl_pixel_storef(uint pname, float param1)
+    @cname("glPixelStoref") @link("opengl32");
+
+extern fn void gl_pixel_storei(uint pname, int param1)
+    @cname("glPixelStorei") @link("opengl32");
+
+extern fn void gl_pixel_transferf(uint pname, float param1)
+    @cname("glPixelTransferf") @link("opengl32");
+
+extern fn void gl_pixel_transferi(uint pname, int param1)
+    @cname("glPixelTransferi") @link("opengl32");
+
+extern fn void gl_pixel_zoom(float xfactor, float yfactor)
+    @cname("glPixelZoom") @link("opengl32");
+
+extern fn void gl_point_size(float size)
+    @cname("glPointSize") @link("opengl32");
+
+extern fn void gl_polygon_mode(uint face, uint mode)
+    @cname("glPolygonMode") @link("opengl32");
+
+extern fn void gl_polygon_offset(float factor, float units)
+    @cname("glPolygonOffset") @link("opengl32");
+
+<*
+ @param [&in] mask
+*>
+extern fn void gl_polygon_stipple(char* mask)
+    @cname("glPolygonStipple") @link("opengl32");
+
+extern fn void gl_pop_attrib()
+    @cname("glPopAttrib") @link("opengl32");
+
+extern fn void gl_pop_client_attrib()
+    @cname("glPopClientAttrib") @link("opengl32");
+
+extern fn void gl_pop_matrix()
+    @cname("glPopMatrix") @link("opengl32");
+
+extern fn void gl_pop_name()
+    @cname("glPopName") @link("opengl32");
+
+<*
+ @param [&in] textures
+ @param [&in] priorities
+*>
+extern fn void gl_prioritize_textures(int n, uint* textures, float* priorities)
+    @cname("glPrioritizeTextures") @link("opengl32");
+
+extern fn void gl_push_attrib(uint mask)
+    @cname("glPushAttrib") @link("opengl32");
+
+extern fn void gl_push_client_attrib(uint mask)
+    @cname("glPushClientAttrib") @link("opengl32");
+
+extern fn void gl_push_matrix()
+    @cname("glPushMatrix") @link("opengl32");
+
+extern fn void gl_push_name(uint name)
+    @cname("glPushName") @link("opengl32");
+
+extern fn void gl_raster_pos_2_d(double x, double y)
+    @cname("glRasterPos2d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_2_dv(double* v)
+    @cname("glRasterPos2dv") @link("opengl32");
+
+extern fn void gl_raster_pos_2_f(float x, float y)
+    @cname("glRasterPos2f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_2_fv(float* v)
+    @cname("glRasterPos2fv") @link("opengl32");
+
+extern fn void gl_raster_pos_2_i(int x, int y)
+    @cname("glRasterPos2i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_2_iv(int* v)
+    @cname("glRasterPos2iv") @link("opengl32");
+
+extern fn void gl_raster_pos_2_s(short x, short y)
+    @cname("glRasterPos2s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_2_sv(short* v)
+    @cname("glRasterPos2sv") @link("opengl32");
+
+extern fn void gl_raster_pos_3_d(double x, double y, double z)
+    @cname("glRasterPos3d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_3_dv(double* v)
+    @cname("glRasterPos3dv") @link("opengl32");
+
+extern fn void gl_raster_pos_3_f(float x, float y, float z)
+    @cname("glRasterPos3f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_3_fv(float* v)
+    @cname("glRasterPos3fv") @link("opengl32");
+
+extern fn void gl_raster_pos_3_i(int x, int y, int z)
+    @cname("glRasterPos3i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_3_iv(int* v)
+    @cname("glRasterPos3iv") @link("opengl32");
+
+extern fn void gl_raster_pos_3_s(short x, short y, short z)
+    @cname("glRasterPos3s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_3_sv(short* v)
+    @cname("glRasterPos3sv") @link("opengl32");
+
+extern fn void gl_raster_pos_4_d(double x, double y, double z, double w)
+    @cname("glRasterPos4d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_4_dv(double* v)
+    @cname("glRasterPos4dv") @link("opengl32");
+
+extern fn void gl_raster_pos_4_f(float x, float y, float z, float w)
+    @cname("glRasterPos4f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_4_fv(float* v)
+    @cname("glRasterPos4fv") @link("opengl32");
+
+extern fn void gl_raster_pos_4_i(int x, int y, int z, int w)
+    @cname("glRasterPos4i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_4_iv(int* v)
+    @cname("glRasterPos4iv") @link("opengl32");
+
+extern fn void gl_raster_pos_4_s(short x, short y, short z, short w)
+    @cname("glRasterPos4s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_raster_pos_4_sv(short* v)
+    @cname("glRasterPos4sv") @link("opengl32");
+
+extern fn void gl_read_buffer(uint mode)
+    @cname("glReadBuffer") @link("opengl32");
+
+<*
+ @param [&inout] pixels
+*>
+extern fn void gl_read_pixels(int x, int y, int width, int height, uint format, uint type, void* pixels)
+    @cname("glReadPixels") @link("opengl32");
+
+extern fn void gl_rectd(double x1, double y1, double x2, double y2)
+    @cname("glRectd") @link("opengl32");
+
+<*
+ @param [&in] v1
+ @param [&in] v2
+*>
+extern fn void gl_rectdv(double* v1, double* v2)
+    @cname("glRectdv") @link("opengl32");
+
+extern fn void gl_rectf(float x1, float y1, float x2, float y2)
+    @cname("glRectf") @link("opengl32");
+
+<*
+ @param [&in] v1
+ @param [&in] v2
+*>
+extern fn void gl_rectfv(float* v1, float* v2)
+    @cname("glRectfv") @link("opengl32");
+
+extern fn void gl_recti(int x1, int y1, int x2, int y2)
+    @cname("glRecti") @link("opengl32");
+
+<*
+ @param [&in] v1
+ @param [&in] v2
+*>
+extern fn void gl_rectiv(int* v1, int* v2)
+    @cname("glRectiv") @link("opengl32");
+
+extern fn void gl_rects(short x1, short y1, short x2, short y2)
+    @cname("glRects") @link("opengl32");
+
+<*
+ @param [&in] v1
+ @param [&in] v2
+*>
+extern fn void gl_rectsv(short* v1, short* v2)
+    @cname("glRectsv") @link("opengl32");
+
+extern fn int gl_render_mode(uint mode)
+    @cname("glRenderMode") @link("opengl32");
+
+extern fn void gl_rotated(double angle, double x, double y, double z)
+    @cname("glRotated") @link("opengl32");
+
+extern fn void gl_rotatef(float angle, float x, float y, float z)
+    @cname("glRotatef") @link("opengl32");
+
+extern fn void gl_scaled(double x, double y, double z)
+    @cname("glScaled") @link("opengl32");
+
+extern fn void gl_scalef(float x, float y, float z)
+    @cname("glScalef") @link("opengl32");
+
+extern fn void gl_scissor(int x, int y, int width, int height)
+    @cname("glScissor") @link("opengl32");
+
+<*
+ @param [&inout] buffer
+*>
+extern fn void gl_select_buffer(int size, uint* buffer)
+    @cname("glSelectBuffer") @link("opengl32");
+
+extern fn void gl_shade_model(uint mode)
+    @cname("glShadeModel") @link("opengl32");
+
+extern fn void gl_stencil_func(uint func, int ref, uint mask)
+    @cname("glStencilFunc") @link("opengl32");
+
+extern fn void gl_stencil_mask(uint mask)
+    @cname("glStencilMask") @link("opengl32");
+
+extern fn void gl_stencil_op(uint fail, uint zfail, uint zpass)
+    @cname("glStencilOp") @link("opengl32");
+
+extern fn void gl_tex_coord_1_d(double s)
+    @cname("glTexCoord1d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_1_dv(double* v)
+    @cname("glTexCoord1dv") @link("opengl32");
+
+extern fn void gl_tex_coord_1_f(float s)
+    @cname("glTexCoord1f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_1_fv(float* v)
+    @cname("glTexCoord1fv") @link("opengl32");
+
+extern fn void gl_tex_coord_1_i(int s)
+    @cname("glTexCoord1i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_1_iv(int* v)
+    @cname("glTexCoord1iv") @link("opengl32");
+
+extern fn void gl_tex_coord_1_s(short s)
+    @cname("glTexCoord1s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_1_sv(short* v)
+    @cname("glTexCoord1sv") @link("opengl32");
+
+extern fn void gl_tex_coord_2_d(double s, double t)
+    @cname("glTexCoord2d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_2_dv(double* v)
+    @cname("glTexCoord2dv") @link("opengl32");
+
+extern fn void gl_tex_coord_2_f(float s, float t)
+    @cname("glTexCoord2f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_2_fv(float* v)
+    @cname("glTexCoord2fv") @link("opengl32");
+
+extern fn void gl_tex_coord_2_i(int s, int t)
+    @cname("glTexCoord2i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_2_iv(int* v)
+    @cname("glTexCoord2iv") @link("opengl32");
+
+extern fn void gl_tex_coord_2_s(short s, short t)
+    @cname("glTexCoord2s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_2_sv(short* v)
+    @cname("glTexCoord2sv") @link("opengl32");
+
+extern fn void gl_tex_coord_3_d(double s, double t, double r)
+    @cname("glTexCoord3d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_3_dv(double* v)
+    @cname("glTexCoord3dv") @link("opengl32");
+
+extern fn void gl_tex_coord_3_f(float s, float t, float r)
+    @cname("glTexCoord3f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_3_fv(float* v)
+    @cname("glTexCoord3fv") @link("opengl32");
+
+extern fn void gl_tex_coord_3_i(int s, int t, int r)
+    @cname("glTexCoord3i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_3_iv(int* v)
+    @cname("glTexCoord3iv") @link("opengl32");
+
+extern fn void gl_tex_coord_3_s(short s, short t, short r)
+    @cname("glTexCoord3s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_3_sv(short* v)
+    @cname("glTexCoord3sv") @link("opengl32");
+
+extern fn void gl_tex_coord_4_d(double s, double t, double r, double q)
+    @cname("glTexCoord4d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_4_dv(double* v)
+    @cname("glTexCoord4dv") @link("opengl32");
+
+extern fn void gl_tex_coord_4_f(float s, float t, float r, float q)
+    @cname("glTexCoord4f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_4_fv(float* v)
+    @cname("glTexCoord4fv") @link("opengl32");
+
+extern fn void gl_tex_coord_4_i(int s, int t, int r, int q)
+    @cname("glTexCoord4i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_4_iv(int* v)
+    @cname("glTexCoord4iv") @link("opengl32");
+
+extern fn void gl_tex_coord_4_s(short s, short t, short r, short q)
+    @cname("glTexCoord4s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_tex_coord_4_sv(short* v)
+    @cname("glTexCoord4sv") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_tex_coord_pointer(int size, uint type, int stride, void* pointer)
+    @cname("glTexCoordPointer") @link("opengl32");
+
+extern fn void gl_tex_envf(uint target, uint pname, float param2)
+    @cname("glTexEnvf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_envfv(uint target, uint pname, float* params)
+    @cname("glTexEnvfv") @link("opengl32");
+
+extern fn void gl_tex_envi(uint target, uint pname, int param2)
+    @cname("glTexEnvi") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_enviv(uint target, uint pname, int* params)
+    @cname("glTexEnviv") @link("opengl32");
+
+extern fn void gl_tex_gend(uint coord, uint pname, double param2)
+    @cname("glTexGend") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_gendv(uint coord, uint pname, double* params)
+    @cname("glTexGendv") @link("opengl32");
+
+extern fn void gl_tex_genf(uint coord, uint pname, float param2)
+    @cname("glTexGenf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_genfv(uint coord, uint pname, float* params)
+    @cname("glTexGenfv") @link("opengl32");
+
+extern fn void gl_tex_geni(uint coord, uint pname, int param2)
+    @cname("glTexGeni") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_geniv(uint coord, uint pname, int* params)
+    @cname("glTexGeniv") @link("opengl32");
+
+<*
+ @param [&in] pixels
+*>
+extern fn void gl_tex_image_1_d(uint target, int level, int internalformat, int width, int border, uint format, uint type, void* pixels)
+    @cname("glTexImage1D") @link("opengl32");
+
+<*
+ @param [&in] pixels
+*>
+extern fn void gl_tex_image_2_d(uint target, int level, int internalformat, int width, int height, int border, uint format, uint type, void* pixels)
+    @cname("glTexImage2D") @link("opengl32");
+
+extern fn void gl_tex_parameterf(uint target, uint pname, float param2)
+    @cname("glTexParameterf") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_parameterfv(uint target, uint pname, float* params)
+    @cname("glTexParameterfv") @link("opengl32");
+
+extern fn void gl_tex_parameteri(uint target, uint pname, int param2)
+    @cname("glTexParameteri") @link("opengl32");
+
+<*
+ @param [&in] params
+*>
+extern fn void gl_tex_parameteriv(uint target, uint pname, int* params)
+    @cname("glTexParameteriv") @link("opengl32");
+
+<*
+ @param [&in] pixels
+*>
+extern fn void gl_tex_sub_image_1_d(uint target, int level, int xoffset, int width, uint format, uint type, void* pixels)
+    @cname("glTexSubImage1D") @link("opengl32");
+
+<*
+ @param [&in] pixels
+*>
+extern fn void gl_tex_sub_image_2_d(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, void* pixels)
+    @cname("glTexSubImage2D") @link("opengl32");
+
+extern fn void gl_translated(double x, double y, double z)
+    @cname("glTranslated") @link("opengl32");
+
+extern fn void gl_translatef(float x, float y, float z)
+    @cname("glTranslatef") @link("opengl32");
+
+extern fn void gl_vertex_2_d(double x, double y)
+    @cname("glVertex2d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_2_dv(double* v)
+    @cname("glVertex2dv") @link("opengl32");
+
+extern fn void gl_vertex_2_f(float x, float y)
+    @cname("glVertex2f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_2_fv(float* v)
+    @cname("glVertex2fv") @link("opengl32");
+
+extern fn void gl_vertex_2_i(int x, int y)
+    @cname("glVertex2i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_2_iv(int* v)
+    @cname("glVertex2iv") @link("opengl32");
+
+extern fn void gl_vertex_2_s(short x, short y)
+    @cname("glVertex2s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_2_sv(short* v)
+    @cname("glVertex2sv") @link("opengl32");
+
+extern fn void gl_vertex_3_d(double x, double y, double z)
+    @cname("glVertex3d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_3_dv(double* v)
+    @cname("glVertex3dv") @link("opengl32");
+
+extern fn void gl_vertex_3_f(float x, float y, float z)
+    @cname("glVertex3f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_3_fv(float* v)
+    @cname("glVertex3fv") @link("opengl32");
+
+extern fn void gl_vertex_3_i(int x, int y, int z)
+    @cname("glVertex3i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_3_iv(int* v)
+    @cname("glVertex3iv") @link("opengl32");
+
+extern fn void gl_vertex_3_s(short x, short y, short z)
+    @cname("glVertex3s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_3_sv(short* v)
+    @cname("glVertex3sv") @link("opengl32");
+
+extern fn void gl_vertex_4_d(double x, double y, double z, double w)
+    @cname("glVertex4d") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_4_dv(double* v)
+    @cname("glVertex4dv") @link("opengl32");
+
+extern fn void gl_vertex_4_f(float x, float y, float z, float w)
+    @cname("glVertex4f") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_4_fv(float* v)
+    @cname("glVertex4fv") @link("opengl32");
+
+extern fn void gl_vertex_4_i(int x, int y, int z, int w)
+    @cname("glVertex4i") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_4_iv(int* v)
+    @cname("glVertex4iv") @link("opengl32");
+
+extern fn void gl_vertex_4_s(short x, short y, short z, short w)
+    @cname("glVertex4s") @link("opengl32");
+
+<*
+ @param [&in] v
+*>
+extern fn void gl_vertex_4_sv(short* v)
+    @cname("glVertex4sv") @link("opengl32");
+
+<*
+ @param [&in] pointer
+*>
+extern fn void gl_vertex_pointer(int size, uint type, int stride, void* pointer)
+    @cname("glVertexPointer") @link("opengl32");
+
+extern fn void gl_viewport(int x, int y, int width, int height)
+    @cname("glViewport") @link("opengl32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_begin_curve(GLUnurbs* nobj)
+    @cname("gluBeginCurve") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_begin_polygon(GLUtesselator* tess)
+    @cname("gluBeginPolygon") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_begin_surface(GLUnurbs* nobj)
+    @cname("gluBeginSurface") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_begin_trim(GLUnurbs* nobj)
+    @cname("gluBeginTrim") @link("glu32");
+
+<*
+ @param [&in] data
+*>
+extern fn int glu_build_1_d_mipmaps(uint target, int components, int width, uint format, uint type, void* data)
+    @cname("gluBuild1DMipmaps") @link("glu32");
+
+<*
+ @param [&in] data
+*>
+extern fn int glu_build_2_d_mipmaps(uint target, int components, int width, int height, uint format, uint type, void* data)
+    @cname("gluBuild2DMipmaps") @link("glu32");
+
+<*
+ @param [&inout] qobj
+*>
+extern fn void glu_cylinder(GLUquadric* qobj, double baseRadius, double topRadius, double height, int slices, int stacks)
+    @cname("gluCylinder") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_delete_nurbs_renderer(GLUnurbs* nobj)
+    @cname("gluDeleteNurbsRenderer") @link("glu32");
+
+<*
+ @param [&inout] state
+*>
+extern fn void glu_delete_quadric(GLUquadric* state)
+    @cname("gluDeleteQuadric") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_delete_tess(GLUtesselator* tess)
+    @cname("gluDeleteTess") @link("glu32");
+
+<*
+ @param [&inout] qobj
+*>
+extern fn void glu_disk(GLUquadric* qobj, double innerRadius, double outerRadius, int slices, int loops)
+    @cname("gluDisk") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_end_curve(GLUnurbs* nobj)
+    @cname("gluEndCurve") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_end_polygon(GLUtesselator* tess)
+    @cname("gluEndPolygon") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_end_surface(GLUnurbs* nobj)
+    @cname("gluEndSurface") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_end_trim(GLUnurbs* nobj)
+    @cname("gluEndTrim") @link("glu32");
+
+extern fn char* glu_error_string(uint errCode)
+    @cname("gluErrorString") @link("glu32");
+
+extern fn ushort* glu_error_unicode_string_ext(uint errCode)
+    @cname("gluErrorUnicodeStringEXT") @link("glu32");
+
+<*
+ @param [&inout] nobj
+ @param [&inout] value
+*>
+extern fn void glu_get_nurbs_property(GLUnurbs* nobj, uint property, float* value)
+    @cname("gluGetNurbsProperty") @link("glu32");
+
+extern fn char* glu_get_string(uint name)
+    @cname("gluGetString") @link("glu32");
+
+<*
+ @param [&inout] tess
+ @param [&inout] value
+*>
+extern fn void glu_get_tess_property(GLUtesselator* tess, uint which, double* value)
+    @cname("gluGetTessProperty") @link("glu32");
+
+<*
+ @param [&inout] nobj
+ @param [&in] modelMatrix
+ @param [&in] projMatrix
+ @param [&in] viewport
+*>
+extern fn void glu_load_sampling_matrices(GLUnurbs* nobj, float* modelMatrix, float* projMatrix, int* viewport)
+    @cname("gluLoadSamplingMatrices") @link("glu32");
+
+extern fn void glu_look_at(double eyex, double eyey, double eyez, double centerx, double centery, double centerz, double upx, double upy, double upz)
+    @cname("gluLookAt") @link("glu32");
+
+extern fn GLUnurbs* glu_new_nurbs_renderer()
+    @cname("gluNewNurbsRenderer") @link("glu32");
+
+extern fn GLUquadric* glu_new_quadric()
+    @cname("gluNewQuadric") @link("glu32");
+
+extern fn GLUtesselator* glu_new_tess()
+    @cname("gluNewTess") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_next_contour(GLUtesselator* tess, uint type)
+    @cname("gluNextContour") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_nurbs_callback(GLUnurbs* nobj, uint which, iptr fn_)
+    @cname("gluNurbsCallback") @link("glu32");
+
+<*
+ @param [&inout] nobj
+ @param [&inout] knot
+ @param [&inout] ctlarray
+*>
+extern fn void glu_nurbs_curve(GLUnurbs* nobj, int nknots, float* knot, int stride, float* ctlarray, int order, uint type)
+    @cname("gluNurbsCurve") @link("glu32");
+
+<*
+ @param [&inout] nobj
+*>
+extern fn void glu_nurbs_property(GLUnurbs* nobj, uint property, float value)
+    @cname("gluNurbsProperty") @link("glu32");
+
+<*
+ @param [&inout] nobj
+ @param [&inout] sknot
+ @param [&inout] tknot
+ @param [&inout] ctlarray
+*>
+extern fn void glu_nurbs_surface(GLUnurbs* nobj, int sknot_count, float* sknot, int tknot_count, float* tknot, int s_stride, int t_stride, float* ctlarray, int sorder, int torder, uint type)
+    @cname("gluNurbsSurface") @link("glu32");
+
+extern fn void glu_ortho_2_d(double left, double right, double bottom, double top)
+    @cname("gluOrtho2D") @link("glu32");
+
+<*
+ @param [&inout] qobj
+*>
+extern fn void glu_partial_disk(GLUquadric* qobj, double innerRadius, double outerRadius, int slices, int loops, double startAngle, double sweepAngle)
+    @cname("gluPartialDisk") @link("glu32");
+
+extern fn void glu_perspective(double fovy, double aspect, double zNear, double zFar)
+    @cname("gluPerspective") @link("glu32");
+
+<*
+ @param [&inout] viewport
+*>
+extern fn void glu_pick_matrix(double x, double y, double width, double height, int* viewport)
+    @cname("gluPickMatrix") @link("glu32");
+
+<*
+ @param [&in] modelMatrix
+ @param [&in] projMatrix
+ @param [&in] viewport
+ @param [&inout] winx
+ @param [&inout] winy
+ @param [&inout] winz
+*>
+extern fn int glu_project(double objx, double objy, double objz, double* modelMatrix, double* projMatrix, int* viewport, double* winx, double* winy, double* winz)
+    @cname("gluProject") @link("glu32");
+
+<*
+ @param [&inout] nobj
+ @param [&inout] array
+*>
+extern fn void glu_pwl_curve(GLUnurbs* nobj, int count, float* array, int stride, uint type)
+    @cname("gluPwlCurve") @link("glu32");
+
+<*
+ @param [&inout] qobj
+*>
+extern fn void glu_quadric_callback(GLUquadric* qobj, uint which, iptr fn_)
+    @cname("gluQuadricCallback") @link("glu32");
+
+<*
+ @param [&inout] quadObject
+*>
+extern fn void glu_quadric_draw_style(GLUquadric* quadObject, uint drawStyle)
+    @cname("gluQuadricDrawStyle") @link("glu32");
+
+<*
+ @param [&inout] quadObject
+*>
+extern fn void glu_quadric_normals(GLUquadric* quadObject, uint normals)
+    @cname("gluQuadricNormals") @link("glu32");
+
+<*
+ @param [&inout] quadObject
+*>
+extern fn void glu_quadric_orientation(GLUquadric* quadObject, uint orientation)
+    @cname("gluQuadricOrientation") @link("glu32");
+
+<*
+ @param [&inout] quadObject
+*>
+extern fn void glu_quadric_texture(GLUquadric* quadObject, char textureCoords)
+    @cname("gluQuadricTexture") @link("glu32");
+
+<*
+ @param [&in] datain
+ @param [&inout] dataout
+*>
+extern fn int glu_scale_image(uint format, int widthin, int heightin, uint typein, void* datain, int widthout, int heightout, uint typeout, void* dataout)
+    @cname("gluScaleImage") @link("glu32");
+
+<*
+ @param [&inout] qobj
+*>
+extern fn void glu_sphere(GLUquadric* qobj, double radius, int slices, int stacks)
+    @cname("gluSphere") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_tess_begin_contour(GLUtesselator* tess)
+    @cname("gluTessBeginContour") @link("glu32");
+
+<*
+ @param [&inout] tess
+ @param [&inout] polygon_data
+*>
+extern fn void glu_tess_begin_polygon(GLUtesselator* tess, void* polygon_data)
+    @cname("gluTessBeginPolygon") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_tess_callback(GLUtesselator* tess, uint which, iptr fn_)
+    @cname("gluTessCallback") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_tess_end_contour(GLUtesselator* tess)
+    @cname("gluTessEndContour") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_tess_end_polygon(GLUtesselator* tess)
+    @cname("gluTessEndPolygon") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_tess_normal(GLUtesselator* tess, double x, double y, double z)
+    @cname("gluTessNormal") @link("glu32");
+
+<*
+ @param [&inout] tess
+*>
+extern fn void glu_tess_property(GLUtesselator* tess, uint which, double value)
+    @cname("gluTessProperty") @link("glu32");
+
+<*
+ @param [&inout] tess
+ @param [&inout] coords
+ @param [&inout] data
+*>
+extern fn void glu_tess_vertex(GLUtesselator* tess, double* coords, void* data)
+    @cname("gluTessVertex") @link("glu32");
+
+<*
+ @param [&in] modelMatrix
+ @param [&in] projMatrix
+ @param [&in] viewport
+ @param [&inout] objx
+ @param [&inout] objy
+ @param [&inout] objz
+*>
+extern fn int glu_un_project(double winx, double winy, double winz, double* modelMatrix, double* projMatrix, int* viewport, double* objx, double* objy, double* objz)
+    @cname("gluUnProject") @link("glu32");
+
+extern fn Bool wgl_copy_context(Hglrc param0, Hglrc param1, uint param2)
+    @cname("wglCopyContext") @link("opengl32");
+
+extern fn Hglrc wgl_create_context(Hdc param0)
+    @cname("wglCreateContext") @link("opengl32");
+
+extern fn Hglrc wgl_create_layer_context(Hdc param0, int param1)
+    @cname("wglCreateLayerContext") @link("opengl32");
+
+extern fn Bool wgl_delete_context(Hglrc param0)
+    @cname("wglDeleteContext") @link("opengl32");
+
+<*
+ @param [&inout] param4
+*>
+extern fn Bool wgl_describe_layer_plane(Hdc param0, int param1, int param2, uint param3, LayerPlaneDescriptor* param4)
+    @cname("wglDescribeLayerPlane") @link("opengl32");
+
+extern fn Hglrc wgl_get_current_context()
+    @cname("wglGetCurrentContext") @link("opengl32");
+
+extern fn Hdc wgl_get_current_dc()
+    @cname("wglGetCurrentDC") @link("opengl32");
+
+<*
+ @param [&inout] param4
+*>
+extern fn int wgl_get_layer_palette_entries(Hdc param0, int param1, int param2, int param3, ColorRef* param4)
+    @cname("wglGetLayerPaletteEntries") @link("opengl32");
+
+extern fn Proc wgl_get_proc_address(char* param0)
+    @cname("wglGetProcAddress") @link("opengl32");
+
+extern fn Bool wgl_make_current(Hdc param0, Hglrc param1)
+    @cname("wglMakeCurrent") @link("opengl32");
+
+extern fn Bool wgl_realize_layer_palette(Hdc param0, int param1, Bool param2)
+    @cname("wglRealizeLayerPalette") @link("opengl32");
+
+<*
+ @param [&in] param4
+*>
+extern fn int wgl_set_layer_palette_entries(Hdc param0, int param1, int param2, int param3, ColorRef* param4)
+    @cname("wglSetLayerPaletteEntries") @link("opengl32");
+
+extern fn Bool wgl_share_lists(Hglrc param0, Hglrc param1)
+    @cname("wglShareLists") @link("opengl32");
+
+extern fn Bool wgl_swap_layer_buffers(Hdc param0, uint param1)
+    @cname("wglSwapLayerBuffers") @link("opengl32");
+
+extern fn Bool wgl_use_font_bitmapsA(Hdc param0, uint param1, uint param2, uint param3)
+    @cname("wglUseFontBitmapsA") @link("opengl32");
+
+extern fn Bool wgl_use_font_bitmapsW(Hdc param0, uint param1, uint param2, uint param3)
+    @cname("wglUseFontBitmapsW") @link("opengl32");
+
+<*
+ @param [&inout] param7
+*>
+extern fn Bool wgl_use_font_outlinesA(Hdc param0, uint param1, uint param2, uint param3, float param4, float param5, int param6, GlyphMetricsFloat* param7)
+    @cname("wglUseFontOutlinesA") @link("opengl32");
+
+<*
+ @param [&inout] param7
+*>
+extern fn Bool wgl_use_font_outlinesW(Hdc param0, uint param1, uint param2, uint param3, float param4, float param5, int param6, GlyphMetricsFloat* param7)
+    @cname("wglUseFontOutlinesW") @link("opengl32");
+
+macro Bool wgl_use_font_bitmaps(Hdc param0, uint param1, uint param2, uint param3)
+@if(!$feature(WIN32_UNICODE))
+{
+    return wgl_use_font_bitmapsA(param0, param1, param2, param3);
+}
+
+macro Bool wgl_use_font_bitmaps(Hdc param0, uint param1, uint param2, uint param3)
+@if($feature(WIN32_UNICODE))
+{
+    return wgl_use_font_bitmapsW(param0, param1, param2, param3);
+}
+
+<*
+ @param [&inout] param7
+*>
+macro Bool wgl_use_font_outlines(Hdc param0, uint param1, uint param2, uint param3, float param4, float param5, int param6, GlyphMetricsFloat* param7)
+@if(!$feature(WIN32_UNICODE))
+{
+    return wgl_use_font_outlinesA(param0, param1, param2, param3, param4, param5, param6, param7);
+}
+
+<*
+ @param [&inout] param7
+*>
+macro Bool wgl_use_font_outlines(Hdc param0, uint param1, uint param2, uint param3, float param4, float param5, int param6, GlyphMetricsFloat* param7)
+@if($feature(WIN32_UNICODE))
+{
+    return wgl_use_font_outlinesW(param0, param1, param2, param3, param4, param5, param6, param7);
+}
+

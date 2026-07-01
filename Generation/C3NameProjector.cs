@@ -197,7 +197,8 @@ public sealed class C3NameProjector
     private static string LowerFirst(string value)
     {
         value = SanitizeIdentifier(value, "item");
-        return char.ToLowerInvariant(value[0]) + value[1..];
+        var lowercased = char.ToLowerInvariant(value[0]) + value[1..];
+        return Keywords.Contains(lowercased) ? lowercased + "_" : lowercased;
     }
 
     private static string SanitizeIdentifier(string value, string fallback)

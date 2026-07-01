@@ -30,8 +30,8 @@ fn bool setupOpenGl(HWnd window) {
     PixelFormatDescriptor format;
     format.nSize = (ushort)@sizeof(format);
     format.nVersion = 1;
-    format.dwFlags = win32::PFD_DRAW_TO_WINDOW | win32::PFD_SUPPORT_OPENGL | win32::PFD_DOUBLEBUFFER;
-    format.iPixelType = win32::PFD_TYPE_RGBA;
+    format.dwFlags = win32::PfdFlags.PFD_DRAW_TO_WINDOW | win32::PfdFlags.PFD_SUPPORT_OPENGL | win32::PfdFlags.PFD_DOUBLEBUFFER;
+    format.iPixelType = win32::PfdPixelType.PFD_TYPE_RGBA;
     format.cColorBits = (char)32;
     format.cRedBits = 0;
     format.cRedShift = 0;
@@ -49,7 +49,7 @@ fn bool setupOpenGl(HWnd window) {
     format.cDepthBits = (char)24;
     format.cStencilBits = (char)8;
     format.cAuxBuffers = 0;
-    format.iLayerType = (char)win32::PFD_MAIN_PLANE;
+    format.iLayerType = (char)win32::PfdLayerType.PFD_MAIN_PLANE;
     format.bReserved = 0;
     format.dwLayerMask = 0;
     format.dwVisibleMask = 0;
@@ -93,7 +93,7 @@ fn void main() {
 
     WndClassExW windowClass;
     windowClass.cbSize = (uint)@sizeof(windowClass);
-    windowClass.style = win32::CS_HREDRAW | win32::CS_VREDRAW | win32::CS_OWNDC;
+    windowClass.style = win32::WndClassStyles.CS_HREDRAW | win32::WndClassStyles.CS_VREDRAW | win32::WndClassStyles.CS_OWNDC;
     windowClass.lpfnWndProc = &windowProc;
     windowClass.cbClsExtra = 0;
     windowClass.cbWndExtra = 0;
@@ -108,10 +108,10 @@ fn void main() {
     win32::registerClassExW(&windowClass);
 
     HWnd window = win32::createWindowExW(
-        0,
+        (win32::WindowExStyle)0,
         &className[0],
         &title[0],
-        win32::WS_OVERLAPPEDWINDOW | win32::WS_VISIBLE,
+        win32::WindowStyle.WS_OVERLAPPEDWINDOW | win32::WindowStyle.WS_VISIBLE,
         win32::CW_USEDEFAULT,
         win32::CW_USEDEFAULT,
         960,
@@ -128,7 +128,7 @@ fn void main() {
 
     Msg message;
     while (running) {
-        while (win32::peekMessageW(&message, null, 0, 0, win32::PM_REMOVE) != 0) {
+        while (win32::peekMessageW(&message, null, 0, 0, win32::PeekMessageRemoveType.PM_REMOVE) != 0) {
             if (message.message == win32::WM_QUIT) {
                 running = false;
                 break;

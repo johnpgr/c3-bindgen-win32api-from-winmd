@@ -71,6 +71,7 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
                 C3DelegateReturnType = type.DelegateSignature is null ? null : types.Map(type.DelegateSignature.ReturnType)
             };
 
+            var isEnum = type.Kind == ApiTypeKind.Enum;
             for (var i = 0; i < type.Fields.Count; i++)
             {
                 var field = type.Fields[i];
@@ -81,7 +82,9 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
                 {
                     Ordinal = i,
                     OriginalName = field.OriginalName,
-                    C3Name = names.FieldName(field.OriginalName),
+                    C3Name = isEnum
+                        ? names.ConstantName(field.OriginalName)
+                        : names.FieldName(field.OriginalName),
                     OriginalType = field.Type,
                     C3Type = types.Map(field.Type),
                     LiteralValue = field.LiteralValue,
@@ -119,6 +122,9 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
         foreach (var constantName in subset.Constants)
         {
             if (!api.Constants.TryGetValue(constantName, out var constant))
+                continue;
+
+            if (api.Types.TryGetValue(constant.Type, out var enumType) && enumType.Kind == ApiTypeKind.Enum && subset.Types.Contains(constant.Type))
                 continue;
 
             var c3Type = types.Map(constant.Type);
@@ -194,8 +200,10 @@ public sealed class GeneratedBindingBuilder(C3NameProjector names, C3TypeMapper 
             ApiTypeKind.Handle => "alias",
             ApiTypeKind.Alias => "alias",
             ApiTypeKind.Struct => "struct",
-            ApiTypeKind.Enum => "alias",
+            ApiTypeKind.Enum => "enum",
             ApiTypeKind.Delegate => type.DelegateSignature is null ? "unsupported" : "alias",
+            ApiTypeKind.Interface => "alias",
+            ApiTypeKind.Class => "alias",
             _ => "unsupported"
         };
     }

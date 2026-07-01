@@ -4,14 +4,16 @@
     "Windows.Win32.Foundation",
     "Windows.Win32.System.LibraryLoader",
     "Windows.Win32.UI.WindowsAndMessaging",
-    "Windows.Win32.Graphics.Gdi"
+    "Windows.Win32.Graphics.Gdi",
+    "Windows.Win32.System.Diagnostics.Debug"
   ],
   "includeNamespaces": [
     "Windows.Win32.Foundation",
     "Windows.Win32.System.LibraryLoader",
     "Windows.Win32.UI.WindowsAndMessaging",
     "Windows.Win32.Graphics.Gdi",
-    "Windows.Win32.Graphics.OpenGL"
+    "Windows.Win32.Graphics.OpenGL",
+    "Windows.Win32.System.Diagnostics.Debug"
   ],
   "includeImportModules": [
     "USER32.dll",
@@ -83,7 +85,12 @@
     "WS_THICKFRAME",
     "WS_TILED*",
     "WS_VISIBLE",
-    "WS_VSCROLL"
+    "WS_VSCROLL",
+    "PATCOPY",
+    "PATINVERT",
+    "DSTINVERT",
+    "BLACKNESS",
+    "WHITENESS"
   ],
   "functions": [
     "GetModuleHandleW",
@@ -99,7 +106,8 @@
   ],
   "types": [
     "WNDCLASSEXW",
-    "MSG"
+    "MSG",
+    "ROP_CODE"
   ],
   "constants": [
     "CS_OWNDC",

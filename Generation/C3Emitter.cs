@@ -56,13 +56,15 @@ public sealed class C3Emitter
                     EmitHandle(sb, type);
                     break;
                 case ApiTypeKind.Alias:
+                case ApiTypeKind.Interface:
+                case ApiTypeKind.Class:
                     EmitAlias(sb, type);
                     break;
                 case ApiTypeKind.Struct:
                     EmitStruct(sb, type);
                     break;
                 case ApiTypeKind.Enum:
-                    EmitEnumAlias(sb, type);
+                    EmitEnum(sb, type);
                     break;
                 case ApiTypeKind.Delegate:
                     EmitDelegate(sb, type);
@@ -109,11 +111,24 @@ public sealed class C3Emitter
         sb.AppendLine($"alias {type.C3Name} = {target};");
     }
 
-    private static void EmitEnumAlias(StringBuilder sb, GeneratedType type)
+    private static void EmitEnum(StringBuilder sb, GeneratedType type)
     {
         var valueField = type.Fields.FirstOrDefault(f => f.OriginalName == "value__");
+        var underlyingType = valueField?.C3Type ?? "int";
+
         sb.AppendLine($"// Win32 original: {type.OriginalName}");
-        sb.AppendLine($"alias {type.C3Name} = {valueField?.C3Type ?? "int"};");
+        sb.AppendLine($"constdef {type.C3Name} : {underlyingType}");
+        sb.AppendLine("{");
+
+        var members = type.Fields.Where(f => f.OriginalName != "value__").ToList();
+        for (int i = 0; i < members.Count; i++)
+        {
+            var member = members[i];
+            var comma = i == members.Count - 1 ? "" : ",";
+            sb.AppendLine($"    {member.C3Name} = {member.LiteralValue}{comma}");
+        }
+
+        sb.AppendLine("}");
     }
 
     private static void EmitStruct(StringBuilder sb, GeneratedType type)
